@@ -1,0 +1,59 @@
+{
+  "name": "tea-stack",
+  "version": "1.0.0",
+  "description": "A starter template for the TEA stack.",
+  "main": "index.js",
+  "config": {
+    "11ty": "eleventy --quiet",
+    "css": "tailwindcss -i src/_styles/_main.pcss -o dist/assets/main.bundle.css --postcss",
+    "js": "esbuild src/_scripts/_main.js --outfile=dist/assets/main.bundle.js --bundle"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production npm-run-all clean -p build:*",
+    "build:11ty": "cross-var \"$npm_package_config_11ty\"",
+    "build:css": "cross-var \"$npm_package_config_css --minify\"",
+    "build:js": "cross-var \"$npm_package_config_js --minify\"",
+    "clean": "rm -rf dist",
+    "dev": "cross-var \"cross-env NODE_ENV=development npm-run-all -p dev:*\"",
+    "dev:11ty": "cross-var \"$npm_package_config_11ty --serve\"",
+    "dev:css": "cross-var \"$npm_package_config_css --watch\"",
+    "dev:js": "cross-var \"$npm_package_config_js --watch\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattwaler/tea-stack.git"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "htmlWhitespaceSensitivity": "ignore"
+  },
+  "keywords": [
+    "tailwind",
+    "eleventy",
+    "alpine"
+  ],
+  "author": "Matt Waler",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattwaler/tea-stack/issues"
+  },
+  "homepage": "https://github.com/mattwaler/tea-stack#readme",
+  "dependencies": {
+    "alpinejs": "^3.1.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.0",
+    "@tailwindcss/forms": "^0.5.0",
+    "@tailwindcss/typography": "^0.5.0",
+    "cross-env": "^7.0.3",
+    "cross-var": "^1.1.0",
+    "esbuild": "^0.14.3",
+    "npm-run-all": "^4.1.5",
+    "postcss-import": "^14.0.0",
+    "tailwindcss": "^3.0.1",
+    "tailwindcss-debug-screens": "^2.2.1"
+  }
+}
