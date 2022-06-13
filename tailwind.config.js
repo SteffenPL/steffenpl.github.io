@@ -10,9 +10,9 @@ module.exports = {
       center: true,
       padding: '1.5rem',
     },
-    debugScreens: {
-      position: ['bottom', 'right'],
-    },
+    //debugScreens: {
+    //  position: ['bottom', 'right'],
+    //},
     extend: {},
   },
 }

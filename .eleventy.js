@@ -7,12 +7,13 @@ const pageAssetsPlugin = require('eleventy-plugin-page-assets');
 
 module.exports = (config) => {
   config.addPassthroughCopy({ 'public': './' })
+  config.addPassthroughCopy({'src/assets': 'assets'})
   config.setBrowserSyncConfig({
     files: ['dist/**/*'],
     open: true,
   })
   let markdownLibrary = markdownIt({
-    html: true,     breaks: true,     linkify: true,   })
+    html: true,     breaks: false,     linkify: false,   })
     .use(require("markdown-it-emoji"))
     .use(require("markdown-it-footnote"))
     .use(require("markdown-it-attrs"))
@@ -32,6 +33,10 @@ module.exports = (config) => {
     });
 
 
+    config.addCollection('blog',
+    collection => {
+      return collection.getFilteredByGlob('./src/blog/posts/**/*.md')
+    });
   // date config
   config.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
