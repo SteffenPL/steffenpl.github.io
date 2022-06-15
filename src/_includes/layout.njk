@@ -18,10 +18,10 @@
   <title>{{ title }} | Steffen Plunder</title>
 </head>
 <body class="{{ 'debug-screens' if env.devMode }}  container mx-auto min-h-screen bg-cover" style="background-image:url({{ '/assets/trees.jpg' | url }})">
-      <div class="max-w-2xl bg-white mx-auto min-h-screen">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
       {% include 'header.njk' %}
 
-      <div class="max-w-2xl container py-4 pb-8 px-4">
+      <div class="max-w-4xl container py-4 pb-8 px-4">
       {% block body %}
         {{ content | safe }}
       {% endblock %}

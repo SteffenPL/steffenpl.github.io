@@ -14,6 +14,8 @@ layout: markdown
 
 | | | |
 |---|---|---|
+| 12/2022 | [Testing in scientific computing]({{ '/assets/talks/Testing_in_scientific_programming.pdf' | url }}) | Vienna |
+| 12/2022 | [A short introduction to git]({{ '/assets/talks/A_short_introduction_to_git.pdf' | url }}) | Vienna |
 | 10/11/2021 | [Position-based dynamics for ODEs with inequality constraints]({{ '/assets/talks/pde_afternoon_2021_pbd.pdf' | url }}) | PDE afternoon (Vienna) |
 | 05/2020 | [Partially kinetic systems (aka 'particles on rails')](https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2020/partially_kinetic_systems/index.html) | Kinetic Theory Coffee Break (online) |
 | 12/6/2019 | [Short introduction to finite element exterior calculus]({{ '/assets/talks/feec_short.pdf' | url }}) | PhD seminar (Kaiserslautern) | 
@@ -35,6 +37,12 @@ _I organised (together with others) various events during my time as speaker of 
 | 2022 | [VSM Mini-Course on String Theory by Pavel Safronov](https://hackmd.io/@vsm/string-theory) (one week) |
 | 2021 | [VSM workshop: A PhD in mathematics &ndash; career possibilities & gender aspects](https://ps-mathematik.univie.ac.at/e/index.php?event=VSM-WS2021) (one day)  |
 | 2017 &ndash; 2019 | Student Talks (initiator of series of extracurricular talks at TU Kaiserslautern) |
+
+## Outreach 
+
+| | | |
+|---|---|---|
+| 22/5/2022 | Lange Nacht der Wissenschaft (long night of science) | Vienna |
 
 ## Thesis documents
 
