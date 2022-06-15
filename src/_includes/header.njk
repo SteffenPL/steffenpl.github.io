@@ -1,6 +1,6 @@
-<nav class="py-4" x-data>
-  <div class="container flex justify-between  max-w-2xl border-b-2 pb-2 border-lime-600">
-    <a class="font-bold" href="/">
+<nav class="py-4 px-4" x-data>
+  <div class="container mx-auto flex justify-between  max-w-2xl border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="{{ '/' | url }}">
       Steffen Plunder
     </a>
     {# Desktop Nav #}
@@ -8,7 +8,7 @@
       {% for item in navigation %}
         <a
           class="{{ 'font-black' if page.url == item.route }}"
-          href="{{ item.route }}"
+          href="{{ item.route | url }}"
         >
           {{ item.name }}
         </a>
@@ -32,7 +32,7 @@
     {% for item in navigation %}
       <a
         class="{{ 'font-black' if page.url == item.route }}"
-        href="{{ item.route }}"
+        href="{{ item.route | url }}"
       >
         {{ item.name }}
       </a>

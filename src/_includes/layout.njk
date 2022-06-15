@@ -4,24 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="{{ '/assets/main.bundle.css' | url }}">
+  <link rel="stylesheet" href="{{ '/assets/prism.css' | url }}"></script>
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
 
-  <script src="/assets/main.bundle.js" defer></script>
-  <script src="/assets/q5.min.js"></script>
+  <script src="{{ '/assets/main.bundle.js' | url }}" defer></script>
+  <script src="{{ '/assets/q5.min.js' | url }}"></script>
+  <script src="{{ '/assets/prism.js' | url }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
   
 
   <title>{{ title }} | Steffen Plunder</title>
 </head>
+<body class="{{ 'debug-screens' if env.devMode }}  container mx-auto min-h-screen bg-cover" style="background-image:url({{ '/assets/trees.jpg' | url }})">
+      <div class="max-w-2xl bg-white mx-auto min-h-screen">
+      {% include 'header.njk' %}
 
-<body class="{{ 'debug-screens' if env.devMode }}">
-  {% include 'header.njk' %}
-  
-  {% block body %}
-    {{ content | safe }}
-  {% endblock %}
+      <div class="max-w-2xl container py-4 pb-8 px-4">
+      {% block body %}
+        {{ content | safe }}
+      {% endblock %}
+      </div>
+      </div>
 </body>
 
 </html>

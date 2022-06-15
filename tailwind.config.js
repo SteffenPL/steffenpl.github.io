@@ -7,12 +7,22 @@ module.exports = {
   ],
   theme: {
     container: {
-      center: true,
-      padding: '1.5rem',
+      // padding: '1.5rem',
     },
     //debugScreens: {
     //  position: ['bottom', 'right'],
-    //},
-    extend: {},
+    //}, 
+    extend: {
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            a: {  color: theme('colors.lime.800'),
+              '&:hover': {  color: theme('colors.lime.600') }
+            }
+            // ...
+          },
+        },
+      }),
+    },
   },
 }

@@ -5,19 +5,34 @@ layout: markdown
 ---
 
 
-<div class="sm:float-right sm:max-w-[12em] sm:ml-2 md:flex hidden">
+<div class="sm:float-right sm:max-w-[12em] sm:ml-2 md:flex hidden drop-shadow-xl">
 
-![](images/steffen_red.jpg)
+![](/steffen_red.jpg)
 </div>
 
-I'm a PhD student at [University of Vienna](https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/) in [Sara Merino-Aceituno's](https://sites.google.com/view/saramerinoaceituno/about) research group on "Mathematics of Emergence in natural Domains".
+I'm a PhD student at [University of Vienna](https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/) in [Sara Merino-Aceituno's](https://sites.google.com/view/saramerinoaceituno/about) research group _Mathematics of Emergence in natural Domains_.
+I studied mathematics at [TU Kaiserslautern](https://www.mathematik.uni-kl.de/en/) with stays at [TU Delft](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics) and [The University of Auckland](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-mathematics.html).
 
-With my research I want to answer **questions in biology using mathematical tools**.
 
-My mathematical toolset includes **mathematical modelling** with ordinary, stochastic and partial differential equations. An emphasis lies on **constrained** systems such as differential inclusions and differential-algebraic equations. My key expertiese is the implementation of efficient **numerical simulations**. 
+<div class="container md:hidden drop-shadow-xl">
+<img class="mx-auto max-w-[12em]" src="./steffen_red.jpg">
+</div>
 
-*Find out more: [CV](/cv), [GitHub](https://github.com/SteffenPL), [ResearchGate](), [LinkedIn]().*
+With my research, I want to answer **questions in biology using mathematical tools**. I have worked on mechanical models in developmental biology (epithelial-to-mesenchymal transitions), muscle dynamics, molecular dynamics and phage-bacterial interactions.
 
+My mathematical toolset includes **mathematical modelling** with ordinary, stochastic and partial differential equations. An emphasis lies on **constrained systems** such as differential inclusions and differential-algebraic equations. My key expertiese is the implementation of efficient **numerical simulations** for such models.
+
+You can find a description of my current projects in the [research section]({{ '/research' | url }}) and some more general posts in my [blog]({{ '/blog' | url }}).
+
+I'm currently looking for a post-doc positions! 🕵️ {class="bg-lime-200 p-2 border-lime-400 border-2 rounded-xl"}
+
+
+## Contact
+
+<small>
+Office 03.125, Faculty of Mathematics, Oskar-Morgenstern-Platz 4, Vienna.<br>
+E-Mail: <a href="mailto:steffen.plunder@univie.ac.at">steffen.plunder@univie.ac.at</a>
+</small>
 
 ## Preprints
 
