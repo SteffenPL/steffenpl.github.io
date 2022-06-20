@@ -9,7 +9,7 @@
     "js": "esbuild src/_scripts/_main.js --outfile=dist/assets/main.bundle.js --bundle"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production npm-run-all clean -p build:*",
+    "build": "cross-env NODE_ENV=production npm-run-all -p build:*",
     "build:11ty": "cross-var \"$npm_package_config_11ty\"",
     "build:css": "cross-var \"$npm_package_config_css --minify\"",
     "build:js": "cross-var \"$npm_package_config_js --minify\"",
