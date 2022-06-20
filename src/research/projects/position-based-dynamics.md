@@ -7,5 +7,15 @@ order: 2
 img: ./imgs/PBD/2spheres.png
 ---
 
+_This project is a collaboration with Bernd Simeon._
+
+The mathematical modelling of muscle tissue happens at various stages:
+- Rough macroscopic models such as the Hughes model
+- 
+
+
+- Detailed macroscopic models which combine elasiticty equations
+
+
 
 **Page under construction.**
