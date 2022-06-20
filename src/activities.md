@@ -28,6 +28,7 @@ layout: markdown
 | 13/9/2017 | [Symplectic molecular dynamics]({{ '/assets/talks/molecular_dynamics.pdf' | url}}) | 19th ÖMG Meeting and Annual DMV Meeting (Salzburg) |
 | 30/1/2017 | Optimization of B-Spline Parametrizations using G+SMo and IPOPT | G+SMo Developer Days (TU Delft) |
 
+
 ## Organisation
 
 _I organised (together with others) various events during my time as speaker of the [Vienna School of Mathematics (VSM)](https://vsmath.at) and earlier as member of the [student council at TU Kaiserslautern](https://www.mathematik.uni-kl.de/fachschaft-mathematik)._
@@ -46,7 +47,7 @@ _I organised (together with others) various events during my time as speaker of 
 
 ## Thesis documents
 
-<div class="grid md:grid-cols-2 gap-4">
+<div class="md:grid md:grid-cols-2 gap-4 md:flex-none flex flex-col-reverse md:max-w-none max-w-xs mx-auto">
 <div onclick="location.href='/steffen.plunder/assets/thesis/plunder_bachelor_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
 <img src="{{ 'imgs/bachelor_thesis_preview.png' | url }}">
 <a href="{{ '/assets/thesis/plunder_bachelor_thesis.pdf'| url }}">Bachelor's thesis on molecular dynamics</a> (supervisor Dr. Wolfgang Bock).
@@ -57,3 +58,14 @@ _I organised (together with others) various events during my time as speaker of 
 <a href="{{ '/assets/thesis/plunder_masters_thesis.pdf'| url }}">Master's thesis on modelling and simulation of skeletal muscle tissue</a> (supervisor Prof. Bernd Simeon). 
 </div>
 </div>
+
+
+---
+
+
+
+<div class="drop-shadow-xl  mb-8" >
+<img src="./abschluss_Okt_18_03.jpg" class="mb-0 rounded-t">
+<div class="text-center bg-slate-300 pt-2 pb-2 rounded-b">
+Me during my talk about “studying mathematics at TU Kaiserslautern” on the graduation ceremony 2019.
+</div></div>
