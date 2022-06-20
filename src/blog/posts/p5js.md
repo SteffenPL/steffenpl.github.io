@@ -24,13 +24,14 @@ $$
 ## Example simulation with p5js
 
 Below you can see a simple example for this model using p5js. 
-As a bonus, you can **click to add more apples** 😉. [^0] 
+
+**Click into the white area to add more apples** 😉. [^0] 
 [^0]: For the curious reader, to add more objects we need to deal with collisions. I used the Position-based dynamics method, you can read more about this method [here]({{ '/research/projects/position-based-dynamics' | url }}) and in the cited references therein.
 
 <div>
 
 <div class="container mx-auto w-max">
-<button id="demo_1_run" class="flex border-2 border-red-600 hover:bg-red-300 bg-red-200 rounded-xl pl-4 pr-4 mb-4 drop-shadow-xl">Run</button>
+<button id="demo_1_run" class="flex border-2 border-red-600 hover:bg-red-300 bg-red-200 rounded-xl pl-4 pr-4 mb-4 drop-shadow-xl">Restart</button>
 </div>
 <div class="container mx-auto w-max">
 <div id="demo_1" class="flex drop-shadow-xl border-2 w-[240px]"></div>

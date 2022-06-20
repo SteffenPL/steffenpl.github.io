@@ -7,6 +7,14 @@ order: 1
 img: ./imgs/EMT/cells.png
 ---
 
-_Collaborators:_  Eric Theveneau, Marina A. Ferreria, Diane Peurichard, Pierre Degond and Sara Merino-Aceituno.
+<!-- Maybe put a nice box around it -->
+_This project is a collaboration with:_  Eric Theveneau, Marina A. Ferreria, Diane Peurichard, Pierre Degond and Sara Merino-Aceituno.
+
+Our goal is to study the epithelial-to-mesenchymal transition (EMT), in particular we want to identify which
+mechanical factors play a role (does the timing matter? how essential are protrusions?). 
+An important aspect is the heterogenity of EMT:
+Cells move
+
+
 
 **Page under construction.**

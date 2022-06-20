@@ -1,0 +1,9 @@
+{
+    "grammarly.selectors": [
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "src/blog/posts/grammarly_vscode.md"
+        }
+    ]
+}
