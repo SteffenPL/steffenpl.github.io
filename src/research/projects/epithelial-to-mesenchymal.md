@@ -7,6 +7,6 @@ order: 1
 img: ./imgs/EMT/cells.png
 ---
 
-_Collaborators:_  Eric Theveneau, Marina A. Ferreria, Diane Peurichard, Pierre Degond and Sara Merino-Aceituno.
+_This project is a collaboration with Eric Theveneau, Marina A. Ferreria, Diane Peurichard, Pierre Degond and Sara Merino-Aceituno._
 
 **Page under construction.**
