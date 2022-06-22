@@ -70,6 +70,7 @@ module.exports = (config) => {
   config.addPlugin(pageAssetsPlugin, {
     mode: "parse",
     postsMatching: "src/**/*.md",
+    assetsMatching: "*.png|*.jpg|*.gif|*.svg"
   });
 
   config.addFilter("sitemapDateTimeString", (dateObj) => {

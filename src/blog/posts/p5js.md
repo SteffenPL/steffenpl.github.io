@@ -31,52 +31,52 @@ Below you can see a simple example for this model using p5js.
 <div>
 
 <div class="container mx-auto w-max">
-<button id="demo_1_run" class="flex border-2 border-red-600 hover:bg-red-300 bg-red-200 rounded-xl pl-4 pr-4 mb-4 drop-shadow-xl">Restart</button>
+<button id="sim_1_run" class="flex border-2 border-red-600 hover:bg-red-300 bg-red-200 rounded-xl pl-4 pr-4 mb-4 drop-shadow-xl">Restart</button>
 </div>
 <div class="container mx-auto w-max">
-<div id="demo_1" class="flex drop-shadow-xl border-2 w-[240px]"></div>
+<div id="sim_1" class="flex drop-shadow-xl border-2 w-[240px]"></div>
 </div>
 </div>
 
 
 <script>
-  let q5 = new Q5();
-        let qv = q5.Vector;
-        let parent = document.getElementById("demo_1");
+  
+  let pv = p5.Vector;
+  let sim_1 = function(p) {
+
         const w = 240;
         const h = 320;
         const n_sub = 40;
-        const dt = 1.0 / 30.0 / n_sub;
         const x_0 = w/2;
         const y_0 = h/4;
         let cooldown = 0;
         
-        const g = 10 * 9.81; // in pixel ;)
-        function f(z) { return q5.createVector(0.0, g); }
+        const g = 0.001; // in pixel ;)
+        function f(z) { return p.createVector(0.0, g); }
         
         const R = 20;
         let X = [];
-        let V = []; [q5.createVector(0, 0)];
+        let V = []; [p.createVector(0, 0)];
         let X_old = [];
         
-        q5.setup = function(){
-          q5.createCanvas(w, h);
-          parent.appendChild(q5.canvas);
-          q5.frameRate(30);
+        p.setup = function(){
+          p.createCanvas(w, h);
+          p.frameRate(30);
         }
         
         function init(){
           X.length = 0;
           V.length = 0;
-          X[0] = q5.createVector(x_0, y_0);
-          V[0] = q5.createVector(0.0, 0.0);
+          X[0] = p.createVector(x_0, y_0);
+          V[0] = p.createVector(0.0, 0.0);
         }
         init();
         
-        q5.draw = function(){
-          q5.background(255,255,255);
+        p.draw = function(){
+          p.background(255,255,255);
         
           const N = X.length;
+          const dt = p.deltaTime / n_sub;
 
         
           for( let k = 0; k < n_sub; ++k ) 
@@ -84,15 +84,15 @@ Below you can see a simple example for this model using p5js.
 
             for( let i = 0; i < N; ++i ) {
               if( X_old.length <= i) {
-                X_old[i] = q5.createVector(0.0,0.0);
+                X_old[i] = p.createVector(0.0,0.0);
               }
               X_old[i].set(X[i].x, X[i].y);
             }
 
             if( cooldown <= 0 ) {
               for( let i = 0; i < N; ++i ) {
-                  V[i].add( qv.mult(f(X[i]), dt) );
-                  X[i].add( qv.mult(V[i], dt) );
+                  V[i].add( pv.mult(f(X[i]), dt) );
+                  X[i].add( pv.mult(V[i], dt) );
               }
             }
                 
@@ -110,9 +110,9 @@ Below you can see a simple example for this model using p5js.
 
             for( let i = 0; i < N; ++i ) {
                 for( let j = 0; j < i; ++j ) {
-                    let d = qv.dist(X[i], X[j]);
+                    let d = pv.dist(X[i], X[j]);
                     if( d-2*R < 0 && d > 0) {
-                        const xixj = qv.mult(qv.sub( X[i], X[j] ), 0.5*(d-2*R)/d);
+                        const xixj = pv.mult(pv.sub( X[i], X[j] ), 0.5*(d-2*R)/d);
                         X[i].sub( xixj );
                         X[j].add( xixj );
                     }
@@ -121,7 +121,7 @@ Below you can see a simple example for this model using p5js.
 
             if( cooldown <= 0 ) {
               for( let i = 0; i < N; ++i ) {
-                V[i] = qv.mult(qv.sub(X[i],X_old[i]),1.0/dt);
+                V[i] = pv.mult(pv.sub(X[i],X_old[i]),1.0/dt);
               }
             }
             else {
@@ -129,26 +129,26 @@ Below you can see a simple example for this model using p5js.
             }
         }
 
-          q5.noStroke();
+          p.noStroke();
           for( let i = 0; i < N; ++i ) {
-            q5.fill(200,50,50);
-            q5.circle(X[i].x, X[i].y, 2*R);
-            q5.fill(30,150,30);
-            q5.triangle(X[i].x - 0.1*R, X[i].y - 0.8*R, X[i].x + 0.5*R, X[i].y - 1.1*R, X[i].x + 0.3*R, X[i].y - 1.3*R);
+            p.fill(200,50,50);
+            p.circle(X[i].x, X[i].y, 2*R);
+            p.fill(30,150,30);
+            p.triangle(X[i].x - 0.1*R, X[i].y - 0.8*R, X[i].x + 0.5*R, X[i].y - 1.1*R, X[i].x + 0.3*R, X[i].y - 1.3*R);
           }
         }
         
-        q5.mouseClicked = function(){
+        p.mouseClicked = function(){
             N = X.length; 
-            X[N] = q5.createVector( q5.mouseX, q5.mouseY );
-            V[N] = q5.createVector( 0.0, 0.0 );
+            X[N] = p.createVector( p.mouseX, p.mouseY );
+            V[N] = p.createVector( 0.0, 0.0 );
 
 
             cooldown = 0;
             N = X.length; 
             for( let i = 0; i < N; ++i ) {
                 for( let j = 0; j < i; ++j ) {
-                    let d = qv.dist(X[i], X[j]);
+                    let d = pv.dist(X[i], X[j]);
                     if( d-2*R < 0 && d > 0) {
                       cooldown = 2*n_sub;
                     }
@@ -156,8 +156,11 @@ Below you can see a simple example for this model using p5js.
             }
         }
 
-        let run_btn = document.getElementById("demo_1_run");
+        let run_btn = document.getElementById("sim_1_run");
         run_btn.onclick = function(){init();};
+
+      };
+      let myp5 = new p5(sim_1, 'sim_1');
 </script>
 
 
@@ -231,4 +234,4 @@ there are two falling apples?
 _You can find all available functions of p5js in the [reference](https://p5js.org/reference/). 
 For adding two apples you might want to use the `p5.Vector.dist` function._
 
-
+↪️ If you want to read more on the numerical method, check out my project description about [position-based dynamics]({{ '/research/projects/position-based-dynamics' | url }}).

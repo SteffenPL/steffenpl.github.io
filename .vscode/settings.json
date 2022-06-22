@@ -4,6 +4,21 @@
             "language": "markdown",
             "scheme": "file",
             "pattern": "src/blog/posts/grammarly_vscode.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "src/research/projects/position-based-dynamics.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "src/research/projects/epithelial-to-mesenchymal.md"
+        },
+        {
+            "language": "markdown",
+            "scheme": "file",
+            "pattern": "src/research/projects/cell-migration-model.md"
         }
     ]
 }
