@@ -17,7 +17,8 @@
     "dev": "cross-var \"cross-env NODE_ENV=development npm-run-all -p dev:*\"",
     "dev:11ty": "cross-var \"$npm_package_config_11ty --serve\"",
     "dev:css": "cross-var \"$npm_package_config_css --watch\"",
-    "dev:js": "cross-var \"$npm_package_config_js --watch\""
+    "dev:js": "cross-var \"$npm_package_config_js --watch\"",
+    "upload": "scp  -r ./dist/* u\\\\plunders95@webspace-access.univie.ac.at:/u/plunders95/steffenp57/html"
   },
   "repository": {
     "type": "git",

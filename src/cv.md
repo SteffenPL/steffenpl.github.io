@@ -33,7 +33,7 @@ A detailed version of my CV can be found [here]({{ '/assets/cv.pdf' | url }}).
 
 | | |
 |-------------------|----|
-| Programming | 10 years of experience. Advanced skills in C++, Julia, Python, Matlab, JavaScript. Creator of [MyPaintEdSlides]({{ '/blog/posts/mypaintedslides' | url }}). |
+| Programming | 10 years of experience. **Advanced skills in Julia**, C++, Python, Matlab, JavaScript. Creator of [MyPaintEdSlides]({{ '/blog/posts/mypaintedslides' | url }}). |
 
 
 ---

@@ -32,7 +32,7 @@ _This section is still work in progress._
 
 
 
-<div class="drop-shadow-xl  mb-8" >
+<div class="drop-shadow-xl  mb-8 cursor-pointer" onclick="location.href='./projects/cell-migration-model'">
 <img src="./steffen_sara_interactive.jpg" class="mb-0 rounded-t">
 <div class="text-center bg-slate-300 pt-2 pb-2 rounded-b">
 Sara Merino-Aceituno and me exploring an interactive simulation of our cell migration model for plithotaxis. This was part of an outreach activity that I developed for the “Long night of Science” in Vienna.

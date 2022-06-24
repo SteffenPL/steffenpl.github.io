@@ -20,7 +20,11 @@ At the moment we are building a model which includes effects such as plithotaxis
 and chemotaxis. 
 
 
-**The following simulation is absolutely preliminary. It is a simplified** version which I prepared for a public science event ("Lange Nacht der Forschung" in Vienna, 2022). The goal during the event was to explore under which conditions cells organise themself.
+**The following simulation is absolutely preliminary. It is a simplified** version which I prepared for a public science event ("Lange Nacht der Forschung" in Vienna, 2022). The goal of the event was to explore under which conditions cells organise themself.
+
+Some experiments one can perform with the simulation: 
+- Do cells still migrate collectively in the absence of cell-cell repulsion?
+- How important is confinement? 
 
 <div>
 
@@ -345,7 +349,8 @@ As in my previous project, we used again [position-based dynmaics]('../position-
             p.cluster_speed = (2*sl_8.val) * p_def.cluster_speed;
             */
     
-        const dt = p.deltaTime / p1.n_substeps;
+        const dt = p.min(p.deltaTime / p1.n_substeps, 50 / p1.n_substeps);
+        
     
         for( let step = 0; step < p1.n_substeps; ++step ) {
             // remove contacts 
