@@ -10,12 +10,13 @@ img: ./imgs/EMT/cells.png
 _Short project description:_
 # {{ title }}
 
-_This project is a collaboration with Eric Theveneau, Marina A. Ferreria, Diane Peurichard, Pierre Degond and Sara Merino-Aceituno._
+*This project is a collaboration with [Eric Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Marina A. Ferreria](https://marinaaferreira.wordpress.com/){target="_blank"}, [Diane Peurichard](https://sites.google.com/site/dianepeurichard/home){target="_blank"}, [Pierre Degond](https://sites.google.com/site/degond/Home){target="_blank"} and [Sara Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}.*
 
-The epithelial-to-mesenchymal transition (EMT) is a process during which epithelial cells[^1]
-transition into mesenchymal cells. During this transition fundamental cell properties change.
-For example, epithelial cells typical have adhesive bonds within each other. But as mesenchymal cells 
-they might loss these adhesive bonds and become suddenly mobile. 
+The epithelial-to-mesenchymal transition (EMT) is a complex process during which epithelial cells[^1]
+transition into mesenchymal cells via a progression of changes in the cell state. 
+During this transition, fundamental cell properties change. For example, epithelial cells typical have adhesive bonds within each other. But mesenchymal cells might lose these adhesive bonds and start to migrate. 
+However, the EMT process is very flexible in the sense that some changes might be skipped or reversed. To study this kind of
+heterogeneity is one of the key challenges of this project.
 
 <p><a href="https://commons.wikimedia.org/wiki/File:Epithelial-Mesenchymal_Transition.gif#/media/File:Epithelial-Mesenchymal_Transition.gif"><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Epithelial-Mesenchymal_Transition.gif" alt="Epithelial-Mesenchymal Transition.gif"></a><br>
 <span class="float-right">Image source: <a href="https://commons.wikimedia.org/w/index.php?curid=25952399">wikipedia.org</a></span></p>
@@ -26,9 +27,9 @@ The overall aim of our mathematical model is to understand
 the mechanical factors involved in epithelial-to-mesenchymal transition and the
 resulting cell migration.
 As there are many different directions to explore with _in vivo_ experiments, 
-gaining additional insight into the cell dynamics would help in the design of experiments. Ideally, the model could indicate which directions are most promising.
+gaining additional insight into the cell dynamics with simulations would help in the design of experiments. Ideally, the model could indicate which directions are most promising.
 
-Concretely, we want to come up with biological hypotheses which can be tested _in vivo_. 
+Concretely, we want to use simulations to come up with biological hypotheses which can be tested _in vivo_. 
 
 A second goal is to use the computer model also to study scenarios that are difficult or almost impossible with current experimental tools. For example,
 we can easily control the mixture of different cell types to model _heterogeneity_ in computer simulations. Doing the same experimentally is only possible to a limited degree. 
@@ -41,7 +42,7 @@ At the same time, it is observed that cells during EMT are very heterogeneous, w
 
 <img class="max-w-xs md:float-right mx-auto md:mx-0" src="./imgs/EMT/model_simple.png"></img>
 
-Without going into too many details, our model is a continuation of [Marina's model](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007171) where we added extra rules to model EMT.
+Without going into too many details, our model is a continuation of [Marina's model](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007171){target="_blank"} where we added extra rules to model EMT.
 
 The core of the model is a "tennis ball in a sock" description of the cells: Since the cell membrane is stretched out (like a sock) 
 and the nucleus is the hardest part of the cell (like the tennis ball) we consider the nucleus as a _sphere-like object_ and the membrane and the other cell structure as _linear springs_.
@@ -58,7 +59,9 @@ Without further ado. This is how a simulation of pseudo-stratified tissue _witho
 
 ## Mathematical aspects
 
-The main mathematical change was to use a first-order differential equation instead of a quasi-steady state simulation. This transition allows us to use of different numerical methods. And it turned out 
+Compared to the previous model, which was a quasi-steady state simulation, we 
+use a a first-order differential equation for the model behind simulations as the one above.
+Using first-order differential equations allows us to use a variety of different numerical methods. And it turned out 
 that [position-based dynamics]({{ '/research/projects/position-based-dynamics' | url }}) was with quite some margin the fastest method for our model.
 
 The model is (roughly) of the form
@@ -70,11 +73,11 @@ $$
 g_k(z) \geq 0, \quad \lambda_k \geq 0 \quad \text{and} \quad g_k(z) \lambda_k = 0.
 $$
 
-The degrees of freedom are the positions of the nuclei and the upper- and lower-endpoints of the cell membrane (which we call apical- and basal-points).
+The degrees of freedom are the positions of the nuclei and the upper and lower endpoints of the cell membrane (which we call apical and basal points). The mathematically inclined reader might notice that the inequality constraints add some extra challenges. But we will not go into these details here.
 
 In addition to the differential equation, there are many additional rules which change certain properties of the model at discrete times. For example:
 - Cell division,
-- Growth of the cell prior to division,
+- Growth of the cell before division,
 - Typical for pseudo-stratified tissue: The cytoskeleton pulls the nucleus towards the apical layer, just before the division starts.
 
 ### The EMT model
@@ -114,7 +117,7 @@ The numerical simulation of differential equations with inequality constraints
 is an old but very diverse topic. The preferred numerical methods vary fundamentally depending on the application, ranging from discrete element methods for engineering applications to complex algorithms from non-smooth mechanics or elasticity.
 
 Our method of choice is the rather novel [position-based dynamics (PBD)](../position-based-dynamics).
-The advantage of PBD is that it has nearly optimal speed and it does not waste unnecessary resources on satisfying the inequality constraints. This allowed us to run millions of simulations within a few hours. This uncompromising approach allowed us to generate enough data for statistical data analysis. Moreover, the numerical stability of PBD resolved issues previous algorithms had when the tissue is very packed. 
+The advantage of PBD is that it has nearly optimal speed and it does not waste unnecessary resources on satisfying the inequality constraints. This allowed us to run millions of simulations within a few hours. With this uncompromising approach, we could generate enough data for statistical data analysis. Moreover, the numerical stability of PBD resolved issues previous algorithms had when the tissue is very packed. 
 
 
 
@@ -122,7 +125,7 @@ The advantage of PBD is that it has nearly optimal speed and it does not waste u
 ## To be continued...
 
 This description is about ongoing research, as such, it is subject to change
-and non of the results is final. 
+and none of the results is final. 
 
 
 [^1]: For non-biologists: An example of epithelial tissue is your skin.

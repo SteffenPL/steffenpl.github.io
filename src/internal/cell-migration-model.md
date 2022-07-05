@@ -1,63 +1,150 @@
-<html>
-    <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.min.js" integrity="sha512-NxocnqsXP3zm0Xb42zqVMvjQIktKEpTIbCXXyhBPxqGZHqhcOXHs4pXI/GoZ8lE+2NJONRifuBpi9DxC58L0Lw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+---
+title: "Cell migration model for plithotaxis"
+start: 2021-06-01
+layout: simulation
+desc: Development of an agent-based cell migration model for plithotaxis.
+---
 
-    </head>
+# {{ title }}
 
-    <body>
+**This is an internal page for collaborators.** 
+If you see this page, you should know why you are here...
 
-        <div>
-            <input type="range" id="sl_plitho" ></input>
-            <input type="range" id="sl_chemo" value="0"></input>
-            <input type="range" id="sl_soft_rep" ></input>
-            <input type="range" id="sl_adh_stiffness" ></input>
-            <input type="range" id="sl_heterogeneity" ></input>
-            <input type="range" id="sl_confinement" ></input>
-        </div>
+- You can drag & drop the cells with the mouse.
+- You can drag & drop the parameter window anywhere as well.
+- The color code of cells is: 
+    - light green cells running phase
+    - green cells tumble phase
+    - orange cells are in CIL phase
+    - blue cells are in cluster phase
+- Change parameters in the `sim_cm` window. 
+    - Units for times are given in hours/angles in degree.
+- The domain width is kind of 800 $\mu m$.
 
-        <div id="sim_cm" style="max-width:85%">
-        </div>
+<div>
 
+<div id="sim_cm" class="max-w-full;">
+</div>
+<div class="container mx-auto w-max">
+<button id="sim_1_reset" class="flex border-2 border-red-600 rounded-xl pl-4 pr-4 mb-4 drop-shadow-xl">Restart</button>
+</div>
+</div>
+
+
+## Description of the simulation
+
+The green spheres represent the cells, and the transparent spheres around them indicate the 
+repulsive domain. In addition, cells can form temporary adhesive bonds which are displayed as orange lines.
+
+ Each cell is The red line displays the forces which are acting on the cell.
+The black line shows the polarity, cells will always try to run in direction of their polarity.
+
+Parameters:
+- confinement: Height of the area
+- N: number of cells
+- r: radius of cells
+- r_spread: heterogeneity in the radii of cells
+- run_speed: speed of cells during run phage
+    - similar: tumble_speed, cil_speed, cluster_speed
+- run_dur: duration of running phase
+- tumble_dur: duration of tumble phase
+- rotation_dur: duration between two repolarisations during tumble phase
+- cil_dur: duration of cil
+- cil_init_dur: duration of contact before CIL is initiated
+- cil_spread: randomness of direction after cil (180 = completely random)
+- new_adh_dur: avg duration before new adhesive bond is created for close cells
+- break_adh_dur: avg duration until adhesive bond breaks
+- adh_stiffness: stiffness of adhesive bonds
+- plitho_align: determines how much the alignment between cell polarity and forces impacts the duration between repolarisaion (during cluster phase)
+- plitho_dur: default duration betweewn repolarisaion (during cluster phase)
+- plitho_min_dur: minimal duration betweewn repolarisaion (during cluster phase)
+- plitho_max_dur: maximal duration betweewn repolarisaion (during cluster phase)
+- plitho_spread: determines how random the new direction is after repolarisation (during cluster phase). 180 = completely random.
+- chemo: amount of chemotaxis
+- soft_rep: stiffness of soft repulsion
+- wall_rep: stiffness of wall repulsion
+- diff_coef: noise added to positions
+- show_forces: plotting only, indicates who visible the force vectors are
+- n_substeps: numerical parameter for amount of substeps during each timestep
+- mu: damping coefficient
+
+<!-- this is here to allow markdown preview with scripts -->
+{%- if false -%}
+    <script src="../assets/p5.min.js" type="text/javascript"></script>
+    <script src="../assets/quicksettings.js" type="text/javascript"></script>
+    <script src="../assets/p5.gui.js" type="text/javascript"></script>
+{%- endif -%}
+
+
+<div>
 
 <script>
-
 
     let sim_cm = function(p) {
 
         let parent = document.getElementById('sim_cm');
-        let sl_chemo = document.getElementById('sl_chemo');
-        let sl_plitho = document.getElementById('sl_plitho');
-        let sl_soft_rep = document.getElementById('sl_soft_rep');
-        let sl_adh_stiffness = document.getElementById('sl_adh_stiffness');
-        let sl_confinement = document.getElementById('sl_confinement');
-        let sl_heterogeneity = document.getElementById('sl_heterogeneity');
-    
+        
+        const darkMode = true;
+
         let p_def = {
-            r: 20,
-            r_spread: 5, 
-            chemo: 0.1,
+            confinement: 0.65,
+            confinementMin: 0.0, confinementMax: 1.0, confinementStep: 0.05,
+            N: 120,
+            NMin: 5, NMax: 180, NStep: 5,
+            r: 20.0,
+            rMin: 1, rMax: 40, rStep:1,
+            r_spread: 5,
+            r_spreadMin: 0, r_spreadMax: 20, r_spreadStep: 0.5, 
             run_speed: 1.2, 
+            run_speedMin: 0.0, run_speedMax: 3.0, run_speedStep: 0.1,
             tumble_speed: 0.5, 
+            tumble_speedMin: 0.0, tumble_speedMax: 3.0, tumble_speedStep: 0.1,
             cil_speed: 0.7, 
+            cil_speedMin: 0.0, cil_speedMax: 3.0, cil_speedStep: 0.1,
             cluster_speed: 0.8, 
+            cluster_speedMin: 0.0, cluster_speedMax: 3.0, cluster_speedStep: 0.1, 
             run_dur: 15.0, 
+            run_durMin: 0.0, run_durMax: 60.0, run_durStep: 0.5, 
             tumble_dur: 6.0, 
+            tumble_durMin: 0.0, tumble_durMax: 60.0, tumble_durStep: 0.5, 
             rotation_dur: 2.0, 
+            rotation_durMin: 0.0, rotation_durMax: 10.0, rotation_durStep: 0.5,
             cil_dur: 5.0,
+            cil_durMin: 0.0, cil_durMax: 60.0, cil_durStep: 0.5,
+            cil_init_dur: 1.0,
+            cil_init_durMin: 0.5, cil_init_durMax: 10.0, cil_init_durStep: 0.5,
+            cil_spread: 30.0,
+            cil_spreadMin: 0.0, cil_spreadMax: 180.0, cil_spreadStep: 1.0,
             new_adh_dur: 3.0, 
+            new_adh_durMin: 0.0, new_adh_durMax: 60.0, new_adh_durStep: 0.5,
             break_adh_dur: 12.0, 
-            cntc_dur: 1.0,
-            diff_coef: 0.02,  
+            break_adh_durMin: 0.0, break_adh_durMax: 60.0, break_adh_durStep: 0.5,
             adh_stiffness: 0.02,
-            plitho_align: 50,
-            plitho_max: 50,
-            plitho_min: 0.1,
-            plitho_spread: 3.14 / 1.5,
+            adh_stiffnessMin: 0.0, adh_stiffnessMax: 0.1, adh_stiffnessStep: 0.001,
             plitho_dur: 3,
+            plitho_durMin: 0, plitho_durMax: 60, plitho_durStep: 0.5,
+            plitho_min_dur: 0.1,
+            plitho_min_durMin: 0.0, plitho_min_durMax: 12, plitho_min_durMin: 0.1,
+            plitho_max_dur: 50,
+            plitho_max_durMin: 0,plitho_max_durMax: 180,plitho_max_durStep: 5,
+            plitho_align: 50,
+            plitho_alignMin: 0,plitho_alignMax: 200,plitho_alignStep: 5,
+            plitho_spread: 15,
+            plitho_spreadMin: 0,  plitho_spreadMax: 180,  plitho_spreadStep: 1.0,
+            chemo: 0.0,
+            chemoMin: 0.0, chemoMax: 0.4, chemoStep: 0.01,
             soft_rep: 0.2,
+            soft_repMin: 0.0, soft_repMax: 1.0, soft_repStep: 0.05,
             wall_rep: 0.2,
+            wall_repMin: 0.0, wall_repMax: 1.0, wall_repStep: 0.05,
+            diff_coef: 0.02,  
+            diff_coefMin: 0.00, diff_coefMax: 0.2, diff_coefStep: 0.01,
             n_substeps: 10,
-            mu: 2
+            n_substepsMin: 1, n_substepsMax: 40, n_substepsStep: 1,
+            show_forces: 1,
+            show_forcesMin: 0, show_forcesMax: 1, show_forcesStep: 0.1,
+            mu: 2,
+            muMin: 0.1, muMax: 4, muStep: 0.1
         };
     
         let p1 = {...p_def};
@@ -92,8 +179,9 @@
         }
         draw() {
             p.noStroke();
-            p.fill(this.col.r, this.col.g, this.col.b, 50);
+            p.fill(this.col.r, this.col.g, this.col.b, 80);
             p.circle(this.pos.x, this.pos.y, this.r_s*2);
+            
             
             if( this.mode == 0) {
             p.fill(this.col.r, this.col.g + 100, this.col.b);  
@@ -109,11 +197,14 @@
             p.fill(this.col.r, this.col.g, this.col.b + 100);
             }
             p.circle(this.pos.x, this.pos.y, this.r_h*2);
-    
-            p.stroke(255,255,255, 120);
+            
+            // p.fill(this.col.r, this.col.g, this.col.b);
+            // p.circle(this.pos.x, this.pos.y, this.r_h*2);
+
+            p.stroke(50,50,50, 250);
             p.line(this.pos.x, this.pos.y, this.pos.x + this.r_s * this.pol.x, this.pos.y + this.r_s * this.pol.y);
-            if( false ) {
-            p.stroke(255,0,0, 100);
+            if( true ) {
+            p.stroke(150,0,0, 120 * p_def.show_forces);
             p.line(this.pos.x, this.pos.y, this.pos.x + this.r_s * this.f.x, this.pos.y + this.r_s * this.f.y);
             }  
         }
@@ -147,7 +238,7 @@
         
         draw(cells) {
             p.strokeWeight(4);
-            p.stroke(200,100,0, 120 * p.map(p1.adh_stiffness,0,p_def.adh_stiffness*4,0,2));
+            p.stroke(200,100,0, 120 * p.map(p1.adh_stiffness,0,p_def.adh_stiffness*2,0,2));
             for( let i = 0; i < cells.length; ++i) {
                 for( let j = 0; j < i; ++j) {
                     if ( this.cnts[i][j] ) {
@@ -163,6 +254,9 @@
         let first_step = true;
         
         function init() {
+
+            N = p_def.N;
+
         first_step = true
         switch(game_mode) {
             default:
@@ -188,6 +282,12 @@
             for(let i = N2; i < N; i++){
                 cells.push( new Cell(1) );
             }
+
+
+            for( let i = 0; i < cells.length; ++i) {
+                cells[i].r_s = p_def.r + p_def.r_spread * (p.pow(cells[i].rand,2) - 0.5);
+                cells[i].r_h = cells[i].r_s/2;
+            }
         }
     
         cnts = new Contacts(cells.length);
@@ -195,10 +295,17 @@
     
         }
     
-        p.setup = function() {
-            p.createCanvas(w, h);    
+        p.setup = function() { 
+            const height_proposal = parent.clientHeight;
+            const width_proposal = parent.clientWidth;
+            const aspect_proposal = width_proposal / height_proposal;
+            p.createCanvas(width_proposal, height_proposal * aspect_proposal / aspect);  
             p.frameRate(30);
     
+
+            gui = p.createGui(this);
+            gui.addObject(p_def);
+
             init();
         }
     
@@ -220,6 +327,28 @@
         }
     
         function timeStep() {
+
+            if( p1.N != p_def.N ) {
+                init();
+
+            }
+
+            if( p1.r != p_def.r || p1.r_spread != p_def.r_spread) {
+
+                for( let i = 0; i < cells.length; ++i) {
+                    cells[i].r_s = p_def.r + p_def.r_spread * (p.pow(cells[i].rand,2) - 0.5);
+                    cells[i].r_h = cells[i].r_s/2;
+                }
+            }
+
+
+            walls[0].pos.y = 10 + p_def.confinement*(h-40)/2;
+            walls[1].pos.y = h  - p_def.confinement*(h-40)/2;
+
+            Object.assign(p1, p_def);
+
+
+            /*
             p1.chemo = sl_chemo.value / 100 * p_def.chemo;
             p1.plitho_align = sl_plitho.value / 100 * p_def.plitho_align;
             p1.r_spread = p.map(sl_heterogeneity.value,0,100,4,0) * p_def.r_spread;
@@ -234,6 +363,7 @@
                 cells[i].r_s = p1.r + p1.r_spread * (p.pow(cells[i].rand,2) - 0.5);
                 cells[i].r_h = cells[i].r_s/2;
             }
+            */
 
             /*
             p.soft_rep = 2*sl_1.val * p_def.soft_rep;
@@ -254,7 +384,8 @@
             p.cluster_speed = (2*sl_8.val) * p_def.cluster_speed;
             */
     
-        const dt = p.deltaTime / p1.n_substeps;
+        const dt = p.min(p.deltaTime / p1.n_substeps, 50 / p1.n_substeps);
+        
     
         for( let step = 0; step < p1.n_substeps; ++step ) {
             // remove contacts 
@@ -289,7 +420,7 @@
     
     
             let mi = cells[i].mode;
-            if ( (mi == modeRun || mi == modeTumble) && n_contacts > 0 && expRand(p1.cntc_dur) ) {
+            if ( (mi == modeRun || mi == modeTumble) && n_contacts > 0 && expRand(p1.cil_init_dur) ) {
                 if( n_contacts == 1 ) {
                 cells[i].mode = modeCIL;
                 cells[i].pol.normalize().mult(p1.cil_speed);
@@ -328,9 +459,11 @@
                     const xixj = pv.sub(cells[j].pos, cells[i].pos);
                     cells[j].mode = modeRun;
                     cells[j].pol.set( xixj );
+                    cells[j].pol.rotate( p1.cil_spread * p.random(-1,1) * p.PI / 180 );
                     cells[j].pol.normalize().mult(p1.run_speed);
                     
                     cells[i].pol.set( xixj ).mult(-1);
+                    cells[i].pol.rotate( p1.cil_spread * p.random(-1,1) * p.PI / 180 );
                 }
                 cells[i].mode = modeRun;
                 cells[i].pol.normalize().mult(p1.run_speed);
@@ -352,13 +485,13 @@
                 if ( s > 0 ) {
                     rate += P(i).plitho_align/p1.mu * pv.dot(cells[i].pol, cells[i].f)/s;
                 }
-                rate = p.min(p1.plitho_max, rate);
-                rate = p.max(p1.plitho_min, rate);
+                rate = p.min(p1.plitho_max_dur, rate);
+                rate = p.max(p1.plitho_min_dur, rate);
     
                 if ( expRand(rate) ) {
                     cells[i].pol.set( cells[i].f )
                     .normalize()
-                    .mult(P(i).cluster_speed).rotate(p.random(-1,1)*P(i).plitho_spread);   
+                    .mult(P(i).cluster_speed).rotate(p.PI * p.random(-1,1)*P(i).plitho_spread);   
                 }
                 }
             }
@@ -464,23 +597,39 @@
         first_step = false;
         }
     
-    
+        let dragging = false; // Is the object being dragged?
+        let dragIndex = -1;
+        let offset;     // Mouseclick offset
+        let lastMouse;  // Mouseclick last pos 
+        let sX, sY;
     
         p.draw = function() {
             p.background(0);
             const aspect_adj = p.width / p.height;
-            p.scale( p.width / w, p.height / h * aspect_adj / aspect );
+            sX = p.width / w;
+            sY = p.height / h * aspect_adj / aspect;
+            p.scale( sX, sY );
             p.strokeWeight(2);
             p.noStroke();
     
             for( let r = 0; r < 25; ++r) {
                 p.noStroke();
-                p.fill(255,128,0,40.0 * ((game_mode == 2 ) ? 0.1 : p1.chemo) );
+                p.fill(255,128,0,60.0 * ((game_mode == 2 ) ? 0.1 : p1.chemo) );
                 p.circle(grads.pos.x, grads.pos.y, r*30);
             }
     
             t = t + p.deltaTime;
             timeStep();
+
+
+            // Adjust location if being dragged
+            if (dragging && dragIndex >= 0 && dragIndex < cells.length) {
+                cells[dragIndex].pos.x = p.mouseX/sX;
+                cells[dragIndex].pos.y = p.mouseY/sY;
+            }
+            
+
+            
     
             cnts.draw(cells);
             for(let i = 0; i < cells.length; ++i) {
@@ -491,10 +640,39 @@
                 const w = walls[i];
                 const dx = w.normal.y * w.l / 2;
                 const dy = -w.normal.x * w.l / 2;
-                p.stroke(255);
+                if( darkMode )
+                    p.stroke(200);
+                else
+                    p.stroke(0);
+
                 p.line(w.pos.x - dx, w.pos.y - dy, w.pos.x + dx, w.pos.y + dy)
             }
         }
+
+
+        p.mousePressed = function() {
+            let dm = 2*(w+h); 
+            let di;
+            mouse = p.createVector( p.mouseX/sX, p.mouseY/sY );
+            for( let i = 0; i < cells.length; ++i) {        
+                di = mouse.dist(cells[i].pos);
+                if( di < dm ) {
+                    dragIndex = i;
+                    dm = di;
+                }
+            }
+
+            if( dragIndex >= 0 && dragIndex < cells.length && dm <= cells[dragIndex].r_s ) {
+                dragging = true;
+            }
+        }
+
+
+        p.mouseReleased = function() {
+            // Quit dragging
+            dragging = false;
+        }
+
 
         p.windowResized = function() {
             const height_proposal = parent.clientHeight;
@@ -502,11 +680,14 @@
             const aspect_proposal = width_proposal / height_proposal;
             p.resizeCanvas(width_proposal, height_proposal * aspect_proposal / aspect);
         }
+
+        let run_btn = document.getElementById("sim_1_reset");
+        run_btn.onclick = function(){init();};
+
     }
     
     let sim_cm_p5 = new p5(sim_cm, 'sim_cm');
-    </script>
-    
-    </body>
-</html>
+</script>
+
+</div>
 

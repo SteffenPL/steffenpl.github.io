@@ -13,7 +13,7 @@ _**Very** short project description:_
 
 # {{ title }}
 
-_This project is a collaboration with Bernd Simeon._
+*This project is a collaboration with [Bernd Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}.*
 
 **This page is under construction.**
 

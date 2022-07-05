@@ -11,10 +11,9 @@ _Short project description:_
 
 # {{ title }}
 
-_This project is a collaboration with Sara Merino-Aceituno._
+*This project is a collaboration with [Sara Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}.*
 
 Position-based dynamics (PBD) can be used to **simulate first-order differential equations with inequality constraints.** I aim to show mathematically that the method converges.
-
 
 Before we go into the mathematics behind PBD, let's have a look how such simulations can look like.
 
@@ -27,9 +26,11 @@ _Note: You can add more disks by clicking inside the rectangle._
 <div id="sim_1" class="flex drop-shadow-xl border-2 w-[240px]"></div>
 </div>
 
+I used this numerical method for both of my modelling projects, for example in the [cell migration model for plithotaxis](../cell-migration-model).
+
 ## The magic of position-based dynamics (PBD)
 
-The simulation above uses a very simple numerical method. In fact, [Matthias Müller](https://matthias-research.github.io/pages/challenges/challenges.html) 
+The simulation above uses a very simple numerical method. In fact, [Matthias Müller](https://matthias-research.github.io/pages/challenges/challenges.html){target="_blank"} 
 challenges everyone to find a method that beats PBD in terms of
 - accuracy[^1]
 - speed,
@@ -63,7 +64,7 @@ where $P_{T(S,x)}$ denotes the projection onto the tangent cone $T(S,x)$ of $S$ 
 [^Tangent_cone]
 
 [^Tangent_cone]: As the set $S$ happens to be uniformly proxy-regular, the differnt notions
-for tangent cones coincided. See for example [Wikipedia: Clarke tangent cone](https://en.wikipedia.org/wiki/Tangent_cone#Clarke_tangent_cone) for a definition.
+for tangent cones coincided. See for example [Wikipedia: Clarke tangent cone](https://en.wikipedia.org/wiki/Tangent_cone#Clarke_tangent_cone){target="_blank"} for a definition.
 
 The PBD method for this first-order problem is very simple. For a numerical time-step $h > 0$ and inital condition $x_0 \in S$, the PBD method reads
 $$
@@ -73,7 +74,7 @@ x_{k+1} = P_{S_{12}} \circ P_{S_{13}} \circ\cdots \circ P_{S_{N-1 N}} ( x_{k} + 
 $$
 
 The remarkable feature of PBD is that it only performs a few very fast projections, one for each (active) constraint. This is much less than comparable methods use!
-Because of this minimalistic approach, it will most likely happen that the constraints are not always satisfied, i.e. that sometimes $x_k \notin S$. However, these small infeasibility issues reduce with a smaller time-step. The time saved thanks to fast projections can be well invested by taking smaller time-steps! And taking smaller time-steps has many advantages and improves both the stability and physical accuracy of the method! For this reason, the authors called the corresponding publication ["Small Steps in Physics Simulation"](https://matthias-research.github.io/pages/publications/smallsteps.pdf).
+Because of this minimalistic approach, it will most likely happen that the constraints are not always satisfied, i.e. that sometimes $x_k \notin S$. However, these small infeasibility issues reduce with a smaller time-step. The time saved thanks to fast projections can be well invested by taking smaller time-steps! And taking smaller time-steps has many advantages and improves both the stability and physical accuracy of the method! For this reason, the authors called the corresponding publication ["Small Steps in Physics Simulation"](https://matthias-research.github.io/pages/publications/smallsteps.pdf){target="_blank"}.
 
 
 ### Visualisation of the intermediate projections
@@ -110,13 +111,13 @@ $$
 \text{for } h \to 0.
 $$
 
-Numerical tests seem to support this claim (with order of convergence $\frac{1}{2}$ which is similar to [these results](https://arxiv.org/abs/1009.2837)). But even if no strict convergence is archived, the method might still be useful if the global error admits some useable upper bounds.
+Numerical tests seem to support this claim (with order of convergence $\frac{1}{2}$ which is similar to [these results](https://arxiv.org/abs/1009.2837){target="_blank"}). But even if no strict convergence is archived, the method might still be useful if the global error admits some useable upper bounds.
 
 
 ## Mathematical details
 
 There exists already some great related work
-on similar problems. Without attempting to give full references here I will just point to Juliette Venel's work, in particular, her publication on a ["Numerical scheme for a whole class of sweeping process"](https://arxiv.org/abs/0904.2694).
+on similar problems. Without attempting to give full references here I will just point to Juliette Venel's work, in particular, her publication on a ["Numerical scheme for a whole class of sweeping process"](https://arxiv.org/abs/0904.2694){target="_blank"}.
 
 Some related details:
 - It is known that the method

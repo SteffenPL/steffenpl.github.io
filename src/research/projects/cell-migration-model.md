@@ -11,7 +11,7 @@ img: ./imgs/CM/LNdW.png
 _Short project description:_
 # {{ title }}
 
-_This project is a collaboration with Eric Theveneau, Marina A. Ferreria, Diane Peurichard, Pierre Degond and Sara Merino-Aceituno._
+*This project is a collaboration with [Eric Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Marina A. Ferreria](https://marinaaferreira.wordpress.com/){target="_blank"}, [Diane Peurichard](https://sites.google.com/site/dianepeurichard/home){target="_blank"}, [Pierre Degond](https://sites.google.com/site/degond/Home){target="_blank"} and [Sara Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}.*
 
 The cell migration of mesenchymal cells after they left the epithelium is very specific and it is not clear 
 which cell migration model is most appropriate. While there are many possible theoretical models and rules for cell migration, the experimental data do not clearly indicate which of these rules are the correct ones. 
@@ -25,6 +25,7 @@ and chemotaxis.
 Some experiments one can perform with the simulation: 
 - Do cells still migrate collectively in the absence of cell-cell repulsion?
 - How important is confinement? 
+- You can interactively move cells with the mouse. Can you change the direction of migration that way? 
 
 <div>
 
@@ -52,6 +53,10 @@ Some experiments one can perform with the simulation:
 <div>
 <p>Chemotaxis</p>
 <input type="range" id="sl_chemo" value="0"></input>
+</div>
+<div>
+<p>Number of cells</p>
+<input type="range" id="sl_N" value="90" min="0" max="120" step="10"></input>
 </div>
 </div>
 
@@ -91,11 +96,16 @@ Even this simplified model can reproduce certain realistic aspects, such as:
     - cell-cell repulsion ('cells push each other')
     - cell polarity changes according to the forces the cell experiences
 - Cells do not perfectly align during migration, it is rather a messy and chaotic situation (typical for real biology).
-Cells can turn around if they run out of space in one direction.
+- Cells can turn around if they run out of space in one direction.
+
+An example of this behaviour can be seen in the image below:
+
+![](imgs/CM/cm_01-3.png)
 
 ## Numerical method
 
-As in my previous project, we used again [position-based dynmaics]('../position-based-dynamics').
+As in my previous project, we used again [position-based dynmaics](../position-based-dynamics).
+
 
 
 <!-- this is here to allow markdown preview with scripts -->
@@ -119,6 +129,7 @@ As in my previous project, we used again [position-based dynmaics]('../position-
         let sl_adh_stiffness = document.getElementById('sl_adh_stiffness');
         let sl_confinement = document.getElementById('sl_confinement');
         let sl_heterogeneity = document.getElementById('sl_heterogeneity');
+        let sl_N = document.getElementById('sl_N');
     
         let p_def = {
             r: 20,
@@ -315,9 +326,15 @@ As in my previous project, we used again [position-based dynmaics]('../position-
         }
     
         function timeStep() {
+
+            if( sl_N.value != cells.length ) {
+                N = sl_N.value; 
+                init();
+            }
+
             p1.chemo = sl_chemo.value / 100 * p_def.chemo;
             p1.plitho_align = sl_plitho.value / 100 * p_def.plitho_align;
-            p1.r_spread = p.map(sl_heterogeneity.value,0,100,4,0) * p_def.r_spread;
+            p1.r_spread = ( 4 - p.map(sl_heterogeneity.value,0,100,0,4)) * p_def.r_spread;
             p1.adh_stiffness = p.map(sl_adh_stiffness.value,0, 100,0,2) * p_def.adh_stiffness;
             p1.soft_rep = p.map(sl_soft_rep.value, 0, 100, 0.7, 2) * p_def.soft_rep;
 
@@ -561,11 +578,18 @@ As in my previous project, we used again [position-based dynmaics]('../position-
         }
     
     
+        let dragging = false; // Is the object being dragged?
+        let dragIndex = -1;
+        let offset;     // Mouseclick offset
+        let lastMouse;  // Mouseclick last pos 
+        let sX, sY;
     
         p.draw = function() {
             p.background(255);
             const aspect_adj = p.width / p.height;
-            p.scale( p.width / w, p.height / h * aspect_adj / aspect );
+            sX = p.width / w;
+            sY = p.height / h * aspect_adj / aspect;
+            p.scale( sX, sY );
             p.strokeWeight(2);
             p.noStroke();
     
@@ -578,6 +602,13 @@ As in my previous project, we used again [position-based dynmaics]('../position-
             t = t + p.deltaTime;
             timeStep();
     
+
+            // Adjust location if being dragged
+            if (dragging && dragIndex >= 0 && dragIndex < cells.length) {
+                cells[dragIndex].pos.x = p.mouseX/sX;
+                cells[dragIndex].pos.y = p.mouseY/sY;
+            }
+
             cnts.draw(cells);
             for(let i = 0; i < cells.length; ++i) {
                 cells[i].draw();
@@ -590,6 +621,29 @@ As in my previous project, we used again [position-based dynmaics]('../position-
                 p.stroke(0);
                 p.line(w.pos.x - dx, w.pos.y - dy, w.pos.x + dx, w.pos.y + dy)
             }
+        }
+
+        p.mousePressed = function() {
+            let dm = 2*(w+h); 
+            let di;
+            mouse = p.createVector( p.mouseX/sX, p.mouseY/sY );
+            for( let i = 0; i < cells.length; ++i) {        
+                di = mouse.dist(cells[i].pos);
+                if( di < dm ) {
+                    dragIndex = i;
+                    dm = di;
+                }
+            }
+
+            if( dragIndex >= 0 && dragIndex < cells.length && dm <= cells[dragIndex].r_s ) {
+                dragging = true;
+            }
+        }
+
+
+        p.mouseReleased = function() {
+            // Quit dragging
+            dragging = false;
         }
 
         p.windowResized = function() {
