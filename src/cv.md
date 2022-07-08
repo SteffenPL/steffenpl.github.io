@@ -19,7 +19,7 @@ A detailed version of my CV can be found [here]({{ '/assets/cv.pdf' | url }}).
 | 2013 &ndash; 2018 | **B.Sc. & M.Sc. in Mathematics at TU Kaiserslautern** |
 
 
-![](/newzealand.jpg)
+![](/books.jpg)
 
 ## Teaching and work experience (selection)
 
@@ -50,3 +50,6 @@ A detailed version of my CV can be found [here]({{ '/assets/cv.pdf' | url }}).
 ---
 
 See also my [scientific activities]({{ '/activities' | url }}) page and [research projects]({{ '/research' | url}}) page.
+
+
+![](/newzealand.jpg)
