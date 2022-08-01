@@ -6,15 +6,11 @@ desc: Development of an agent-based cell migration model for plithotaxis.
 ---
 
 # {{ title }}
-<!-- 
-**This is an internal page for collaborators.** 
-If you see this page, you should know why you are here and expect work in progress.
 
-To change parameters, use the user inferface below (or on the righ side). In addition, you can drag & drop the cells with the mouse.
+## Question: Which factors lead to basal extrusion?
 
-<span class="text-red-600">
-Since there are many sources of randomness (e.g. timing of EMT-like events, noise), the outcome of a single simulation for a given set of parameters is not representative of the general behaviour. Therefore, one should refer to the statistical analyses provided in [ref to our upcoming preprint]</span>
--->
+Timing and order of EMT events? ⌛ ... or something else? 😉
+<br><br>
 
 <div class="grid md:grid-cols-3 gap-4 grid-cols-2 mx-auto">
 
@@ -40,7 +36,7 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
 
         let pcontrol = {
             speed: 1.0,
-            preset: ""
+            preset: 0,
         };
 
         let plts = {
@@ -125,7 +121,7 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
             }
         };
 
-        let params = Object.assign({}, params_def);
+        const params = Object.assign({}, params_def);
 
         function init_interface() {
                     
@@ -146,12 +142,14 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                         {text: "Two EMT cells (with INM)", value: 1},
                         {text: "10 EMT cells (no INM)", value: 2},
                         {text: "10 EMT cells (with INM)", value: 3},
+                        {text: "No EMT cells", value: 4},
                     ]
                 });
 
             presets.on('change', (ev) => {
-                console.log(ev.value);
                 Object.assign(params, params_def);
+                console.log(ev.value);
+                pcontrol.preset = ev.value;
                 switch(ev.value) { 
                     case 0: 
                         params.general.N_init = 30;
@@ -178,11 +176,16 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                         params.general.w_init = 15;
                         params.cell_types.emt.INM = true;
                         break;
+
+                    case 4:
+                        params.general.N_init = 30;
+                        params.general.N_emt = 0;
+                        break;
+
                     default: break;
                 }
                 init();
                 pane.refresh();
-
             });
 
             let btn = pane.addButton(
@@ -427,7 +430,6 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                 X_init[i] = p.createVector( p.random(-w/2, w/2), p.random(h/3, 2*h/3 ) );
             }
             X_init.sort( (a,b) => ( a.x - b.x ) );
-            console.log(X_init);
 
 
             for( let i = 0; i < N; ++i ) {
@@ -437,8 +439,6 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                     s.cells[i] = new Cell(params, s, X_init[i], params.cell_types.emt);
                 }
             }
-
-
 
             for( let i = 0; i < s.cells.length; ++i ) {
                 s.cells[i].A.x = -w/2 + w * (i/s.cells.length);
