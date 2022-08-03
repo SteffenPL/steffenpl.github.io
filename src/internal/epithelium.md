@@ -7,13 +7,10 @@ desc: Development of an agent-based cell migration model for plithotaxis.
 
 # {{ title }}
 
-**This is an internal page for collaborators.** 
-If you see this page, you should know why you are here and expect work in progress.
+## Question: Which factors lead to basal extrusion?
 
-To change parameters, use the user inferface below (or on the righ side). In addition, you can drag & drop the cells with the mouse.
-
-<span class="text-red-600">
-Since there are many sources of randomness (e.g. timing of EMT-like events, noise), the outcome of a single simulation for a given set of parameters is not representative of the general behaviour. Therefore, one should refer to the statistical analyses provided in [ref to our upcoming preprint]</span>
+Timing and order of EMT events? ⌛ ... or something else? 😉
+<br><br>
 
 <div class="grid md:grid-cols-3 gap-4 grid-cols-2 mx-auto">
 
@@ -39,7 +36,7 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
 
         let pcontrol = {
             speed: 1.0,
-            preset: ""
+            preset: 0,
         };
 
         let plts = {
@@ -124,7 +121,7 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
             }
         };
 
-        let params = Object.assign({}, params_def);
+        const params = Object.assign({}, params_def);
 
         function init_interface() {
                     
@@ -145,13 +142,23 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                         {text: "Two EMT cells (with INM)", value: 1},
                         {text: "10 EMT cells (no INM)", value: 2},
                         {text: "10 EMT cells (with INM)", value: 3},
+                        {text: "No EMT cells", value: 4},
                     ]
                 });
 
             presets.on('change', (ev) => {
                 Object.assign(params, params_def);
-                switch(ev.value) {
+                console.log(ev.value);
+                pcontrol.preset = ev.value;
+                switch(ev.value) { 
+                    case 0: 
+                        params.general.N_init = 30;
+                        params.general.N_emt = 2;
+                        params.cell_types.emt.INM = false;
+                        break;
+
                     case 1: 
+                        params.general.N_init = 30;
                         params.general.N_emt = 2;
                         params.cell_types.emt.INM = true;
                         break;
@@ -159,19 +166,26 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                     case 2: 
                         params.general.N_init = 40;
                         params.general.N_emt = 10;
+                        params.general.w_init = 15;
                         params.cell_types.emt.INM = false;
                         break;
                         
                     case 3: 
                         params.general.N_init = 40;
                         params.general.N_emt = 10;
+                        params.general.w_init = 15;
                         params.cell_types.emt.INM = true;
                         break;
+
+                    case 4:
+                        params.general.N_init = 30;
+                        params.general.N_emt = 0;
+                        break;
+
                     default: break;
                 }
                 init();
                 pane.refresh();
-
             });
 
             let btn = pane.addButton(
@@ -267,12 +281,12 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
 
             tabUR.addInput(params.cell_types.emt.events, 'time_A',
             {
-                label: 'EMT event: Loss apical adhesion [h]', min: 6.0, max: 24, step: 3
+                label: 'EMT event: Loss apical adhesion [h]', min: 6.0, max: 48, step: 3
             });
 
             tabUR.addInput(params.cell_types.emt.events, 'time_B',
             {
-                label: 'EMT event: Loss basal adhesion [h]', min: 6.0, max: 24, step: 3
+                label: 'EMT event: Loss basal adhesion [h]', min: 6.0, max: 48, step: 3
             });
             
             /*tabU.addInput(params.cell_types.emt.events, 'time_S',
@@ -388,12 +402,12 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                 
                 
                 p.fill(150,20,20);
-                p.circle(this.A.x, this.A.y, 0.1);
+                p.circle(this.A.x, this.A.y, 0.2);
                 
                 p.fill(0,0,0);
-                p.circle(this.B.x, this.B.y, 0.1);
+                p.circle(this.B.x, this.B.y, 0.2);
 
-                p.stroke(100,50,0,50);
+                p.stroke(100,50,0,80);
                 p.strokeWeight(0.05);
                 p.line(this.A.x, this.A.y, this.pos.x, this.pos.y );
                 p.line(this.B.x, this.B.y, this.pos.x, this.pos.y );
@@ -420,7 +434,7 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
             for( let i = 0; i < N; ++i ) {
                 X_init[i] = p.createVector( p.random(-w/2, w/2), p.random(h/3, 2*h/3 ) );
             }
-            X_init.sort( (a,b) => ( a.x > b.x ) );
+            X_init.sort( (a,b) => ( a.x - b.x ) );
 
 
             for( let i = 0; i < N; ++i ) {
@@ -430,8 +444,6 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                     s.cells[i] = new Cell(params, s, X_init[i], params.cell_types.emt);
                 }
             }
-
-
 
             for( let i = 0; i < s.cells.length; ++i ) {
                 s.cells[i].A.x = -w/2 + w * (i/s.cells.length);
