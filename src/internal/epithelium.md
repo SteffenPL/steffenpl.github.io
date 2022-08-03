@@ -149,7 +149,6 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                 });
 
             presets.on('change', (ev) => {
-                console.log(ev.value);
                 Object.assign(params, params_def);
                 switch(ev.value) {
                     case 1: 
@@ -247,6 +246,11 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
             tabA.addInput(params.cell_types.control, 'stiffness_apical_apical',
             {
                 label: 'Stiffness: Apical-apical springs', min: 1.0, max: 10, step: 0.1
+            });
+
+            tabA.addInput(params.cell_types.control, 'k_cytos',
+            {
+                label: 'Speed of rest length adaptation', min: 0.0, max: 20, step: 0.1
             });
 
             
@@ -482,7 +486,7 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
                         // reset cell cycle
                         s.cells[i] = new Cell(params, s, ci.pos, ci.type, ci); 
                     } else {
-                        if( p.random(0,1) < pg.p_div_out || s.cells.length > pg.N_max ) {
+                        if( p.random(0,1) < pg.p_div_out || s.cells.length >= pg.N_max ) {
                             // one offsprings
                             s.cells[i] = new Cell(params, s, ci.pos, ci.type, ci); 
                         } else {
@@ -839,6 +843,11 @@ Since there are many sources of randomness (e.g. timing of EMT-like events, nois
 
             p.fill(0,0,0);
             p.text("Basal side", ws/2 - 4, 0.2*hs);
+
+            if( s.cells.length == params.general.N_max) {
+                p.fill(0,0,0);
+                p.text("Maximal number of cells reached. Cell division inactive.", -ws/2 + 4, 0.2*hs);
+            }
 
         }
 
