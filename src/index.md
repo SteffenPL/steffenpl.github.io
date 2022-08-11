@@ -12,6 +12,7 @@ layout: markdown
 
 I'm a PhD student at [University of Vienna](https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/) in [Sara Merino-Aceituno's](https://sites.google.com/view/saramerinoaceituno/about) research group _Mathematics of Emergence in natural Domains_.
 I studied mathematics at [TU Kaiserslautern](https://www.mathematik.uni-kl.de/en/) with stays at [TU Delft](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics) and [The University of Auckland](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-mathematics.html).
+Next year, I will start as a program-specific researcher at the [Kyoto University Institute for Advanced Study of Human Biology](https://ashbi.kyoto-u.ac.jp/) in [Seirin-Lee's](https://sites.google.com/site/seirin711lee/home) lab.
 
 
 <div class="container md:hidden drop-shadow-xl">
@@ -23,9 +24,6 @@ With my research, I want to answer **questions in biology using mathematical too
 My mathematical toolset includes **mathematical modelling** with ordinary, stochastic and partial differential equations. An emphasis lies on **constrained systems** such as differential inclusions and differential-algebraic equations. My key experties is the implementation of efficient **numerical simulations** for such models and the development of **models in collaboration with biologists**.
 
 You can find a description of my current projects in the [research section]({{ '/research' | url }}) and some more general posts in my [blog]({{ '/blog' | url }}).
-
-I'm currently looking for a post-doc position! 🕵️ {class="bg-lime-200 p-2 border-lime-400 border-2 rounded-xl"}
-
 
 ## Contact and links
 

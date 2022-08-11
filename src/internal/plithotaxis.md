@@ -102,6 +102,7 @@ In addition,
             const game_mode = 1;
 
             let cells = [], walls = [], cnts, grads;
+            let obstacles = [];
 
 
             function init_gui() {
@@ -269,6 +270,7 @@ In addition,
                 if (!p_mod.random_seed) {
                     p.randomSeed(0);
                 }
+                obstacles.length = 0;
 
                 t = 0.0;
                 p_mod.env1.val = 0.0;
@@ -505,6 +507,15 @@ In addition,
                                 cells[i].f.add(pv.mult(wall.normal, (p.abs(d) - cells[i].r_s) * P(i).soft_rep));
                             }
                         }
+
+                        for( let jo = 0; jo < obstacles.length; ++jo) {
+                            const obs = obstacles[jo];
+                            const d = pv.dist(obs, cells[i].pos);
+                            if( d < cells[i].r_s) {
+                                const xioj = pv.sub(obs, cells[i].pos);
+                                cells[i].f.sub( pv.mult(xioj, P(i).soft_rep ) );
+                            }
+                        }
                     }
 
 
@@ -630,6 +641,12 @@ In addition,
                     cells[i].draw();
                 }
 
+                p.noStroke();
+                p.fill(200);
+                for (let i = 0; i < obstacles.length; ++i) {
+                    p.circle(obstacles[i].x, obstacles[i].y, 2);
+                }
+
                 for (let i = 0; i < walls.length; i++) {
                     const w = walls[i];
                     const dx = 5 * w.normal.y * w.l / 2;
@@ -675,6 +692,10 @@ In addition,
 
                 if (dragIndex >= 0 && dragIndex < cells.length && dm <= cells[dragIndex].r_s) {
                     dragging = true;
+                }
+                else 
+                {
+                    obstacles.push( mouse );
                 }
             }
 
