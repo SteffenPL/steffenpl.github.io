@@ -5,9 +5,19 @@ on:
     branches:
       - main
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
@@ -24,9 +34,14 @@ jobs:
       - name: Install dependencies & build
         run: |
           npm ci
-          npm run build          
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+          npm run build  
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          publish_dir: ./dist
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Upload generated dist folder repository
+          path: './dist'
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
