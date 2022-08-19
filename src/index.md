@@ -12,7 +12,8 @@ layout: markdown
 
 I'm a PhD student at [University of Vienna](https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/) in [Sara Merino-Aceituno's](https://sites.google.com/view/saramerinoaceituno/about) research group _Mathematics of Emergence in natural Domains_.
 I studied mathematics at [TU Kaiserslautern](https://www.mathematik.uni-kl.de/en/) with stays at [TU Delft](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics) and [The University of Auckland](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-mathematics.html).
-Next year, I will start as a program-specific researcher at the [Kyoto University Institute for Advanced Study of Human Biology](https://ashbi.kyoto-u.ac.jp/) in [Seirin-Lee's](https://sites.google.com/site/seirin711lee/home) lab.
+
+Next year, I will start as a program-specific researcher at [ASHBi, KUIAS, Kyoto University](https://ashbi.kyoto-u.ac.jp/) in [Seirin-Lee's](https://sites.google.com/site/seirin711lee/home) lab.
 
 
 <div class="container md:hidden drop-shadow-xl">
