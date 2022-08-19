@@ -13,7 +13,7 @@ _Short project description:_
 
 *This project is a collaboration with [Eric Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Marina A. Ferreria](https://marinaaferreira.wordpress.com/){target="_blank"}, [Diane Peurichard](https://sites.google.com/site/dianepeurichard/home){target="_blank"}, [Pierre Degond](https://sites.google.com/site/degond/Home){target="_blank"} and [Sara Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}.*
 
-The cell migration of mesenchymal cells after they left the epithelium is very specific and it is not clear 
+The cell migration of mesenchymal cells after they leave the epithelium is very specific and it is not clear 
 which cell migration model is most appropriate. While there are many possible theoretical models and rules for cell migration, the experimental data do not clearly indicate which of these rules are the correct ones. 
 
 At the moment we are building a model which includes effects such as plithotaxis, contact inhibition of locomotion
