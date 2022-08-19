@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/steffen.plunder/assets/main.bundle.css">
+  <link rel="stylesheet" href="/steffen.plunder/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <script src="/steffen.plunder/assets/main.bundle.js" defer=""></script>
+  <script src="/steffen.plunder/assets/p5.min.js"></script>
+  <script src="/steffen.plunder/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>📑 Spellchecking in $\LaTeX$ with Grammarly | Steffen Plunder</title>
+</head>
+<body class="  container mx-auto min-h-screen bg-cover" style="background-image:url(/steffen.plunder/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/steffen.plunder/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/steffen.plunder/">
+          About me
+        </a>
+      
+        <a class="" href="/steffen.plunder/research/">
+          Research
+        </a>
+      
+        <a class="" href="/steffen.plunder/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/steffen.plunder/activities/">
+          Activities
+        </a>
+      
+        <a class="" href="/steffen.plunder/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/steffen.plunder/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/steffen.plunder/">
+        About me
+      </a>
+    
+      <a class="" href="/steffen.plunder/research/">
+        Research
+      </a>
+    
+      <a class="" href="/steffen.plunder/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/steffen.plunder/activities/">
+        Activities
+      </a>
+    
+      <a class="" href="/steffen.plunder/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/steffen.plunder/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="%F0%9F%93%91-spellchecking-in-with-grammarly" tabindex="-1">📑 Spellchecking in <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq> with Grammarly</h1>
+<p>As a non-native English speaker, automatic spelling and grammar checks are helpful and allow me to focus more on what I write instead of how. For <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq> documents, the choices of good grammar checkers are pretty limited. One problem is that our <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq> documents have special commands and equations within sentences. This renders most grammar checkers useless since they would mark everything red. However, the currently developed <a href="https://marketplace.visualstudio.com/items?itemName=znck.grammarly">Grammarly for VS Code</a> extension is an elegant and modern solution. While <a href="https://marketplace.visualstudio.com/items?itemName=znck.grammarly">Grammarly for VS Code</a> is not perfect, it can handle HTML, Markdown, and <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq> documents quite well.</p>
+<p>The example below shows how it suggests the right thing, even for a sentence with an inline equation:
+<img src="./69934eae5a3cfb2bcc53378e5bb23f67fef4937b.jpg" alt="" integrity="sha1-69934eae5a3cfb2bcc53378e5bb23f67fef4937b"></p>
+<p><em>By the way, the Grammarly extension helped me avoid at least eight mistakes while writing this blog entry.</em> 😄</p>
+<h2 id="how-to-use-it%3F" tabindex="-1">How to use it?</h2>
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a> is a modern, cross-platform, open-source editor. While initially sceptical, I am now a happy user of VS Code for Julia, Python, C++, HTML/JavaScript and <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq>.
+The IntelliSense auto-completion makes VS Code a fully-fledged IDE<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> for all those languages, and installing new extensions is very easy.</p>
+<p>If you want to start using VS Code for your <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq>, you just need to:</p>
+<ol>
+<li>Install <a href="https://code.visualstudio.com/">Visual Studio Code</a>.</li>
+<li>Go to the extensions tab (e.g. File &gt; Preferences &gt; Extensions).</li>
+<li>Search for <a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">LaTeX Workshop</a> and install it.
+<ul>
+<li>On Windows, you might also have to install Perl, e.g. <a href="https://strawberryperl.com/">Strawberry Perl</a>.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></li>
+<li>To compile a <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq> document, just open it and click on <code>Build LaTeX project</code> to compile, and use <code>View LaTeX PDF file</code> to see the final document.
+<img src="./418f7168d8d857e016e208c6724bd3cbb3a44053.jpg" alt="" integrity="sha1-418f7168d8d857e016e208c6724bd3cbb3a44053"></li>
+<li>Optionally: Check out the <a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">LaTeX Workshop</a> page to learn more about the other cool features like auto-complete, live equation review and more.</li>
+</ul>
+</li>
+<li>Search for [Grammarly] and install it.</li>
+<li>Press <code>Ctrl + Shift + P</code> and enter Grammarly. It should show you several options, in particular
+<ul>
+<li><code>Grammarly: Login</code>: Use this to log into your account,</li>
+<li><code>Grammarly: Check text</code>: Spellcheck the current document.</li>
+</ul>
+</li>
+</ol>
+<p><img src="./b4bf017047c5daddef2a465d3cead59b9847dcef.jpg" alt="" integrity="sha1-b4bf017047c5daddef2a465d3cead59b9847dcef"></p>
+<p>That's it! 😎 I hope this quick tip helps you focus more on math. Feel free to write to me if the instructions are not detailed enough.</p>
+<p>Of course, using a new editor is challenging, but to use VS Code, you just need to know exactly one thing:
+Whenever you want to do something, press <code>Ctrl + Shift + P</code> to open the command palette; and then search for it.<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>IDE = integrated development environment <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>Perl is a programming language. The tool <code>mklatex</code> is written in Perl and used by the LaTeX Workshop to compile your <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>LaTeX</mtext></mrow><annotation encoding="application/x-tex">\LaTeX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8988em;vertical-align:-0.2155em;"></span><span class="mord text"><span class="mord textrm">L</span><span class="mspace" style="margin-right:-0.36em;"></span><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6833em;"><span style="top:-2.905em;"><span class="pstrut" style="height:2.7em;"></span><span class="mord"><span class="mord textrm mtight sizing reset-size6 size3">A</span></span></span></span></span></span><span class="mspace" style="margin-right:-0.15em;"></span><span class="mord text"><span class="mord textrm">T</span><span class="mspace" style="margin-right:-0.1667em;"></span><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4678em;"><span style="top:-2.7845em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord textrm">E</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2155em;"><span></span></span></span></span><span class="mspace" style="margin-right:-0.125em;"></span><span class="mord textrm">X</span></span></span></span></span></span></eq> documents with all citations and references in one go. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>Of course, there is a lot to explore in VS Code, like good git integrations, how to automate your steps, handy short-cuts and more. But to start, all you need is <code>Ctrl + Shift + P</code> 😉. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

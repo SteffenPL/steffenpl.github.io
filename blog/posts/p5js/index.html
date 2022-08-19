@@ -1,0 +1,314 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/steffen.plunder/assets/main.bundle.css">
+  <link rel="stylesheet" href="/steffen.plunder/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <script src="/steffen.plunder/assets/main.bundle.js" defer=""></script>
+  <script src="/steffen.plunder/assets/p5.min.js"></script>
+  <script src="/steffen.plunder/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>🍎 Interactive modelling with p5.js | Steffen Plunder</title>
+</head>
+<body class="  container mx-auto min-h-screen bg-cover" style="background-image:url(/steffen.plunder/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/steffen.plunder/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/steffen.plunder/">
+          About me
+        </a>
+      
+        <a class="" href="/steffen.plunder/research/">
+          Research
+        </a>
+      
+        <a class="" href="/steffen.plunder/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/steffen.plunder/activities/">
+          Activities
+        </a>
+      
+        <a class="" href="/steffen.plunder/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/steffen.plunder/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/steffen.plunder/">
+        About me
+      </a>
+    
+      <a class="" href="/steffen.plunder/research/">
+        Research
+      </a>
+    
+      <a class="" href="/steffen.plunder/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/steffen.plunder/activities/">
+        Activities
+      </a>
+    
+      <a class="" href="/steffen.plunder/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/steffen.plunder/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="%F0%9F%8D%8E-interactive-modelling-with-p5.js" tabindex="-1">🍎 Interactive modelling with p5.js</h1>
+<p>I worked a lot with particle models (molecular dynamics, agent-based models).
+In all those cases plotting is at times even more tedious than writing the simulation itself.</p>
+<p>A nice tool to circumvent this issue in the prototyping stage is the javascript library <a href="https://p5js.org">p5js</a>!
+Let's dive straight into it.</p>
+<h2 id="first-steps-first%3A-the-model" tabindex="-1">First steps first: the model</h2>
+<p>Every simulation starts (hopefully) with a rough model in mind.
+Let's simulate an apple 🍎 falling down. The corresponding model is of course Newton's second law
+</p><section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>m</mi><mover accent="true"><mi>x</mi><mo>¨</mo></mover><mo>=</mo><mo>−</mo><mi>m</mi><mi>g</mi><mi>x</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+m \ddot x = -m g x.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6679em;"></span><span class="mord mathnormal">m</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">x</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2222em;"><span class="mord">¨</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7778em;vertical-align:-0.1944em;"></span><span class="mord">−</span><span class="mord mathnormal">m</span><span class="mord mathnormal">gx</span><span class="mord">.</span></span></span></span></span></eqn></section><p></p>
+<h2 id="example-simulation-with-p5js" tabindex="-1">Example simulation with p5js</h2>
+<p>Below you can see a simple example for this model using p5js.</p>
+<p><strong>Click into the white area to add more apples</strong> 😉. <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></p>
+<div>
+<div class="container mx-auto w-max">
+<button id="sim_1_run" class="flex border-2 border-red-600 hover:bg-red-300 bg-red-200 rounded-xl pl-4 pr-4 mb-4 drop-shadow-xl">Restart</button>
+</div>
+<div class="container mx-auto w-max">
+<div id="sim_1" class="flex drop-shadow-xl border-2 w-[240px]"></div>
+</div>
+</div>
+<script>
+  
+  let pv = p5.Vector;
+  let sim_1 = function(p) {
+
+        const w = 240;
+        const h = 320;
+        const n_sub = 40;
+        const x_0 = w/2;
+        const y_0 = h/4;
+        let cooldown = 0;
+        
+        const g = 0.001; // in pixel ;)
+        function f(z) { return p.createVector(0.0, g); }
+        
+        const R = 20;
+        let X = [];
+        let V = []; [p.createVector(0, 0)];
+        let X_old = [];
+        
+        p.setup = function(){
+          p.createCanvas(w, h);
+          p.frameRate(30);
+        }
+        
+        function init(){
+          X.length = 0;
+          V.length = 0;
+          X[0] = p.createVector(x_0, y_0);
+          V[0] = p.createVector(0.0, 0.0);
+        }
+        init();
+        
+        p.draw = function(){
+          p.background(255,255,255);
+        
+          const N = X.length;
+          const dt = p.deltaTime / n_sub;
+
+        
+          for( let k = 0; k < n_sub; ++k ) 
+          {
+
+            for( let i = 0; i < N; ++i ) {
+              if( X_old.length <= i) {
+                X_old[i] = p.createVector(0.0,0.0);
+              }
+              X_old[i].set(X[i].x, X[i].y);
+            }
+
+            if( cooldown <= 0 ) {
+              for( let i = 0; i < N; ++i ) {
+                  V[i].add( pv.mult(f(X[i]), dt) );
+                  X[i].add( pv.mult(V[i], dt) );
+              }
+            }
+                
+            for( let i = 0; i < N; ++i ) {
+                if( X[i].y > h - R ) {
+                X[i].y = h - R;
+                }
+                if( X[i].x > w - R ) {
+                X[i].x = w - R;
+                }
+                if( X[i].x < R ) {
+                X[i].x = R;
+                }
+            }
+
+            for( let i = 0; i < N; ++i ) {
+                for( let j = 0; j < i; ++j ) {
+                    let d = pv.dist(X[i], X[j]);
+                    if( d-2*R < 0 && d > 0) {
+                        const xixj = pv.mult(pv.sub( X[i], X[j] ), 0.5*(d-2*R)/d);
+                        X[i].sub( xixj );
+                        X[j].add( xixj );
+                    }
+                }
+            }
+
+            if( cooldown <= 0 ) {
+              for( let i = 0; i < N; ++i ) {
+                V[i] = pv.mult(pv.sub(X[i],X_old[i]),1.0/dt);
+              }
+            }
+            else {
+              cooldown = cooldown - 1;
+            }
+        }
+
+          p.noStroke();
+          for( let i = 0; i < N; ++i ) {
+            p.fill(200,50,50);
+            p.circle(X[i].x, X[i].y, 2*R);
+            p.fill(30,150,30);
+            p.triangle(X[i].x - 0.1*R, X[i].y - 0.8*R, X[i].x + 0.5*R, X[i].y - 1.1*R, X[i].x + 0.3*R, X[i].y - 1.3*R);
+          }
+        }
+        
+        p.mouseClicked = function(){
+            N = X.length; 
+            X[N] = p.createVector( p.mouseX, p.mouseY );
+            V[N] = p.createVector( 0.0, 0.0 );
+
+
+            cooldown = 0;
+            N = X.length; 
+            for( let i = 0; i < N; ++i ) {
+                for( let j = 0; j < i; ++j ) {
+                    let d = pv.dist(X[i], X[j]);
+                    if( d-2*R < 0 && d > 0) {
+                      cooldown = 2*n_sub;
+                    }
+                }
+            }
+        }
+
+        let run_btn = document.getElementById("sim_1_run");
+        run_btn.onclick = function(){init();};
+
+      };
+      let myp5 = new p5(sim_1, 'sim_1');
+</script>
+<h2 id="how-does-it-work%3F" tabindex="-1">How does it work?</h2>
+<p>For simplicity, we just simulate one apple 👍.
+How many lines do we need for that, including the simulation and plotting?</p>
+<p><strong>With p5js, we need only 32 lines!</strong><sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></p>
+<p>First we define the objects we need.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">let</span> pv <span class="token operator">=</span> p5<span class="token punctuation">.</span>Vector<span class="token punctuation">;</span>  <span class="token comment">// shortcut for using p5.Vector functions</span>
+
+<span class="token keyword">let</span> <span class="token constant">X</span><span class="token punctuation">,</span> <span class="token constant">V</span><span class="token punctuation">,</span> gravity<span class="token punctuation">;</span>      <span class="token comment">// position, velocity and gravity</span>
+<span class="token keyword">const</span> <span class="token constant">R</span> <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span>        <span class="token comment">// radius in pixel</span>
+</code></pre>
+<p>For p5js we only need to define two functions: <code>setup</code> and <code>draw</code>. The <code>setup</code> function is called once in the beginning and the <code>draw</code> for each time-step. Easy 🙂!</p>
+<p>The <code>setup</code> function in our case just initiated the initial position, velocity and a vector pointing downwards.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">createCanvas</span><span class="token punctuation">(</span><span class="token number">240</span><span class="token punctuation">,</span> <span class="token number">320</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">frameRate</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token constant">X</span> <span class="token operator">=</span> <span class="token function">createVector</span><span class="token punctuation">(</span>width<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span> height<span class="token operator">/</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token constant">V</span> <span class="token operator">=</span> <span class="token function">createVector</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gravity <span class="token operator">=</span> <span class="token function">createVector</span><span class="token punctuation">(</span><span class="token number">0.0</span><span class="token punctuation">,</span> <span class="token number">0.001</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Finally, the <code>draw</code> function will draw the canvas white and iterate the <em>symplectic Euler method</em> <sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup></p>
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>v</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>v</mi><mi>n</mi></msub><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>t</mi><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>n</mi></msub><mo stretchy="false">)</mo><mo separator="true">,</mo><mspace linebreak="newline"></mspace><msub><mi>x</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><msub><mi>x</mi><mi>n</mi></msub><mo>+</mo><mi mathvariant="normal">Δ</mi><mi>t</mi><msub><mi>v</mi><mrow><mi>n</mi><mo>+</mo><mn>1</mn></mrow></msub><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">
+v_{n+1} = v_n + \Delta t f(x_n), \\ 
+x_{n+1} = x_n + \Delta t v_{n+1}.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">Δ</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mpunct">,</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.6389em;vertical-align:-0.2083em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8917em;vertical-align:-0.2083em;"></span><span class="mord">Δ</span><span class="mord mathnormal">t</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2083em;"><span></span></span></span></span></span></span><span class="mord">.</span></span></span></span></span></eqn></section><p>Then we ensure that the apple stays within the canvas<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>
+and draw it.</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token keyword">function</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">background</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">,</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// symplectic Euler method</span>
+  <span class="token constant">V</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span> pv<span class="token punctuation">.</span><span class="token function">mult</span><span class="token punctuation">(</span> gravity<span class="token punctuation">,</span> deltaTime <span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token constant">X</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span> pv<span class="token punctuation">.</span><span class="token function">mult</span><span class="token punctuation">(</span> <span class="token constant">V</span><span class="token punctuation">,</span> deltaTime<span class="token punctuation">)</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// keep apple above the ground</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span> <span class="token constant">X</span><span class="token punctuation">.</span>y <span class="token operator">+</span> <span class="token constant">R</span> <span class="token operator">&gt;</span> height<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token constant">X</span><span class="token punctuation">.</span>y <span class="token operator">=</span> height <span class="token operator">-</span> <span class="token constant">R</span><span class="token punctuation">;</span>
+    <span class="token constant">V</span><span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">0.0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// draw apple</span>
+  <span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">noStroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">circle</span><span class="token punctuation">(</span><span class="token constant">X</span><span class="token punctuation">.</span>x<span class="token punctuation">,</span> <span class="token constant">X</span><span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">2</span><span class="token operator">*</span><span class="token constant">R</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><em>Voila.</em> That's it! From here you could start to experiment
+with the simulation. For example using the online <a href="https://editor.p5js.org/SteffenPL/sketches/U9U_L6N4X">p5js-editor 🚀 </a>!</p>
+<p><strong>Challenge:</strong> Can you modify the example such that
+there are two falling apples?</p>
+<p><em>You can find all available functions of p5js in the <a href="https://p5js.org/reference/">reference</a>.
+For adding two apples you might want to use the <code>p5.Vector.dist</code> function.</em></p>
+<p>↪️ If you want to read more on the numerical method, check out my project description about <a href="/steffen.plunder/research/projects/position-based-dynamics">position-based dynamics</a>.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>For the curious reader, to add more objects we need to deal with collisions. I used the Position-based dynamics method, you can read more about this method <a href="/steffen.plunder/research/projects/position-based-dynamics">here</a> and in the cited references therein. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>In case you are wondering: The full simulation shown above, with restart button and arbitray many apples, just needs 111 lines! <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>The symplectic Euler method is preferable to the explicit or implicit Euler method here, as it will almost conserve the total energy of the system. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>The only small complication is that the point <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span></eq> is on the top right of the image canvas, which means that the ground is at <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0</mn><mo separator="true">,</mo><mi>h</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(0,h)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">h</span><span class="mclose">)</span></span></span></span></eq> when <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi></mrow><annotation encoding="application/x-tex">h</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord mathnormal">h</span></span></span></span></eq> is the height of the canvas. <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

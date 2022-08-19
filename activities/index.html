@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/steffen.plunder/assets/main.bundle.css">
+  <link rel="stylesheet" href="/steffen.plunder/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <script src="/steffen.plunder/assets/main.bundle.js" defer=""></script>
+  <script src="/steffen.plunder/assets/p5.min.js"></script>
+  <script src="/steffen.plunder/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Scientific activities | Steffen Plunder</title>
+</head>
+<body class="  container mx-auto min-h-screen bg-cover" style="background-image:url(/steffen.plunder/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/steffen.plunder/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/steffen.plunder/">
+          About me
+        </a>
+      
+        <a class="" href="/steffen.plunder/research/">
+          Research
+        </a>
+      
+        <a class="" href="/steffen.plunder/publications/">
+          Publications
+        </a>
+      
+        <a class="font-black" href="/steffen.plunder/activities/">
+          Activities
+        </a>
+      
+        <a class="" href="/steffen.plunder/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/steffen.plunder/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/steffen.plunder/">
+        About me
+      </a>
+    
+      <a class="" href="/steffen.plunder/research/">
+        Research
+      </a>
+    
+      <a class="" href="/steffen.plunder/publications/">
+        Publications
+      </a>
+    
+      <a class="font-black" href="/steffen.plunder/activities/">
+        Activities
+      </a>
+    
+      <a class="" href="/steffen.plunder/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/steffen.plunder/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="scientific-activities" tabindex="-1">Scientific activities</h1>
+<h2 id="talks-and-slides" tabindex="-1">Talks and slides</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12/2022</td>
+<td><a href="/steffen.plunder/assets/talks/Testing_in_scientific_programming.pdf">Testing in scientific computing</a></td>
+<td>Vienna</td>
+</tr>
+<tr>
+<td>12/2022</td>
+<td><a href="/steffen.plunder/assets/talks/A_short_introduction_to_git.pdf">A short introduction to git</a></td>
+<td>Vienna</td>
+</tr>
+<tr>
+<td>10/11/2021</td>
+<td><a href="/steffen.plunder/assets/talks/pde_afternoon_2021_pbd.pdf">Position-based dynamics for ODEs with inequality constraints</a></td>
+<td>PDE afternoon (Vienna)</td>
+</tr>
+<tr>
+<td>05/2020</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2020/partially_kinetic_systems/index.html">Partially kinetic systems (aka 'particles on rails')</a></td>
+<td>Kinetic Theory Coffee Break (online)</td>
+</tr>
+<tr>
+<td>12/6/2019</td>
+<td><a href="/steffen.plunder/assets/talks/feec_short.pdf">Short introduction to finite element exterior calculus</a></td>
+<td>PhD seminar (Kaiserslautern)</td>
+</tr>
+<tr>
+<td>20/3/2019</td>
+<td><a href="/steffen.plunder/assets/talks/descriptor_talk_march.pdf">Partially mesoscopic and Lagrangian systems</a></td>
+<td>DESCRIPTOR (Paderborn)</td>
+</tr>
+<tr>
+<td>21/2/2019</td>
+<td><a href="/steffen.plunder/assets/talks/muscles_outlook.pdf">Lagrangian perspective on skeletal muscle models</a></td>
+<td>GAMM, 90th Annual Meeting (Vienna)</td>
+</tr>
+<tr>
+<td>10/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis_short/index.html">Fiber based muscle simulation (master's thesis)</a></td>
+<td>Hausdorff Center of Mathematics (Bonn)</td>
+</tr>
+<tr>
+<td>07/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/index.html">Tangent spaces</a></td>
+<td>Student-Talk (Kaiserslautern)</td>
+</tr>
+<tr>
+<td>05/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/param_id_in_ode/index.html">Parameter identification in ODE models</a></td>
+<td>The University of Auckland</td>
+</tr>
+<tr>
+<td>04/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/symplectic_methods/index.html#/">Symplectic numerical integration</a></td>
+<td>PhD seminar (Auckland)</td>
+</tr>
+<tr>
+<td>13/9/2017</td>
+<td><a href="/steffen.plunder/assets/talks/molecular_dynamics.pdf">Symplectic molecular dynamics</a></td>
+<td>19th ÖMG Meeting and Annual DMV Meeting (Salzburg)</td>
+</tr>
+<tr>
+<td>30/1/2017</td>
+<td>Optimization of B-Spline Parametrizations using G+SMo and IPOPT</td>
+<td>G+SMo Developer Days (TU Delft)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="organisation" tabindex="-1">Organisation</h2>
+<p><em>I organised (together with others) various events during my time as speaker of the <a href="https://vsmath.at">Vienna School of Mathematics (VSM)</a> and earlier as member of the <a href="https://www.mathematik.uni-kl.de/fachschaft-mathematik">student council at TU Kaiserslautern</a>.</em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2022</td>
+<td><a href="https://hackmd.io/@vsm/string-theory">VSM Mini-Course on String Theory by Pavel Safronov</a> (one week)</td>
+<td></td>
+</tr>
+<tr>
+<td>2021</td>
+<td><a href="https://ps-mathematik.univie.ac.at/e/index.php?event=VSM-WS2021">VSM workshop: A PhD in mathematics – career possibilities &amp; gender aspects</a> (one day)</td>
+<td></td>
+</tr>
+<tr>
+<td>2017 – 2019</td>
+<td>Student Talks (initiator of series of extracurricular talks at TU Kaiserslautern)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="outreach" tabindex="-1">Outreach</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22/5/2022</td>
+<td>Lange Nacht der Wissenschaft (long night of science)</td>
+<td>Vienna</td>
+</tr>
+</tbody>
+</table>
+<h2 id="thesis-documents" tabindex="-1">Thesis documents</h2>
+<div class="md:grid md:grid-cols-2 gap-4 md:flex-none flex flex-col-reverse md:max-w-none max-w-xs mx-auto">
+<div onclick="location.href='/steffen.plunder/assets/thesis/plunder_bachelor_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
+<img src="./320ec9fb59660962f2c407d5db2f1053225abc28.png" integrity="sha1-320ec9fb59660962f2c407d5db2f1053225abc28">
+<a href="/steffen.plunder/assets/thesis/plunder_bachelor_thesis.pdf">Bachelor's thesis on molecular dynamics</a> (supervisor Dr. Wolfgang Bock).
+</div>
+<div onclick="location.href='/steffen.plunder/assets/thesis/plunder_masters_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
+<img src="./68e37f01fdc9d7f9959276b3154ee815fe83bf54.png" integrity="sha1-68e37f01fdc9d7f9959276b3154ee815fe83bf54">
+<a href="/steffen.plunder/assets/thesis/plunder_masters_thesis.pdf">Master's thesis on modelling and simulation of skeletal muscle tissue</a> (supervisor Prof. Bernd Simeon). 
+</div>
+</div>
+<hr>
+<div class="drop-shadow-xl  mb-8">
+<img src="./4ee560011d92f31b4858db062c0bf75a9801e805.jpg" class="mb-0 rounded-t" integrity="sha1-4ee560011d92f31b4858db062c0bf75a9801e805">
+<div class="text-center bg-slate-300 pt-2 pb-2 rounded-b">
+Me during my talk about “studying mathematics at TU Kaiserslautern” on the graduation ceremony 2019.
+</div></div>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

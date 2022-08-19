@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/steffen.plunder/assets/main.bundle.css">
+  <link rel="stylesheet" href="/steffen.plunder/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <script src="/steffen.plunder/assets/main.bundle.js" defer=""></script>
+  <script src="/steffen.plunder/assets/p5.min.js"></script>
+  <script src="/steffen.plunder/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Research | Steffen Plunder</title>
+</head>
+<body class="  container mx-auto min-h-screen bg-cover" style="background-image:url(/steffen.plunder/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/steffen.plunder/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/steffen.plunder/">
+          About me
+        </a>
+      
+        <a class="font-black" href="/steffen.plunder/research/">
+          Research
+        </a>
+      
+        <a class="" href="/steffen.plunder/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/steffen.plunder/activities/">
+          Activities
+        </a>
+      
+        <a class="" href="/steffen.plunder/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/steffen.plunder/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/steffen.plunder/">
+        About me
+      </a>
+    
+      <a class="font-black" href="/steffen.plunder/research/">
+        Research
+      </a>
+    
+      <a class="" href="/steffen.plunder/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/steffen.plunder/activities/">
+        Activities
+      </a>
+    
+      <a class="" href="/steffen.plunder/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/steffen.plunder/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h2 id="research-interests" tabindex="-1">Research interests</h2>
+<p>My mathematical research interests are</p>
+<p class="m-0"><strong>Biomathematics and modelling:</strong></p>
+<ul>
+<li>Mechanical models for cell dynamics; agent-based models</li>
+<li>Developmental biology (epithelial-to-mesenchymal transitions)</li>
+<li>Actin-myosin dynamics</li>
+<li>Elasticity theory</li>
+</ul>
+<p class="m-0"><strong>Numerics:</strong></p>
+<ul>
+<li>Geometric numerical methods (symplectic methods, finite element exterior calculus)</li>
+<li>Coupled systems and inequality constraints (differential inclusions, position-based dynamics)</li>
+</ul>
+<p class="m-0"><strong>Kinetic theory:</strong></p>
+<ul>
+<li>Mean-field limits (in particular with constraints)</li>
+</ul>
+<h2 id="projects" tabindex="-1">Projects</h2>
+<p><em>This section is still work in progress.</em></p>
+<div class="grid sm:grid-cols-2 gap-4 justify-items-center"><div class="rounded drop-shadow-xl flex mb-4 cursor-pointer bg-white border-b-0 border-t-4  border-lime-600" onclick="location.href='/steffen.plunder/research/projects/epithelial-to-mesenchymal/'">
+    <div class="p-0 m-0 justify-between">
+      <div class=""><img src="./0b54724f65bb2e5742153c817bdeae98e6aa525a.png" class="rounded-t mb-2 m-0" integrity="sha1-0b54724f65bb2e5742153c817bdeae98e6aa525a"></div>
+      <div class="ml-2 mb-2">
+        <a class="text-lime-800 hover:text-lime-600" href="/steffen.plunder/research/projects/epithelial-to-mesenchymal/">Mechanical modelling of epithelial-to-mesenchymal transitions</a><br>
+        <i class="text-slate-500">Oct 2019 
+          – &nbsp;present<br><small><b>Goal:</b> Modelling of different EMT scenarios to study their effect on metastasis. (Read more...)</small></i></div><i class="text-slate-500">
+    </i></div><i class="text-slate-500">
+  </i></div><div class="rounded drop-shadow-xl flex mb-4 cursor-pointer bg-white border-b-0 border-t-4  border-lime-600" onclick="location.href='/steffen.plunder/research/projects/position-based-dynamics/'"><i class="text-slate-500">
+    <div class="p-0 m-0 justify-between">
+      <div class=""><img src="./70cf3507347442b5fcedcd582955590e9d72cafa.png" class="rounded-t mb-2 m-0" integrity="sha1-70cf3507347442b5fcedcd582955590e9d72cafa"></div>
+      <div class="ml-2 mb-2">
+        <a class="text-lime-800 hover:text-lime-600" href="/steffen.plunder/research/projects/position-based-dynamics/">First-order position-based dynamics</a><br>
+        <i class="text-slate-500">Oct 2020 
+          – &nbsp;present<br><small><b>Goal:</b> Numerical analysis of a very simple, but equally fast and stable numerical method from computer graphics.</small></i></div><i class="text-slate-500">
+    </i></div><i class="text-slate-500">
+  </i></i></div><div class="rounded drop-shadow-xl flex mb-4 cursor-pointer bg-white border-b-0 border-t-4  border-lime-600" onclick="location.href='/steffen.plunder/research/projects/cell-migration-model/'"><i class="text-slate-500"><i class="text-slate-500">
+    <div class="p-0 m-0 justify-between">
+      <div class=""><img src="./f5a4b81d2382977f880a88513d037e1961c8890b.png" class="rounded-t mb-2 m-0" integrity="sha1-f5a4b81d2382977f880a88513d037e1961c8890b"></div>
+      <div class="ml-2 mb-2">
+        <a class="text-lime-800 hover:text-lime-600" href="/steffen.plunder/research/projects/cell-migration-model/">Cell migration model for plithotaxis</a><br>
+        <i class="text-slate-500">Jun 2021 
+          – &nbsp;present<br><small><b>Goal:</b> Development of an agent-based cell migration model for plithotaxis.</small></i></div><i class="text-slate-500">
+    </i></div><i class="text-slate-500">
+  </i></i></i></div><div class="rounded drop-shadow-xl flex mb-4 cursor-pointer bg-white border-b-0 border-t-4  border-lime-600" onclick="location.href='/steffen.plunder/research/projects/constraints-mean-field/'"><i class="text-slate-500"><i class="text-slate-500"><i class="text-slate-500">
+    <div class="p-0 m-0 justify-between">
+      <div class=""><img src="./4ce95a5f5b7ae652b2d99c978e418bddd80e5602.png" class="rounded-t mb-2 m-0" integrity="sha1-4ce95a5f5b7ae652b2d99c978e418bddd80e5602"></div>
+      <div class="ml-2 mb-2">
+        <a class="text-lime-800 hover:text-lime-600" href="/steffen.plunder/research/projects/constraints-mean-field/">Mean-field limit for constrained particles</a><br>
+        <i class="text-slate-500">Mar 2018 
+          – &nbsp;Mar 2022</i><br><small><b>Goal:</b> Proof of the mean-field limit for an abstraction of a muscle tissue model.</small></div>
+    </div>
+  </i></i></i></div></div><i class="text-slate-500"><i class="text-slate-500">
+<hr>
+<div class="drop-shadow-xl  mb-8 cursor-pointer" onclick="location.href='./projects/cell-migration-model'">
+<img src="./8cf694ea4d276f2e4ced82e03a7adffad7c35507.jpg" class="mb-0 rounded-t" integrity="sha1-8cf694ea4d276f2e4ced82e03a7adffad7c35507">
+<div class="text-center bg-slate-300 pt-2 pb-2 rounded-b">
+Sara Merino-Aceituno and me exploring an interactive simulation of our cell migration model for plithotaxis. This was part of an outreach activity that I developed for the “Long night of Science” in Vienna.
+</div>
+</div> 
+
+  </i></i></div><i class="text-slate-500"><i class="text-slate-500">
+
+      </i></i></div><i class="text-slate-500"><i class="text-slate-500">
+      </i></i></div><i class="text-slate-500"><i class="text-slate-500">
+
+
+
+</i></i></body></html>

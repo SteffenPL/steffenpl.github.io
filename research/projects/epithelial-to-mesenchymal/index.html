@@ -1,0 +1,195 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/steffen.plunder/assets/main.bundle.css">
+  <link rel="stylesheet" href="/steffen.plunder/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <script src="/steffen.plunder/assets/main.bundle.js" defer=""></script>
+  <script src="/steffen.plunder/assets/p5.min.js"></script>
+  <script src="/steffen.plunder/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Mechanical modelling of epithelial-to-mesenchymal transitions | Steffen Plunder</title>
+</head>
+<body class="  container mx-auto min-h-screen bg-cover" style="background-image:url(/steffen.plunder/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/steffen.plunder/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/steffen.plunder/">
+          About me
+        </a>
+      
+        <a class="" href="/steffen.plunder/research/">
+          Research
+        </a>
+      
+        <a class="" href="/steffen.plunder/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/steffen.plunder/activities/">
+          Activities
+        </a>
+      
+        <a class="" href="/steffen.plunder/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/steffen.plunder/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/steffen.plunder/">
+        About me
+      </a>
+    
+      <a class="" href="/steffen.plunder/research/">
+        Research
+      </a>
+    
+      <a class="" href="/steffen.plunder/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/steffen.plunder/activities/">
+        Activities
+      </a>
+    
+      <a class="" href="/steffen.plunder/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/steffen.plunder/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <p><em>Short project description:</em></p>
+<h1 id="mechanical-modelling-of-epithelial-to-mesenchymal-transitions" tabindex="-1">Mechanical modelling of epithelial-to-mesenchymal transitions</h1>
+<p><em>This project is a collaboration with <a href="https://cbi-toulouse.fr/eng/equipe-theveneau" target="_blank">Eric Theveneau</a>, <a href="https://marinaaferreira.wordpress.com/" target="_blank">Marina A. Ferreria</a>, <a href="https://sites.google.com/site/dianepeurichard/home" target="_blank">Diane Peurichard</a>, <a href="https://sites.google.com/site/degond/Home" target="_blank">Pierre Degond</a> and <a href="https://sites.google.com/view/saramerinoaceituno" target="_blank">Sara Merino-Aceituno</a>.</em></p>
+<p>The epithelial-to-mesenchymal transition (EMT) is a complex process during which epithelial cells<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>
+transition into mesenchymal cells via a progression of changes in the cell state.
+During this transition, fundamental cell properties change. For example, epithelial cells typical have adhesive bonds within each other. But mesenchymal cells might lose these adhesive bonds and start to migrate.
+However, the EMT process is very flexible in the sense that some changes might be skipped or reversed. To study this kind of
+heterogeneity is one of the key challenges of this project.</p>
+<p><a href="https://commons.wikimedia.org/wiki/File:Epithelial-Mesenchymal_Transition.gif#/media/File:Epithelial-Mesenchymal_Transition.gif"><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Epithelial-Mesenchymal_Transition.gif" alt="Epithelial-Mesenchymal Transition.gif"></a><br>
+<span class="float-right">Image source: <a href="https://commons.wikimedia.org/w/index.php?curid=25952399">wikipedia.org</a></span></p>
+<h2 id="project-aims" tabindex="-1">Project aims</h2>
+<p>The overall aim of our mathematical model is to understand
+the mechanical factors involved in epithelial-to-mesenchymal transition and the
+resulting cell migration.
+As there are many different directions to explore with <em>in vivo</em> experiments,
+gaining additional insight into the cell dynamics with simulations would help in the design of experiments. Ideally, the model could indicate which directions are most promising.</p>
+<p>Concretely, we want to use simulations to come up with biological hypotheses which can be tested <em>in vivo</em>.</p>
+<p>A second goal is to use the computer model also to study scenarios that are difficult or almost impossible with current experimental tools. For example,
+we can easily control the mixture of different cell types to model <em>heterogeneity</em> in computer simulations. Doing the same experimentally is only possible to a limited degree.
+At the same time, it is observed that cells during EMT are very heterogeneous, which raises the question if this has an actual mechanical advantage or if the heterogeneity emerges for other reasons.</p>
+<h2 id="the-model" tabindex="-1">The model</h2>
+<p><img class="max-w-xs md:float-right mx-auto md:mx-0" src="./41d2585e7e5f7e731b81bf252a297c2afbd0c4ae.png" integrity="sha1-41d2585e7e5f7e731b81bf252a297c2afbd0c4ae"></p>
+<p>Without going into too many details, our model is a continuation of <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007171" target="_blank">Marina's model</a> where we added extra rules to model EMT.</p>
+<p>The core of the model is a "tennis ball in a sock" description of the cells: Since the cell membrane is stretched out (like a sock)
+and the nucleus is the hardest part of the cell (like the tennis ball) we consider the nucleus as a <em>sphere-like object</em> and the membrane and the other cell structure as <em>linear springs</em>.</p>
+<p>Without further ado. This is how a simulation of pseudo-stratified tissue <em>without</em> EMT looks like (according to our model):</p>
+<div class="container mx-auto">
+<video class="max-w-full" controls="" autoplay="" loop="">
+<source src="/steffen.plunder/assets/videos/no_emt.mp4" type="video/mp4">
+</video>
+</div>
+<h2 id="mathematical-aspects" tabindex="-1">Mathematical aspects</h2>
+<p>Compared to the previous model, which was a quasi-steady state simulation, we
+use a a first-order differential equation for the model behind simulations as the one above.
+Using first-order differential equations allows us to use a variety of different numerical methods. And it turned out
+that <a href="/steffen.plunder/research/projects/position-based-dynamics">position-based dynamics</a> was with quite some margin the fastest method for our model.</p>
+<p>The model is (roughly) of the form
+</p><section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mover accent="true"><mi>z</mi><mo>˙</mo></mover><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>+</mo><munder><mo>∑</mo><mi>k</mi></munder><msub><mi>λ</mi><mi>k</mi></msub><msub><mi mathvariant="normal">∇</mi><mi>z</mi></msub><msub><mi>g</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>z</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">
+\dot z = f(z,t) + \sum_{k} \lambda_k \nabla_z g_k(z, t)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6679em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6679em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.0833em;"><span class="mord">˙</span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.3521em;vertical-align:-1.3021em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.05em;"><span style="top:-1.8479em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.3021em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord">∇</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.04398em;">z</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></eqn></section>
+with the conditions
+<section><eqn><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>g</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn><mo separator="true">,</mo><mspace width="1em"></mspace><msub><mi>λ</mi><mi>k</mi></msub><mo>≥</mo><mn>0</mn><mspace width="1em"></mspace><mtext>and</mtext><mspace width="1em"></mspace><msub><mi>g</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>z</mi><mo stretchy="false">)</mo><msub><mi>λ</mi><mi>k</mi></msub><mo>=</mo><mn>0.</mn></mrow><annotation encoding="application/x-tex">
+g_k(z) \geq 0, \quad \lambda_k \geq 0 \quad \text{and} \quad g_k(z) \lambda_k = 0.
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:1em;"></span><span class="mord text"><span class="mord">and</span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.04398em;">z</span><span class="mclose">)</span><span class="mord"><span class="mord mathnormal">λ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0.</span></span></span></span></span></eqn></section><p></p>
+<p>The degrees of freedom are the positions of the nuclei and the upper and lower endpoints of the cell membrane (which we call apical and basal points). The mathematically inclined reader might notice that the inequality constraints add some extra challenges. But we will not go into these details here.</p>
+<p>In addition to the differential equation, there are many additional rules which change certain properties of the model at discrete times. For example:</p>
+<ul>
+<li>Cell division,</li>
+<li>Growth of the cell before division,</li>
+<li>Typical for pseudo-stratified tissue: The cytoskeleton pulls the nucleus towards the apical layer, just before the division starts.</li>
+</ul>
+<h3 id="the-emt-model" tabindex="-1">The EMT model</h3>
+<p>To model EMT we added the following events</p>
+<ul>
+<li><strong>A: Loss of apical adhesion</strong> (removal of apical-nuclei spring),</li>
+<li><strong>B: Loss of basal adhesion</strong> (removal of basal-nuclei spring),</li>
+<li><strong>S: Degeneration of cell straightness</strong> (reduction of the bending spring),</li>
+<li><strong>p: Protrusions</strong> (cells start moving in direction of their polarity).</li>
+</ul>
+<p>In a simplified world, cells would perform <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>→</mo><mi>B</mi><mo>→</mo><mi>S</mi><mo>→</mo><mi>p</mi></mrow><annotation encoding="application/x-tex">A \to B \to S \to p</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">p</span></span></span></span></eq> in a regular manner. But in reality, it is sometimes a complete mess.
+Cells might only do some of these steps, or have completely different timings.</p>
+<h2 id="results" tabindex="-1">Results</h2>
+<p>A full display of all aspects of the model is beyond the scope of this brief project description.<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup> To show a one aspect, I will present one simulation of cells that lose their apical adhesion (after 12h) and are then passively pushed towards the basal side.</p>
+<div class="container mx-auto">
+<video class="max-w-full" controls="" autoplay="" loop="">
+<source src="/steffen.plunder/assets/videos/sim_a6_b24_concave.mp4" type="video/mp4">
+</video>
+</div>
+<p>In the video, the white cells are from the control population without EMT and the red cells perform EMT.</p>
+<p>Some observations which can be made in the model:</p>
+<ul>
+<li>The loss of adhesion removes the EMT cells from the center of the tissue.</li>
+<li>After EMT, most of the cells are positioned on the basal side of the tissue (black line), from where they could further migrate through the basal matrix.</li>
+<li>Some EMT cells extrude towards the apical side (red line) of the tissue. This can be avoided by adding protrusive activity during EMT.</li>
+</ul>
+<h2 id="numerical-aspects" tabindex="-1">Numerical aspects</h2>
+<p>The numerical simulation of differential equations with inequality constraints
+is an old but very diverse topic. The preferred numerical methods vary fundamentally depending on the application, ranging from discrete element methods for engineering applications to complex algorithms from non-smooth mechanics or elasticity.</p>
+<p>Our method of choice is the rather novel <a href="../position-based-dynamics">position-based dynamics (PBD)</a>.
+The advantage of PBD is that it has nearly optimal speed and it does not waste unnecessary resources on satisfying the inequality constraints. This allowed us to run millions of simulations within a few hours. With this uncompromising approach, we could generate enough data for statistical data analysis. Moreover, the numerical stability of PBD resolved issues previous algorithms had when the tissue is very packed.</p>
+<h2 id="to-be-continued..." tabindex="-1">To be continued...</h2>
+<p>This description is about ongoing research, as such, it is subject to change
+and none of the results is final.</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>For non-biologists: An example of epithelial tissue is your skin. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>In total we simulated over 2000 different setups, using statistical methods for ranking and evaluation of the results. <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

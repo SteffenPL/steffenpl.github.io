@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/steffen.plunder/assets/main.bundle.css">
+  <link rel="stylesheet" href="/steffen.plunder/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <script src="/steffen.plunder/assets/main.bundle.js" defer=""></script>
+  <script src="/steffen.plunder/assets/p5.min.js"></script>
+  <script src="/steffen.plunder/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>🎨 MyPaintEdSlides | Steffen Plunder</title>
+</head>
+<body class="  container mx-auto min-h-screen bg-cover" style="background-image:url(/steffen.plunder/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/steffen.plunder/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/steffen.plunder/">
+          About me
+        </a>
+      
+        <a class="" href="/steffen.plunder/research/">
+          Research
+        </a>
+      
+        <a class="" href="/steffen.plunder/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/steffen.plunder/activities/">
+          Activities
+        </a>
+      
+        <a class="" href="/steffen.plunder/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/steffen.plunder/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/steffen.plunder/">
+        About me
+      </a>
+    
+      <a class="" href="/steffen.plunder/research/">
+        Research
+      </a>
+    
+      <a class="" href="/steffen.plunder/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/steffen.plunder/activities/">
+        Activities
+      </a>
+    
+      <a class="" href="/steffen.plunder/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/steffen.plunder/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="%F0%9F%8E%A8-mypaintedslides" tabindex="-1">🎨 MyPaintEdSlides</h1>
+<p><em>Till today I couldn't find any satisfying tool to create
+handdrawn slides. So I made one myself!</em></p>
+<p>If you want to try it, check out the repository <a href="https://github.com/SteffenPL/MyPaintEdSlides">github.com/SteffenPL/MyPaintEdSlides</a>.</p>
+<p>It allows you to create slides like this. <br>(Use the ⬇️ for the next content and ⬅️, ➡️ to navigate slides.)</p>
+<div class="container mx-auto bg-lime-200 aspect-video">
+<iframe class="h-full w-full" width="16" height="9" src="
+https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/index.html#/2/11">
+</iframe>
+</div>
+<p>These kind of slides totally change how content is presented, images and formulas are at the front page
+and only your drawing skills are the limit (instead of LaTeX).</p>
+<div class="container mx-auto bg-lime-200 aspect-video">
+<iframe class="h-full w-full" width="16" height="9" src="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis/index.html#/3/1">
+</iframe>
+</div>
+<h2 id="how-does-it-work%3F" tabindex="-1">How does it work?</h2>
+<p>As the name indicates, my simple python script mainly builds upon the free, open-source program
+<a href="http://mypaint.org/">MyPaint</a> or alternatively <a href="https://krita.org/en/">Krita</a>.</p>
+<p>Each slide of the presentation is just on <code>.ora</code> (Open Raster Format) file created with one of these programs.
+The main feature is, that the image layers and layer groups represent the elements which apear one-by-one when going through the slides!
+In this way one can change each layer separate, even afterwards, which is essential especially for complicated slides.</p>
+<p>Given a folder of <code>.ora</code> files, the MyPaintEdSlides python script
+generates images for each step of the presentation and bundles these images as a <a href="https://revealjs.com/">reveal.js</a> presentation.</p>
+<p>If you want to use it, check out the <a href="https://github.com/SteffenPL/MyPaintEdSlides#readme">MyPaintEdSlides readme</a> or write me if you need further help!</p>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>
