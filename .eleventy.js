@@ -4,7 +4,7 @@ const tm = require("markdown-it-texmath");
 const { DateTime } = require("luxon");
 const pageAssetsPlugin = require('eleventy-plugin-page-assets');
 
-const pathPrefix = '/steffen.plunder'
+// const pathPrefix = 'steffenpl.github.io'
 
 module.exports = (config) => {
   config.addPassthroughCopy({ 'public': './' })
@@ -86,7 +86,7 @@ module.exports = (config) => {
       input: 'src',
       output: 'dist',
     },
-    pathPrefix: pathPrefix.concat('/'),
+    // pathPrefix: pathPrefix.concat('/'),
     markdownTemplateEngine: 'njk',
   }
 }
