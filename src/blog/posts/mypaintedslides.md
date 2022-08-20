@@ -28,7 +28,7 @@ and only your drawing skills are the limit (instead of LaTeX).
 </iframe>
 </div>
 
-More example can be seen on [Vishnupriya Anupindi's homepage](https://vishnupriya-anupindi.github.io/research/#talks-and-slides) or [here]({{ '/activities#talks-and-slides' | url }}). 
+More examples are on [Vishnupriya Anupindi's homepage](https://vishnupriya-anupindi.github.io/research/#talks-and-slides) and [here]({{ '/activities#talks-and-slides' | url }}). 
 
 ## How does it work? 
 
