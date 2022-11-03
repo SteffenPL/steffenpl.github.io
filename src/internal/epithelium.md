@@ -63,7 +63,7 @@ Timing and order of EMT events? ⌛ ... or something else? 😉
             },
             cell_prop: {
                 apical_junction_init: 0.3,
-                max_basal_junction_dist: 1.0,
+                max_basal_junction_dist: 0.3,
                 basal_daming_ratio: 1.0,
                 cytos_init: 0.3,
                 diffusion: 0.1,
