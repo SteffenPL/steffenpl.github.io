@@ -449,7 +449,7 @@ let sim_emt = function(p) {
         }
 
         for( let i = 0; i < s.cells.length - 1; ++i ) {
-            s.ap_links[i] = {l: i, r: i+1, rl: params.cell_prop.apical_junction_init};
+            s.ap_links[i] = {l: i, r: i+1, rl: 0.3};
             s.ba_links[i] = {l: i, r: i+1};
         }
 
@@ -520,7 +520,7 @@ let sim_emt = function(p) {
                                 con.l = s.cells.length - 1;
                             }
                         }
-                        s.ap_links[s.ap_links.length] = {l:i, r:s.cells.length-1};
+                        s.ap_links[s.ap_links.length] = {l:i, r:s.cells.length-1,rl: pv.dist(ci.A, cj.A)};
 
                         for( let e = 0; e < s.ba_links.length; ++e ) {
                             const con = s.ba_links[e];
@@ -544,7 +544,7 @@ let sim_emt = function(p) {
                 ci.has_A = false;
                                 
                 const inds = [];
-                let new_con = {l: 0, r: 0};
+                let new_con = {l: 0, r: 0, rl: 0.0};
                 for(let e = 0; e < s.ap_links.length; ++e) {
                     const con = s.ap_links[e];
                     if ( con.l == i ) { inds.push(e); new_con.r = con.r; };
@@ -559,6 +559,7 @@ let sim_emt = function(p) {
                     inds.sort((a,b) => (b - a));
                     s.ap_links.splice(inds[0], 1);
                     s.ap_links.splice(inds[1], 1);
+                    new_con.rl = pv.dist(s.cells[new_con.l].A, s.cells[new_con.r].A);
                     s.ap_links.push(new_con);
                 }
             }                    
