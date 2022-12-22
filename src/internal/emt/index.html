@@ -5,8 +5,8 @@
         <title>EMT simulation</title>
         <meta name="description" content="EMT simulation">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./tailwind.css">
-        <script src="./p5.min.js"></script>
+        <link rel="stylesheet" href="{{ 'assets/tailwind.css' | url }}">
+        <script src="{{ 'assets/p5.min.js' | url }}"></script>
         
     </head>
     <body class="bg-slate-50 text-slate-900 dark:bg-gray-900 dark:text-slate-100">
@@ -267,7 +267,7 @@
             </div>    
         </div>
 
-        <script src="./simulation.js"></script>
+        <script src="{{ 'assets/simulation.js' | url }}"></script>
         <script>
             
             let sim_emt_p5 = new p5(sim_emt, 'sim_div');
