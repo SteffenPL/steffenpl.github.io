@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>EMT simulation</title>
+        <meta name="description" content="EMT simulation">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./tailwind.css">
+        <script src="./p5.min.js"></script>
+        
+    </head>
+    <body class="bg-slate-50 text-slate-900 dark:bg-gray-900 dark:text-slate-100">
+        <div class="mx-auto md:max-w-4xl p-4">
+
+            <div class="container m-2 text-slate-800 dark:text-slate-200 ">
+                <p class="text-4xl font-semibold mb-4 mt-4 md:mb-8">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-red-500 dark:from-green-400 dark:to-red-400">
+                        Simulation of epithelial-to-mesenchymal transitions
+                    </span>
+                </p>
+
+                <p class=""> 
+                    An interactive, agent-based model for 
+                    epithelial-to-mesenchymal transtions (EMT) 
+                    in pseudostratified epithelium. The model helps to 
+                    identify key factors which lead to basal extrusion 
+                    after EMT.
+                    We found that essential factors are
+                    <ul class="list-disc list-inside"> 
+                        <li>
+                            protrusive activities (based on cell-matrix adhesion) and
+                        </li>
+                        <li>
+                            the position of cells at onset of EMT (determines directionallity of EMT).
+                        </li>
+                    </ul>
+                    The simulation below gives examples of the model.
+                    <br>
+                    <br>
+                    See also: <a href="index.html" class="text-blue-400 hover:text-blue-200 hover:underline">
+                        Link to our paper</a>
+                    <br>
+                    <span class="italic">
+                        Authors: ..., Eric Theveneau.
+                    </span>
+                </p>                    
+                <details class="mt-4">
+                    <summary>Additional information (Click to expand)</summary>
+                    <p class="font-light"> 
+                        This is a detail box. 
+                        It can be used to provide additional information 
+                        about the simulation.
+                    </p>
+                </details>
+                
+                <div class="rounded-lg ring-red-800 ring-2 p-2 mt-2 mb-8 italic">
+                    Note: Our scientific conclusions from the model are based on statistics obtained from thousands of 
+                    simulations of the model shown below. Please note that in some instances, 
+                    the single simulations can differ from the average behaviour. 
+                </div>
+                
+            </div>
+
+            <div class="container">
+                <div class="w-full m-2 mb-0 rounded-t-lg bg-slate-200 p-2 ">
+                    <div id="simulation" class="text-slate-800">
+                        <div class="mx-auto max-w-2xlw-full">
+                            <p> 
+                            <span class="font-semibold italic">Simulation</span>
+                            <span class="text-red-800 float-right">Apical side (red)
+                            </span>
+                            </p>
+                            <div id="sim_div" class="bg-slate-50"></div>
+                            <p class="text-black float-right">Basal side (red)</p>  
+                        </div>
+                        <div class="w-full h-2">
+
+                        </div>
+                        <div class="flex flex-wrap mt-4 justify-center">
+                            <div class="mb-2 mt-2 rounded-lg bg-slate-400 max-w-fit">                                
+                            <span class="text-center mx-2">
+                                Select scenario
+                            </span>
+                            <select class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
+                                <option value="0">Individual cell & no EMT</option>
+                                <option value="0">Individual cell & EMT: [A]</option>
+                                <option value="0">Individual cell & EMT: [B]</option>
+                                <option value="0">Individual cell & EMT: [Bp]</option>
+                                <option value="0">Individual cell & EMT: [S]</option>
+                                <option value="1">Group of cells</option>
+                                <option value="1">Group of cells & EMT: [A]</option>
+                            </select>
+                            </div>
+                            <div class="pl-2 mb-2 mt-2">
+                                <button id="run_button" class="bg-green-800 hover:bg-green-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">New simulation</button>   
+                            </div>
+                            <div class="pl-2 mb-2 mt-2">
+                                <button id="play_button" class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">Play/Pause</button>   
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
+                    <div id="parameters" class="container">
+                        <h2 class="mt-2 text-center font-medium italic">Parameters</h2>
+                        <h4 class="mb-2 mt-1 text-center font-extralight text-xs text-slate-600 dark:text-slate-400">(Restart required)</h4>
+                        
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <div class="container text-sm pt-2">
+                                    <p class="text-center font-semibold">Number of cells undergoing EMT 
+                                    </p>
+                                    <div class="p-1 my-2">
+                                        
+                                        <div class="grid grid-cols-2 gap-4 w-full">
+                                            <div class="">
+                                                <input type="radio" name="N_emt" value=0 class="rounded-md bg-slate-50">
+                                                no EMT (n = 0)</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="N_emt" value=1 class="rounded-md bg-slate-50" checked>
+                                                individual (n = 1)</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="N_emt" value=10 class="rounded-md bg-slate-50">
+                                                group (n = 10)</input>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <div class="container text-sm pt-2">
+                                    <p class="text-center font-semibold">Interkinetic nuclear movement (of cells undergoing EMT)
+                                    </p>
+                                    <div class="p-1 my-2">
+                                        
+                                        <div class="grid grid-cols-2 gap-4 w-full">
+                                            <div class="">
+                                                <input type="radio" name="INM" value=0 class="rounded-md bg-slate-50">
+                                                no INM</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="INM" value=1 class="rounded-md bg-slate-50" checked>
+                                                INM</input>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <div class="container text-sm pt-2">
+                                    <p class="text-center font-semibold">EMT event: Loss of apical adhesion
+                                    </p>
+                                    <div class="p-1 my-2">
+                                        
+                                        <div class="grid grid-cols-4 gap-4 w-full">
+                                            <div class="">
+                                                <input type="radio" name="TA" value="12" class="rounded-md bg-slate-50" checked>
+                                                12h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TA" value="18" class="rounded-md bg-slate-50">
+                                                18h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TA" value="24" class="rounded-md bg-slate-50">
+                                                24h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TA" value="1000" class="rounded-md bg-slate-50">
+                                                never</input>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <div class="container text-sm pt-2">
+                                    <p class="text-center font-semibold">EMT event: Loss of basal adhesion
+                                    </p>
+                                    <div class="p-1 my-2">
+                                        
+                                        <div class="grid grid-cols-4 gap-4 w-full">
+                                            <div class="">
+                                                <input type="radio" name="TB" value="12" class="rounded-md bg-slate-50">
+                                                12h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TB" value="18" class="rounded-md bg-slate-50" checked>
+                                                18h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TB" value="24" class="rounded-md bg-slate-50">
+                                                24h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TB" value="1000" class="rounded-md bg-slate-50">
+                                                never</input>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <div class="container text-sm pt-2">
+                                    <p class="text-center font-semibold">EMT event: Loss of straigthness (polarity)
+                                    </p>
+                                    <div class="p-1 my-2">
+                                        
+                                        <div class="grid grid-cols-4 gap-4 w-full">
+                                            <div class="">
+                                                <input type="radio" name="TS" value="12" class="rounded-md bg-slate-50">
+                                                12h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TS" value="18" class="rounded-md bg-slate-50">
+                                                18h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TS" value="24" class="rounded-md bg-slate-50">
+                                                24h</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="TS" value="1000" class="rounded-md bg-slate-50" checked>
+                                                never</input>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
+                                <div class="container text-sm pt-2">
+                                    <p class="text-center font-semibold">EMT: Cell protrusions (cell-matrix adhesion)
+                                    </p>
+                                    <div class="p-1 my-2">
+                                        
+                                        <div class="grid grid-cols-2 gap-4 w-full">
+                                            <div class="">
+                                                <input type="radio" name="Run" value=0 class="rounded-md bg-slate-50" checked>
+                                                no</input>
+                                            </div>
+                                            <div class="">
+                                                <input type="radio" name="Run" value=1 class="rounded-md bg-slate-50">
+                                                yes</input>
+                                            </div>
+                                        </div> 
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+        <script src="./simulation.js"></script>
+        <script>
+            
+            let sim_emt_p5 = new p5(sim_emt, 'sim_div');
+            // when run_button is pressed, call sim_emt.init() 
+            document.getElementById("run_button").addEventListener("click", function() {
+                sim_emt_p5.init();
+            });
+
+            
+            document.getElementById("play_button").addEventListener("click", function() {
+                sim_emt_p5.pause();
+            });
+
+
+            for(let el of document.getElementsByName("N_emt")) {
+                el.addEventListener("change", function() {
+                    sim_emt_p5.init();
+                });
+            }
+            
+
+            for(let el of document.getElementsByName("INM")) {
+                el.addEventListener("change", function() {
+                    sim_emt_p5.init();
+                });
+            }
+
+            for(let el of document.getElementsByName("TA")) {
+                el.addEventListener("change", function() {
+                    sim_emt_p5.init();
+                });
+            }
+
+            for(let el of document.getElementsByName("TB")) {
+                el.addEventListener("change", function() {
+                    sim_emt_p5.init();
+                });
+            }
+
+            for(let el of document.getElementsByName("TS")) {
+                el.addEventListener("change", function() {
+                    sim_emt_p5.init();
+                });
+            }
+
+            for(let el of document.getElementsByName("Run")) {
+                el.addEventListener("change", function() {
+                    sim_emt_p5.init();
+                });
+            }
+
+
+
+        </script>
+    </body>
+</html>
