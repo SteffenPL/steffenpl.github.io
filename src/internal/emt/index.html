@@ -314,15 +314,9 @@
             document.getElementById("example_settings").addEventListener("change", function() {
                 let example_settings = JSON.parse(this.value);
                 
-                function replace_inf(x){ x == 0 ? Infinity : x };
-
                 pcontrol.N = example_settings[0];
                 pcontrol.INM = example_settings[1] == 1;
                 pcontrol.run = example_settings[2] == 1;
-                pcontrol.A = replace_inf(example_settings[3]);
-                pcontrol.B = replace_inf(example_settings[4]);
-                pcontrol.S = replace_inf(example_settings[5]);
-                pcontrol.P = pcontrol.B;
 
                 // update html
                 for(let el of document.getElementsByName("N_emt")) {
@@ -344,9 +338,9 @@
                 }
 
                 // set EMT scenario in html
-
-
-                document.getElementById("EMT_scenario").value = JSON.stringify([example_settings[3], example_settings[4], example_settings[5]]).trim();
+                const emt_el = document.getElementById("EMT_scenario");
+                emt_el.value = JSON.stringify([example_settings[3], example_settings[4], example_settings[5]]).trim();
+                emt_el.dispatchEvent(new Event('change'));
 
                 sim_emt_p5.init();
             });
