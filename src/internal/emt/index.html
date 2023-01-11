@@ -83,7 +83,13 @@
                             </span>
                             <select id="example_settings" class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
                                 <option value="[1,1,0,0,0,0]">Individual cell & no EMT</option>
+                                <option value="[1,1,0,9,15,0]">Individual cell & EMT: [AB]</option>
+                                <option value="[1,0,0,9,15,0]">Individual cell & no INM & EMT: [AB]</option>
+                                <option value="[1,1,1,9,15,0]">Individual cell & EMT: [ABp]</option>
                                 <option value="[10,1,0,0,0,0]">Group of cells & no EMT</option>
+                                <option value="[10,1,0,9,15,0]">Group of cells & EMT: [AB]</option>
+                                <option value="[10,0,0,9,15,0]">Group of cells & no INM & EMT: [AB]</option>
+                                <option value="[10,1,1,9,15,0]">Group of cells & EMT: [ABp]</option>
                             </select>
                             </div>
                             <div class="pl-2 mb-2 mt-2">
@@ -336,6 +342,11 @@
                         el.checked = true;
                     }
                 }
+
+                // set EMT scenario in html
+
+
+                document.getElementById("EMT_scenario").value = JSON.stringify([example_settings[3], example_settings[4], example_settings[5]]).trim();
 
                 sim_emt_p5.init();
             });

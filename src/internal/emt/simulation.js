@@ -12,9 +12,9 @@ let sim_emt = function(p) {
     let pcontrol = {
         speed: 1.0,
         preset: 0,
-        A: 18,
-        B: 6,
-        S: 15,
+        A: 6,
+        B: 9,
+        S: 12,
         INM: true,
         run: true,
         N: 8,
@@ -682,7 +682,7 @@ let sim_emt = function(p) {
             else 
             {
                 if (ci.running_mode >= 2 && ci.B.y > 0 ) {
-                    ci.eta_B += dt * p.running_speed;
+                    ci.eta_B = pv.dist(ci.B, ci.pos) - ci.R_soft;
                 } 
                 else {
                     ci.eta_B = p.exp(-dt * ci.type.k_cytos ) * (ci.eta_B - basal_drl) + basal_drl;
@@ -789,11 +789,13 @@ let sim_emt = function(p) {
                 
 
                 if( ci.is_running ) {
-                    const dir = pv.sub( ci.B, ci.pos );
-                    dir.normalize();
+                    if( pv.dist(ci.B, ci.pos) < 5 ) {
+                        const dir = pv.sub( ci.B, ci.pos );
+                        dir.normalize();
 
-                    ci.B.x += dt * dir.x * ci.type.running_speed;
-                    ci.B.y += dt * dir.y * ci.type.running_speed;
+                        ci.B.x += dt * dir.x * ci.type.running_speed;
+                        ci.B.y += dt * dir.y * ci.type.running_speed;
+                    }                        
                 }
                 else{
                     ci.B.x += dt * ci.fB.x / pg.mu;
