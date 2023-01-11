@@ -79,7 +79,7 @@
                         <div class="flex flex-wrap mt-4 justify-center">
                             <div class="mb-2 mt-2 rounded-lg bg-slate-400 max-w-fit">                                
                             <span class="text-center mx-2">
-                                Select scenario
+                                Select example
                             </span>
                             <select class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
                                 <option value="0">Individual cell & no EMT</option>
@@ -100,6 +100,19 @@
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <p>
+                        <span class="font-semibold italic">EMT events</span>
+                        <ul>
+                            <li>
+                                A 
+                            </li>
+                        </ul>
+                    </p>
+
+                </div>
+
                 <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
                     <div id="parameters" class="container">
                         <h2 class="mt-2 text-center font-medium italic">Parameters</h2>
@@ -151,101 +164,46 @@
                                     </div>
                                 </div>
                             </div>
-
                             
                             <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
                                 <div class="container text-sm pt-2">
-                                    <p class="text-center font-semibold">EMT event: Loss of apical adhesion
+                                    <p class="text-center font-semibold">EMT scenario
                                     </p>
-                                    <div class="p-1 my-2">
-                                        
-                                        <div class="grid grid-cols-4 gap-4 w-full">
-                                            <div class="">
-                                                <input type="radio" name="TA" value="12" class="rounded-md bg-slate-50" checked>
-                                                12h</input>
+                                    <div class="p-1 my-2">                                        
+                                        <div class="flex flex-wrap mt-4 justify-center">
+                                            <div class="rounded-lg bg-slate-400 max-w-fit">                                
+                                            <span class="text-center mx-2">
+                                                Select scenario
+                                            </span>
+                                            <select class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
+                                                <option value="0">no EMT</option>
+                                                <option value="0">A</option>
+                                                <option value="0">B</option>
+                                                <option value="0">S</option>
+                                                <option value="0">AB</option>
+                                                <option value="0">BA</option>
+                                                <option value="0">AS</option>
+                                                <option value="0">SA</option>
+                                                <option value="0">BS</option>
+                                                <option value="0">SB</option>
+                                                <option value="0">ABS</option>
+                                                <option value="0">ASB</option>
+                                                <option value="0">BAS</option>
+                                                <option value="0">BSA</option>
+                                                <option value="0">SAB</option>
+                                                <option value="0">SBA</option>                                              
+                                            </select>
                                             </div>
-                                            <div class="">
-                                                <input type="radio" name="TA" value="18" class="rounded-md bg-slate-50">
-                                                18h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TA" value="24" class="rounded-md bg-slate-50">
-                                                24h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TA" value="1000" class="rounded-md bg-slate-50">
-                                                never</input>
-                                            </div>
-                                        </div> 
-
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <div class="container text-sm pt-2">
-                                    <p class="text-center font-semibold">EMT event: Loss of basal adhesion
-                                    </p>
-                                    <div class="p-1 my-2">
-                                        
-                                        <div class="grid grid-cols-4 gap-4 w-full">
-                                            <div class="">
-                                                <input type="radio" name="TB" value="12" class="rounded-md bg-slate-50">
-                                                12h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TB" value="18" class="rounded-md bg-slate-50" checked>
-                                                18h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TB" value="24" class="rounded-md bg-slate-50">
-                                                24h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TB" value="1000" class="rounded-md bg-slate-50">
-                                                never</input>
-                                            </div>
-                                        </div> 
 
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <div class="container text-sm pt-2">
-                                    <p class="text-center font-semibold">EMT event: Loss of straigthness (polarity)
-                                    </p>
-                                    <div class="p-1 my-2">
-                                        
-                                        <div class="grid grid-cols-4 gap-4 w-full">
-                                            <div class="">
-                                                <input type="radio" name="TS" value="12" class="rounded-md bg-slate-50">
-                                                12h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TS" value="18" class="rounded-md bg-slate-50">
-                                                18h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TS" value="24" class="rounded-md bg-slate-50">
-                                                24h</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="TS" value="1000" class="rounded-md bg-slate-50" checked>
-                                                never</input>
-                                            </div>
-                                        </div> 
-
-                                    </div>
-                                </div>
-                            </div>
-                            
                             <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
                                 <div class="container text-sm pt-2">
                                     <p class="text-center font-semibold">EMT: Cell protrusions (cell-matrix adhesion)
                                     </p>
-                                    <div class="p-1 my-2">
-                                        
+                                    <div class="p-1 my-2">                                        
                                         <div class="grid grid-cols-2 gap-4 w-full">
                                             <div class="">
                                                 <input type="radio" name="Run" value=0 class="rounded-md bg-slate-50" checked>
@@ -256,7 +214,6 @@
                                                 yes</input>
                                             </div>
                                         </div> 
-
                                     </div>
                                 </div>
                             </div>
@@ -267,7 +224,7 @@
             </div>    
         </div>
 
-        <script src="{{ '/assets/simulation.js' | url }}"></script>
+        <script src="./simulation.js"></script>
         <script>
             
             let sim_emt_p5 = new p5(sim_emt, 'sim_div');

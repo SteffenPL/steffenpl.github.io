@@ -9,6 +9,9 @@ const pageAssetsPlugin = require('eleventy-plugin-page-assets');
 module.exports = (config) => {
   config.addPassthroughCopy({ 'public': './' })
   config.addPassthroughCopy({'src/assets': 'assets'})
+  config.addPassthroughCopy('src/internal/**/*.js')
+  config.addPassthroughCopy('src/research/**/*.js')
+  config.addPassthroughCopy('src/blog/**/*.js')
   config.setBrowserSyncConfig({
     files: ['dist/**/*'],
     open: true,
