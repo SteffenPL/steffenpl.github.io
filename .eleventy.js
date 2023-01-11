@@ -7,6 +7,9 @@ const pageAssetsPlugin = require('eleventy-plugin-page-assets');
 // const pathPrefix = 'steffenpl.github.io'
 
 module.exports = (config) => {
+
+  config.addWatchTarget("./src/");
+
   config.addPassthroughCopy({ 'public': './' })
   config.addPassthroughCopy({'src/assets': 'assets'})
   config.addPassthroughCopy('src/internal/**/*.js')
@@ -14,7 +17,7 @@ module.exports = (config) => {
   config.addPassthroughCopy('src/blog/**/*.js')
   config.setBrowserSyncConfig({
     files: ['dist/**/*'],
-    open: true,
+    open: false,
   })
   let markdownLibrary = markdownIt({
     html: true,     breaks: false,     linkify: false,   })

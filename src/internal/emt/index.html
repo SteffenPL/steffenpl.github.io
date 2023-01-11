@@ -81,14 +81,9 @@
                             <span class="text-center mx-2">
                                 Select example
                             </span>
-                            <select class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
-                                <option value="0">Individual cell & no EMT</option>
-                                <option value="0">Individual cell & EMT: [A]</option>
-                                <option value="0">Individual cell & EMT: [B]</option>
-                                <option value="0">Individual cell & EMT: [Bp]</option>
-                                <option value="0">Individual cell & EMT: [S]</option>
-                                <option value="1">Group of cells</option>
-                                <option value="1">Group of cells & EMT: [A]</option>
+                            <select id="example_settings" class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
+                                <option value="[1,1,0,0,0,0]">Individual cell & no EMT</option>
+                                <option value="[10,1,0,0,0,0]">Group of cells & no EMT</option>
                             </select>
                             </div>
                             <div class="pl-2 mb-2 mt-2">
@@ -99,18 +94,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div>
-                    <p>
-                        <span class="font-semibold italic">EMT events</span>
-                        <ul>
-                            <li>
-                                A 
-                            </li>
-                        </ul>
-                    </p>
-
                 </div>
 
                 <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
@@ -175,23 +158,23 @@
                                             <span class="text-center mx-2">
                                                 Select scenario
                                             </span>
-                                            <select class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
-                                                <option value="0">no EMT</option>
-                                                <option value="0">A</option>
-                                                <option value="0">B</option>
-                                                <option value="0">S</option>
-                                                <option value="0">AB</option>
-                                                <option value="0">BA</option>
-                                                <option value="0">AS</option>
-                                                <option value="0">SA</option>
-                                                <option value="0">BS</option>
-                                                <option value="0">SB</option>
-                                                <option value="0">ABS</option>
-                                                <option value="0">ASB</option>
-                                                <option value="0">BAS</option>
-                                                <option value="0">BSA</option>
-                                                <option value="0">SAB</option>
-                                                <option value="0">SBA</option>                                              
+                                            <select id="EMT_scenario" class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
+                                                <option value="[0,0,0]">no EMT</option>
+                                                <option value="[12,0,0]">A</option>
+                                                <option value="[0,12,0]">B</option>
+                                                <option value="[0,0,12]">S</option>
+                                                <option value="[9,15,0]">AB</option>
+                                                <option value="[15,9,0]">BA</option>
+                                                <option value="[9,0,15]">AS</option>
+                                                <option value="[15,0,9]">SA</option>
+                                                <option value="[0,9,15]">BS</option>
+                                                <option value="[0,15,9]">SB</option>
+                                                <option value="[9,15,21]">ABS</option>
+                                                <option value="[9,21,15]">ASB</option>
+                                                <option value="[15,9,21]">BAS</option>
+                                                <option value="[21,9,15]">BSA</option>
+                                                <option value="[15,21,9]">SAB</option>
+                                                <option value="[15,15,9]">SBA</option>                                              
                                             </select>
                                             </div>
                                         </div>
@@ -228,6 +211,29 @@
         <script>
             
             let sim_emt_p5 = new p5(sim_emt, 'sim_div');
+            let pcontrol = sim_emt_p5.getControl();
+            // load N_emt from html
+            for(let el of document.getElementsByName("N_emt")) {
+                if(el.checked) {
+                    pcontrol.N = parseInt(el.value);
+                }
+            }
+
+            // load INM from html
+            for(let el of document.getElementsByName("INM")) {
+                if(el.checked) {
+                    pcontrol.INM = parseInt(el.value) == 1;
+                }
+            }
+
+            // load run from html
+            for(let el of document.getElementsByName("Run")) {
+                if(el.checked) {
+                    pcontrol.run = parseInt(el.value) == 1;
+                }
+            }
+
+
             // when run_button is pressed, call sim_emt.init() 
             document.getElementById("run_button").addEventListener("click", function() {
                 sim_emt_p5.init();
@@ -241,6 +247,7 @@
 
             for(let el of document.getElementsByName("N_emt")) {
                 el.addEventListener("change", function() {
+                    pcontrol.N = parseInt(el.value);
                     sim_emt_p5.init();
                 });
             }
@@ -248,6 +255,7 @@
 
             for(let el of document.getElementsByName("INM")) {
                 el.addEventListener("change", function() {
+                    pcontrol.INM = parseInt(el.value) == 1;
                     sim_emt_p5.init();
                 });
             }
@@ -272,11 +280,65 @@
 
             for(let el of document.getElementsByName("Run")) {
                 el.addEventListener("change", function() {
+                    pcontrol.run = parseInt(el.value) == 1;
                     sim_emt_p5.init();
                 });
             }
 
+            // load EMT scenario from html
+            document.getElementById("EMT_scenario").addEventListener("change", function() {
+                emt_times = JSON.parse(this.value);
 
+                // replace in emt_times -1 with Infinity
+                for(let i = 0; i < emt_times.length; i++) {
+                    if(emt_times[i] == 0) {
+                        emt_times[i] = Infinity;
+                    }
+                }
+
+                pcontrol.A = emt_times[0];
+                pcontrol.B = emt_times[1];
+                pcontrol.S = emt_times[2];
+                pcontrol.P = pcontrol.B;
+
+                sim_emt_p5.init();
+            });
+
+            // load example settings from html
+            document.getElementById("example_settings").addEventListener("change", function() {
+                let example_settings = JSON.parse(this.value);
+                
+                function replace_inf(x){ x == 0 ? Infinity : x };
+
+                pcontrol.N = example_settings[0];
+                pcontrol.INM = example_settings[1] == 1;
+                pcontrol.run = example_settings[2] == 1;
+                pcontrol.A = replace_inf(example_settings[3]);
+                pcontrol.B = replace_inf(example_settings[4]);
+                pcontrol.S = replace_inf(example_settings[5]);
+                pcontrol.P = pcontrol.B;
+
+                // update html
+                for(let el of document.getElementsByName("N_emt")) {
+                    if(el.value == pcontrol.N) {
+                        el.checked = true;
+                    }
+                }
+
+                for(let el of document.getElementsByName("INM")) {
+                    if(el.value == pcontrol.INM) {
+                        el.checked = true;
+                    }
+                }
+
+                for(let el of document.getElementsByName("Run")) {
+                    if(el.value == pcontrol.run) {
+                        el.checked = true;
+                    }
+                }
+
+                sim_emt_p5.init();
+            });
 
         </script>
     </body>

@@ -39,37 +39,37 @@ In addition,
 
             let p_def = {
                 confinement: 0.65,
-                N: 80,
-                r: 5.0,
+                N: 50,
+                r: 10.0,
                 r_h: 50,
-                run_speed: 1.2,
-                tumble_speed: 0.5,
-                cil_speed: 0.4,
-                cluster_speed: 0.8,
+                run_speed: 3.0,
+                tumble_speed: 1.0,
+                cil_speed: 1.0,
+                cluster_speed: 2.0,
                 run_dur: 30.0,
                 tumble_dur: 6.0,
                 rotation_dur: 2.0,
                 cil_dur: 5.0,
-                cil_init_dur: 1.0,
-                cil_spread: 30.0,
-                new_adh_dur: 3.0,
-                break_adh_dur: 25.0,
-                adh_stiffness: 0.1,
-                plitho_dur: 5,
-                plitho_min_dur: 2,
-                plitho_max_dur: 50,
-                plitho_align: 200,
-                plitho_spread: 15,
+                cil_init_dur: 2.0,
+                cil_spread: 90.0,
+                new_adh_dur: 2.0,
+                break_adh_dur: 15.0,
+                adh_stiffness: 0.3,
+                plitho_dur: 30,
+                plitho_min_dur: 5,
+                plitho_max_dur: 45,
+                plitho_align: 20,
+                plitho_spread: 10,
                 chemo: 0.0,
-                soft_rep: 1.2,
-                wall_rep: 0.2,
+                soft_rep: 3,
+                wall_rep: 1,
                 diff_coef: 0.02,
-                n_substeps: 10,
+                n_substeps: 40,
                 show_forces: 1,
                 speed_factor: 0.5,
                 zoom: 1.0,
-                w: 300,
-                h: 300 * 3/4,
+                w: 600,
+                h: 600 * 3/4,
                 mu: 2
             };
 
@@ -218,7 +218,7 @@ In addition,
                     p.line(this.pos.x, this.pos.y, this.pos.x + this.r_s * this.pol.x, this.pos.y + this.r_s * this.pol.y);
                     if (true) {
                         p.stroke(150, 0, 0, 120 * p_def.show_forces);
-                        p.line(this.pos.x, this.pos.y, this.pos.x + this.r_s * this.f.x, this.pos.y + this.r_s * this.f.y);
+                        p.line(this.pos.x, this.pos.y, this.pos.x + this.r_s * this.f.x / 2, this.pos.y + this.r_s * this.f.y / 2);
                     }
                 }
             }
@@ -392,7 +392,7 @@ In addition,
 
 
                         let mi = cells[i].mode;
-                        if ((mi == modeRun || mi == modeTumble) && n_contacts > 0 && expRand(p1.cil_init_dur)) {
+                        if ((mi == modeRun || mi == modeTumble) && n_contacts > 0 ) {
                             if (n_contacts == 1) {
                                 cells[i].mode = modeCIL;
                                 cells[i].pol.normalize().mult(p1.cil_speed);
@@ -644,7 +644,7 @@ In addition,
                 p.noStroke();
                 p.fill(200);
                 for (let i = 0; i < obstacles.length; ++i) {
-                    p.circle(obstacles[i].x, obstacles[i].y, 2);
+                    p.circle(obstacles[i].x, obstacles[i].y, 4);
                 }
 
                 for (let i = 0; i < walls.length; i++) {

@@ -12,6 +12,12 @@ let sim_emt = function(p) {
     let pcontrol = {
         speed: 1.0,
         preset: 0,
+        A: 18,
+        B: 6,
+        S: 15,
+        INM: true,
+        run: true,
+        N: 8,
     };
 
     let plts = {
@@ -68,6 +74,7 @@ let sim_emt = function(p) {
                     time_A: {min:Infinity, max:Infinity},
                     time_B: {min:Infinity, max:Infinity},
                     time_S: {min:Infinity, max:Infinity},
+                    time_P: {min:Infinity, max:Infinity},
                 }
             },
             emt: {
@@ -93,6 +100,7 @@ let sim_emt = function(p) {
                     time_A: {min:6, max:24},
                     time_B: {min:6, max:24},
                     time_S: {min:6, max:24},
+                    time_P: {min:6, max:24},
                 }
             }
         }
@@ -101,6 +109,7 @@ let sim_emt = function(p) {
     const params = Object.assign({}, params_def);
 
     p.getParams = function() { return params };
+    p.getControl = function() { return pcontrol };
 
 /* 
     function init_interface() {
@@ -304,7 +313,6 @@ let sim_emt = function(p) {
             this.eta_A = h/2;
             this.eta_B = h/2;
             this.eta_aa = params.cell_prop.apical_junction_init;
-
             this.has_A = true;
             this.has_B = true;
 
@@ -318,10 +326,12 @@ let sim_emt = function(p) {
 
                 this.birth_time = s.t - p.random(0, max_age);
                 this.division_time = this.birth_time + max_age;
-
+                this.is_running = false;
+                this.running_mode = ct.running_mode;
                 this.time_A = p.random(ct.events.time_A.min, ct.events.time_A.max);
                 this.time_B = p.random(ct.events.time_B.min, ct.events.time_B.max);
                 this.time_S = p.random(ct.events.time_S.min, ct.events.time_S.max);
+                this.time_P = p.random(ct.events.time_P.min, ct.events.time_P.max);
             } else {
                 this.pos = x_init.copy();
                 this.A = parent.A.copy();
@@ -329,10 +339,13 @@ let sim_emt = function(p) {
                 
                 this.birth_time = s.t;
                 this.division_time = this.birth_time + max_age;
-                
+                this.is_running = parent.is_running;                
+                this.running_mode = parent.running_mode;
+
                 this.time_A = parent.time_A;
                 this.time_B = parent.time_B;
                 this.time_S = parent.time_S;
+                this.time_P = parent.time_P;
 
                 this.has_A = parent.has_A;
                 this.has_B = parent.has_B;
@@ -404,22 +417,44 @@ let sim_emt = function(p) {
         s.ap_links.length = 0;
         s.ba_links.length = 0;
 
-        params.general.N_emt = parseInt( document.querySelector('input[name="N_emt"]:checked').value );
+        // copy values from pcontrol into the emt cell type
+        params.general.N_emt = pcontrol.N;
+        params.general.N_init = params.general.N_emt + 25;
+        const emt = params.cell_types.emt;
+        emt.events.time_A.min = pcontrol.A;
+        emt.events.time_B.min = pcontrol.B;
+        emt.events.time_S.min = pcontrol.S;
+
+        if( pcontrol.run ) {
+            emt.events.time_P.min = pcontrol.B;
+            emt.events.time_P.max = pcontrol.B;
+        }
+        else {
+            emt.events.time_P.min = Infinity;
+            emt.events.time_P.max = Infinity;
+        }
+        
+        emt.INM = pcontrol.INM;
+
+        // set max values for emt events time_A, time_B, time_S to the min values
+        emt.events.time_A.max = emt.events.time_A.min + 0.1;
+        emt.events.time_B.max = emt.events.time_B.min + 0.1;
+        emt.events.time_S.max = emt.events.time_S.min + 0.1;
 
         // get the state of INM from the INM input and store into params.emt 
-        params.cell_types.emt.INM = document.querySelector('input[name="INM"]:checked').value == "1";
+        // params.cell_types.emt.INM = document.querySelector('input[name="INM"]:checked').value == "1";
 
         // get the values TA and TB from the TA and TB inputs and store into params.emt
 
-        params.cell_types.emt.events.time_A.min = parseFloat( document.querySelector('input[name="TA"]:checked').value );
-        params.cell_types.emt.events.time_B.min = parseFloat( document.querySelector('input[name="TB"]:checked').value );
-        params.cell_types.emt.events.time_S.min = parseFloat( document.querySelector('input[name="TS"]:checked').value );
+        // params.cell_types.emt.events.time_A.min = parseFloat( document.querySelector('input[name="TA"]:checked').value );
+        // params.cell_types.emt.events.time_B.min = parseFloat( document.querySelector('input[name="TB"]:checked').value );
+        // params.cell_types.emt.events.time_S.min = parseFloat( document.querySelector('input[name="TS"]:checked').value );
         
 
         // set max values for emt events time_A, time_B, time_S to the min values 
-        params.cell_types.emt.events.time_A.max = params.cell_types.emt.events.time_A.min + 0.1;
-        params.cell_types.emt.events.time_B.max = params.cell_types.emt.events.time_B.min + 0.1;
-        params.cell_types.emt.events.time_S.max = params.cell_types.emt.events.time_S.min + 0.1;
+        // params.cell_types.emt.events.time_A.max = params.cell_types.emt.events.time_A.min + 0.1;
+        // params.cell_types.emt.events.time_B.max = params.cell_types.emt.events.time_B.min + 0.1;
+        // params.cell_types.emt.events.time_S.max = params.cell_types.emt.events.time_S.min + 0.1;
 
         const N =  params.general.N_init;
         const i_emt = p.round( (N - params.general.N_emt) / 2 );
@@ -542,6 +577,7 @@ let sim_emt = function(p) {
             // lose apical adhesion
             if( s.t <= ci.time_A && s.t + dt > ci.time_A  ) {
                 ci.has_A = false;
+                ci.stiffness_nuclei_apical *= 0.1;
                                 
                 const inds = [];
                 let new_con = {l: 0, r: 0, rl: 0.0};
@@ -557,6 +593,7 @@ let sim_emt = function(p) {
 
                 if( inds.length == 2 ) {
                     inds.sort((a,b) => (b - a));
+
                     s.ap_links.splice(inds[0], 1);
                     s.ap_links.splice(inds[1], 1);
                     new_con.rl = pv.dist(s.cells[new_con.l].A, s.cells[new_con.r].A);
@@ -567,6 +604,7 @@ let sim_emt = function(p) {
             // lose basal adhesion
             if( s.t <= ci.time_B && s.t + dt > ci.time_B  ) {
                 ci.has_B = false;
+                ci.stiffness_nuclei_basal *= 0.1;
                                 
                 const inds = [];
                 let new_con = {l: 0, r: 0};
@@ -587,6 +625,15 @@ let sim_emt = function(p) {
                     s.ba_links.push(new_con);
                 }
             }
+
+            // start running
+            if( (ci.time_P > ci.time_B && (s.t <= ci.time_P && s.t + dt > ci.time_P)) 
+             || (ci.time_P <= ci.time_B && (s.t <= ci.time_B && s.t + dt > ci.time_B)) ) {
+                ci.running_mode = 3;
+            }
+            
+
+            ci.is_running = !ci.has_B && ci.B.y > -2.0 && (ci.running_mode >= 3 || (ci.B.y < 0.0 && ci.running_mode >= 1))
         }
 
         for (let i = 0; i < s.cells.length; ++i) {
@@ -619,17 +666,28 @@ let sim_emt = function(p) {
                     apical_drl = p.max( 0, distAX - ci.R_soft );
                     basal_drl  = p.max( 0, distBX - ci.R_soft );
             }
-
             
             if( ci.phase == 1 ) {
-                    ci.R_hard = ci.type.R_hard_div;
+                ci.R_hard = ci.type.R_hard_div;
             };
 
             if( !ci.has_A ) { apical_drl = 0.0; };
             if( !ci.has_B ) { basal_drl = 0.0; };
 
-            ci.eta_A = p.exp(-dt * ci.type.k_cytos ) * (ci.eta_A - apical_drl) + apical_drl;                    
-            ci.eta_B = p.exp(-dt * ci.type.k_cytos ) * (ci.eta_B - basal_drl) + basal_drl;
+            ci.eta_A = p.exp(-dt * ci.type.k_cytos ) * (ci.eta_A - apical_drl) + apical_drl; 
+            
+            if( ci.has_B ) {
+                ci.eta_B = p.exp(-dt * ci.type.k_cytos ) * (ci.eta_B - basal_drl) + basal_drl;
+            } 
+            else 
+            {
+                if (ci.running_mode >= 2 && ci.B.y > 0 ) {
+                    ci.eta_B += dt * p.running_speed;
+                } 
+                else {
+                    ci.eta_B = p.exp(-dt * ci.type.k_cytos ) * (ci.eta_B - basal_drl) + basal_drl;
+                }
+            }
         }
         
         for(let e = 0; e < s.ap_links.length; ++e) {
@@ -682,7 +740,7 @@ let sim_emt = function(p) {
                 // basal nuclei springs 
                 const bx = pv.sub(ci.pos, ci.B);
                 const bl = bx.mag();
-                if( al > 0 ) {
+                if( bl > 0 ) {
                     const rl = ci.eta_B + ci.R_soft;
                     ci.f.sub(  pv.mult(bx, 2 * ci.type.stiffness_nuclei_basal * ( bl - rl ) / (bl*rl*rl) ) );
                     ci.fB.add( pv.mult(bx, 2 * ci.type.stiffness_nuclei_basal * ( bl - rl ) / (bl*rl*rl) ) );
@@ -729,10 +787,19 @@ let sim_emt = function(p) {
                 ci.A.x += dt * ci.fA.x / pg.mu;
                 ci.A.y += dt * ci.fA.y / pg.mu;
                 
-                ci.B.x += dt * ci.fB.x / pg.mu;
 
-                if( !ci.has_B ) {
-                    ci.B.y += dt * ci.fB.y / pg.mu;
+                if( ci.is_running ) {
+                    const dir = pv.sub( ci.B, ci.pos );
+                    dir.normalize();
+
+                    ci.B.x += dt * dir.x * ci.type.running_speed;
+                    ci.B.y += dt * dir.y * ci.type.running_speed;
+                }
+                else{
+                    ci.B.x += dt * ci.fB.x / pg.mu;
+                    if( !ci.has_B ) {
+                        ci.B.y += dt * ci.fB.y / pg.mu;
+                    }
                 }
             }
 
@@ -834,7 +901,8 @@ let sim_emt = function(p) {
         p.background(248,250,252);
 
         // simulate 
-        if( s.t < 24 * 2 ){   
+        const sim_end = 24 * 2;
+        if( s.t < sim_end ){   
             timeStep();
             reset_time = 0.0;
         }
@@ -866,7 +934,6 @@ let sim_emt = function(p) {
 
 
 
-
         // draw tissue
         for( let i = 0; i < s.cells.length; ++i ) {
             s.cells[i].draw();
@@ -895,11 +962,40 @@ let sim_emt = function(p) {
         
         p.scale(1,-1);
         p.noStroke();
-        p.fill(0);
+        p.fill(80,80,160);
         p.textSize(16/p.max(sX,-sY));
         p.textAlign(p.LEFT, p.TOP);
         p.text("10 μm", ws/2 - 6, 0.12*hs);
-        p.text("time: " + String(s.t.toFixed(2)) + " h", ws/2 - 8, -14);
+        p.text("time: " + String(s.t.toFixed(2)) + " h", -ws/2 + 4, 0.03*hs);
+
+        // draw timeline 
+        if( s.t < sim_end ) {
+            p.stroke(80,80,160);
+            p.strokeWeight(0.05);
+            p.line(-5, 0.1*hs, 5, 0.1*hs);
+
+            p.noStroke();
+            p.fill(80,80,160);
+            p.circle(-5 + s.t / sim_end * 10, 0.1*hs, 0.4);
+
+            const col = params.cell_types.emt.color;
+            p.textAlign(p.CENTER, p.TOP);
+
+            p.fill( p.red(col) / 2, p.green(col) / 2, p.blue(col) / 2 );
+            p.circle( -5 + pcontrol.A / sim_end * 10, 0.1*hs, 0.2); 
+            p.text("A", -5 + pcontrol.A / sim_end * 10, 0.1*hs);
+
+            p.circle( -5 + pcontrol.B / sim_end * 10, 0.1*hs, 0.2);
+            if( pcontrol.run ) {
+                p.text("Bp", -5 + pcontrol.B / sim_end * 10, 0.1*hs);
+            } else 
+            {
+                p.text("B", -5 + pcontrol.B / sim_end * 10, 0.1*hs);
+            }
+
+            p.circle( -5 + pcontrol.S / sim_end * 10, 0.1*hs, 0.2); 
+            p.text("S", -5 + pcontrol.S / sim_end * 10, 0.1*hs);
+        }
 
         //p.fill(150,30,20);
         //p.text("Apical side", ws/2 - 4, -0.75*hs);
@@ -950,6 +1046,5 @@ let sim_emt = function(p) {
         const aspect_proposal = width_proposal / height_proposal;
         p.resizeCanvas(width_proposal, height_proposal * aspect_proposal / aspect);
     }
-
-
 }
+
