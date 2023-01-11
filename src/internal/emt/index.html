@@ -88,7 +88,7 @@
                                 <option value="[1,1,1,9,15,0]">Individual cell & EMT: [ABp]</option>
                                 <option value="[10,1,0,0,0,0]">Group of cells & no EMT</option>
                                 <option value="[10,1,0,9,15,0]">Group of cells & EMT: [AB]</option>
-                                <option value="[10,0,0,9,15,0]">Group of cells & no INM & EMT: [AB]</option>
+                                <option value="[10,0,0,9,15,0]" selected="selected">Group of cells & no INM & EMT: [AB]</option>
                                 <option value="[10,1,1,9,15,0]">Group of cells & EMT: [ABp]</option>
                             </select>
                             </div>
@@ -344,6 +344,8 @@
 
                 sim_emt_p5.init();
             });
+
+            document.getElementById("example_settings").dispatchEvent(new Event('change'));
 
         </script>
     </body>
