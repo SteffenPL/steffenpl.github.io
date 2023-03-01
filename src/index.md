@@ -30,7 +30,7 @@ You can find a description of my current projects in the [research section]({{ '
 
 <small>
 <!--Office 03.125, Faculty of Mathematics, Oskar-Morgenstern-Platz 1, Vienna.<br>-->
-E-Mail: <a href="mailto:steffen.plunder@univie.ac.at">steffen.plunder@univie.ac.at</a>
+E-Mail: <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a>
 </small>
 
 Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [OCRID](https://orcid.org/0000-0002-3371-3790) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder)
