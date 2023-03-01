@@ -54,7 +54,13 @@ module.exports = (config) => {
     config.addCollection('blog',
     collection => {
       return collection.getFilteredByGlob('./src/blog/posts/**/*.md').sort(
-        (a, b) => ( a.data.id > b.data.id ? 1 : -1 )
+        (a, b) => ( a.data.id < b.data.id ? 1 : -1 )
+      )
+    });
+    config.addCollection('kyoto_blog',
+    collection => {
+      return collection.getFilteredByGlob('./src/blog/kyoto/**/*.md').sort(
+        (a, b) => ( a.data.id < b.data.id ? 1 : -1 )
       )
     });
   // date config

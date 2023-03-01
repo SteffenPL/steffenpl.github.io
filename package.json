@@ -4,8 +4,7 @@
   "description": "Personal webpage.",
   "main": "index.js",
   "config": {
-    "11ty": "eleventy --quiet",
-    "11ty_uni": "eleventy --quiet",
+    "11ty": "eleventy",
     "css": "tailwindcss -i src/_styles/_main.pcss -o dist/assets/main.bundle.css --postcss",
     "js": "esbuild src/_scripts/_main.js --outfile=dist/assets/main.bundle.js --bundle"
   },
@@ -20,7 +19,7 @@
     "dev": "cross-var \"cross-env NODE_ENV=development npm-run-all -p dev:*\"",
     "dev:11ty": "cross-var \"$npm_package_config_11ty --serve\"",
     "dev:css": "cross-var \"$npm_package_config_css --watch\"",
-    "dev:js": "cross-var \"$npm_package_config_js --watch\"",
+    "dev:js": "cross-var \"$npm_package_config_js\"",
     "upload": "scp -r ./dist/* u\\\\plunders95@webspace-access.univie.ac.at:/u/plunders95/steffenp57/html"
   },
   "repository": {
@@ -52,7 +51,8 @@
     "markdown-it-prism": "^2.2.4"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.0",
+    "@11ty/eleventy": "^2.0.0",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.0",
     "@tailwindcss/typography": "^0.5.0",
     "cross-env": "^7.0.3",
@@ -70,6 +70,7 @@
     "npm-run-all": "^4.1.5",
     "postcss-import": "^14.0.0",
     "tailwindcss": "^3.0.1",
-    "tailwindcss-debug-screens": "^2.2.1"
+    "tailwindcss-debug-screens": "^2.2.1",
+    "tw-elements": "^1.0.0-beta1"
   }
 }

@@ -10,10 +10,10 @@ layout: markdown
 ![](/steffen_red.jpg)
 </div>
 
-I'm a PhD student at [University of Vienna](https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/) in [Sara Merino-Aceituno's](https://sites.google.com/view/saramerinoaceituno/about) research group _Mathematics of Emergence in natural Domains_.
-I studied mathematics at [TU Kaiserslautern](https://www.mathematik.uni-kl.de/en/) with stays at [TU Delft](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics) and [The University of Auckland](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-mathematics.html).
+I'm a program-specific researcher (post doc) at [ASHBi, KUIAS, Kyoto University](https://ashbi.kyoto-u.ac.jp/) in [Seirin-Lee's](https://sites.google.com/site/seirin711lee/home) lab.
 
-Next year, I will start as a program-specific researcher at [ASHBi, KUIAS, Kyoto University](https://ashbi.kyoto-u.ac.jp/) in [Seirin-Lee's](https://sites.google.com/site/seirin711lee/home) lab.
+I studied mathematics at [TU Kaiserslautern](https://www.mathematik.uni-kl.de/en/) with stays at [TU Delft](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics) and [The University of Auckland](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-mathematics.html),
+and obtained my PhD at [University of Vienna](https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/) in [Sara Merino-Aceituno's](https://sites.google.com/view/saramerinoaceituno/about) group.
 
 
 <div class="container md:hidden drop-shadow-xl">
@@ -29,7 +29,7 @@ You can find a description of my current projects in the [research section]({{ '
 ## Contact and links
 
 <small>
-Office 03.125, Faculty of Mathematics, Oskar-Morgenstern-Platz 1, Vienna.<br>
+<!--Office 03.125, Faculty of Mathematics, Oskar-Morgenstern-Platz 1, Vienna.<br>-->
 E-Mail: <a href="mailto:steffen.plunder@univie.ac.at">steffen.plunder@univie.ac.at</a>
 </small>
 
@@ -39,7 +39,6 @@ Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https:/
 
 3. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon),** _The mean-field limit for particle systems with uniform full-rank constraints._ [arxiv](https://arxiv.org/abs/2203.07249){target="_blank"}, [submitted].
 {reversed=reversed}
-
 
 ## Publications (peer reviewed)
 

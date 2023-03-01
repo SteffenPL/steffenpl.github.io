@@ -1,9 +1,11 @@
 module.exports = {
-  content: ['./src/**/*.{js,md,njk,svg}'],
+  content: ['./src/**/*.{js,md,njk,svg,html}',
+  "./node_modules/tw-elements/dist/js/**/*.js"],
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwindcss-debug-screens'),
+    require("tw-elements/dist/plugin")
   ],
   theme: {
     container: {

@@ -2,10 +2,19 @@
 
 let sim_emt = function(p) {
     const parent = document.getElementById('sim_div');
+
+    const p_time = document.getElementById('time');
+    const p_prog = document.getElementById('progress_bar');
+    const p_A = document.getElementById('A_time');
+    const p_B = document.getElementById('B_time');
+    const p_S = document.getElementById('S_time');
+    const p_sim_end = document.getElementById('sim_end');	
+
     const pv = p5.Vector;
 
     const aspect = 16/9;
     const bg_col = p.color(30,30,30);
+    const sim_end = 24 * 2;
 
     // Units: space: 5e-6m | h
 
@@ -419,7 +428,7 @@ let sim_emt = function(p) {
 
         // copy values from pcontrol into the emt cell type
         params.general.N_emt = pcontrol.N;
-        params.general.N_init = params.general.N_emt + 25;
+        params.general.N_init = params.general.N_emt + 35;
         const emt = params.cell_types.emt;
         emt.events.time_A.min = pcontrol.A;
         emt.events.time_B.min = pcontrol.B;
@@ -437,9 +446,9 @@ let sim_emt = function(p) {
         emt.INM = pcontrol.INM;
 
         // set max values for emt events time_A, time_B, time_S to the min values
-        emt.events.time_A.max = emt.events.time_A.min + 0.1;
-        emt.events.time_B.max = emt.events.time_B.min + 0.1;
-        emt.events.time_S.max = emt.events.time_S.min + 0.1;
+        emt.events.time_A.max = emt.events.time_A.min + 6;
+        emt.events.time_B.max = emt.events.time_B.min + 6;
+        emt.events.time_S.max = emt.events.time_S.min + 6;
 
         // get the state of INM from the INM input and store into params.emt 
         // params.cell_types.emt.INM = document.querySelector('input[name="INM"]:checked').value == "1";
@@ -489,6 +498,31 @@ let sim_emt = function(p) {
         }
 
         s.t = 0.0;
+
+
+        
+        if( pcontrol.A < sim_end )
+            p_A.style = "left: " + String(pcontrol.A / sim_end * 100) + "%";
+        else
+            p_A.style = "display: none;"
+        
+        if( pcontrol.B < sim_end )
+            p_B.style = "left: " + String(pcontrol.B / sim_end * 100) + "%";
+        else
+            p_B.style = "display: none;"
+
+        if( pcontrol.S < sim_end )
+            p_S.style = "left: " + String(pcontrol.S / sim_end * 100) + "%";
+        else
+            p_S.style = "display: none;"
+
+        if( pcontrol.run )
+            p_B.innerHTML  = "Bp"
+        else
+            p_B.innerHTML  = "B"
+
+        p_sim_end.style = "display:none;"
+
     }
 
 
@@ -879,7 +913,6 @@ let sim_emt = function(p) {
     p.pause = function(){
         is_paused = !is_paused;
     }
-
     p.draw = function() {
         
         if( is_paused ){
@@ -896,29 +929,24 @@ let sim_emt = function(p) {
         sX = p.width / ws * p.min(1, 1/scale_factor);
         sY = -p.height / hs * p.min(1, scale_factor);
         tX = ws/2;
-        tY = -hs + (hs-h)/2 ;
+        tY = -hs + (hs-h) * 0.25 ;
 
 
         // prepare drawing 
-        p.background(248,250,252);
+        p.background(255,255,255);
 
         // simulate 
-        const sim_end = 24 * 2;
         if( s.t < sim_end ){   
             timeStep();
             reset_time = 0.0;
         }
         else {
             reset_time += pg.dt * pcontrol.speed;
+            p_sim_end.style = ""
             // write simulation end in the center of the canvas
-            p.noStroke();
-            p.fill(128);
-            p.textAlign(p.CENTER, p.BOTTOM);
-            p.textSize(32);
-            p.text("(Simulation end)", p.width/2, p.height - 20 ); 
         }
 
-        if( reset_time > 12 )
+        if( false ) // reset_time > 12 )
         {
             reset_time = 0.0;
             init();
@@ -959,7 +987,7 @@ let sim_emt = function(p) {
 
         p.stroke(100,100,100);
         p.strokeWeight(0.1);
-        p.line(ws/2 - 6, -0.1*hs, ws/2 - 4, -0.1*hs);
+        p.line(ws/2 - 6, -0.05*hs, ws/2 - 4, -0.05*hs);
 
         
         p.scale(1,-1);
@@ -967,43 +995,10 @@ let sim_emt = function(p) {
         p.fill(80,80,160);
         p.textSize(16/p.max(sX,-sY));
         p.textAlign(p.LEFT, p.TOP);
-        p.text("10 μm", ws/2 - 6, 0.12*hs);
-        p.text("time: " + String(s.t.toFixed(2)) + " h", -ws/2 + 4, 0.03*hs);
+        p.text("10 μm", ws/2 - 6, 0.07*hs);
 
-        // draw timeline 
-        if( s.t < sim_end ) {
-            p.stroke(80,80,160);
-            p.strokeWeight(0.05);
-            p.line(-5, 0.1*hs, 5, 0.1*hs);
-
-            p.noStroke();
-            p.fill(80,80,160);
-            p.circle(-5 + s.t / sim_end * 10, 0.1*hs, 0.4);
-
-            const col = params.cell_types.emt.color;
-            p.textAlign(p.CENTER, p.TOP);
-
-            p.fill( p.red(col) / 2, p.green(col) / 2, p.blue(col) / 2 );
-            p.circle( -5 + pcontrol.A / sim_end * 10, 0.1*hs, 0.2); 
-            p.text("A", -5 + pcontrol.A / sim_end * 10, 0.1*hs);
-
-            p.circle( -5 + pcontrol.B / sim_end * 10, 0.1*hs, 0.2);
-            if( pcontrol.run ) {
-                p.text("Bp", -5 + pcontrol.B / sim_end * 10, 0.1*hs);
-            } else 
-            {
-                p.text("B", -5 + pcontrol.B / sim_end * 10, 0.1*hs);
-            }
-
-            p.circle( -5 + pcontrol.S / sim_end * 10, 0.1*hs, 0.2); 
-            p.text("S", -5 + pcontrol.S / sim_end * 10, 0.1*hs);
-        }
-
-        //p.fill(150,30,20);
-        //p.text("Apical side", ws/2 - 4, -0.75*hs);
-
-        //p.fill(0,0,0);
-        //p.text("Basal side", ws/2 - 4, 0.2*hs);
+        p_time.innerHTML = "" + String(s.t.toFixed(1)) + "h"; 
+        p_prog.style = "width: " + String(s.t / sim_end * 100) + "%";
 
         if( s.cells.length == params.general.N_max) {
             p.fill(0,0,0);
@@ -1016,6 +1011,11 @@ let sim_emt = function(p) {
     p.mousePressed = function () {
         mouse = p.createVector(p.mouseX / sX - tX, p.mouseY / sY - tY);
         const pg = params.general;
+
+        if( s.t > sim_end ) {
+            init();
+            return;
+        }
 
         if ( mouse.x < -pg.w_screen/2 || mouse.x > pg.w_screen/2 || mouse.y < 0 || mouse.y > pg.h_screen) { return; };
 

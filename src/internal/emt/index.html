@@ -1,352 +1,317 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>EMT simulation</title>
-        <meta name="description" content="EMT simulation">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{{ '/assets/tailwind.css' | url }}">
-        <script src="{{ '/assets/p5.min.js' | url }}"></script>
-        
-    </head>
-    <body class="bg-slate-50 text-slate-900 dark:bg-gray-900 dark:text-slate-100">
-        <div class="mx-auto md:max-w-4xl p-4">
 
-            <div class="container m-2 text-slate-800 dark:text-slate-200 ">
-                <p class="text-4xl font-semibold mb-4 mt-4 md:mb-8">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-red-500 dark:from-green-400 dark:to-red-400">
-                        Simulation of epithelial-to-mesenchymal transitions
-                    </span>
-                </p>
+<head>
+    <meta charset="utf-8">
+    <title>EMT simulation</title>
+    <meta name="description" content="EMT simulation">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/main.bundle.css' | url }}">
+    <script src="{{ '/assets/p5.min.js' | url }}"></script>
+</head>
 
-                <p class=""> 
-                    An interactive, agent-based model for 
-                    epithelial-to-mesenchymal transtions (EMT) 
-                    in pseudostratified epithelium. The model helps to 
-                    identify key factors which lead to basal extrusion 
-                    after EMT.
-                    We found that essential factors are
-                    <ul class="list-disc list-inside"> 
-                        <li>
-                            protrusive activities (based on cell-matrix adhesion) and
-                        </li>
-                        <li>
-                            the position of cells at onset of EMT (determines directionallity of EMT).
-                        </li>
-                    </ul>
-                    The simulation below gives examples of the model.
-                    <br>
-                    <br>
-                    See also: <a href="index.html" class="text-blue-400 hover:text-blue-200 hover:underline">
-                        Link to our paper</a>
-                    <br>
-                    <span class="italic">
-                        Authors: ..., Eric Theveneau.
-                    </span>
-                </p>                    
-                <details class="mt-4">
-                    <summary>Additional information (Click to expand)</summary>
-                    <p class="font-light"> 
-                        This is a detail box. 
-                        It can be used to provide additional information 
-                        about the simulation.
-                    </p>
-                </details>
-                
-                <div class="rounded-lg ring-red-800 ring-2 p-2 mt-2 mb-8 italic">
-                    Note: Our scientific conclusions from the model are based on statistics obtained from thousands of 
-                    simulations of the model shown below. Please note that in some instances, 
-                    the single simulations can differ from the average behaviour. 
-                </div>
-                
+<body class="bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+  <div class="mx-auto md:max-w-4xl p-4 bg-white dark:bg-slate-900">
+
+    <div class="container m-2 text-slate-800 dark:text-slate-200 ">
+      <p class="text-4xl font-semibold mb-4 mt-4 md:mb-8">
+        <span
+          class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-red-500 dark:from-green-400 dark:to-red-400">
+          Simulation of epithelial-to-mesenchymal transitions
+        </span>
+      </p>
+
+      <p class="">
+        &emsp;An interactive, agent-based model for
+        epithelial-to-mesenchymal transtions (EMT)
+        in pseudostratified epithelium.
+        The model helps to
+        identify key factors which lead to basal extrusion
+        after EMT. Basal extrusion is the initial stage of mesenchymal cell migration which is relevant
+        in development, wound healing, and cancer metastasis.
+        <br>
+        &emsp;In the simulation, most cells are of <span class="text-green-500 dark:text-green-400">epithelial type
+          (green)</span>
+        but some cells in the center transition at least partially to <span
+          class="text-red-500 dark:text-red-400">mesenchymal phenotype (red)</span>.
+        The following steps can occur during this transition:
+        <br>
+      <ul class="list-item list-inside pl-4">
+        <li>
+          <span class="font-bold">A</span>&ensp; Loss of apical adhesion (detachment from apical layer).
+        </li>
+        <li>
+          <span class="font-bold">B</span>&ensp; Loss of basal adhesion (detachment from basal membrane).
+        </li>
+        <li>
+          <span class="font-bold">S</span>&ensp; Loss of straigthness.
+        </li>
+        <li>
+          <span class="font-bold">p</span>&ensp; Protrusive activities (in direction of the polarity,
+          typically basally).
+        </li>
+      </ul>
+      <br>
+      See more: <a href="index.html" class="text-blue-400 hover:text-blue-200 hover:underline">
+        Link to our paper</a>
+
+      </p>
+      <div class="rounded-lg ring-red-800 ring-2 p-2 mt-2 mb-8 italic">
+        Note: Our scientific conclusions from the model are based on statistics obtained from thousands of
+        simulations of the model shown below. Please note that in some instances,
+        single simulations can differ substantially from the average behaviour.
+      </div>
+
+    </div>
+
+    <div class="container">
+      <div class="w-full m-2 mb-0 rounded-t-lg bg-white p-2 
+      border-slate-200 border-2
+      dark:border-0">
+        <div id="simulation" class="text-slate-800">
+          <div class="mx-auto max-w-2xlw-full relative">
+            <p>
+              <span class="font-semibold italic">Simulation</span>
+              <span class="text-red-800 float-right text-xs font-thin">Apical side (red)
+              </span>
+              <span
+                class="absolute left-4 top-10 font-bold text-red-800 text-xs md:text-xl bg-red-100 rounded-lg p-2 bg-opacity-50" id="sim_end" style="display: none;">Simulation
+                end: Click to restart simulation.</span>
+            </p>
+            <div id="sim_div" class="bg-slate-50 aspect-w-16 aspect-h-9 "></div>
+            <div>
+              <p class="text-slate-800 float-right text-xs font-thin">Basal side (black)</p>
+              <p id="time" class="text-xs font-bold mx-4 font-mono"> Time = 10</p>
             </div>
 
-            <div class="container">
-                <div class="w-full m-2 mb-0 rounded-t-lg bg-slate-200 p-2 ">
-                    <div id="simulation" class="text-slate-800">
-                        <div class="mx-auto max-w-2xlw-full">
-                            <p> 
-                            <span class="font-semibold italic">Simulation</span>
-                            <span class="text-red-800 float-right">Apical side (red)
-                            </span>
-                            </p>
-                            <div id="sim_div" class="bg-slate-50"></div>
-                            <p class="text-black float-right">Basal side (red)</p>  
-                        </div>
-                        <div class="w-full h-2">
+            <div class="mx-4 relative text-slate-400 text-xs md:text-base">
+              <span class=""> 0h </span>
+              <span class="left-1/4 absolute text-center"> 12h </span>
+              <span class="left-1/2 absolute text-center"> 24h </span>
+              <span class="left-3/4 absolute text-center"> 36h </span>
+              <span class="right-0 absolute"> 48h </span>
+            </div>
+            <div class="bg-slate-400 h-1 mx-4">
+              <div id="progress_bar" class="bg-slate-800 h-1 mr-auto" style="width:1%"></div>
+              <div class="relative text-xs md:text-base font-bold">
+                <span style="left: 10%;" class="absolute text-orange-600" id="A_time">A</span>
+                <span style="left: 20%;" class="absolute text-black" id="B_time">B</span>
+                <span style="left: 50%;" class="absolute text-blue-600" id="S_time">S</span>
+              </div>
+            </div>
+          </div>
+          <div class="w-full h-2">
+          </div>
 
+          <div class="flex flex-wrap mt-4 justify-center">
+            <div class="pl-2 mb-2 mt-2">
+              <button id="run_button"
+                class="bg-green-800 hover:bg-green-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">New
+                simulation</button>
+            </div>
+            <div class="pl-2 mb-2 mt-2">
+              <button id="play_button"
+                class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">Play/Pause</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
+        <div id="parameters" class="container">
+          <h2 class="mt-2 text-center font-medium italic">Parameters</h2>
+          <h4 class="mb-2 mt-1 text-center font-extralight text-xs text-slate-600 dark:text-slate-400">
+            (Restart required)</h4>
+
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2 w-full">
+                <div class="p-1 my-2 text-center">
+                  <p class="pl-2 font-semibold">Number of cells undergoing EMT
+                  </p>
+                  <input id="N_input" type="range" value="2" min="0" max="2" 
+                  class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                  <div class="relative w-3/4 mx-auto text-xs mb-4">
+                    <span class="absolute left-0">0</span>
+                    <span class="absolute left-1/2">1</span>
+                    <span class="absolute right-0">10</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2">
+
+                <div class="p-1 my-2">
+                  <div class="w-full text-center">
+                    <div class="">
+                      <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" checked name="INM" id="INM_input" class="sr-only peer">
+                        <div
+                          class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                         </div>
-                        <div class="flex flex-wrap mt-4 justify-center">
-                            <div class="mb-2 mt-2 rounded-lg bg-slate-400 max-w-fit">                                
+                        <span class="pl-4 font-semibold">Interkinetic nuclear movement
+                        </span>
+                      </label>
+                    </div>
+                    <div class="font-extralight text-xs">
+                      If checked, EMT cells will not perform rapid apical directed movement prior the mitosis phase.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2">
+                <div class="p-1 my-2">
+                  <div class="flex flex-wrap justify-center text-center">
+                    <div>
+                      <select id="EMT_scenario"
+                        class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg text-sm text-center inline-flex items-center">
+                        <option value="[0,0,0]">no EMT</option>
+                        <option value="[12,0,0]">A</option>
+                        <option value="[0,12,0]">B</option>
+                        <option value="[0,0,12]">S</option>
+                        <option value="[9,15,0]">AB</option>
+                        <option value="[15,9,0]">BA</option>
+                        <option value="[9,0,15]">AS</option>
+                        <option value="[15,0,9]">SA</option>
+                        <option value="[0,9,15]">BS</option>
+                        <option value="[0,15,9]">SB</option>
+                        <option value="[9,15,21]" selected>ABS</option>
+                        <option value="[9,21,15]">ASB</option>
+                        <option value="[15,9,21]">BAS</option>
+                        <option value="[21,9,15]">BSA</option>
+                        <option value="[15,21,9]">SAB</option>
+                        <option value="[21,15,9]">SBA</option>
+                      </select>
+                      <span class="pl-2 font-semibold">
+                        Select EMT scenario
+                      </span>
+                    </div>
+                    <div class="font-extralight text-xs pt-2">
+                      Determines the order of EMT events. For multiple EMT cells the timings are randomised. 
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2">
+                <div class="p-1 my-2">
+                  <div class="w-full text-center">
+                    <div class="">
+                      <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" name="Run" id="run_input" class="sr-only peer">
+                        <div
+                          class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                        </div>
+                        <span class="pl-4 font-semibold">EMT: Cell protrusions
+                        </span>
+                      </label>
+                    </div>
+                    <div class="font-extralight text-xs">
+                      If checked, all EMT cells will have protrusive activities which lead to a basally directed
+                      migration.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!--
+                    <div class="w-full container m-8 items-center">
+                        <div class="m-4 rounded-lg bg-slate-400 mx-max max-w-fit">
                             <span class="text-center mx-2">
-                                Select example
+                                Load example parameters 
                             </span>
-                            <select id="example_settings" class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
+                            <select id="example_settings"
+                                class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
                                 <option value="[1,1,0,0,0,0]">Individual cell & no EMT</option>
                                 <option value="[1,1,0,9,15,0]">Individual cell & EMT: [AB]</option>
                                 <option value="[1,0,0,9,15,0]">Individual cell & no INM & EMT: [AB]</option>
                                 <option value="[1,1,1,9,15,0]">Individual cell & EMT: [ABp]</option>
                                 <option value="[10,1,0,0,0,0]">Group of cells & no EMT</option>
                                 <option value="[10,1,0,9,15,0]">Group of cells & EMT: [AB]</option>
-                                <option value="[10,0,0,9,15,0]" selected="selected">Group of cells & no INM & EMT: [AB]</option>
+                                <option value="[10,0,0,9,15,0]" selected="selected">Group of cells & no INM & EMT: [AB]
+                                </option>
                                 <option value="[10,1,1,9,15,0]">Group of cells & EMT: [ABp]</option>
                             </select>
-                            </div>
-                            <div class="pl-2 mb-2 mt-2">
-                                <button id="run_button" class="bg-green-800 hover:bg-green-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">New simulation</button>   
-                            </div>
-                            <div class="pl-2 mb-2 mt-2">
-                                <button id="play_button" class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">Play/Pause</button>   
-                            </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
-                    <div id="parameters" class="container">
-                        <h2 class="mt-2 text-center font-medium italic">Parameters</h2>
-                        <h4 class="mb-2 mt-1 text-center font-extralight text-xs text-slate-600 dark:text-slate-400">(Restart required)</h4>
-                        
-                        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <div class="container text-sm pt-2">
-                                    <p class="text-center font-semibold">Number of cells undergoing EMT 
-                                    </p>
-                                    <div class="p-1 my-2">
-                                        
-                                        <div class="grid grid-cols-2 lg:grid-cols-1 gap-4 w-full">
-                                            <div class="">
-                                                <input type="radio" name="N_emt" value=0 class="rounded-md bg-slate-50">
-                                                no EMT (n = 0)</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="N_emt" value=1 class="rounded-md bg-slate-50" checked>
-                                                individual (n = 1)</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="N_emt" value=10 class="rounded-md bg-slate-50">
-                                                group (n = 10)</input>
-                                            </div>
-                                        </div> 
-
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <div class="container text-sm pt-2">
-                                    <p class="text-center font-semibold">Interkinetic nuclear movement (of cells undergoing EMT)
-                                    </p>
-                                    <div class="p-1 my-2">
-                                        
-                                        <div class="grid grid-cols-2 gap-4 w-full">
-                                            <div class="">
-                                                <input type="radio" name="INM" value=0 class="rounded-md bg-slate-50">
-                                                no INM</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="INM" value=1 class="rounded-md bg-slate-50" checked>
-                                                INM</input>
-                                            </div>
-                                        </div> 
-
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <div class="container text-sm pt-2">
-                                    <p class="text-center font-semibold">EMT scenario
-                                    </p>
-                                    <div class="p-1 my-2">                                        
-                                        <div class="flex flex-wrap mt-4 justify-center">
-                                            <div class="rounded-lg bg-slate-400 max-w-fit">                                
-                                            <span class="text-center mx-2">
-                                                Select scenario
-                                            </span>
-                                            <select id="EMT_scenario" class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg  text-sm text-center inline-flex items-center">
-                                                <option value="[0,0,0]">no EMT</option>
-                                                <option value="[12,0,0]">A</option>
-                                                <option value="[0,12,0]">B</option>
-                                                <option value="[0,0,12]">S</option>
-                                                <option value="[9,15,0]">AB</option>
-                                                <option value="[15,9,0]">BA</option>
-                                                <option value="[9,0,15]">AS</option>
-                                                <option value="[15,0,9]">SA</option>
-                                                <option value="[0,9,15]">BS</option>
-                                                <option value="[0,15,9]">SB</option>
-                                                <option value="[9,15,21]">ABS</option>
-                                                <option value="[9,21,15]">ASB</option>
-                                                <option value="[15,9,21]">BAS</option>
-                                                <option value="[21,9,15]">BSA</option>
-                                                <option value="[15,21,9]">SAB</option>
-                                                <option value="[15,15,9]">SBA</option>                                              
-                                            </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-slate-200 dark:bg-slate-800 rounded-lg">
-                                <div class="container text-sm pt-2">
-                                    <p class="text-center font-semibold">EMT: Cell protrusions (cell-matrix adhesion)
-                                    </p>
-                                    <div class="p-1 my-2">                                        
-                                        <div class="grid grid-cols-2 gap-4 w-full">
-                                            <div class="">
-                                                <input type="radio" name="Run" value=0 class="rounded-md bg-slate-50" checked>
-                                                no</input>
-                                            </div>
-                                            <div class="">
-                                                <input type="radio" name="Run" value=1 class="rounded-md bg-slate-50">
-                                                yes</input>
-                                            </div>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>    
+                    </div>-->
         </div>
+      </div>
+    </div>
+  </div>
 
-        <script src="./simulation.js"></script>
-        <script>
-            
-            let sim_emt_p5 = new p5(sim_emt, 'sim_div');
-            let pcontrol = sim_emt_p5.getControl();
-            // load N_emt from html
-            for(let el of document.getElementsByName("N_emt")) {
-                if(el.checked) {
-                    pcontrol.N = parseInt(el.value);
-                }
-            }
+  <script src="./simulation.js"></script>
+  <script>
 
-            // load INM from html
-            for(let el of document.getElementsByName("INM")) {
-                if(el.checked) {
-                    pcontrol.INM = parseInt(el.value) == 1;
-                }
-            }
+    let sim_emt_p5 = new p5(sim_emt, 'sim_div');
+    let pcontrol = sim_emt_p5.getControl();
 
-            // load run from html
-            for(let el of document.getElementsByName("Run")) {
-                if(el.checked) {
-                    pcontrol.run = parseInt(el.value) == 1;
-                }
-            }
+    pcontrol.run = false;
+    pcontrol.INM = true; 
+    pcontrol.A = 9;
+    pcontrol.B = 15;
+    pcontrol.S = 21;
+    pcontrol.N = 10;
+
+    // when run_button is pressed, call sim_emt.init() 
+    document.getElementById("run_button").addEventListener("click", function () {
+      sim_emt_p5.init();
+    });
 
 
-            // when run_button is pressed, call sim_emt.init() 
-            document.getElementById("run_button").addEventListener("click", function() {
-                sim_emt_p5.init();
-            });
-
-            
-            document.getElementById("play_button").addEventListener("click", function() {
-                sim_emt_p5.pause();
-            });
+    document.getElementById("play_button").addEventListener("click", function () {
+      sim_emt_p5.pause();
+    });
 
 
-            for(let el of document.getElementsByName("N_emt")) {
-                el.addEventListener("change", function() {
-                    pcontrol.N = parseInt(el.value);
-                    sim_emt_p5.init();
-                });
-            }
-            
+    document.getElementById("N_input")
+      .addEventListener("change", function () {
+        pcontrol.N = parseInt( this.value );
+        if(pcontrol.N == 2)
+          pcontrol.N = 10;
 
-            for(let el of document.getElementsByName("INM")) {
-                el.addEventListener("change", function() {
-                    pcontrol.INM = parseInt(el.value) == 1;
-                    sim_emt_p5.init();
-                });
-            }
+        sim_emt_p5.init();
+      });
 
-            for(let el of document.getElementsByName("TA")) {
-                el.addEventListener("change", function() {
-                    sim_emt_p5.init();
-                });
-            }
+      document.getElementById("INM_input")
+      .addEventListener("change", function () {
+        pcontrol.INM = this.checked;
+        sim_emt_p5.init();
+      });
+    document.getElementById("run_input")
+      .addEventListener("change", function () {
+        pcontrol.run = this.checked;
+        sim_emt_p5.init();
+      });
 
-            for(let el of document.getElementsByName("TB")) {
-                el.addEventListener("change", function() {
-                    sim_emt_p5.init();
-                });
-            }
+    // load EMT scenario from html
+    document.getElementById("EMT_scenario").addEventListener("change", function () {
+      emt_times = JSON.parse(this.value);
 
-            for(let el of document.getElementsByName("TS")) {
-                el.addEventListener("change", function() {
-                    sim_emt_p5.init();
-                });
-            }
+      // replace in emt_times -1 with Infinity
+      for (let i = 0; i < emt_times.length; i++) {
+        if (emt_times[i] == 0) {
+          emt_times[i] = Infinity;
+        }
+      }
 
-            for(let el of document.getElementsByName("Run")) {
-                el.addEventListener("change", function() {
-                    pcontrol.run = parseInt(el.value) == 1;
-                    sim_emt_p5.init();
-                });
-            }
+      pcontrol.A = emt_times[0];
+      pcontrol.B = emt_times[1];
+      pcontrol.S = emt_times[2];
+      pcontrol.P = pcontrol.B;
 
-            // load EMT scenario from html
-            document.getElementById("EMT_scenario").addEventListener("change", function() {
-                emt_times = JSON.parse(this.value);
+      sim_emt_p5.init();
+    });
 
-                // replace in emt_times -1 with Infinity
-                for(let i = 0; i < emt_times.length; i++) {
-                    if(emt_times[i] == 0) {
-                        emt_times[i] = Infinity;
-                    }
-                }
 
-                pcontrol.A = emt_times[0];
-                pcontrol.B = emt_times[1];
-                pcontrol.S = emt_times[2];
-                pcontrol.P = pcontrol.B;
+  </script>
+</body>
 
-                sim_emt_p5.init();
-            });
-
-            // load example settings from html
-            document.getElementById("example_settings").addEventListener("change", function() {
-                let example_settings = JSON.parse(this.value);
-                
-                pcontrol.N = example_settings[0];
-                pcontrol.INM = example_settings[1] == 1;
-                pcontrol.run = example_settings[2] == 1;
-
-                // update html
-                for(let el of document.getElementsByName("N_emt")) {
-                    if(el.value == pcontrol.N) {
-                        el.checked = true;
-                    }
-                }
-
-                for(let el of document.getElementsByName("INM")) {
-                    if(el.value == pcontrol.INM) {
-                        el.checked = true;
-                    }
-                }
-
-                for(let el of document.getElementsByName("Run")) {
-                    if(el.value == pcontrol.run) {
-                        el.checked = true;
-                    }
-                }
-
-                // set EMT scenario in html
-                const emt_el = document.getElementById("EMT_scenario");
-                emt_el.value = JSON.stringify([example_settings[3], example_settings[4], example_settings[5]]).trim();
-                emt_el.dispatchEvent(new Event('change'));
-
-                sim_emt_p5.init();
-            });
-
-            document.getElementById("example_settings").dispatchEvent(new Event('change'));
-
-        </script>
-    </body>
 </html>
