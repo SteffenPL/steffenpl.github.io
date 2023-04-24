@@ -334,8 +334,8 @@ As in my previous project, we used again [position-based dynmaics](../position-b
 
             p1.chemo = sl_chemo.value / 100 * p_def.chemo;
             p1.plitho_align = sl_plitho.value / 100 * p_def.plitho_align;
-            p1.r_spread = ( 4 - p.map(sl_heterogeneity.value,0,100,0,4)) * p_def.r_spread;
-            p1.adh_stiffness = p.map(sl_adh_stiffness.value,0, 100,0,2) * p_def.adh_stiffness;
+            p1.r_spread = ( 4 - p.map(100 - sl_heterogeneity.value,0,100,0,4)) * p_def.r_spread;
+            p1.adh_stiffness = p.map(sl_adh_stiffness.value,0, 100,0,2) * p.map(sl_adh_stiffness.value,0, 100,0,2) * p_def.adh_stiffness;
             p1.soft_rep = p.map(sl_soft_rep.value, 0, 100, 0.7, 2) * p_def.soft_rep;
 
             const p_wall = p.sqrt(sl_confinement.value / 100);
