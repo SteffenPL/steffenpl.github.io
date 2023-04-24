@@ -328,7 +328,7 @@ As in my previous project, we used again [position-based dynmaics](../position-b
         function timeStep() {
 
             if( sl_N.value != cells.length ) {
-                N = sl_N.value; 
+                N = Math.max(sl_N.value, 2); 
                 init();
             }
 
