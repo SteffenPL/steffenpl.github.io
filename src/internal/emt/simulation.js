@@ -1,5 +1,6 @@
 
 
+
 let sim_emt = function(p) {
     const parent = document.getElementById('sim_div');
 
@@ -9,6 +10,7 @@ let sim_emt = function(p) {
     const p_B = document.getElementById('B_time');
     const p_S = document.getElementById('S_time');
     const p_sim_end = document.getElementById('sim_end');	
+    const p_info = document.getElementById('timing_table');	
 
     const pv = p5.Vector;
 
@@ -24,8 +26,8 @@ let sim_emt = function(p) {
         A: 6,
         B: 9,
         S: 12,
-        INM: true,
-        run: true,
+        INM: 1.0,
+        run: 1.0,
         N: 8,
     };
 
@@ -70,6 +72,7 @@ let sim_emt = function(p) {
                 dur_mitosis: 0.5,
                 k_apical_junction: 1.0,
                 k_cytos: 5.0,
+                run: 0.0,
                 running_speed: 1.0,
                 running_mode: 0,
                 stiffness_apical_apical: 5.0,
@@ -78,7 +81,7 @@ let sim_emt = function(p) {
                 stiffness_repulsion: 1.0,
                 stiffness_straightness: 15.0,
                 lifespan: {min: 10, max: 21},
-                INM: true,
+                INM: 1.0,
                 events: {
                     time_A: {min:Infinity, max:Infinity},
                     time_B: {min:Infinity, max:Infinity},
@@ -96,6 +99,7 @@ let sim_emt = function(p) {
                 dur_mitosis: 0.5,
                 k_apical_junction: 1.0,
                 k_cytos: 5.0,
+                run: 0.0,
                 running_speed: 1.0,
                 running_mode: 0,
                 stiffness_apical_apical: 5.0,
@@ -104,7 +108,7 @@ let sim_emt = function(p) {
                 stiffness_repulsion: 1.0,
                 stiffness_straightness: 15.0,
                 lifespan: {min: 10, max: 21},
-                INM: false,
+                INM: 0.0,
                 events: {
                     time_A: {min:6, max:24},
                     time_B: {min:6, max:24},
@@ -337,10 +341,11 @@ let sim_emt = function(p) {
                 this.division_time = this.birth_time + max_age;
                 this.is_running = false;
                 this.running_mode = ct.running_mode;
+                this.has_inm = p.random() <= ct.INM;
                 this.time_A = p.random(ct.events.time_A.min, ct.events.time_A.max);
                 this.time_B = p.random(ct.events.time_B.min, ct.events.time_B.max);
                 this.time_S = p.random(ct.events.time_S.min, ct.events.time_S.max);
-                this.time_P = p.random(ct.events.time_P.min, ct.events.time_P.max);
+                this.time_P = (p.random() <= ct.run) ? this.time_B : Infinity;
             } else {
                 this.pos = x_init.copy();
                 this.A = parent.A.copy();
@@ -350,6 +355,7 @@ let sim_emt = function(p) {
                 this.division_time = this.birth_time + max_age;
                 this.is_running = parent.is_running;                
                 this.running_mode = parent.running_mode;
+                this.has_inm = parent.has_inm;
 
                 this.time_A = parent.time_A;
                 this.time_B = parent.time_B;
@@ -434,16 +440,14 @@ let sim_emt = function(p) {
         emt.events.time_B.min = pcontrol.B;
         emt.events.time_S.min = pcontrol.S;
 
-        if( pcontrol.run ) {
-            emt.events.time_P.min = pcontrol.B;
-            emt.events.time_P.max = pcontrol.B;
-        }
-        else {
-            emt.events.time_P.min = Infinity;
-            emt.events.time_P.max = Infinity;
-        }
-        
+        emt.events.time_P.min = pcontrol.B;
+        emt.events.time_P.max = pcontrol.B;
+
+        emt.run = pcontrol.run;
+
         emt.INM = pcontrol.INM;
+
+        console.log(emt.INM);
 
         // set max values for emt events time_A, time_B, time_S to the min values
         emt.events.time_A.max = emt.events.time_A.min + 6;
@@ -516,12 +520,52 @@ let sim_emt = function(p) {
         else
             p_S.style = "display: none;"
 
-        if( pcontrol.run )
-            p_B.innerHTML  = "Bp"
+        if( pcontrol.run > 0 )
+            p_B.innerHTML  = "B(p)"
         else
             p_B.innerHTML  = "B"
 
         p_sim_end.style = "display:none;"
+
+        // update timing table: 
+
+        let j = 0; 
+        p_info.innerHTML = '';
+        for(let i = 0; i < s.cells.length; ++i) {
+            if( s.cells[i].type.name == 'emt' ) {
+                const A = s.cells[i].time_A;
+                const B = s.cells[i].time_B;
+                const S = s.cells[i].time_S;
+                const P = s.cells[i].time_P;
+                const row_s = '<td class="px-6 py-2">' + String(j+1) + '</td>' +
+                            '<td class="px-6 py-2">' + (A < Infinity ? A.toFixed(1)+"h" : "") + '</td>' +
+                            '<td class="px-6 py-2">' + (B < Infinity ? B.toFixed(1)+"h" : "") + '</td>' +
+                            '<td class="px-6 py-2">' + (S < Infinity ? S.toFixed(1)+"h" : "") + '</td>' +
+                            '<td class="px-6 py-2">' + (s.cells[i].has_inm ? "Yes" : "No") + '</td>' +
+                            '<td class="px-6 py-2">' + (P < Infinity ? P.toFixed(1)+"h" : "") + '</td>';
+
+                if( j < p_info.rows.length ) {
+                    const row = p_info.rows[j];
+                    row.innerHTML = row_s;
+                }
+                else {
+                    const row = p_info.insertRow(-1);
+                    row.innerHTML = row_s;
+                }
+                j += 1;
+            }
+        }
+
+        for(let i = j; i < 10; ++i) {
+            if( i < p_info.rows.length ) {
+                const row = p_info.rows[i];
+                row.innerHTML =  '<td class="px-6 py-2 font-medium">' + String(i+1) + '</td>';
+            }
+            else {
+                const row = p_info.insertRow(-1);
+                row.innerHTML =  '<td class="px-6 py-2 font-medium">' + String(i+1) + '</td>';
+            }
+        }
 
     }
 
@@ -681,7 +725,7 @@ let sim_emt = function(p) {
             const distBX = pv.dist(ci.pos, ci.B);
             let distAB = 0.0;
 
-            const phase_mode = ci.phase + ( ci.type.INM ? 0 : 10 );
+            const phase_mode = ci.phase + ( ci.has_inm ? 0 : 10 );
 
             switch( phase_mode ) {
                 case 1: 
@@ -977,6 +1021,7 @@ let sim_emt = function(p) {
             p.line( s.cells[i].A.x, s.cells[i].A.y, s.cells[j].A.x, s.cells[j].A.y );
         }
 
+
         p.stroke(0,0,0,255);
         p.strokeWeight(0.05);
         for( let e = 0; e < s.ba_links.length; ++e) {
@@ -992,6 +1037,18 @@ let sim_emt = function(p) {
         
         p.scale(1,-1);
         p.noStroke();
+        p.fill(255,255,255);
+        p.textSize(16/p.max(sX,-sY));
+        p.textAlign(p.CENTER, p.CENTER);
+        let i_emt = 1;
+        for( let i = 0; i < s.cells.length; ++i ) {
+            if( s.cells[i].type.name == 'emt' ) {
+                p.text(i_emt, s.cells[i].pos.x, -s.cells[i].pos.y)
+                i_emt += 1;
+            }
+        }
+
+        
         p.fill(80,80,160);
         p.textSize(16/p.max(sX,-sY));
         p.textAlign(p.LEFT, p.TOP);

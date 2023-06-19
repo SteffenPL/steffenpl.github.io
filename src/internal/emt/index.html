@@ -2,12 +2,11 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>EMT simulation</title>
-    <meta name="description" content="EMT simulation">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/main.bundle.css' | url }}">
-    <script src="{{ '/assets/p5.min.js' | url }}"></script>
+  <meta charset="utf-8">
+  <title>EMT simulation</title>
+  <meta name="description" content="EMT simulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ '/assets/main.bundle.css' | url }}">
 </head>
 
 <body class="bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
@@ -75,7 +74,8 @@
               <span class="text-red-800 float-right text-xs font-thin">Apical side (red)
               </span>
               <span
-                class="absolute left-4 top-10 font-bold text-red-800 text-xs md:text-xl bg-red-100 rounded-lg p-2 bg-opacity-50" id="sim_end" style="display: none;">Simulation
+                class="absolute left-4 top-10 font-bold text-red-800 text-xs md:text-xl bg-red-100 rounded-lg p-2 bg-opacity-50"
+                id="sim_end" style="display: none;">Simulation
                 end: Click to restart simulation.</span>
             </p>
             <div id="sim_div" class="bg-slate-50 aspect-w-16 aspect-h-9 "></div>
@@ -129,17 +129,40 @@
                 <div class="p-1 my-2 text-center">
                   <p class="pl-2 font-semibold">Number of cells undergoing EMT
                   </p>
-                  <input id="N_input" type="range" value="2" min="0" max="2" 
-                  class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                  <input id="N_input" type="range" value="2" min="0" max="2"
+                    class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                   <div class="relative w-3/4 mx-auto text-xs mb-4">
                     <span class="absolute left-0">0</span>
                     <span class="absolute left-1/2">1</span>
                     <span class="absolute right-0">10</span>
                   </div>
+                  <div class="font-extralight text-xs pt-2">
+                    Number of cells undergoing EMT. If set to 0, no EMT will occur.
+                  </div>
                 </div>
               </div>
             </div>
 
+            <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2 w-full">
+                <div class="p-1 my-2 text-center">
+                  <p class="pl-2 font-semibold">Interkinetic nuclear movement
+                  </p>
+                  <input id="INM_input" type="range" value="10" min="0" max="10"
+                    class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                  <div class="relative w-3/4 mx-auto text-xs mb-4">
+                    <span class="absolute left-0">none</span>
+                    <span class="absolute right-0">100%</span>
+                  </div>
+                  <div class="font-extralight text-xs">
+                    Determines probability of EMT cells to perform rapid apical directed movement prior the mitosis
+                    phase.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--
             <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
               <div class="container text-sm pt-2">
 
@@ -162,42 +185,9 @@
                 </div>
               </div>
             </div>
+            -->
 
-            <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
-              <div class="container text-sm pt-2">
-                <div class="p-1 my-2">
-                  <div class="flex flex-wrap justify-center text-center">
-                    <div>
-                      <select id="EMT_scenario"
-                        class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg text-sm text-center inline-flex items-center">
-                        <option value="[0,0,0]">no EMT</option>
-                        <option value="[12,0,0]">A</option>
-                        <option value="[0,12,0]">B</option>
-                        <option value="[0,0,12]">S</option>
-                        <option value="[9,15,0]">AB</option>
-                        <option value="[15,9,0]">BA</option>
-                        <option value="[9,0,15]">AS</option>
-                        <option value="[15,0,9]">SA</option>
-                        <option value="[0,9,15]">BS</option>
-                        <option value="[0,15,9]">SB</option>
-                        <option value="[9,15,21]" selected>ABS</option>
-                        <option value="[9,21,15]">ASB</option>
-                        <option value="[15,9,21]">BAS</option>
-                        <option value="[21,9,15]">BSA</option>
-                        <option value="[15,21,9]">SAB</option>
-                        <option value="[21,15,9]">SBA</option>
-                      </select>
-                      <span class="pl-2 font-semibold">
-                        Select EMT scenario
-                      </span>
-                    </div>
-                    <div class="font-extralight text-xs pt-2">
-                      Determines the order of EMT events. For multiple EMT cells the timings are randomised. 
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <!--
             <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
               <div class="container text-sm pt-2">
                 <div class="p-1 my-2">
@@ -220,9 +210,68 @@
                 </div>
               </div>
             </div>
+            -->
 
-          </div>
-          <!--
+            <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2 w-full">
+                <div class="p-1 my-2 text-center">
+                  <p class="pl-2 font-semibold">EMT: cell protrusion probability
+                  </p>
+                  <input id="run_input" type="range" value="0" min="0" max="10"
+                    class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                  <div class="relative w-3/4 mx-auto text-xs mb-4">
+                    <span class="absolute left-0">none</span>
+                    <span class="absolute right-0">100%</span>
+                  </div>
+                  <div class="font-extralight text-xs">
+                    Determines probability for EMT cells to have protrusive activities which lead to a basally directed migration.
+                    Protrusions appear only if the EMT scenario includes B (loss of basal adhesion).
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2">
+                <div class="p-1 my-2">
+                  <div class="flex flex-wrap justify-center text-center">
+                    <div>
+                      <!--
+                          class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg text-sm text-center inline-flex items-center">
+                        -->
+
+                      <label data-te-select-init-ref class="pl-2 font-semibold">
+                        Select EMT scenario
+                      </label>
+                      <select data-te-select-init multiple id="EMT_scenario" <!--<option value="[0,0,0]">no EMT
+                        </option>-->
+                        <option value="[12,0,0]">A</option>
+                        <option value="[0,12,0]">B</option>
+                        <option value="[0,0,12]">S</option>
+                        <option value="[9,15,0]">AB</option>
+                        <option value="[15,9,0]">BA</option>
+                        <option value="[9,0,15]">AS</option>
+                        <option value="[15,0,9]">SA</option>
+                        <option value="[0,9,15]">BS</option>
+                        <option value="[0,15,9]">SB</option>
+                        <option value="[9,15,21]" selected>ABS</option>
+                        <option value="[9,21,15]">ASB</option>
+                        <option value="[15,9,21]">BAS</option>
+                        <option value="[21,9,15]">BSA</option>
+                        <option value="[15,21,9]">SAB</option>
+                        <option value="[21,15,9]">SBA</option>
+                      </select>
+                    </div>
+                    <div class="font-extralight text-xs pt-2">
+                      Determines possible orders of EMT events. Selecting multiple orders results in heterogeneous order
+                      of EMT events.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!--
                     <div class="w-full container m-8 items-center">
                         <div class="m-4 rounded-lg bg-slate-400 mx-max max-w-fit">
                             <span class="text-center mx-2">
@@ -242,76 +291,117 @@
                             </select>
                         </div>
                     </div>-->
+          </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <script src="./simulation.js"></script>
-  <script>
-
-    let sim_emt_p5 = new p5(sim_emt, 'sim_div');
-    let pcontrol = sim_emt_p5.getControl();
-
-    pcontrol.run = false;
-    pcontrol.INM = true; 
-    pcontrol.A = 9;
-    pcontrol.B = 15;
-    pcontrol.S = 21;
-    pcontrol.N = 10;
-
-    // when run_button is pressed, call sim_emt.init() 
-    document.getElementById("run_button").addEventListener("click", function () {
-      sim_emt_p5.init();
-    });
 
 
-    document.getElementById("play_button").addEventListener("click", function () {
-      sim_emt_p5.pause();
-    });
+    <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
+      
+      <h2 class="mt-2 text-center font-medium italic">EMT scenarios per cell</h2>
 
+      <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-center text-sm font-light">
+                <thead class="border-b font-medium dark:border-neutral-500">
+                  <tr>
+                    <th scope="col" class="px-6 py-2">#</th>
+                    <th scope="col" class="px-6 py-2">A</th>
+                    <th scope="col" class="px-6 py-2">B</th>
+                    <th scope="col" class="px-6 py-2">S</th>
+                    <th scope="col" class="px-6 py-2">INM</th>
+                    <th scope="col" class="px-6 py-2">Protrusions</th>
+                  </tr>
+                </thead>
+                <tbody id="timing_table">
+                  <tr class="border-b dark:border-neutral-500 text-sm">
+                    <td class="px-6 py-2 font-medium">1</td>
+                    <td class="px-6 py-2">10h</td>
+                    <td class="px-6 py-2">18h</td>
+                    <td class="px-6 py-2">none</td>
+                    <td class="px-6 py-2">Yes</td>
+                    <td class="px-6 py-2">Yes</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    document.getElementById("N_input")
-      .addEventListener("change", function () {
-        pcontrol.N = parseInt( this.value );
-        if(pcontrol.N == 2)
-          pcontrol.N = 10;
+    <script src="{{ '/assets/p5.min.js' | url }}"></script>
+    <script type="text/javascript" src="{{ '/assets/tw-elements.umd.min.js' | url }}"></script>
 
+    <script src="./simulation.js"></script>
+    <script>
+
+      let sim_emt_p5 = new p5(sim_emt, 'sim_div');
+      let pcontrol = sim_emt_p5.getControl();
+
+      pcontrol.run = false;
+      pcontrol.INM = true;
+      pcontrol.A = 9;
+      pcontrol.B = 15;
+      pcontrol.S = 21;
+      pcontrol.N = 10;
+
+      // when run_button is pressed, call sim_emt.init() 
+      document.getElementById("run_button").addEventListener("click", function () {
         sim_emt_p5.init();
       });
+
+
+      document.getElementById("play_button").addEventListener("click", function () {
+        sim_emt_p5.pause();
+      });
+
+
+      document.getElementById("N_input")
+        .addEventListener("change", function () {
+          pcontrol.N = parseInt(this.value);
+          if (pcontrol.N == 2)
+            pcontrol.N = 10;
+
+          sim_emt_p5.init();
+        });
 
       document.getElementById("INM_input")
-      .addEventListener("change", function () {
-        pcontrol.INM = this.checked;
-        sim_emt_p5.init();
-      });
-    document.getElementById("run_input")
-      .addEventListener("change", function () {
-        pcontrol.run = this.checked;
-        sim_emt_p5.init();
-      });
+        .addEventListener("change", function () {
+          pcontrol.INM = parseFloat(this.value) / 10.0;
+          sim_emt_p5.init();
+        });
+      document.getElementById("run_input")
+        .addEventListener("change", function () {
+          pcontrol.run = parseFloat(this.value) / 10.0;
+          console.log(pcontrol.run);
+          sim_emt_p5.init();
+        });
 
-    // load EMT scenario from html
-    document.getElementById("EMT_scenario").addEventListener("change", function () {
-      emt_times = JSON.parse(this.value);
+      // load EMT scenario from html
+      document.getElementById("EMT_scenario").addEventListener("change", function () {
+        emt_times = JSON.parse(this.value);
 
-      // replace in emt_times -1 with Infinity
-      for (let i = 0; i < emt_times.length; i++) {
-        if (emt_times[i] == 0) {
-          emt_times[i] = Infinity;
+        // replace in emt_times -1 with Infinity
+        for (let i = 0; i < emt_times.length; i++) {
+          if (emt_times[i] == 0) {
+            emt_times[i] = Infinity;
+          }
         }
-      }
 
-      pcontrol.A = emt_times[0];
-      pcontrol.B = emt_times[1];
-      pcontrol.S = emt_times[2];
-      pcontrol.P = pcontrol.B;
+        pcontrol.A = emt_times[0];
+        pcontrol.B = emt_times[1];
+        pcontrol.S = emt_times[2];
+        pcontrol.P = pcontrol.B;
 
-      sim_emt_p5.init();
-    });
+        sim_emt_p5.init();
+      });
 
 
-  </script>
+    </script>
 </body>
 
 </html>
