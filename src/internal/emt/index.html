@@ -148,15 +148,28 @@
                 <div class="p-1 my-2 text-center">
                   <p class="pl-2 font-semibold">Interkinetic nuclear movement
                   </p>
-                  <input id="INM_input" type="range" value="10" min="0" max="10"
-                    class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                  <div class="relative w-3/4 mx-auto text-xs mb-4">
-                    <span class="absolute left-0">none</span>
-                    <span class="absolute right-0">100%</span>
+                  <div id="INM_input_hetero" style="display: none;">
+                    <input id="INM_input" type="range" value="2" min="0" max="2"
+                      class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                    <div class="relative w-3/4 mx-auto text-xs mb-4">
+                      <span class="absolute left-0">none</span>
+                      <span class="absolute right-0">100%</span>
+                    </div>
+                    <div class="font-extralight text-xs">
+                      Determines probability of EMT cells to perform rapid apical directed movement prior the mitosis
+                      phase.
+                    </div>
                   </div>
-                  <div class="font-extralight text-xs">
-                    Determines probability of EMT cells to perform rapid apical directed movement prior the mitosis
-                    phase.
+                  <div id="INM_input_homo">
+                    <label class="relative inline-flex items-center cursor-pointer mt-2">
+                      <input type="checkbox" name="Hetero" id="INM_input_homo_" class="sr-only peer">
+                      <div
+                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                      </div>
+                    </label>
+                    <div class="font-extralight text-xs">
+                      Determines if EMT cells to perform rapid apical directed movement prior the mitosis phase.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -217,15 +230,53 @@
                 <div class="p-1 my-2 text-center">
                   <p class="pl-2 font-semibold">EMT: cell protrusion probability
                   </p>
-                  <input id="run_input" type="range" value="0" min="0" max="10"
-                    class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
-                  <div class="relative w-3/4 mx-auto text-xs mb-4">
-                    <span class="absolute left-0">none</span>
-                    <span class="absolute right-0">100%</span>
+
+                  <div id="run_input_hetero" style="display: none;">
+                    <input id="run_input" type="range" value="2" min="0" max="2"
+                      class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
+                    <div class="relative w-3/4 mx-auto text-xs mb-4">
+                      <span class="absolute left-0">none</span>
+                      <span class="absolute right-0">100%</span>
+                    </div>
+                    <div class="font-extralight text-xs">
+                      Determines probability for EMT cells to have protrusive activities which lead to a basally directed migration.
+                      Protrusions appear only if the EMT scenario includes B (loss of basal adhesion).
+                    </div>
                   </div>
-                  <div class="font-extralight text-xs">
-                    Determines probability for EMT cells to have protrusive activities which lead to a basally directed migration.
-                    Protrusions appear only if the EMT scenario includes B (loss of basal adhesion).
+                  <div id="run_input_homo">
+                    <label class="relative inline-flex items-center cursor-pointer mt-2">
+                      <input type="checkbox" name="Hetero" id="run_input_homo_" class="sr-only peer">
+                      <div
+                        class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                      </div>
+                    </label>
+                    <div class="font-extralight text-xs">
+                      Determines if EMT cells have protrusive activities which lead to a basally directed migration.
+                      Protrusions appear only if the EMT scenario includes B (loss of basal adhesion).
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="dark:bg-slate-800 rounded-lg  border-t-2 border-slate-200 dark:border-slate-500">
+              <div class="container text-sm pt-2">
+                <div class="p-1 my-2">
+                  <div class="w-full text-center">
+                    <div class="">
+                      <div class="pl-2 font-semibold pb-2">Heterogeneus EMT
+                      </div>
+                      <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" name="Hetero" id="hetero_input" class="sr-only peer">
+                        <div
+                          class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
+                        </div>
+                      </label>
+                    </div>
+                    <div class="font-extralight text-xs">
+                      If checked, all EMT cells will randomly select an EMT scenario and the probability of INM and cell protrusions can be set to 50%.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -360,6 +411,26 @@
       });
 
 
+      document.getElementById("hetero_input")
+        .addEventListener("change", function () {
+          let hetero = this.checked;
+          console.log(hetero);
+          if(hetero) {
+            document.getElementById("INM_input_hetero").style.display = "block";
+            document.getElementById("INM_input_homo").style.display = "none";    
+            document.getElementById("run_input_hetero").style.display = "block"; 
+            document.getElementById("run_input_homo").style.display = "none";         
+          } 
+          else {
+            document.getElementById("INM_input_hetero").style.display = "none";
+            document.getElementById("INM_input_homo").style.display = "block";
+            document.getElementById("run_input_hetero").style.display = "none"; 
+            document.getElementById("run_input_homo").style.display = "block";                 
+          }
+
+          sim_emt_p5.init();
+        });
+
       document.getElementById("N_input")
         .addEventListener("change", function () {
           pcontrol.N = parseInt(this.value);
@@ -371,13 +442,12 @@
 
       document.getElementById("INM_input")
         .addEventListener("change", function () {
-          pcontrol.INM = parseFloat(this.value) / 10.0;
+          pcontrol.INM = parseFloat(this.value) / 2.0;
           sim_emt_p5.init();
         });
       document.getElementById("run_input")
         .addEventListener("change", function () {
-          pcontrol.run = parseFloat(this.value) / 10.0;
-          console.log(pcontrol.run);
+          pcontrol.run = parseFloat(this.value) / 2.0;
           sim_emt_p5.init();
         });
 

@@ -447,8 +447,6 @@ let sim_emt = function(p) {
 
         emt.INM = pcontrol.INM;
 
-        console.log(emt.INM);
-
         // set max values for emt events time_A, time_B, time_S to the min values
         emt.events.time_A.max = emt.events.time_A.min + 6;
         emt.events.time_B.max = emt.events.time_B.min + 6;
