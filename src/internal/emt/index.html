@@ -296,36 +296,49 @@
               <div class="container text-sm pt-2">
                 <div class="p-1 my-2">
                   <div class="flex flex-wrap justify-center text-center">
-                    <div>
-                      <!--
-                          class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg text-sm text-center inline-flex items-center">
-                        -->
-
-                      <label data-te-select-init-ref class="pl-2 font-semibold">
-                        Select EMT scenario
-                      </label>
-                      <select data-te-select-init id="EMT_scenario" <!--<option value="[0,0,0]">no EMT
-                        </option>-->
-                        <option value="[12,0,0]">A</option>
-                        <option value="[0,12,0]">B</option>
-                        <option value="[0,0,12]">S</option>
-                        <option value="[9,15,0]">AB</option>
-                        <option value="[15,9,0]">BA</option>
-                        <option value="[9,0,15]">AS</option>
-                        <option value="[15,0,9]">SA</option>
-                        <option value="[0,9,15]">BS</option>
-                        <option value="[0,15,9]">SB</option>
-                        <option value="[9,15,21]" selected>ABS</option>
-                        <option value="[9,21,15]">ASB</option>
-                        <option value="[15,9,21]">BAS</option>
-                        <option value="[21,9,15]">BSA</option>
-                        <option value="[15,21,9]">SAB</option>
-                        <option value="[21,15,9]">SBA</option>
-                      </select>
+                    <div id="scenario_div_homo">
+                      <div>
+                        <!--
+                                                  class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg text-sm text-center inline-flex items-center">
+                                                -->
+                        <label data-te-select-init-ref class="pl-2 font-semibold">
+                          Select EMT scenario
+                        </label>
+                        <select data-te-select-init id="EMT_scenario" <!--<option value="[0,0,0]">no EMT
+                          </option>-->
+                          <option value="[12,0,0]">A</option>
+                          <option value="[0,12,0]">B</option>
+                          <option value="[0,0,12]">S</option>
+                          <option value="[9,15,0]">AB</option>
+                          <option value="[15,9,0]">BA</option>
+                          <option value="[9,0,15]">AS</option>
+                          <option value="[15,0,9]">SA</option>
+                          <option value="[0,9,15]">BS</option>
+                          <option value="[0,15,9]">SB</option>
+                          <option value="[9,15,21]" selected>ABS</option>
+                          <option value="[9,21,15]">ASB</option>
+                          <option value="[15,9,21]">BAS</option>
+                          <option value="[21,9,15]">BSA</option>
+                          <option value="[15,21,9]">SAB</option>
+                          <option value="[21,15,9]">SBA</option>
+                        </select>
+                      </div>
+                      <div class="font-extralight text-xs pt-2">
+                        Determines possible orders of EMT events. Selecting multiple orders results in heterogeneous order
+                        of EMT events.
+                      </div>
                     </div>
-                    <div class="font-extralight text-xs pt-2">
-                      Determines possible orders of EMT events. Selecting multiple orders results in heterogeneous order
-                      of EMT events.
+                    <div id="scenario_div_hetero" style="display: none;">
+                      <div class="pl-2 font-semibold">
+                        EMT scenario
+                      </div>
+                      <div class="mt-2">
+                        Random EMT scenario per cell
+                      </div>
+                      <div class="font-extralight text-xs pt-2">
+                        For heterogeneous EMT, each cell selects randomly if A, B, S are occuring.
+                        Disable heterogeneity to select a specific EMT scenario.
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -431,7 +444,9 @@
             document.getElementById("INM_input_hetero").style.display = "block";
             document.getElementById("INM_input_homo").style.display = "none";    
             document.getElementById("run_input_hetero").style.display = "block"; 
-            document.getElementById("run_input_homo").style.display = "none";         
+            document.getElementById("run_input_homo").style.display = "none"; 
+            document.getElementById("scenario_div_hetero").style.display = "block";
+            document.getElementById("scenario_div_homo").style.display = "none";           
           } 
           else {
             document.getElementById("N_input_hetero").style.display = "none";
@@ -439,7 +454,9 @@
             document.getElementById("INM_input_hetero").style.display = "none";
             document.getElementById("INM_input_homo").style.display = "block";
             document.getElementById("run_input_hetero").style.display = "none"; 
-            document.getElementById("run_input_homo").style.display = "block";                 
+            document.getElementById("run_input_homo").style.display = "block";   
+            document.getElementById("scenario_div_hetero").style.display = "none"; 
+            document.getElementById("scenario_div_homo").style.display = "block";                
           }
 
           sim_emt_p5.init();
