@@ -156,9 +156,9 @@
             <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
               <div class="container text-sm pt-2 w-full">
                 <div class="p-1 my-2 text-center">
-                  <p class="pl-2 font-semibold">Interkinetic nuclear movement
-                  </p>
                   <div id="INM_input_hetero" style="display: none;">
+                    <p class="pl-2 font-semibold">Interkinetic nuclear movement probability
+                    </p>
                     <input id="INM_input" type="range" value="2" min="0" max="2"
                       class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                     <div class="relative w-3/4 mx-auto text-xs mb-4">
@@ -171,6 +171,8 @@
                     </div>
                   </div>
                   <div id="INM_input_homo">
+                    <p class="pl-2 font-semibold">Interkinetic nuclear movement
+                    </p>
                     <label class="relative inline-flex items-center cursor-pointer mt-2">
                       <input type="checkbox" name="Hetero" id="INM_input_homo_" class="sr-only peer">
                       <div
@@ -238,10 +240,9 @@
             <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
               <div class="container text-sm pt-2 w-full">
                 <div class="p-1 my-2 text-center">
-                  <p class="pl-2 font-semibold">EMT: cell protrusion probability
-                  </p>
-
                   <div id="run_input_hetero" style="display: none;">
+                    <p class="pl-2 font-semibold">EMT: cell protrusion probability
+                    </p>
                     <input id="run_input" type="range" value="2" min="0" max="2"
                       class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                     <div class="relative w-3/4 mx-auto text-xs mb-4">
@@ -254,6 +255,8 @@
                     </div>
                   </div>
                   <div id="run_input_homo">
+                    <p class="pl-2 font-semibold">EMT: cell protrusion
+                    </p>
                     <label class="relative inline-flex items-center cursor-pointer mt-2">
                       <input type="checkbox" name="Hetero" id="run_input_homo_" class="sr-only peer">
                       <div
@@ -285,7 +288,7 @@
                       </label>
                     </div>
                     <div class="font-extralight text-xs">
-                      If checked, all EMT cells will randomly select an EMT scenario and the probability of INM and cell protrusions can be set to 50%.
+                      If checked, all EMT cells will randomly select an EMT scenario and the probability of INM and cell protrusions can be set to 0%, 50% or 100%.
                     </div>
                   </div>
                 </div>
@@ -446,7 +449,7 @@
             document.getElementById("run_input_hetero").style.display = "block"; 
             document.getElementById("run_input_homo").style.display = "none"; 
             document.getElementById("scenario_div_hetero").style.display = "block";
-            document.getElementById("scenario_div_homo").style.display = "none";           
+            document.getElementById("scenario_div_homo").style.display = "none";     
           } 
           else {
             document.getElementById("N_input_hetero").style.display = "none";
