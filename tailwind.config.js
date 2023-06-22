@@ -7,6 +7,7 @@ module.exports = {
     require('tailwindcss-debug-screens'),
     require("tw-elements/dist/plugin")
   ],
+  darkMode: 'class',
   theme: {
     container: {
       // padding: '1.5rem',
