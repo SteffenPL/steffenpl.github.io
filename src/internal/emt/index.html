@@ -128,7 +128,7 @@
                 <div class="p-1 my-2 text-center">
                   <p class="pl-2 font-semibold">Number of cells undergoing EMT
                   </p>
-                  <div id="N_input_homo">
+                  <div id="N_homo">
                     <input id="N_input" type="range" value="2" min="0" max="2"
                       class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                     <div class="relative w-3/4 mx-auto text-xs mb-4">
@@ -140,7 +140,7 @@
                       Number of cells undergoing EMT. If set to 0, no EMT will occur.
                     </div>
                   </div>
-                  <div id="N_input_hetero" style="display: none;">
+                  <div id="N_hetero" style="display: none;">
                     <div class = "mt-2">
                       10 (heterogeneous) EMT cells
                     </div>
@@ -156,10 +156,10 @@
             <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
               <div class="container text-sm pt-2 w-full">
                 <div class="p-1 my-2 text-center">
-                  <div id="INM_input_hetero" style="display: none;">
+                  <div id="INM_hetero" style="display: none;">
                     <p class="pl-2 font-semibold">Interkinetic nuclear movement probability
                     </p>
-                    <input id="INM_input" type="range" value="2" min="0" max="2"
+                    <input id="INM_input_hetero" type="range" value="2" min="0" max="2"
                       class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                     <div class="relative w-3/4 mx-auto text-xs mb-4">
                       <span class="absolute left-0">none</span>
@@ -170,11 +170,11 @@
                       phase.
                     </div>
                   </div>
-                  <div id="INM_input_homo">
+                  <div id="INM_homo">
                     <p class="pl-2 font-semibold">Interkinetic nuclear movement
                     </p>
                     <label class="relative inline-flex items-center cursor-pointer mt-2">
-                      <input type="checkbox" name="Hetero" id="INM_input_homo_" class="sr-only peer">
+                      <input type="checkbox" name="Hetero" id="INM_input_homo" class="sr-only peer">
                       <div
                         class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                       </div>
@@ -195,7 +195,7 @@
                   <div class="w-full text-center">
                     <div class="">
                       <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" value="" checked name="INM" id="INM_input" class="sr-only peer">
+                        <input type="checkbox" value="" checked name="INM" id="INM_input_hetero" class="sr-only peer">
                         <div
                           class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                         </div>
@@ -240,10 +240,10 @@
             <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
               <div class="container text-sm pt-2 w-full">
                 <div class="p-1 my-2 text-center">
-                  <div id="run_input_hetero" style="display: none;">
+                  <div id="run_hetero" style="display: none;">
                     <p class="pl-2 font-semibold">EMT: cell protrusion probability
                     </p>
-                    <input id="run_input" type="range" value="2" min="0" max="2"
+                    <input id="run_input_hetero" type="range" value="2" min="0" max="2"
                       class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
                     <div class="relative w-3/4 mx-auto text-xs mb-4">
                       <span class="absolute left-0">none</span>
@@ -254,11 +254,11 @@
                       Protrusions appear only if the EMT scenario includes B (loss of basal adhesion).
                     </div>
                   </div>
-                  <div id="run_input_homo">
+                  <div id="run_homo">
                     <p class="pl-2 font-semibold">EMT: cell protrusion
                     </p>
                     <label class="relative inline-flex items-center cursor-pointer mt-2">
-                      <input type="checkbox" name="Hetero" id="run_input_homo_" class="sr-only peer">
+                      <input type="checkbox" name="Hetero" id="run_input_homo" class="sr-only peer">
                       <div
                         class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600">
                       </div>
@@ -415,7 +415,9 @@
 
     <script src="./simulation.js"></script>
     <script>
-
+      
+      var $ = function( id ) { return document.getElementById( id ); };
+      
       let sim_emt_p5 = new p5(sim_emt, 'sim_div');
       let pcontrol = sim_emt_p5.getControl();
 
@@ -426,82 +428,114 @@
       pcontrol.S = 21;
       pcontrol.N = 10;
 
+      function controlFromHtml() {
+        pcontrol.hetero = $("hetero_input").checked; 
+
+        if(pcontrol.hetero) {
+          pcontrol.N = 10;
+          pcontrol.INM = parseFloat($("INM_input_hetero").value) / 2.0
+          pcontrol.run = parseFloat($("run_input_hetero").value) / 2.0
+        }
+        else {
+          pcontrol.N = parseInt($("N_input").value);
+          if(pcontrol.N == 2) {
+            pcontrol.N = 10;
+          }
+
+          pcontrol.INM = $("INM_input_homo").checked ? 1.0 : 0.0;
+          pcontrol.run = $("run_input_homo").checked ? 1.0 : 0.0;
+
+          const emt_sc = $("EMT_scenario");
+          var emt_times = JSON.parse(emt_sc.options[emt_sc.selectedIndex].value);
+          // replace in emt_times -1 with Infinity
+          for (let i = 0; i < emt_times.length; i++) {
+            if (emt_times[i] == 0) {
+              emt_times[i] = Infinity;
+            }
+          }
+
+          pcontrol.A = emt_times[0];
+          pcontrol.B = emt_times[1];
+          pcontrol.S = emt_times[2];
+          pcontrol.P = pcontrol.B;
+        }
+
+        
+        sim_emt_p5.init();
+      }
+
       // when run_button is pressed, call sim_emt.init() 
-      document.getElementById("run_button").addEventListener("click", function () {
+      $("run_button").addEventListener("click", function () {
         sim_emt_p5.init();
       });
 
 
-      document.getElementById("play_button").addEventListener("click", function () {
+      $("play_button").addEventListener("click", function () {
         sim_emt_p5.pause();
       });
 
 
-      document.getElementById("hetero_input")
+      $("hetero_input")
         .addEventListener("change", function () {
           let hetero = this.checked;
-          console.log(hetero);
           if(hetero) {
-            document.getElementById("N_input_hetero").style.display = "block";
-            document.getElementById("N_input_homo").style.display = "none";   
-            document.getElementById("INM_input_hetero").style.display = "block";
-            document.getElementById("INM_input_homo").style.display = "none";    
-            document.getElementById("run_input_hetero").style.display = "block"; 
-            document.getElementById("run_input_homo").style.display = "none"; 
-            document.getElementById("scenario_div_hetero").style.display = "block";
-            document.getElementById("scenario_div_homo").style.display = "none";     
+            $("N_hetero").style.display = "block";
+            $("N_homo").style.display = "none";   
+            $("INM_hetero").style.display = "block";
+            $("INM_homo").style.display = "none";    
+            $("run_hetero").style.display = "block"; 
+            $("run_homo").style.display = "none"; 
+            $("scenario_div_hetero").style.display = "block";
+            $("scenario_div_homo").style.display = "none";     
+
+            //$("INM_input_hetero").value = ($("INM_input_homo").checked ? 1.0 : 0.0 )
+            //$("run_input_hetero").value = ($("run_input_homo").checked ? 1.0 : 0.0 )
           } 
           else {
-            document.getElementById("N_input_hetero").style.display = "none";
-            document.getElementById("N_input_homo").style.display = "block";
-            document.getElementById("INM_input_hetero").style.display = "none";
-            document.getElementById("INM_input_homo").style.display = "block";
-            document.getElementById("run_input_hetero").style.display = "none"; 
-            document.getElementById("run_input_homo").style.display = "block";   
-            document.getElementById("scenario_div_hetero").style.display = "none"; 
-            document.getElementById("scenario_div_homo").style.display = "block";                
+            $("N_hetero").style.display = "none";
+            $("N_homo").style.display = "block";
+            $("INM_hetero").style.display = "none";
+            $("INM_homo").style.display = "block";
+            $("run_hetero").style.display = "none"; 
+            $("run_homo").style.display = "block";   
+            $("scenario_div_hetero").style.display = "none"; 
+            $("scenario_div_homo").style.display = "block";                
+
+            //$("INM_input_homo").checked = (parseFloat($("INM_input_hetero").value) < 0.5 ? false : true )
+            //$("run_input_homo").checked = (parseFloat($("run_input_hetero").value) < 0.5 ? false : true )
           }
 
-          sim_emt_p5.init();
+          controlFromHtml();
         });
 
-      document.getElementById("N_input")
+      $("N_input")
         .addEventListener("change", function () {
-          pcontrol.N = parseInt(this.value);
-          if (pcontrol.N == 2)
-            pcontrol.N = 10;
-
-          sim_emt_p5.init();
+          controlFromHtml();
         });
 
-      document.getElementById("INM_input")
+      $("INM_input_hetero")
         .addEventListener("change", function () {
-          pcontrol.INM = parseFloat(this.value) / 2.0;
-          sim_emt_p5.init();
-        });
-      document.getElementById("run_input")
+          controlFromHtml();
+      });
+      
+      $("INM_input_homo")
         .addEventListener("change", function () {
-          pcontrol.run = parseFloat(this.value) / 2.0;
-          sim_emt_p5.init();
+          controlFromHtml();
+      });
+
+      $("run_input_hetero")
+        .addEventListener("change", function () {
+          controlFromHtml();
         });
+
+      $("run_input_homo")
+        .addEventListener("change", function () {
+          controlFromHtml();
+      });
 
       // load EMT scenario from html
-      document.getElementById("EMT_scenario").addEventListener("change", function () {
-        emt_times = JSON.parse(this.value);
-
-        // replace in emt_times -1 with Infinity
-        for (let i = 0; i < emt_times.length; i++) {
-          if (emt_times[i] == 0) {
-            emt_times[i] = Infinity;
-          }
-        }
-
-        pcontrol.A = emt_times[0];
-        pcontrol.B = emt_times[1];
-        pcontrol.S = emt_times[2];
-        pcontrol.P = pcontrol.B;
-
-        sim_emt_p5.init();
+      $("EMT_scenario").addEventListener("change", function () {
+        controlFromHtml();
       });
 
 

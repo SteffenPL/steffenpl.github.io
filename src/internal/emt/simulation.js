@@ -28,7 +28,8 @@ let sim_emt = function(p) {
         S: 12,
         INM: 1.0,
         run: 1.0,
-        N: 8,
+        hetero: false,
+        N: 10,
     };
 
     let plts = {
@@ -432,25 +433,49 @@ let sim_emt = function(p) {
         s.ap_links.length = 0;
         s.ba_links.length = 0;
 
-        // copy values from pcontrol into the emt cell type
-        params.general.N_emt = pcontrol.N;
-        params.general.N_init = params.general.N_emt + 35;
-        const emt = params.cell_types.emt;
-        emt.events.time_A.min = pcontrol.A;
-        emt.events.time_B.min = pcontrol.B;
-        emt.events.time_S.min = pcontrol.S;
-
-        emt.events.time_P.min = pcontrol.B;
-        emt.events.time_P.max = pcontrol.B;
-
-        emt.run = pcontrol.run;
-
-        emt.INM = pcontrol.INM;
-
-        // set max values for emt events time_A, time_B, time_S to the min values
-        emt.events.time_A.max = emt.events.time_A.min + 6;
-        emt.events.time_B.max = emt.events.time_B.min + 6;
-        emt.events.time_S.max = emt.events.time_S.min + 6;
+        if(pcontrol.hetero) {
+             // copy values from pcontrol into the emt cell type
+             params.general.N_emt = 10;
+             params.general.N_init = params.general.N_emt + 35;
+             const emt = params.cell_types.emt;
+             emt.events.time_A.min = 6.0;
+             emt.events.time_B.min = 6.0;
+             emt.events.time_S.min = 6.0;
+     
+             emt.events.time_P.min = pcontrol.B;
+             emt.events.time_P.max = pcontrol.B;
+     
+             emt.run = pcontrol.run;
+             emt.INM = pcontrol.INM;
+     
+             // set max values for emt events time_A, time_B, time_S to the min values
+             emt.events.time_A.max = emt.events.time_A.min + 18;
+             emt.events.time_B.max = emt.events.time_B.min + 18;
+             emt.events.time_S.max = emt.events.time_S.min + 18;
+        }
+        else 
+        {    
+            // copy values from pcontrol into the emt cell type
+            params.general.N_emt = pcontrol.N;
+            params.general.N_init = params.general.N_emt + 35;
+            const emt = params.cell_types.emt;
+            emt.events.time_A.min = pcontrol.A;
+            emt.events.time_B.min = pcontrol.B;
+            emt.events.time_S.min = pcontrol.S;
+    
+            emt.events.time_P.min = pcontrol.B;
+            emt.events.time_P.max = pcontrol.B;
+    
+            emt.run = pcontrol.run;
+    
+            emt.INM = pcontrol.INM;
+    
+            // set max values for emt events time_A, time_B, time_S to the min values
+            emt.events.time_A.max = emt.events.time_A.min + 6;
+            emt.events.time_B.max = emt.events.time_B.min + 6;
+            emt.events.time_S.max = emt.events.time_S.min + 6;
+        }
+    
 
         // get the state of INM from the INM input and store into params.emt 
         // params.cell_types.emt.INM = document.querySelector('input[name="INM"]:checked').value == "1";
@@ -503,17 +528,17 @@ let sim_emt = function(p) {
 
 
         
-        if( pcontrol.A < sim_end )
+        if( pcontrol.A < sim_end && !pcontrol.hetero )
             p_A.style = "left: " + String(pcontrol.A / sim_end * 100) + "%";
         else
             p_A.style = "display: none;"
         
-        if( pcontrol.B < sim_end )
+        if( pcontrol.B < sim_end && !pcontrol.hetero )
             p_B.style = "left: " + String(pcontrol.B / sim_end * 100) + "%";
         else
             p_B.style = "display: none;"
 
-        if( pcontrol.S < sim_end )
+        if( pcontrol.S < sim_end && !pcontrol.hetero )
             p_S.style = "left: " + String(pcontrol.S / sim_end * 100) + "%";
         else
             p_S.style = "display: none;"
