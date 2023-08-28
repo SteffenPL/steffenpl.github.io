@@ -124,6 +124,7 @@ let sim_emt = function(p) {
 
     p.getParams = function() { return params };
     p.getControl = function() { return pcontrol };
+    p.getState = function() { return s };
 
 /* 
     function init_interface() {
@@ -347,6 +348,7 @@ let sim_emt = function(p) {
                 this.time_B = p.random(ct.events.time_B.min, ct.events.time_B.max);
                 this.time_S = p.random(ct.events.time_S.min, ct.events.time_S.max);
                 this.time_P = (p.random() <= ct.run) ? this.time_B : Infinity;
+                this.stiffness_straightness = ct.stiffness_straightness;
             } else {
                 this.pos = x_init.copy();
                 this.A = parent.A.copy();
@@ -368,6 +370,8 @@ let sim_emt = function(p) {
 
                 this.eta_A = parent.eta_A;
                 this.eta_B = parent.eta_B;
+
+                this.stiffness_straightness = parent.stiffness_straightness;
             }
 
             this.pos_last = this.pos.copy();
@@ -854,7 +858,7 @@ let sim_emt = function(p) {
                 // straightness 
                 const ax_bx = pv.dot(ax, bx);
                 if( ax_bx != 0.0 ){
-                    const f = ci.type.stiffness_straightness / (al*bl);
+                    const f = ci.stiffness_straightness / (al*bl);
                     
                     const dR = bx.copy();
                     dR.mult(-1.0); dR.add( pv.mult( ax, ax_bx/(al*al) ) ); dR.mult(f); 

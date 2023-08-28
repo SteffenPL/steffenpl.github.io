@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
-  <div class="mx-auto md:max-w-4xl p-4 bg-white dark:bg-slate-900">
+  <div class="mx-auto p-4 bg-white dark:bg-slate-900">
 
     <div class="container m-2 text-slate-800 dark:text-slate-200 mx-auto max-w-full">
       <p class="text-4xl font-semibold mb-4 mt-4 md:mb-8">
@@ -18,105 +18,87 @@
           Simulation of epithelial-to-mesenchymal transitions
         </span>
       </p>
-
-      <p class="">
-        &emsp;An interactive, agent-based model for
-        epithelial-to-mesenchymal transtions (EMT)
-        in pseudostratified epithelium.
-        The model helps to
-        identify key factors which lead to basal extrusion
-        after EMT. Basal extrusion is the initial stage of mesenchymal cell migration which is relevant
-        in development, wound healing, and cancer metastasis.
-        <br>
-        &emsp;In the simulation, most cells are of <span class="text-green-500 dark:text-green-400">epithelial type
-          (green)</span>
-        but some cells in the center transition at least partially to <span
-          class="text-red-500 dark:text-red-400">mesenchymal phenotype (red)</span>.
-        The following steps can occur during this transition:
-        <br>
-      <ul class="list-item list-inside pl-4">
-        <li>
-          <span class="font-bold">A</span>&ensp; Loss of apical adhesion (detachment from apical layer).
-        </li>
-        <li>
-          <span class="font-bold">B</span>&ensp; Loss of basal adhesion (detachment from basal membrane).
-        </li>
-        <li>
-          <span class="font-bold">S</span>&ensp; Loss of straigthness.
-        </li>
-        <li>
-          <span class="font-bold">p</span>&ensp; Protrusive activities (in direction of the polarity,
-          typically basally).
-        </li>
-      </ul>
-      <br>
-      See more: <a href="index.html" class="text-blue-400 hover:text-blue-200 hover:underline">
-        Link to our paper</a>
-
-      </p>
-      <div class="rounded-lg ring-red-800 ring-2 p-2 mt-2 mb-8 italic">
-        Note: Our scientific conclusions from the model are based on statistics obtained from thousands of
-        simulations of the model shown below. Please note that in some instances,
-        single simulations can differ substantially from the average behaviour.
-      </div>
-
     </div>
 
-    <div class="container">
-      <div class="w-full m-2 mb-0 rounded-t-lg bg-white p-2 
-      border-slate-200 border-2
-      dark:border-0">
-        <div id="simulation" class="text-slate-800">
-          <div class="mx-auto max-w-2xlw-full relative">
-            <p>
-              <span class="font-semibold italic">Simulation</span>
-              <span class="text-red-800 float-right text-xs font-thin">Apical side (red)
-              </span>
-              <span
-                class="absolute left-4 top-10 font-bold text-red-800 text-xs md:text-xl bg-red-100 rounded-lg p-2 bg-opacity-50"
-                id="sim_end" style="display: none;">Simulation
-                end: Click to restart simulation.</span>
-            </p>
-            <div id="sim_div" class="bg-slate-50 aspect-w-16 aspect-h-9 "></div>
-            <div>
-              <p class="text-slate-800 float-right text-xs font-thin">Basal side (black)</p>
-              <p id="time" class="text-xs font-bold mx-4 font-mono"> Time = 10</p>
-            </div>
+    <div class="grid 2xl:grid-cols-2 grid-cols-1">
+      <div>
+        <ul class="list-item list-inside pl-4">
+          <li>
+            <span class="font-bold">A</span>&ensp; Loss of apical adhesion (detachment from apical layer).
+          </li>
+          <li>
+            <span class="font-bold">B</span>&ensp; Loss of basal adhesion (detachment from basal membrane).
+          </li>
+          <li>
+            <span class="font-bold">S</span>&ensp; Loss of straigthness.
+          </li>
+          <li>
+            <span class="font-bold">p</span>&ensp; Protrusive activities (in direction of the polarity,
+            typically basally).
+          </li>
+        </ul>
+        
+        <div class="rounded-lg ring-red-800 ring-2 p-2 mt-2 mb-8 italic">
+          Note: Our scientific conclusions from the model are based on statistics obtained from thousands of
+          simulations of the model shown below. Please note that in some instances,
+          single simulations can differ substantially from the average behaviour.
+        </div>
 
-            <div class="mx-4 relative text-slate-400 text-xs md:text-base">
-              <span class=""> 0h </span>
-              <span class="left-1/4 absolute text-center"> 12h </span>
-              <span class="left-1/2 absolute text-center"> 24h </span>
-              <span class="left-3/4 absolute text-center"> 36h </span>
-              <span class="right-0 absolute"> 48h </span>
-            </div>
-            <div class="bg-slate-400 h-1 mx-4">
-              <div id="progress_bar" class="bg-slate-800 h-1 mr-auto" style="width:1%"></div>
-              <div class="relative text-xs md:text-base font-bold">
-                <span style="left: 10%;" class="absolute text-orange-600" id="A_time">A</span>
-                <span style="left: 20%;" class="absolute text-black" id="B_time">B</span>
-                <span style="left: 50%;" class="absolute text-blue-600" id="S_time">S</span>
+        <div class="m-2 mb-0 rounded-lg bg-white p-2 
+        border-slate-200 border-2
+        dark:border-0">
+          <div id="simulation" class="text-slate-800">
+            <div class="mx-auto max-w-2xlw-full relative">
+              <p>
+                <span class="font-semibold italic">Simulation</span>
+                <span class="text-red-800 float-right text-xs font-thin">Apical side (red)
+                </span>
+                <span
+                  class="absolute left-4 top-10 font-bold text-red-800 text-xs md:text-xl bg-red-100 rounded-lg p-2 bg-opacity-50"
+                  id="sim_end" style="display: none;">Simulation
+                  end: Click to restart simulation.</span>
+              </p>
+              <div id="sim_div" class="bg-slate-50 aspect-w-16 aspect-h-9 "></div>
+              <div>
+                <p class="text-slate-800 float-right text-xs font-thin">Basal side (black)</p>
+                <p id="time" class="text-xs font-bold mx-4 font-mono"> Time = 10</p>
+              </div>
+
+              <div class="mx-4 relative text-slate-400 text-xs md:text-base">
+                <span class=""> 0h </span>
+                <span class="left-1/4 absolute text-center"> 12h </span>
+                <span class="left-1/2 absolute text-center"> 24h </span>
+                <span class="left-3/4 absolute text-center"> 36h </span>
+                <span class="right-0 absolute"> 48h </span>
+              </div>
+              <div class="bg-slate-400 h-1 mx-4">
+                <div id="progress_bar" class="bg-slate-800 h-1 mr-auto" style="width:1%"></div>
+                <div class="relative text-xs md:text-base font-bold">
+                  <span style="left: 10%;" class="absolute text-orange-600" id="A_time">A</span>
+                  <span style="left: 20%;" class="absolute text-black" id="B_time">B</span>
+                  <span style="left: 50%;" class="absolute text-blue-600" id="S_time">S</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="w-full h-2">
-          </div>
-
-          <div class="flex flex-wrap mt-4 justify-center">
-            <div class="pl-2 mb-2 mt-2">
-              <button id="run_button"
-                class="bg-green-800 hover:bg-green-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">New
-                simulation</button>
+            <div class="w-full h-2">
             </div>
-            <div class="pl-2 mb-2 mt-2">
-              <button id="play_button"
-                class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">Play/Pause</button>
+
+            <div class="flex flex-wrap mt-4 justify-center">
+              <div class="pl-2 mb-2 mt-2">
+                <button id="run_button"
+                  class="bg-green-800 hover:bg-green-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">New
+                  simulation</button>
+              </div>
+              <div class="pl-2 mb-2 mt-2">
+                <button id="play_button"
+                  class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium p-2 rounded-lg text-sm text-center inline-flex items-centerfont-medium">Play/Pause</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
+      <div class="rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
         <div id="parameters" class="container">
           <h2 class="mt-2 text-center font-medium italic">Parameters</h2>
           <h4 class="mb-2 mt-1 text-center font-extralight text-xs text-slate-600 dark:text-slate-400">
@@ -368,52 +350,57 @@
                             </select>
                         </div>
                     </div>-->
+
+
+              
+
+          
           </div>
-        </div>
-      </div>
-    </div>
 
+          <div class="rounded-b-lg m-2 mt-0 p-2 ">
+            
+            <h2 class="mt-2 text-center font-medium italic">EMT scenarios per cell</h2>
 
-    <div class="w-full rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
-      
-      <h2 class="mt-2 text-center font-medium italic">EMT scenarios per cell</h2>
-
-      <div class="flex flex-col">
-        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-            <div class="overflow-hidden">
-              <table class="min-w-full text-center text-sm font-light">
-                <thead class="border-b font-medium dark:border-neutral-500">
-                  <tr>
-                    <th scope="col" class="px-6 py-2">#</th>
-                    <th scope="col" class="px-6 py-2">A</th>
-                    <th scope="col" class="px-6 py-2">B</th>
-                    <th scope="col" class="px-6 py-2">S</th>
-                    <th scope="col" class="px-6 py-2">INM</th>
-                    <th scope="col" class="px-6 py-2">Protrusions</th>
-                  </tr>
-                </thead>
-                <tbody id="timing_table">
-                  <tr class="border-b dark:border-neutral-500 text-sm">
-                    <td class="px-6 py-2 font-medium">1</td>
-                    <td class="px-6 py-2">10h</td>
-                    <td class="px-6 py-2">18h</td>
-                    <td class="px-6 py-2">none</td>
-                    <td class="px-6 py-2">Yes</td>
-                    <td class="px-6 py-2">Yes</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="flex flex-col">
+              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+                  <div class="overflow-hidden">
+                    <table class="min-w-full text-center text-sm font-light">
+                      <thead class="border-b font-medium dark:border-neutral-500">
+                        <tr>
+                          <th scope="col" class="px-6 py-2">#</th>
+                          <th scope="col" class="px-6 py-2">A</th>
+                          <th scope="col" class="px-6 py-2">B</th>
+                          <th scope="col" class="px-6 py-2">S</th>
+                          <th scope="col" class="px-6 py-2">INM</th>
+                          <th scope="col" class="px-6 py-2">Protrusions</th>
+                        </tr>
+                      </thead>
+                      <tbody id="timing_table">
+                        <tr class="border-b dark:border-neutral-500 text-sm">
+                          <td class="px-6 py-2 font-medium">1</td>
+                          <td class="px-6 py-2">10h</td>
+                          <td class="px-6 py-2">18h</td>
+                          <td class="px-6 py-2">none</td>
+                          <td class="px-6 py-2">Yes</td>
+                          <td class="px-6 py-2">Yes</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
+
     <script src="{{ '/assets/p5.min.js' | url }}"></script>
     <script type="text/javascript" src="{{ '/assets/tw-elements.umd.min.js' | url }}"></script>
 
-    <script src="./simulation.js"></script>
+    <script src="../simulation.js"></script>
     <script>
       
       var $ = function( id ) { return document.getElementById( id ); };
