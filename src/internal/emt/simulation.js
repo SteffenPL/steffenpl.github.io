@@ -702,13 +702,17 @@ let sim_emt = function(p) {
                 }
             }
 
+            // lose straigthness
+            if( s.t <= ci.time_S && s.t + dt > ci.time_S  ) {
+                ci.stiffness_straightness = 1.0;
+            }              
+
             // start running
             if( (ci.time_P > ci.time_B && (s.t <= ci.time_P && s.t + dt > ci.time_P)) 
              || (ci.time_P <= ci.time_B && (s.t <= ci.time_B && s.t + dt > ci.time_B)) ) {
                 ci.running_mode = 3;
             }
             
-
             ci.is_running = !ci.has_B && ci.B.y > -2.0 && (ci.running_mode >= 3 || (ci.B.y < 0.0 && ci.running_mode >= 1))
         }
 
