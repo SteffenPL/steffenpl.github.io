@@ -3,6 +3,11 @@ title: Publications
 layout: markdown 
 ---
 
+
+## Preprints
+
+4. **S. Plunder, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
+
 ## Publications (peer reviewed)
 
 1. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"},** _The mean-field limit for particle systems with uniform full-rank constraints._ Kinetic and Related Models. **(2023)** [DOI:10.3934/krm.2023012](https://www.aimsciences.org/article/doi/10.3934/krm.2023012){target="_blank"}, [arxiv](https://arxiv.org/abs/2203.07249){target="_blank"}.

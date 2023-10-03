@@ -36,6 +36,10 @@ E-Mail: <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyo
 Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [OCRID](https://orcid.org/0000-0002-3371-3790) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder)
 
 
+## Preprints
+
+4. **S. Plunder, [S. Merino-Aceituno](){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
+
 ## Publications (peer reviewed)
 
 1. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"},** _The mean-field limit for particle systems with uniform full-rank constraints._ Kinetic and Related Models. **(2023)** [DOI:10.3934/krm.2023012](https://www.aimsciences.org/article/doi/10.3934/krm.2023012){target="_blank"}, [arxiv](https://arxiv.org/abs/2203.07249){target="_blank"}.
