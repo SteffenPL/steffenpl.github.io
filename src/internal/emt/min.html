@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="dark">
+
 <head>
   <meta charset="utf-8">
   <title>EMT simulation</title>
@@ -11,39 +12,46 @@
 <body class="bg-slate-200 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
   <div class="mx-auto p-4 bg-white dark:bg-slate-900">
 
-    <div class="container m-2 text-slate-800 dark:text-slate-200 mx-auto max-w-full">
+
+    <div class="container mx-auto max-w-2xl">
       <p class="text-4xl font-semibold mb-4 mt-4 md:mb-8">
         <span
           class="bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-red-500 dark:from-green-400 dark:to-red-400">
-          Simulation of epithelial-to-mesenchymal transitions
+          sEMTor – The EMT simulator
         </span>
       </p>
+      An interactive, agent-based model to simulate epithelial-to-mesenchymal transitions-like events in a
+      pseudostratified epithelium. <br>
+      &emsp;The simulation has epithelial <span class="text-green-500 dark:text-green-400">control cells (green)</span>
+      and <span class="text-red-500 dark:text-red-400">experimental cells (red)</span>.
+      Experimental cells can be instructed to perform some or all of the following events in various orders:
+      <ul class="list-item list-inside pl-4">
+        <li>
+          <span class="font-bold italic">A</span>&ensp; Loss of apical adhesion (detachment from neighboring apical
+          points).
+        </li>
+        <li>
+          <span class="font-bold italic">B</span>&ensp; Loss of basal adhesion (detachment from basal line).
+        </li>
+        <li>
+          <span class="font-bold italic">S</span>&ensp; Relaxation of straightness (apical/basal points and nuclei are
+          no longer forced to align).
+        </li>
+        <li>
+          <span class="font-bold italic">p</span>&ensp; Protrusive activities (seek-and grab behavior of basal in
+          direction of the polarity, typically basally, can occur if B is part of the selected EMT-like scenario).
+        </li>
+      </ul>
+
+      <div class="rounded-lg ring-red-800 ring-2 p-2 mt-2 mb-8 italic">
+        Note: Our scientific conclusions from the model are based on statistics obtained from thousands of simulations
+        of the model shown below. Please note that in some instances, single simulations can differ substantially from
+        the average behavior.
+      </div>
     </div>
 
-    <div class="grid 2xl:grid-cols-2 grid-cols-1">
-      <div>
-        <ul class="list-item list-inside pl-4">
-          <li>
-            <span class="font-bold">A</span>&ensp; Loss of apical adhesion (detachment from apical layer).
-          </li>
-          <li>
-            <span class="font-bold">B</span>&ensp; Loss of basal adhesion (detachment from basal membrane).
-          </li>
-          <li>
-            <span class="font-bold">S</span>&ensp; Loss of straigthness.
-          </li>
-          <li>
-            <span class="font-bold">p</span>&ensp; Protrusive activities (in direction of the polarity,
-            typically basally).
-          </li>
-        </ul>
-
-        <div class="rounded-lg ring-red-800 ring-2 p-2 mt-2 mb-8 italic">
-          Note: Our scientific conclusions from the model are based on statistics obtained from thousands of
-          simulations of the model shown below. Please note that in some instances,
-          single simulations can differ substantially from the average behaviour.
-        </div>
-
+    <div class="grid xl:grid-cols-3 md:grid-cols-3 grid-cols-1 max-w-screen-2xl mx-auto">
+      <div class="xl:col-span-2 md:col-span-2">
         <div class="m-2 mb-0 rounded-lg bg-white p-2 
         border-slate-200 border-2
         dark:border-0">
@@ -99,16 +107,16 @@
       </div>
 
       <div class="rounded-b-lg m-2 mt-0 p-2 ring-slate-200 dark:ring-slate-800 ring-2 ring-inset">
-        <div id="parameters" class="container">
+        <div id="parameters" class="container mx-auto">
           <h2 class="mt-2 text-center font-medium italic">Parameters</h2>
           <h4 class="mb-2 mt-1 text-center font-extralight text-xs text-slate-600 dark:text-slate-400">
             (Restart required)</h4>
 
-          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="grid sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-1 gap-4">
             <div class=" dark:bg-slate-800 rounded-lg border-t-2 border-slate-200 dark:border-slate-500">
               <div class="container text-sm pt-2 w-full">
                 <div class="p-1 my-2 text-center">
-                  <p class="pl-2 font-semibold">Number of cells undergoing EMT
+                  <p class="pl-2 font-semibold">Number of experimental cells
                   </p>
                   <div id="N_homo">
                     <input id="N_input" type="range" value="2" min="0" max="2"
@@ -119,15 +127,15 @@
                       <span class="absolute right-0">10</span>
                     </div>
                     <div class="font-extralight text-xs pt-2">
-                      Number of cells undergoing EMT. If set to 0, no EMT will occur.
+                      Number of cells undergoing EMT-like events.
                     </div>
                   </div>
                   <div id="N_hetero" style="display: none;">
-                    <div class = "mt-2">
+                    <div class="mt-2">
                       10 (heterogeneous) EMT cells
                     </div>
                     <div class="font-extralight text-xs pt-2">
-                      Number of cells undergoing EMT. Disable heterogeneity to 
+                      Number of cells undergoing EMT. Disable heterogeneity to
                       enable the selection of zero or one EMT cells.
                     </div>
                   </div>
@@ -139,7 +147,7 @@
               <div class="container text-sm pt-2 w-full">
                 <div class="p-1 my-2 text-center">
                   <div id="INM_hetero" style="display: none;">
-                    <p class="pl-2 font-semibold">Interkinetic nuclear movement probability
+                    <p class="pl-2 font-semibold">INM
                     </p>
                     <input id="INM_input_hetero" type="range" value="" min="0" max="2"
                       class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
@@ -148,12 +156,11 @@
                       <span class="absolute right-0">100%</span>
                     </div>
                     <div class="font-extralight text-xs">
-                      Determines probability of EMT cells to perform rapid apical directed movement prior the mitosis
-                      phase.
+                      Determines probability that nuclei of experimental cells perform pre-mitosis rapid apical movement (PRAM).
                     </div>
                   </div>
                   <div id="INM_homo">
-                    <p class="pl-2 font-semibold">Interkinetic nuclear movement
+                    <p class="pl-2 font-semibold">INM
                     </p>
                     <label class="relative inline-flex items-center cursor-pointer mt-2">
                       <input type="checkbox" name="Hetero" id="INM_input_homo" class="sr-only peer">
@@ -162,7 +169,7 @@
                       </div>
                     </label>
                     <div class="font-extralight text-xs">
-                      Determines if EMT cells to perform rapid apical directed movement prior the mitosis phase.
+                      Determines if nuclei of experimental cells perform pre-mitosis rapid apical movement (PRAM).
                     </div>
                   </div>
                 </div>
@@ -223,7 +230,7 @@
               <div class="container text-sm pt-2 w-full">
                 <div class="p-1 my-2 text-center">
                   <div id="run_hetero" style="display: none;">
-                    <p class="pl-2 font-semibold">EMT: cell protrusion probability
+                    <p class="pl-2 font-semibold">EMT: Protrusions
                     </p>
                     <input id="run_input_hetero" type="range" value="2" min="0" max="2"
                       class="w-3/4 mx-auto mt-2 h-2 bg-slate-300 rounded-lg appearance-none cursor-pointer dark:bg-gray-700">
@@ -232,12 +239,12 @@
                       <span class="absolute right-0">100%</span>
                     </div>
                     <div class="font-extralight text-xs">
-                      Determines probability for EMT cells to have protrusive activities which lead to a basally directed migration.
-                      Protrusions appear only if the EMT scenario includes B (loss of basal adhesion).
+                      Determines probability that the basal point of experimental cells display a seek-and-grab behavior (<span class="font-bold italic">P</span>). 
+                      This can only occur if the EMT scenario includes <span class="font-bold italic">B</span> (loss of basal adhesion).
                     </div>
                   </div>
                   <div id="run_homo">
-                    <p class="pl-2 font-semibold">EMT: cell protrusion
+                    <p class="pl-2 font-semibold">EMT: Protrusions
                     </p>
                     <label class="relative inline-flex items-center cursor-pointer mt-2">
                       <input type="checkbox" name="Hetero" id="run_input_homo" class="sr-only peer">
@@ -246,8 +253,8 @@
                       </div>
                     </label>
                     <div class="font-extralight text-xs">
-                      Determines if EMT cells have protrusive activities which lead to a basally directed migration.
-                      Protrusions appear only if the EMT scenario includes B (loss of basal adhesion).
+                      Determines if the basal point of experimental cells display a seek-and-grab behavior (<span class="font-bold italic">P</span>). 
+                      This can only occur if the EMT scenario includes <span class="font-bold italic">B</span> (loss of basal adhesion).
                     </div>
                   </div>
                 </div>
@@ -260,7 +267,7 @@
                 <div class="p-1 my-2">
                   <div class="w-full text-center">
                     <div class="">
-                      <div class="pl-2 font-semibold pb-2">Heterogeneus EMT
+                      <div class="pl-2 font-semibold pb-2">Heterogeneity
                       </div>
                       <label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" name="Hetero" id="hetero_input" class="sr-only peer">
@@ -270,7 +277,8 @@
                       </label>
                     </div>
                     <div class="font-extralight text-xs">
-                      If checked, all EMT cells will randomly select an EMT scenario and the probability of INM and cell protrusions can be set to 0%, 50% or 100%.
+                      If checked, each experimental cell randomly picks an EMT-like scenario. 
+                      Then users can set the probability of INM and Protrusions to 0, 50 or 100%.
                     </div>
                   </div>
                 </div>
@@ -287,10 +295,10 @@
                                                   class="text-white bg-slate-800 hover:bg-slate-600 focus:ring-4 focus:outline-none focus:ring-slate-800 font-medium rounded-lg text-sm text-center inline-flex items-center">
                                                 -->
                         <label data-te-select-init-ref class="pl-2 font-semibold">
-                          Select EMT scenario
+                          EMT-like scenarios
                         </label>
-                        <select data-te-select-init id="EMT_scenario" <!--<option value="[0,0,0]">no EMT
-                          </option>-->
+                        <select data-te-select-init id="EMT_scenario"> 
+                        <!--<option value="[0,0,0]">no EMT  </option>-->
                           <option value="[12,0,0]">A</option>
                           <option value="[0,12,0]">B</option>
                           <option value="[0,0,12]">S</option>
@@ -309,8 +317,7 @@
                         </select>
                       </div>
                       <div class="font-extralight text-xs pt-2">
-                        Determines possible orders of EMT events. Selecting multiple orders results in heterogeneous order
-                        of EMT events.
+                        Determines which EMT-like scenario experimental cells will perform.
                       </div>
                     </div>
                     <div id="scenario_div_hetero" style="display: none;">
@@ -352,181 +359,184 @@
                     </div>-->
 
 
-              
 
-          
+
+
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <div class="rounded-b-lg m-2 mt-0 p-2 ">
-            
-            <h2 class="mt-2 text-center font-medium italic">EMT scenarios per cell</h2>
+  <div class="container mx-auto max-w-xl">
 
-            <div class="flex flex-col">
-              <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                  <div class="overflow-hidden">
-                    <table class="min-w-full text-center text-sm font-light">
-                      <thead class="border-b font-medium dark:border-neutral-500">
-                        <tr>
-                          <th scope="col" class="px-6 py-2">#</th>
-                          <th scope="col" class="px-6 py-2">A</th>
-                          <th scope="col" class="px-6 py-2">B</th>
-                          <th scope="col" class="px-6 py-2">S</th>
-                          <th scope="col" class="px-6 py-2">INM</th>
-                          <th scope="col" class="px-6 py-2">Protrusions</th>
-                        </tr>
-                      </thead>
-                      <tbody id="timing_table">
-                        <tr class="border-b dark:border-neutral-500 text-sm">
-                          <td class="px-6 py-2 font-medium">1</td>
-                          <td class="px-6 py-2">10h</td>
-                          <td class="px-6 py-2">18h</td>
-                          <td class="px-6 py-2">none</td>
-                          <td class="px-6 py-2">Yes</td>
-                          <td class="px-6 py-2">Yes</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
+    <div class="rounded-b-lg m-2 mt-0 p-2 ">
+
+      <h2 class="mt-2 text-center font-medium italic">EMT scenarios per cell</h2>
+
+      <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+            <div class="overflow-hidden">
+              <table class="min-w-full text-center text-sm font-light">
+                <thead class="border-b font-medium dark:border-neutral-500">
+                  <tr>
+                    <th scope="col" class="px-6 py-2">#</th>
+                    <th scope="col" class="px-6 py-2">A</th>
+                    <th scope="col" class="px-6 py-2">B</th>
+                    <th scope="col" class="px-6 py-2">S</th>
+                    <th scope="col" class="px-6 py-2">INM</th>
+                    <th scope="col" class="px-6 py-2">Protrusions</th>
+                  </tr>
+                </thead>
+                <tbody id="timing_table">
+                  <tr class="border-b dark:border-neutral-500 text-sm">
+                    <td class="px-6 py-2 font-medium">1</td>
+                    <td class="px-6 py-2">10h</td>
+                    <td class="px-6 py-2">18h</td>
+                    <td class="px-6 py-2">none</td>
+                    <td class="px-6 py-2">Yes</td>
+                    <td class="px-6 py-2">Yes</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
+  <script src="{{ '/assets/p5.min.js' | url }}"></script>
+  <script type="text/javascript" src="{{ '/assets/tw-elements.umd.min.js' | url }}"></script>
 
-    <script src="{{ '/assets/p5.min.js' | url }}"></script>
-    <script type="text/javascript" src="{{ '/assets/tw-elements.umd.min.js' | url }}"></script>
+  <script src="../simulation.js"></script>
+  <script>
 
-    <script src="../simulation.js"></script>
-    <script>
-      
-      var $ = function( id ) { return document.getElementById( id ); };
-      
-      let sim_emt_p5 = new p5(sim_emt, 'sim_div');
-      let pcontrol = sim_emt_p5.getControl();
+    var $ = function (id) { return document.getElementById(id); };
 
-      pcontrol.run = false;
-      pcontrol.INM = true;
-      pcontrol.A = 9;
-      pcontrol.B = 15;
-      pcontrol.S = 21;
-      pcontrol.N = 10;
+    let sim_emt_p5 = new p5(sim_emt, 'sim_div');
+    let pcontrol = sim_emt_p5.getControl();
 
-      function controlFromHtml() {
-        pcontrol.hetero = $("hetero_input").checked; 
+    pcontrol.run = false;
+    pcontrol.INM = true;
+    pcontrol.A = 9;
+    pcontrol.B = 15;
+    pcontrol.S = 21;
+    pcontrol.N = 10;
 
-        if(pcontrol.hetero) {
+    function controlFromHtml() {
+      pcontrol.hetero = $("hetero_input").checked;
+
+      if (pcontrol.hetero) {
+        pcontrol.N = 10;
+        pcontrol.INM = parseFloat($("INM_input_hetero").value) / 2.0
+        pcontrol.run = parseFloat($("run_input_hetero").value) / 2.0
+      }
+      else {
+        pcontrol.N = parseInt($("N_input").value);
+        if (pcontrol.N == 2) {
           pcontrol.N = 10;
-          pcontrol.INM = parseFloat($("INM_input_hetero").value) / 2.0
-          pcontrol.run = parseFloat($("run_input_hetero").value) / 2.0
-        }
-        else {
-          pcontrol.N = parseInt($("N_input").value);
-          if(pcontrol.N == 2) {
-            pcontrol.N = 10;
-          }
-
-          pcontrol.INM = $("INM_input_homo").checked ? 1.0 : 0.0;
-          pcontrol.run = $("run_input_homo").checked ? 1.0 : 0.0;
-
-          const emt_sc = $("EMT_scenario");
-          var emt_times = JSON.parse(emt_sc.options[emt_sc.selectedIndex].value);
-          // replace in emt_times -1 with Infinity
-          for (let i = 0; i < emt_times.length; i++) {
-            if (emt_times[i] == 0) {
-              emt_times[i] = Infinity;
-            }
-          }
-
-          pcontrol.A = emt_times[0];
-          pcontrol.B = emt_times[1];
-          pcontrol.S = emt_times[2];
-          pcontrol.P = pcontrol.B;
         }
 
-        
-        sim_emt_p5.init();
+        pcontrol.INM = $("INM_input_homo").checked ? 1.0 : 0.0;
+        pcontrol.run = $("run_input_homo").checked ? 1.0 : 0.0;
+
+        const emt_sc = $("EMT_scenario");
+        var emt_times = JSON.parse(emt_sc.options[emt_sc.selectedIndex].value);
+        // replace in emt_times -1 with Infinity
+        for (let i = 0; i < emt_times.length; i++) {
+          if (emt_times[i] == 0) {
+            emt_times[i] = Infinity;
+          }
+        }
+
+        pcontrol.A = emt_times[0];
+        pcontrol.B = emt_times[1];
+        pcontrol.S = emt_times[2];
+        pcontrol.P = pcontrol.B;
       }
 
-      // when run_button is pressed, call sim_emt.init() 
-      $("run_button").addEventListener("click", function () {
-        sim_emt_p5.init();
-      });
+
+      sim_emt_p5.init();
+    }
+
+    // when run_button is pressed, call sim_emt.init() 
+    $("run_button").addEventListener("click", function () {
+      sim_emt_p5.init();
+    });
 
 
-      $("play_button").addEventListener("click", function () {
-        sim_emt_p5.pause();
-      });
+    $("play_button").addEventListener("click", function () {
+      sim_emt_p5.pause();
+    });
 
 
-      $("hetero_input")
-        .addEventListener("change", function () {
-          let hetero = this.checked;
-          if(hetero) {
-            $("N_hetero").style.display = "block";
-            $("N_homo").style.display = "none";   
-            $("INM_hetero").style.display = "block";
-            $("INM_homo").style.display = "none";    
-            $("run_hetero").style.display = "block"; 
-            $("run_homo").style.display = "none"; 
-            $("scenario_div_hetero").style.display = "block";
-            $("scenario_div_homo").style.display = "none";     
+    $("hetero_input")
+      .addEventListener("change", function () {
+        let hetero = this.checked;
+        if (hetero) {
+          $("N_hetero").style.display = "block";
+          $("N_homo").style.display = "none";
+          $("INM_hetero").style.display = "block";
+          $("INM_homo").style.display = "none";
+          $("run_hetero").style.display = "block";
+          $("run_homo").style.display = "none";
+          $("scenario_div_hetero").style.display = "block";
+          $("scenario_div_homo").style.display = "none";
 
-            //$("INM_input_hetero").value = ($("INM_input_homo").checked ? 1.0 : 0.0 )
-            //$("run_input_hetero").value = ($("run_input_homo").checked ? 1.0 : 0.0 )
-          } 
-          else {
-            $("N_hetero").style.display = "none";
-            $("N_homo").style.display = "block";
-            $("INM_hetero").style.display = "none";
-            $("INM_homo").style.display = "block";
-            $("run_hetero").style.display = "none"; 
-            $("run_homo").style.display = "block";   
-            $("scenario_div_hetero").style.display = "none"; 
-            $("scenario_div_homo").style.display = "block";                
+          //$("INM_input_hetero").value = ($("INM_input_homo").checked ? 1.0 : 0.0 )
+          //$("run_input_hetero").value = ($("run_input_homo").checked ? 1.0 : 0.0 )
+        }
+        else {
+          $("N_hetero").style.display = "none";
+          $("N_homo").style.display = "block";
+          $("INM_hetero").style.display = "none";
+          $("INM_homo").style.display = "block";
+          $("run_hetero").style.display = "none";
+          $("run_homo").style.display = "block";
+          $("scenario_div_hetero").style.display = "none";
+          $("scenario_div_homo").style.display = "block";
 
-            //$("INM_input_homo").checked = (parseFloat($("INM_input_hetero").value) < 0.5 ? false : true )
-            //$("run_input_homo").checked = (parseFloat($("run_input_hetero").value) < 0.5 ? false : true )
-          }
+          //$("INM_input_homo").checked = (parseFloat($("INM_input_hetero").value) < 0.5 ? false : true )
+          //$("run_input_homo").checked = (parseFloat($("run_input_hetero").value) < 0.5 ? false : true )
+        }
 
-          controlFromHtml();
-        });
-
-      $("N_input")
-        .addEventListener("change", function () {
-          controlFromHtml();
-        });
-
-      $("INM_input_hetero")
-        .addEventListener("change", function () {
-          controlFromHtml();
-      });
-      
-      $("INM_input_homo")
-        .addEventListener("change", function () {
-          controlFromHtml();
-      });
-
-      $("run_input_hetero")
-        .addEventListener("change", function () {
-          controlFromHtml();
-        });
-
-      $("run_input_homo")
-        .addEventListener("change", function () {
-          controlFromHtml();
-      });
-
-      // load EMT scenario from html
-      $("EMT_scenario").addEventListener("change", function () {
         controlFromHtml();
       });
 
+    $("N_input")
+      .addEventListener("change", function () {
+        controlFromHtml();
+      });
 
-    </script>
+    $("INM_input_hetero")
+      .addEventListener("change", function () {
+        controlFromHtml();
+      });
+
+    $("INM_input_homo")
+      .addEventListener("change", function () {
+        controlFromHtml();
+      });
+
+    $("run_input_hetero")
+      .addEventListener("change", function () {
+        controlFromHtml();
+      });
+
+    $("run_input_homo")
+      .addEventListener("change", function () {
+        controlFromHtml();
+      });
+
+    // load EMT scenario from html
+    $("EMT_scenario").addEventListener("change", function () {
+      controlFromHtml();
+    });
+
+
+  </script>
 </body>
 
 </html>

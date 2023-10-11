@@ -530,6 +530,23 @@ let sim_emt = function(p) {
 
         s.t = 0.0;
 
+        // add 30% chance of not doing certain EMT events
+        if( pcontrol.hetero) {
+            for( let i = 0; i < s.cells.length; ++i ) {
+                const ci = s.cells[i];
+                if( ci.type.name == 'emt' ) {
+                    if( p.random() > 0.7 ) {
+                        ci.time_A = Infinity;
+                    }
+                    if( p.random() > 0.7 ) {
+                        ci.time_B = Infinity;
+                    }
+                    if( p.random() > 0.7 ) {
+                        ci.time_S = Infinity;
+                    }
+                }
+            }
+        }
 
         
         if( pcontrol.A < sim_end && !pcontrol.hetero )
