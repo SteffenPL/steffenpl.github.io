@@ -134,9 +134,9 @@ the feasible sets $S_{ij}$ are uniformly prox-regular and that projection onto t
 $S = \bigcap_{ij} S_{ij}$ is locally a contraction.
 
 Showing the contraction property is the main challenge, but if one assumes that the
-intersection is **metrically calm**, that is, that there exists a constant $c > 0$ such that
+intersection is **metrically calm**, that is, that there exists a constant $\gamma > 0$ such that locally
 $$
-\mathrm{dist}(x, S) \leq c \mathrm{dist}(x, T(S,x))
+\mathrm{dist}(x, S) \leq \gamma \sum_{1 \leq i < j \leq N} \mathrm{dist}(x, S_{ij}),
 $$
 then one can show the contraction property which is the key step to numerical stability. 
 
