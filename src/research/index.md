@@ -17,16 +17,20 @@ My mathematical research interests are
 - Geometric numerical methods (symplectic methods, finite element exterior calculus)
 - Coupled systems and inequality constraints (differential inclusions, position-based dynamics)
 
-**Kinetic theory:** {.m-0}
+**Analysis:** {.m-0}
+- Non-smooth dynamical systems (differential inclusions on uniformly prox-regular sets)
 - Mean-field limits (in particular with constraints)
 
 
-## Projects
+## Current projects
 
-_This section is still work in progress._
+_The results shown in this section are work in progress._
 
 {% include 'projects.njk' %}
 
+## Past projects
+
+{% include 'past_projects.njk' %}
 
 ---
 

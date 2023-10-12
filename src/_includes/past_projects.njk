@@ -1,0 +1,43 @@
+
+<div class="grid sm:grid-cols-2 gap-4 justify-items-center">
+  {%- for item in collections.past_projects -%}
+  <div class="rounded drop-shadow-xl flex mb-4 cursor-pointer bg-white border-b-0 border-t-4  border-lime-600"
+  onclick="location.href='{{ item.url | url }}'">
+    <div class="p-0 m-0 justify-between">
+      <div class="">
+        {%- if item.data.img -%}
+        <img 
+        src="past_projects/{{ item.data.img }}" 
+        class="rounded-t mb-2 m-0"></img>
+        {%- else -%}
+        <img 
+        src="past_projects/constraints-mean-field.jpg" 
+        class="rounded-t mb-2 m-0"></img>
+        {%- endif -%}
+      </div>
+      <div class="ml-2 mb-2">
+        <a class="text-lime-800 hover:text-lime-600" href="{{ item.url | url }}">{{ item.data.title }}</a>
+
+        {%- if item.data.start -%} 
+        <br>
+        <i class="text-slate-500">{{ item.data.start | readableDateMonths}} 
+          &ndash; &nbsp;
+          {%- if item.data.end -%} 
+          {{ item.data.end | readableDateMonths}}</i>
+          {%- else -%}
+          present
+          {%- endif -%}
+        <br>
+        {%- else -%}
+        <br>
+        <i class="text-slate-500">{{ item.data.date | readableDateMonths}}</i>
+        <br>
+        {%- endif -%}
+        {%- if item.data.desc -%} 
+        <small><b>Goal:</b> {{ item.data.desc }}</small>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+  {%- endfor -%}
+</div>

@@ -8,7 +8,7 @@ const pageAssetsPlugin = require('eleventy-plugin-page-assets');
 
 module.exports = (config) => {
 
-  config.addWatchTarget("./src/");
+  config.addWatchTarget("./src/**/*");
 
   config.addPassthroughCopy({ 'public': './' })
   config.addPassthroughCopy({'src/assets': 'assets'})
@@ -46,9 +46,17 @@ module.exports = (config) => {
   config.addCollection('projects',
     collection => {
       return collection.getFilteredByGlob('./src/research/projects/**/*.md').sort(
-        (a, b) => ( a.data.order > b.data.order ? 1 : -1 )
+        (a, b) => ( a.data.order < b.data.order ? 1 : -1 )
       )
     });
+
+    config.addCollection('past_projects',
+      collection => {
+        return collection.getFilteredByGlob('./src/research/past_projects/**/*.md').sort(
+          (a, b) => ( a.data.order < b.data.order ? 1 : -1 )
+        )
+      });
+  
 
 
     config.addCollection('blog',
