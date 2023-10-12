@@ -38,7 +38,7 @@ Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https:/
 
 ## Preprints
 
-4. **S. Plunder, [S. Merino-Aceituno](){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
+4. **S. Plunder, [S. Merino-Aceituno](){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
 
 ## Publications (peer reviewed)
 

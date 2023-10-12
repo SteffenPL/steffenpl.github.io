@@ -13,6 +13,15 @@ _Short project description:_
 
 *This project is a collaboration with [Sara Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}.*
 
+
+### Preprint:
+
+- **S. Plunder, [S. Merino-Aceituno](){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
+
+
+## Fast and simple simulations with contact forces
+
+
 Position-based dynamics (PBD) can be used to **simulate first-order differential equations with inequality constraints.** I aim to show mathematically that the method converges.
 
 Before we go into the mathematics behind PBD, let's have a look how such simulations can look like.
@@ -32,7 +41,7 @@ I used this numerical method for both of my modelling projects, for example in t
 
 The simulation above uses a very simple numerical method. In fact, [Matthias Müller](https://matthias-research.github.io/pages/challenges/challenges.html){target="_blank"} 
 challenges everyone to find a method that beats PBD in terms of
-- accuracy[^1]
+- accuracy
 - speed,
 - simplicity or 
 - stability.
@@ -100,50 +109,51 @@ steps of PBD, i.e. $x_k + h f(x_k)$ (Euler step), $P_{S_{1 2}}(x_k + h f(x_k))$ 
 </div>
 
 
-## Project aim
+## Our new convergence proof
 
-Up to my knowledge, it is not clear if PBD converges in a mathematically rigorous sense!
+Up to my knowledge, it is not clear if PBD converges in a mathematically rigorous sense! Many numerical 
+experiments show that the method is very capable. However, it is often also used in contexts where the 
+method only gives visually pleasing but inaccurate results.
 
-The goal is to show that for sufficiently small time-steps $h$ the numerical approximation of PBD $x_h(t)$ converges towards the exact solution $x(t)$, i.e.
+In the case of **overdamped** dynamics, we could show that for sufficiently small time-steps $h$ the numerical approximation of PBD $x_h(t)$ converges towards the exact solution $x(t)$, i.e.
 $$
 \sup_{t \in [0,T]} \Vert x_h(t) - x(t) \Vert \to 0
 \quad 
 \text{for } h \to 0.
 $$
 
-Numerical tests seem to support this claim (with order of convergence $\frac{1}{2}$ which is similar to [these results](https://arxiv.org/abs/1009.2837){target="_blank"}). But even if no strict convergence is archived, the method might still be useful if the global error admits some useable upper bounds.
+We refer to our [preprint](https://arxiv.org/abs/2310.01215){target="_blank"} for details.
 
+### Key ideas of the convergence proof
 
-## Mathematical details
+Dealing with the theory of non-smooth dynamics is technically involved, as it requires 
+generalisations from non-convex analysis such as proximal normal cones and subdifferential calculus. 
 
-There exists already some great related work
-on similar problems. Without attempting to give full references here I will just point to Juliette Venel's work, in particular, her publication on a ["Numerical scheme for a whole class of sweeping process"](https://arxiv.org/abs/0904.2694){target="_blank"}.
+The two main incredients of the convergence are, to show that 
+the feasible sets $S_{ij}$ are uniformly prox-regular and that projection onto the intersection 
+$S = \bigcap_{ij} S_{ij}$ is locally a contraction.
 
-Some related details:
-- It is known that the method
+Showing the contraction property is the main challenge, but if one assumes that the
+intersection is **metrically calm**, that is, that there exists a constant $c > 0$ such that
 $$
-x_{k+1} = P_S( x_k + h f(x_k))
+\mathrm{dist}(x, S) \leq c \mathrm{dist}(x, T(S,x))
 $$
-converges to the unique solution, provided that
-$S$ is a uniform proxy-regular set and $f$ is Lipschitz and has at most linear growth.
-But projections onto a non-conves set $S$ are numerically very time consuming.  
-
-- The PBD method is originally proposed for second-order equations (Newton's laws).
-I have used the second-order version of PBD in [this example]({{ '/blog/posts/p5js' | url }}).
-
-- There are many related results in convex and variational analysis
-which provide many useful results to study the
-geometric properties of the projections and tangent/normal cones.
-
-## To be continued...
-
-This page describes ongoing research, as such, it is subject to change.
-Feel free to contact me, if you find this project interesting or if you have ideas related to it!
+then one can show the contraction property which is the key step to numerical stability. 
 
 
+For numerical consistency, we introduce a new notation of so-called **scalarly upper semicontinuous consistency**. 
+The idea here is that the tangent cone $T(S,x)$ is not defined for $x \notin S$ and numerical approximations might 
+be indeed outside of the set $S$. To compensate for this, we need the right generalisation of numerical consistency. 
+However, the notion of convergence for $h \to 0$ cannot be very strong, since otherwise it would imply that the 
+solution is differentiable, but this cannot be since contact forces always imply that the solution will have discontinuous velocities
+and points where the trajectory is not differentiable. Using the notion of scalarly upper semicontinuity turns out to be just 
+strong enough to show convergence, but weak enough to be applicable.
 
-[^1]: I couldn't find mathematical proof for the 
-accuracy of PBD yet. But it is clear that for applications in computer graphics PBD excels in terms of accuracy.
+
+Together, these two ideas allow us to show that the numerical approximation $x_h(t)$ converges towards the exact solution $x(t)$.
+
+For more details and proofs, we refer to our [preprint](https://arxiv.org/abs/2310.01215){target="_blank"}.
+
 
 <!-- this is here to allow markdown preview with scripts -->
 {%- if false -%}
