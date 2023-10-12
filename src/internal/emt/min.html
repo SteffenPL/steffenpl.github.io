@@ -124,7 +124,7 @@
                     <div class="relative w-3/4 mx-auto text-xs mb-4">
                       <span class="absolute left-0">0</span>
                       <span class="absolute left-1/2">1</span>
-                      <span class="absolute right-0">10</span>
+                      <span class="absolute right-0">11</span>
                     </div>
                     <div class="font-extralight text-xs pt-2">
                       Number of cells undergoing EMT-like events.
@@ -429,14 +429,14 @@
       pcontrol.hetero = $("hetero_input").checked;
 
       if (pcontrol.hetero) {
-        pcontrol.N = 10;
+        pcontrol.N = 11;
         pcontrol.INM = parseFloat($("INM_input_hetero").value) / 2.0
         pcontrol.run = parseFloat($("run_input_hetero").value) / 2.0
       }
       else {
         pcontrol.N = parseInt($("N_input").value);
         if (pcontrol.N == 2) {
-          pcontrol.N = 10;
+          pcontrol.N = 11;
         }
 
         pcontrol.INM = $("INM_input_homo").checked ? 1.0 : 0.0;
