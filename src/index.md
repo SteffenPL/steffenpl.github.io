@@ -26,6 +26,10 @@ My mathematical toolset includes **mathematical modelling** with ordinary, stoch
 
 You can find a description of my current projects in the [research section]({{ '/research' | url }}) and some more general posts in my [blog]({{ '/blog' | url }}).
 
+## News
+
+We are currently organizing a workshop for mathematicians and biologists: [Development across Scales](https://sites.google.com/kyoto-u.ac.jp/dev-across-scales-2023/home). Registration is open until November 27th, 2023.
+
 ## Contact and links
 
 <small>
