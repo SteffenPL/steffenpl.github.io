@@ -28,7 +28,8 @@ You can find a description of my current projects in the [research section]({{ '
 
 ## News
 
-We are currently organizing a workshop for mathematicians and biologists: [Development across Scales](https://sites.google.com/kyoto-u.ac.jp/dev-across-scales-2023/home). Registration is open until November 27th, 2023.
+Our **standalone EMT simulator** is online: [semtor.github.io](https://semtor.github.io/){target="_blank"}. <br>
+See also the corresponding preprint [Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion](https://www.biorxiv.org/content/10.1101/2023.11.17.567510v1){target="_blank"} for more details.
 
 ## Contact and links
 
@@ -43,8 +44,10 @@ Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https:/
 ## Preprints
 
 5. **S. Plunder, C. Danesin, B. Glise, M. A. Ferreira, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}**, _Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion._ **(2023)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.11.17.567510v1){target="_blank"}.
+{reversed=reversed}
 
 4. **S. Plunder, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
+{reversed=reversed}
 
 ## Publications (peer-reviewed)
 
@@ -52,8 +55,16 @@ Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https:/
 {reversed=reversed}
 
 2. **S. Plunder, M. Burkard, U. Lauer, S. Venturelli, [L. Marongiu](https://www.researchgate.net/profile/Luigi-Marongiu){target="_blank"},** _Determination of phage load and administration time in simulated occurrences of antibacterial treatments._ Frontiers of Medicine, **(2022).** [DOI: 10.3389/fmed.2022.1040457](https://doi.org/10.3389/fmed.2022.1040457){target="_blank"}.
+{reversed=reversed}
 
 3. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"},** _Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue._
 In: Reis, T., Grundel, S., Schöps, S. (eds) Progress in Differential-Algebraic Equations II. Differential-Algebraic Equations Forum. Springer, Cham. **(2020).** [DOI: 10.1007/978-3-030-53905-4_12](https://doi.org/10.1007/978-3-030-53905-4_12){target="_blank"}, [arxiv](https://arxiv.org/abs/1911.05468){target="_blank"}.
 {reversed=reversed}
 
+## Software packages
+
+*I am currently making various tools for **agent-based modelling** available as Julia packages.*
+
+- [SpatialHashTables.jl](https://github.com/SteffenPL/SpatialHashTables.jl){target="_blank"}: A Julia package for spatial hashing of particles (in 2D and 3D). This allows fast collision detection even is unbounded domains.
+- [BoundedDegreeGraphs.jl](https://github.com/SteffenPL/BoundedDegreeGraphs.jl){target="_blank"}: A Julia package for graphs with bounded degree, with focus on allocation free operations commonly 
+used in agent-based modelling. 

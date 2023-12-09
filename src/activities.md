@@ -40,6 +40,13 @@ _I organised (together with others) various events during my time as speaker of 
 | 2021 | [VSM workshop: A PhD in mathematics &ndash; career possibilities & gender aspects](https://ps-mathematik.univie.ac.at/e/index.php?event=VSM-WS2021) (one day)  |
 | 2017 &ndash; 2019 | Student Talks (initiator of series of extracurricular talks at TU Kaiserslautern) |
 
+## Software packages
+
+*I am currently making various tools for **agent-based modelling** available as Julia packages.*
+
+- [SpatialHashTables.jl](https://github.com/SteffenPL/SpatialHashTables.jl){target="_blank"}: A Julia package for spatial hashing of particles (in 2D and 3D). This allows fast collision detection even is unbounded domains.
+- [BoundedDegreeGraphs.jl](https://github.com/SteffenPL/BoundedDegreeGraphs.jl){target="_blank"}: A Julia package for graphs with bounded degree, with focus on allocation free operations commonly 
+used in agent-based modelling. 
 ## Outreach 
 
 | | | |

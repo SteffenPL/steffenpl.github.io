@@ -1,5 +1,5 @@
 ---
-title: 📑 Spellchecking in $\LaTeX$ with Grammarly 
+title: 📑 Spellchecking in LaTeX with Grammarly 
 id: 3
 date: 2022-06-14
 layout: markdown
