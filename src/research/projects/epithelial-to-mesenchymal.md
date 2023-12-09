@@ -12,6 +12,9 @@ _Short project description:_
 
 *This project is a collaboration with [Eric Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Marina A. Ferreria](https://marinaaferreira.wordpress.com/){target="_blank"}, [Diane Peurichard](https://sites.google.com/site/dianepeurichard/home){target="_blank"}, [Pierre Degond](https://sites.google.com/site/degond/Home){target="_blank"} and [Sara Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}.*
 
+### Preprint:
+- **S. Plunder, C. Danesin, B. Glise, M. A. Ferreira, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}**, _Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion._ **(2023)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.11.17.567510v1){target="_blank"}.
+
 The epithelial-to-mesenchymal transition (EMT) is a complex process during which epithelial cells[^1]
 transition into mesenchymal cells via a progression of changes in the cell state. 
 During this transition, fundamental cell properties change. For example, epithelial cells typical have adhesive bonds within each other. But mesenchymal cells might lose these adhesive bonds and start to migrate. 
@@ -47,15 +50,11 @@ Without going into too many details, our model is a continuation of [Marina's mo
 The core of the model is a "tennis ball in a sock" description of the cells: Since the cell membrane is stretched out (like a sock) 
 and the nucleus is the hardest part of the cell (like the tennis ball) we consider the nucleus as a _sphere-like object_ and the membrane and the other cell structure as _linear springs_.
 
-Without further ado. This is how a simulation of pseudo-stratified tissue _without_ EMT looks like (according to our model):
+## Standalone EMT simulator
 
+To see the model in action, we developed a standalone online simulator: [semtor.github.io](https://semtor.github.io/){target="_blank"}. Try it out! 
 
-<div class="container mx-auto">
-<video class="max-w-full" controls autoplay loop>
-<source src="{{ '/assets/videos/no_emt.mp4' | url }}" type="video/mp4">
-</video>
-</div>
-
+<video src="{{ '/assets/videos/semtor.mp4' | url }}" class="max-w-full mx-auto" controls autoplay loop></video>
 
 ## Mathematical aspects
 
