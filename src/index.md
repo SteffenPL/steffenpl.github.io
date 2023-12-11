@@ -38,7 +38,7 @@ See also the corresponding preprint [Modelling variability and heterogeneity of 
 E-Mail: <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a>
 </small>
 
-Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [ORCID](https://orcid.org/0000-0002-3371-3790) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder)
+Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [ORCID](https://orcid.org/0000-0002-3371-3790) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder) [Twitter/X](https://twitter.com/SteffenPlunder)
 
 
 ## Preprints

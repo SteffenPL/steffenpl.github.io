@@ -15,7 +15,7 @@ I recently moved to Kyoto. Here are some notes from the first days since my arri
 
 --->
 
-# ❗Math/Programming/Science Blog
+# Math/Programming/Science Blog
   
 This blog contains curiosities from mathematics, programming and science!
 
