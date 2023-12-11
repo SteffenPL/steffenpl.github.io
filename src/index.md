@@ -24,7 +24,7 @@ With my research, I want to answer **questions in biology using mathematical too
 
 My mathematical toolset includes **mathematical modelling** with ordinary, stochastic and partial differential equations. An emphasis lies on **constrained systems** such as differential inclusions and differential-algebraic equations. My key experties is the implementation of efficient **numerical simulations** for such models and the development of **models in collaboration with biologists**.
 
-You can find a description of my current projects in the [research section]({{ '/research' | url }}) and some more general posts in my [blog]({{ '/blog' | url }}).
+You can find a description of my current projects in the [research section]({{ '/research' | url }}), talk slides [here]({{'/activities' | url}}) and some more general posts in my [blog]({{ '/blog' | url }}).
 
 ## News
 
@@ -38,7 +38,7 @@ See also the corresponding preprint [Modelling variability and heterogeneity of 
 E-Mail: <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a>
 </small>
 
-Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [ORCID](https://orcid.org/0000-0002-3371-3790) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder) [Twitter/X](https://twitter.com/SteffenPlunder)
+Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [ORCID](https://orcid.org/0000-0002-3371-3790) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder) | [Twitter/X](https://twitter.com/SteffenPlunder)
 
 
 ## Preprints
