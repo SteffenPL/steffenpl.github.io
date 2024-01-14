@@ -7,6 +7,12 @@ A detailed version of my CV can be found [here]({{ '/assets/cv.pdf' | url }}).
 
 # Short CV
 
+## Current affiliation
+
+| | |
+|-------------------|----|
+| 2023 &ndash; now | **Post doc at Kyoto University** <br> [Institute for the Advanced Study of Human Biology (ASHBi), KUIAS](https://ashbi.kyoto-u.ac.jp/) |
+
 ## Education
 
 | | |
@@ -33,18 +39,19 @@ A detailed version of my CV can be found [here]({{ '/assets/cv.pdf' | url }}).
 
 | | |
 |-------------------|----|
-| Programming | 10 years of experience. **Advanced skills in Julia**, C++, Python, Matlab, JavaScript. Creator of [MyPaintEdSlides]({{ '/blog/posts/mypaintedslides' | url }}). |
+| Programming | Over 10 years of experience. **Advanced skills in Julia**, C++, Python, Matlab, JavaScript. Creator of [MyPaintEdSlides]({{ '/blog/posts/mypaintedslides' | url }}). |
 
 
 ## Grants, prices and scholarships
 
 | | |
 |-------------------|----|
+| 2023 &ndash; 2025 | [ASHBi Fusion Research Grant](https://ashbi.kyoto-u.ac.jp/news/20230309_ashbi-fusion-research-grant/){target="_blank"}, Co-PI (5.000k JPY ~ 30.000€) |
 | 2021 |  [EMBO](https://www.embo.org/) scientific exchange grant for academic visit in Toulouse |
 | 2018 | [DAAD-PROMOS](https://www.uni-kl.de/fileadmin/isgs/pdf/09_Exchange/PROMOS/2018_MAT_Masterarbeit_University_of_Auckland.pdf) scholarship for academic visit in Auckland |
 | 2017 | Main price on [DMV](https://www.mathematik.de/) students conference 2017 for academic visit to Bonn|
-| 2016 -- 2018 | Felix-Klein scholarship ([Fraunhofer ITWM Kaiserslautern](https://www.itwm.fraunhofer.de/)) |
-| 2014 -- 2016 | [Deutschlandstipendium](https://www.deutschlandstipendium.de/deutschlandstipendium/de/home/home_node.html) (scholarship, partially sponsored by [cognizant](https://www.cognizant.com/)) |
+| 2016 &ndash; 2018 | Felix-Klein scholarship ([Fraunhofer ITWM Kaiserslautern](https://www.itwm.fraunhofer.de/)) |
+| 2014 &ndash; 2016 | [Deutschlandstipendium](https://www.deutschlandstipendium.de/deutschlandstipendium/de/home/home_node.html) (scholarship, partially sponsored by [cognizant](https://www.cognizant.com/)) |
 
 
 ---
