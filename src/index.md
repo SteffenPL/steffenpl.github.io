@@ -43,6 +43,9 @@ Links: [GitHub/SteffenPL](https://github.com/SteffenPL) | [ResearchGate](https:/
 
 ## Preprints
 
+7. **E. Despin-Guitard, S. Plunder, N. Mathiah, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"},  [I. Migeotte](https://iribhm.org/isabelle-migeotte/){target="_blank"}** _Occurrence of non-apical mitoses at the primitive streak, induced by relaxation of actomyosin and acceleration of the cell cycle, contributes to cell delamination during mouse gastrulation._ **(2024)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.01.24.577096v1){target="_blank"}.
+{reversed=reversed}
+
 6. **S. Plunder, C. Danesin, B. Glise, M. A. Ferreira, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}**, _Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion._ **(2023)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.11.17.567510v1){target="_blank"}.
 {reversed=reversed}
 
