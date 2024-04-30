@@ -63,4 +63,5 @@ That's why I wrote this short post of how to install it, so that you can try it 
     4. At first install, it will ask you questions. Pick: `llama3`, the right port (as above) and `nomic-embed-text`.
 9. Chat with your notes. 📚
 
-
+![](imgs/obsidian_s2b_4.png)
+*Example of using Smart Second Brain on my notes. It is a bit hit & miss to be honest. One can play with the creativity/similarity sliders to get better results. But the output is often just wrong. 🙅‍♀️* 
