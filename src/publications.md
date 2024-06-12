@@ -6,7 +6,7 @@ layout: markdown
 
 ## Preprints
 
-8. **H. Jäger, É. Grosjean, S. Plunder, C. Redenbach, A. Keilmann, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}, C. Surulescu** _Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration._ **(2024)** [arxiv](https://arxiv.org/abs/2406.06334){target="_blank"}.
+8. **H. Jäger, [É. Grosjean](https://grosjean1.github.io/){target="_blank"}, S. Plunder, C. Redenbach, A. Keilmann, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}, C. Surulescu** _Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration._ **(2024)** [arxiv](https://arxiv.org/abs/2406.06334){target="_blank"}.
 {reversed=reversed}
 
 7. **E. Despin-Guitard, S. Plunder, N. Mathiah, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"},  [I. Migeotte](https://iribhm.org/isabelle-migeotte/){target="_blank"}** _Occurrence of non-apical mitoses at the primitive streak, induced by relaxation of actomyosin and acceleration of the cell cycle, contributes to cell delamination during mouse gastrulation._ **(2024)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.01.24.577096v1){target="_blank"}.
