@@ -39,7 +39,11 @@ _Newest blog entries:_ {% for item in collections.blog %}
 🔗 [GitHub/SteffenPL](https://github.com/SteffenPL) | [Google Scholar](https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en)  | [ORCID](https://orcid.org/0000-0002-3371-3790) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder) | [Twitter/X](https://twitter.com/SteffenPlunder)
 
 
+
 ## Preprints
+
+8. **H. Jäger, É. Grosjean, S. Plunder, C. Redenbach, A. Keilmann, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}, C. Surulescu** _Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration._ **(2024)** [arxiv](https://arxiv.org/abs/2406.06334){target="_blank"}.
+{reversed=reversed}
 
 7. **E. Despin-Guitard, S. Plunder, N. Mathiah, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"},  [I. Migeotte](https://iribhm.org/isabelle-migeotte/){target="_blank"}** _Occurrence of non-apical mitoses at the primitive streak, induced by relaxation of actomyosin and acceleration of the cell cycle, contributes to cell delamination during mouse gastrulation._ **(2024)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.01.24.577096v1){target="_blank"}.
 {reversed=reversed}
@@ -52,18 +56,17 @@ _Newest blog entries:_ {% for item in collections.blog %}
 
 ## Publications (peer-reviewed)
 
-1. **S. Plunder, M. Burkard, T, Helling, U. M. Lauer, L. E. Hoelzle and [L. Marongiu](https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en){target="_blank"}** _Determination of optimal phage load and administration time for antibacterial treatment._ Current Protocols. **(2024)** [DOI:10.1002/cpz1.954](https://doi.org/10.1002/cpz1.954){target="_blank"}.{reversed=reversed}
+1. **S. Plunder, M. Burkard, T, Helling, U. M. Lauer, L. E. Hoelzle, [L. Marongiu](https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en){target="_blank"}**, _Determination of optimal phage load and administration time for antibacterial treatment._ Current Protocols. **(2024)** [DOI:10.1002/cpz1.954](https://doi.org/10.1002/cpz1.954){target="_blank"}.{reversed=reversed}
 
-3. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"},** _The mean-field limit for particle systems with uniform full-rank constraints._ Kinetic and Related Models. **(2023)** [DOI:10.3934/krm.2023012](https://www.aimsciences.org/article/doi/10.3934/krm.2023012){target="_blank"}, [arxiv](https://arxiv.org/abs/2203.07249){target="_blank"}.
+3. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}**, _The mean-field limit for particle systems with uniform full-rank constraints._ Kinetic and Related Models. **(2023)** [DOI:10.3934/krm.2023012](https://www.aimsciences.org/article/doi/10.3934/krm.2023012){target="_blank"}, [arxiv](https://arxiv.org/abs/2203.07249){target="_blank"}.
 {reversed=reversed}
 
-2. **S. Plunder, M. Burkard, U. Lauer, S. Venturelli, [L. Marongiu](https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en){target="_blank"},** _Determination of phage load and administration time in simulated occurrences of antibacterial treatments._ Frontiers of Medicine, **(2022).** [DOI: 10.3389/fmed.2022.1040457](https://doi.org/10.3389/fmed.2022.1040457){target="_blank"}.
+2. **S. Plunder, M. Burkard, U. Lauer, S. Venturelli, [L. Marongiu](https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en){target="_blank"}**, _Determination of phage load and administration time in simulated occurrences of antibacterial treatments._ Frontiers of Medicine, **(2022).** [DOI: 10.3389/fmed.2022.1040457](https://doi.org/10.3389/fmed.2022.1040457){target="_blank"}.
 {reversed=reversed}
 
-1. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"},** _Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue._
+1. **S. Plunder, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}**, _Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue._
 In: Reis, T., Grundel, S., Schöps, S. (eds) Progress in Differential-Algebraic Equations II. Differential-Algebraic Equations Forum. Springer, Cham. **(2020).** [DOI: 10.1007/978-3-030-53905-4_12](https://doi.org/10.1007/978-3-030-53905-4_12){target="_blank"}, [arxiv](https://arxiv.org/abs/1911.05468){target="_blank"}.
 {reversed=reversed}
-
 ## Software packages
 
 *I am currently making various tools for **agent-based modelling** available as Julia packages.*
