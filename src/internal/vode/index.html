@@ -66,6 +66,8 @@ dy/dt = -x*b"></textarea>
             // Initial conditions for variables
             variables.forEach(variable => {
                 const varGroup = createInputGroup('\'' + variable + '\' initial value', 'number', variable, 1);
+                const initValue = varGroup.querySelector(`#${variable}-input`);
+                initValue.addEventListener('input', () => {if (plotDiv.innerHTML) solve();});
                 inputsDiv.appendChild(varGroup);
             });
 
