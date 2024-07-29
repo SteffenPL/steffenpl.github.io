@@ -23,6 +23,16 @@
                 <div>
                     <input type="range" id="aPP" min="0" max="0.4" step="0.01" value="0.1">
                 </div>
+
+                Chemotaxis:
+                <div>
+                    <input type="range" id="chemo" min="0.0" max="1.0" step="0.01" value="0.0">
+                </div>
+
+                <!-- Planar Cell Polarity:
+                <div>
+                    <input type="range" id="PCP" min="0" max="1.0" step="0.01" value="0.0">
+                </div> -->
                 </div>
             <div>
                 <button id="restart" class="error">Restart</button>
@@ -52,6 +62,7 @@
     let pos = [];
     let f = [];
     let type = [];
+    let pl = [];
     let colors = [
         [0, 200, 0, 200],
         [200, 0, 200, 200],
@@ -69,13 +80,16 @@
         R_attract: 120.0,
         N: 70,
         t_end: 64.0,
+        align: [0.01,0.0],
+        cil: 0.001,
+        noise: 0.05,
         
         display: {
             f_scale: 1,
             width: 500,
             height: 400,
-            sX: 0.5,
-            sY: 0.5
+            sX: 0.3,
+            sY: 0.3
         }
     }
 
@@ -86,6 +100,9 @@
             pos[i] = center.copy().add(p5.Vector.random2D().mult(p.R * 3));
             f[i] = createVector(0, 0);
             type[i] = i % 2;
+            pl[i] = p5.Vector.random2D();
+
+            pl[i].mult( 1 - type[i] );
         }
     }
 
@@ -98,16 +115,29 @@
             t = 0.0;
             init();
         }
-
+        let right = createVector(1, 0);
         p.attract[0] = document.querySelector("#aDD").value;
         p.attract[1] = document.querySelector("#aPP").value;
         p.attract[2] = document.querySelector("#aDP").value;
 
-        tmp = createVector(0, 0);
+        const chemo = document.querySelector("#chemo").value;
+        // const pcp = document.querySelector("#PCP").value;
+
+        let tmp = createVector(0, 0);
 
         // simulate 
         for(let i = 0; i < p.N; i++) {
-            f[i].set(0, 0);
+            // f[i].set(0, 0);
+
+            pl[i].rotate(random(-p.noise, p.noise));
+
+            const ct = type[i];
+            if( ct == 0 ) {
+                const alpha = right.angleBetween(pl[i]);
+                pl[i].rotate(-p.align[0] * alpha);
+            }
+            f[i].set(pl[i]).mult(100 * chemo);
+
             for(let j = 0; j < p.N; j++) {
                 if(i != j) {
                     let xij = p5.Vector.sub(pos[i], pos[j]);
@@ -124,7 +154,8 @@
                         let attr_overlap = 2 * p.R_attract - r2;
                         if( attr_overlap > 0) {
                             const at = (type[i] == type[j]) ? type[i] : 2;
-                            f[i].add(xij.mult(-attr_overlap * p.attract[at] / r2));
+                            let f_pcp = 1.0;
+                            f[i].add(xij.mult(-attr_overlap * f_pcp * p.attract[at] / r2));
                         }
 
                     }
@@ -156,6 +187,15 @@
             noStroke();
             fill(colors[type[i]]);
             circle(pos[i].x, pos[i].y, 2*p.R);
+
+            const chemo = document.querySelector("#chemo").value;
+            if( chemo > 0.001) {
+                stroke(0,0,255);
+                fill(0,0,255);
+                tmp.set(pl[i]).mult(p.R * chemo).add(pos[i]);
+                line(pos[i].x, pos[i].y, tmp.x, tmp.y);
+                arrowHead(tmp, pl[i]);
+            }
 
             stroke(100,0,0);
             fill(250,0,0);
