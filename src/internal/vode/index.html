@@ -3,44 +3,40 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ODE Simulator</title>
-    <link rel="stylesheet" href="https://unpkg.com/papercss@1.9.2/dist/paper.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
     <style>
-        textarea {
-            width: 100%;
-            height: 100px;
+        .range-inputs {
+            display: none;
         }
-
-        #plot {
-            width: 100%;
-            height: 400px;
+        .range-inputs.show {
+            display: block;
         }
     </style>
 </head>
 
-<body>
-
-    <div class="paper container">
-    <h1>ODE Simulator</h1>
-    <div>
-        <h2>Enter ODE equations:</h2>
-        <textarea id="ode-input" placeholder="Enter ODE equations, one per line. For example:
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-6">ODE Simulator</h1>
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">Enter ODE equations:</h2>
+            <textarea id="ode-input" class="w-full h-32 p-2 border rounded" placeholder="Enter ODE equations, one per line. For example:
 dx/dt = -y*a
 dy/dt = -x*b"></textarea>
+        </div>
+        <div id="warning" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"></div>
+        <div id="inputs" class="space-y-4"></div>
+        <div class="flex items-center mb-4">
+            <label for="n-steps" class="mr-2">Number of steps:</label>
+            <input type="number" id="n-steps" value="1000" min="100" max="10000" step="100" class="border rounded p-1 w-24">
+        </div>
+        <button id="solve-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Solve</button>
+        <div id="plot" class="w-full h-96"></div>
     </div>
-    <div class="row flex-spaces"><div id="warning" class="alert alert-danger" style="visibility: hidden;"></div></div>
-    <div id="inputs"></div>
-    <div class="row">
-        <div class="col col-4"><label for="n-steps">Number of steps:</label></div>
-        <div class="col col-4"><input type="number" id="n-steps" value="1000" min="100" max="10000" step="100"></div>
-    </div>
-    <button id="solve-btn">Solve</button>
-    <div id="plot"></div>
-    </div>
+
     <script>
         const odeInput = document.getElementById('ode-input');
         const warningDiv = document.getElementById('warning');
@@ -73,22 +69,33 @@ dy/dt = -x*b"></textarea>
 
             // Parameter inputs and sliders
             parameters.forEach(param => {
-                const paramGroup = createInputGroup('\'' + param + '\' range', 'range', param, [-1, 2]);
+                const paramGroup = document.createElement('div');
+                paramGroup.className = 'mb-4';
+                paramGroup.innerHTML = `
+                    <div class="flex items-center mb-2">
+                        <label for="${param}-slider" class="mr-2 w-24">'${param}' value:</label>
+                        <input type="range" id="${param}-slider" min="-1" max="2" step="0.01" value="1" class="w-full mr-2">
+                        <output id="${param}-value" for="${param}-slider" class="w-12">1</output>
+                        <button id="${param}-toggle" class="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="${param}-range-inputs" class="range-inputs flex space-x-2">
+                        <input type="number" id="${param}-min" value="-1" step="0.1" class="border rounded p-1 w-24">
+                        <input type="number" id="${param}-max" value="2" step="0.1" class="border rounded p-1 w-24">
+                    </div>
+                `;
                 inputsDiv.appendChild(paramGroup);
 
-                const sliderGroup = document.createElement('div');
-                sliderGroup.className = 'form-group row';
-                sliderGroup.innerHTML = `
-                    <div class="col col-4"><label for="${param}-slider">'${param}' value:</label></div>
-                    <div class="col col-4"><input type="range" id="${param}-slider" min="-1" max="2" step="0.01" value="1"></div>
-                    <div class="col col-4"><output id="${param}-value" for="${param}-slider">1</output></div>
-                `;
-                inputsDiv.appendChild(sliderGroup);
-
-                const slider = sliderGroup.querySelector(`#${param}-slider`);
-                const valueSpan = sliderGroup.querySelector(`#${param}-value`);
+                const slider = paramGroup.querySelector(`#${param}-slider`);
+                const valueSpan = paramGroup.querySelector(`#${param}-value`);
                 const rangeMin = paramGroup.querySelector(`#${param}-min`);
                 const rangeMax = paramGroup.querySelector(`#${param}-max`);
+                const toggleBtn = paramGroup.querySelector(`#${param}-toggle`);
+                const rangeInputs = paramGroup.querySelector(`#${param}-range-inputs`);
 
                 slider.addEventListener('input', () => {
                     valueSpan.textContent = parseFloat(slider.value).toFixed(2);
@@ -104,23 +111,29 @@ dy/dt = -x*b"></textarea>
                     valueSpan.textContent = parseFloat(slider.value).toFixed(2);
                     if (plotDiv.innerHTML) solve();
                 }));
+
+                toggleBtn.addEventListener('click', () => {
+                    rangeInputs.classList.toggle('show');
+                });
             });
         }
 
         function createInputGroup(label, type, name, defaultValue) {
             const group = document.createElement('div');
-            group.className = 'form-group row';
+            group.className = 'mb-4';
             group.innerHTML = `
-            <div class="col col-4"><label for="${name}-input">${label}:</label></div>
+                <label for="${name}-input" class="block mb-2">${label}:</label>
                 ${type === 'range'
-                    ? `<div class="col col-4"><input type="number" id="${name}-min" value="${defaultValue[0]}" step="0.1"></div>
-                       <div class="col col-4"><input type="number" id="${name}-max" value="${defaultValue[1]}" step="0.1"></div>`
-                    : `<div class="col col-4"><input type="${type}" id="${name}-input" value="${defaultValue}" step="0.1"></div>`
+                    ? `<div class="flex space-x-2">
+                         <input type="number" id="${name}-min" value="${defaultValue[0]}" step="0.1" class="border rounded p-1 w-24">
+                         <input type="number" id="${name}-max" value="${defaultValue[1]}" step="0.1" class="border rounded p-1 w-24">
+                       </div>`
+                    : `<input type="${type}" id="${name}-input" value="${defaultValue}" step="0.1" class="border rounded p-1 w-24">`
                 }
             `;
             return group;
         }
-        // Add this to the global variables at the top
+
         let nSteps = 1000;
 
         function parseEquations() {
@@ -147,14 +160,14 @@ dy/dt = -x*b"></textarea>
 
             if (indepVars.size > 1) {
                 warningDiv.textContent = 'Warning: Equations have different independent variables.';
-                warningDiv.style.visibility = 'visible';
+                warningDiv.classList.remove('hidden');
             } else if (indepVars.size === 1) {
                 independentVar = Array.from(indepVars)[0];
                 warningDiv.textContent = '';
-                warningDiv.style.visibility = 'hidden';
+                warningDiv.classList.add('hidden');
             } else {
                 warningDiv.textContent = 'Error: No independent variable found.';
-                warningDiv.style.visibility = 'visible';
+                warningDiv.classList.remove('hidden');
                 return;  // Exit the function if no independent variable is found
             }
 
@@ -168,7 +181,7 @@ dy/dt = -x*b"></textarea>
                     symbols.forEach(symbol => allSymbols.add(symbol));
                 } catch (e) {
                     warningDiv.textContent = 'Warning: Cannot parse equations (yet).';
-                warningDiv.style.visibility = 'visible';
+                    warningDiv.classList.remove('hidden');
                 }
             });
 
@@ -252,7 +265,6 @@ dy/dt = -x*b"></textarea>
             });
             return result;
         }
-
     </script>
 </body>
 
