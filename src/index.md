@@ -26,6 +26,8 @@ You can find a description of my current projects in the [research section]({{ '
 
 ## News and Blog
 
+_September 2024:_ **New Nature Communications publications on [EMT](https://doi.org/10.1038/s41467-024-51372-z){target="_blank"} and [gastrulation](https://doi.org/10.1038/s41467-024-51638-6){target="_blank"} are out!**
+
 _March 2024:_ Our **standalone EMT simulator**[^1] is online [semtor.github.io](https://semtor.github.io/){target="_blank"}! 🎉
 
 _Newest blog entries:_ {% for item in collections.blog %}
