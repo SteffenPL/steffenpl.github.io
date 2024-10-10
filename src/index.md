@@ -44,6 +44,9 @@ _Newest blog entries:_ {% for item in collections.blog %}
 
 ## Preprints
 
+9. **[S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}**, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **(2024)** [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
+{reversed=reversed}
+
 8. **S. Plunder, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
 {reversed=reversed}
 
