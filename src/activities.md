@@ -29,6 +29,7 @@ layout: markdown
 | 02/2019 | [Lagrangian perspective on skeletal muscle models]({{ '/slides/muscles_outlook.pdf' | url }}){target="_blank"} | GAMM, 90th Annual Meeting (Vienna) | 
 | 10/2018 | [Fiber based muscle simulation (master's thesis)](https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis_short/index.html){target="_blank"} | Hausdorff Center of Mathematics (Bonn) |
 | 07/2018 | [Tangent spaces](https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/index.html){target="_blank"} | Student-Talk (Kaiserslautern) |
+| 06/2018 | [Simulation of skeletal muscle tissue with fiber-based dynamics](https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis/index.html#/){target="_blank"} | Applied Math Seminar (Kaiserslautern) |
 | 05/2018 | [Parameter identification in ODE models](https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/param_id_in_ode/index.html){target="_blank"} | The University of Auckland |
 | 04/2018 | [Symplectic numerical integration](https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/symplectic_methods/index.html#/){target="_blank"} | PhD seminar (Auckland) |
 | 09/2017 | [Symplectic molecular dynamics]({{ '/slides/molecular_dynamics.pdf' | url}}){target="_blank"} | 19th ÖMG Meeting and Annual DMV Meeting (Salzburg) |
