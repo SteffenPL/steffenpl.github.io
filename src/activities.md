@@ -13,7 +13,7 @@ layout: markdown
 | | | |
 |---|---|---|
 | 09/2024 | [200 years old and still relevant: The Gauss-Seidel principle](/slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0){target="_blank"} | Lab Summer Conference 2024 (Kyoto) |
-| 09/2024 | [Agent-based modelling of heterogeneous EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion](/slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0){target="_blank"} | The 1st ASHBi-KAIST Joint Workshop (Kyoto) |
+| 09/2024 | [Modelling heterogeneity of EMT to identify main drivers of basal extrusion](/slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0){target="_blank"} | The 1st ASHBi-KAIST Joint Workshop (Kyoto) |
 | 07/2024 | [Agent-based modelling of heterogeneous EMT scenarios](/slides/2024/07-24-ESMTB/esmtb_2024.html#/0/0/0){target="_blank"} | Annual Meeting ESMTB (Toledo) |
 | 07/2024 | A live coding music performance with Julia ([Video](https://youtu.be/k-WUQFxWNj0?feature=shared){target="_blank"}) | JuliaCon 2024 (Eindhoven) |
 | 07/2024 | [Tools for agent-based modelling in developmental biology](/slides/2024/07-12-JuliaCon/juliacon_abm.html#/0/0/0){target="_blank"} ([Video](https://youtu.be/V3bc3_d9TIM?feature=shared){target="_blank"}) | JuliaCon 2024 (Eindhoven) | 
