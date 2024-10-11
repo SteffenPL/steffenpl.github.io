@@ -9,9 +9,6 @@ layout: markdown
 
 
 
-
-
-
 | | | |
 |---|---|---|
 | 12/2022 | [Testing in scientific computing]({{ '/assets/talks/Testing_in_scientific_programming.pdf' | url }}) | Vienna |
@@ -53,19 +50,6 @@ used in agent-based modelling.
 |---|---|---|
 | 22/5/2022 | Lange Nacht der Wissenschaft (long night of science) | Vienna |
 
-## Thesis documents
-
-<div class="md:grid md:grid-cols-2 gap-4 md:flex-none flex flex-col-reverse md:max-w-none max-w-xs mx-auto">
-<div onclick="location.href='/steffen.plunder/assets/thesis/plunder_bachelor_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
-<img src="{{ 'imgs/bachelor_thesis_preview.png' | url }}">
-<a href="{{ '/assets/thesis/plunder_bachelor_thesis.pdf'| url }}">Bachelor's thesis on molecular dynamics</a> (supervisor Dr. Wolfgang Bock).
-</div>
-
-<div onclick="location.href='/steffen.plunder/assets/thesis/plunder_masters_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
-<img src="{{ 'imgs/master_thesis_preview.png' | url }}">
-<a href="{{ '/assets/thesis/plunder_masters_thesis.pdf'| url }}">Master's thesis on modelling and simulation of skeletal muscle tissue</a> (supervisor Prof. Bernd Simeon). 
-</div>
-</div>
 
 
 ---

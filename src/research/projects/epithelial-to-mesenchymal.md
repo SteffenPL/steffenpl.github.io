@@ -1,9 +1,10 @@
 ---
 title: Mechanical modelling of epithelial-to-mesenchymal transitions
 start: 2019-10-01
+end: 2024-08-01
 layout: markdown
 desc: Modelling of different EMT scenarios to study their effect on metastasis. (Read more...)
-order: 1
+order: 10
 img: ./imgs/EMT/cells.png
 ---
 
@@ -12,8 +13,13 @@ _Short project description:_
 
 *This project is a collaboration with [Eric Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Marina A. Ferreria](https://marinaaferreira.wordpress.com/){target="_blank"}, [Diane Peurichard](https://sites.google.com/site/dianepeurichard/home){target="_blank"}, [Pierre Degond](https://sites.google.com/site/degond/Home){target="_blank"} and [Sara Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}.*
 
-### Preprint:
-- **S. Plunder, C. Danesin, B. Glise, M. A. Ferreira, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}**, _Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion._ **(2023)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2023.11.17.567510v1){target="_blank"}.
+### Publications:
+
+1. **S. Plunder, C. Danesin, B. Glise, M. A. Ferreira, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}**, _Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion._ Nature Communications **(2024)** [DOI:10.1038/s41467-024-51372-z](https://doi.org/10.1038/s41467-024-51372-z){target="_blank"}.
+
+2. **E. Despin-Guitard, V. S. Rosa, S. Plunder, N. Mathiah, K. Van Schoor, E. Nehme, S. Merino-Aceituno, J. Egea, M. N. Shahbazi, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"} & [I. Migeotte](https://iribhm.org/isabelle-migeotte/){target="_blank"}** _Non-apical mitoses contribute to cell delamination during mouse gastrulation._ Nature Communications **(2024)** [DOI:10.1038/s41467-024-51638-6](https://doi.org/10.1038/s41467-024-51638-6){target="_blank"}.
+
+
 
 The epithelial-to-mesenchymal transition (EMT) is a complex process during which epithelial cells[^1]
 transition into mesenchymal cells via a progression of changes in the cell state. 
@@ -21,8 +27,6 @@ During this transition, fundamental cell properties change. For example, epithel
 However, the EMT process is very flexible in the sense that some changes might be skipped or reversed. To study this kind of
 heterogeneity is one of the key challenges of this project.
 
-<p><a href="https://commons.wikimedia.org/wiki/File:Epithelial-Mesenchymal_Transition.gif#/media/File:Epithelial-Mesenchymal_Transition.gif"><img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Epithelial-Mesenchymal_Transition.gif" alt="Epithelial-Mesenchymal Transition.gif"></a><br>
-<span class="float-right">Image source: <a href="https://commons.wikimedia.org/w/index.php?curid=25952399">wikipedia.org</a></span></p>
 
 ## Project aims
 
@@ -118,13 +122,6 @@ is an old but very diverse topic. The preferred numerical methods vary fundament
 Our method of choice is the rather novel [position-based dynamics (PBD)](../position-based-dynamics).
 The advantage of PBD is that it has nearly optimal speed and it does not waste unnecessary resources on satisfying the inequality constraints. This allowed us to run millions of simulations within a few hours. With this uncompromising approach, we could generate enough data for statistical data analysis. Moreover, the numerical stability of PBD resolved issues previous algorithms had when the tissue is very packed. 
 
-
-
-
-## To be continued...
-
-This description is about ongoing research, as such, it is subject to change
-and none of the results is final. 
 
 
 [^1]: For non-biologists: An example of epithelial tissue is your skin.

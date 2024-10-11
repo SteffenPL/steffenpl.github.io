@@ -8,7 +8,7 @@ layout: markdown
 With my research, I want to answer **questions in biology using mathematical tools**. I have worked on mechanical models in developmental biology (epithelial-to-mesenchymal transitions), muscle dynamics, molecular dynamics and phage-bacterial interactions.
 
 My mathematical toolset includes **mathematical modelling** with ordinary, stochastic and partial differential equations. An emphasis lies on **constrained systems** such as differential inclusions and differential-algebraic equations. My key experties is the implementation of efficient **numerical simulations** for such models and the development of **models in collaboration with biologists**.
-
+<!-- 
 My mathematical research interests are
 
 **Biomathematics and modelling:** {.m-0}
@@ -23,7 +23,7 @@ My mathematical research interests are
 
 **Analysis:** {.m-0}
 - Non-smooth dynamical systems (differential inclusions on uniformly prox-regular sets)
-- Mean-field limits (in particular with constraints)
+- Mean-field limits (in particular with constraints) -->
 
 
 ## Current projects
@@ -32,7 +32,7 @@ _The results shown in this section are work in progress._
 
 {% include 'projects.njk' %}
 
-## Past projects
+## Completed projects
 
 {% include 'past_projects.njk' %}
 

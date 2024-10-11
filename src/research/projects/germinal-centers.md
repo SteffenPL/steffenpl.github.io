@@ -5,6 +5,7 @@ layout: markdown
 desc: Modelling growth and shape of germinal centers
 order: 6
 img: ./imgs/GC/gc_model.png
+hide: true
 ---
 
 Under construction.
