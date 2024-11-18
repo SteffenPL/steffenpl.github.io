@@ -3,14 +3,14 @@ title: Parameter Estimation for ODE models with Julia
 layout: markdown 
 ---
 
-# {{ title }}
+# 📊 {{ title }}
 <!-- <img src="https://raw.githubusercontent.com/JuliaLang/julia-logo-graphics/refs/heads/master/images/julia-logo-color.svg"/> -->
 
 **Summary:** _Statistics and optimisation theory provide rich theories to find optimal model parameters for given datapoints. These methodologies adapt well to ODE and PDE models. Depending on the number of unknown parameters and available data, different strategies are optimal. We will discuss optimisation based parameter estimation and automatic differentiation, a technique to obtain accurate gradients. Finally, we look at Bayesian inference, which provides statistical distribution of the most likely parameter combinations._
 
 _The lecture is complemented by code examples in the programming language Julia._
 
-## Material 
+## 📚 Material 
 
 Lecture notes and [example code](https://github.com/SteffenPL/ParamEstimationLecture2024) (links in preparation).
 
