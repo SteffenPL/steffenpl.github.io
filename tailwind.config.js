@@ -1,11 +1,13 @@
 module.exports = {
   content: ['./src/**/*.{js,md,njk,svg,html}',
-  "./node_modules/tw-elements/dist/js/**/*.js"],
+  "./node_modules/tw-elements/dist/js/**/*.js",
+  "./node_modules/flowbite/**/*.js"],
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
     require('tailwindcss-debug-screens'),
-    require("tw-elements/dist/plugin")
+    require("tw-elements/dist/plugin"),
+    require('flowbite/plugin')
   ],
   darkMode: 'class',
   theme: {
