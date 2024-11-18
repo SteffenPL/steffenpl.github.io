@@ -100,6 +100,14 @@ works on several projects with different dependencies in parallel.
     </div>
 </div>
 
+## 💬 Organisation
+
+- This lecture is given in **English**.
+- It is part of the lecture series is organized by [Research Center of Mathematics for Social Creativity, Research Institute for Electronic Science, Hokkaido University](https://mmc01.es.hokudai.ac.jp/msc/en/){target="_blank"}.
+- This lecture series is supported by
+  - **JSPS KAKENHI** _Grant Number JP23H04936, 23K13013, 24H00188_
+  - **JST CREST** _Grant Number JPMJCR1926_
+  - **JST Moonshot Program** _Grant Number JPMJMS2023_
 
 
 [^1]: If you prefer strict free open-source software, one might prefer [VSCodium](https://vscodium.com/).
