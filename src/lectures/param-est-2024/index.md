@@ -7,15 +7,16 @@ layout: markdown
 <!-- <img src="https://raw.githubusercontent.com/JuliaLang/julia-logo-graphics/refs/heads/master/images/julia-logo-color.svg"/> -->
 
 
-**This lecture is part of the lecture series organized by [Research Center of Mathematics for Social Creativity, Research Institute for Electronic Science, Hokkaido University](https://mmc01.es.hokudai.ac.jp/msc/en/){target="_blank"}.**
+*This lecture is part of the lecture series organized by the [Research Center of Mathematics for Social Creativity, Research Institute for Electronic Science, Hokkaido University](https://mmc01.es.hokudai.ac.jp/msc/en/){target="_blank"}.*
 
-**Summary:** _Statistics and optimisation theory provide rich theories to find optimal model parameters for given datapoints. These methodologies adapt well to ODE and PDE models. Depending on the number of unknown parameters and available data, different strategies are optimal. We will discuss optimisation based parameter estimation and automatic differentiation, a technique to obtain accurate gradients. Finally, we look at Bayesian inference, which provides statistical distribution of the most likely parameter combinations._
+---
+## 📑 Summary
 
-_The lecture is complemented by code examples in the programming language Julia._
+_Statistics and optimisation theory provide rich theories to find optimal model parameters for given datapoints. These methodologies adapt well to ODE and PDE models. Depending on the number of unknown parameters and available data, different strategies are optimal. We will discuss optimisation based parameter estimation and automatic differentiation, a technique to obtain accurate gradients. Finally, we look at Bayesian inference, which provides statistical distribution of the most likely parameter combinations._
 
 ## 📚 Material 
 
-Lecture notes and [example code](https://github.com/SteffenPL/ParamEstimationLecture2024) (links in preparation).
+**Lecture notes** and [example code](https://github.com/SteffenPL/ParamEstimationLecture2024) (links in preparation).
 
 ## 💻 Setup instructions 
 
@@ -106,7 +107,7 @@ works on several projects with different dependencies in parallel.
 ## 💬 Organisation
 
 - This lecture is given in **English**.
-- It is part of the lecture series is organized by [Research Center of Mathematics for Social Creativity, Research Institute for Electronic Science, Hokkaido University](https://mmc01.es.hokudai.ac.jp/msc/en/){target="_blank"}.
+- It is part of the lecture series organized by the [Research Center of Mathematics for Social Creativity, Research Institute for Electronic Science, Hokkaido University](https://mmc01.es.hokudai.ac.jp/msc/en/){target="_blank"}.
 - This lecture series is supported by
   - **JSPS KAKENHI** _Grant Number JP23H04936, 23K13013, 24H00188_
   - **JST CREST** _Grant Number JPMJCR1926_
