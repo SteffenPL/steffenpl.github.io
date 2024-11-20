@@ -42,7 +42,7 @@ Please install:
 2. [Visual Studio Code](https://code.visualstudio.com/), 
 3. [Julia for Visual Studio Code](https://www.julia-vscode.org/),
 4. Clone [github.com/SteffenPL/ParamEstimationLecture2024](https://github.com/SteffenPL/ParamEstimationLecture2024),
-5. Install all required Julia dependencies[^deps]
+5. Install all required Julia dependencies[^deps] either by running the file `000_setup.jl` or with the following steps:
     - Open the repository in VS Code and **Open Julia REPL**[^2],
     - enter package mode by pressing `]` inside the Julia REPL and 
     - run `activate .` and `instantiate`.
@@ -82,23 +82,46 @@ We will follow the instructions from [code.visualstudio.com/docs/languages/julia
 
 For basic operations inside VS Code, please check [code.visualstudio.com/docs/getstarted/getting-started](https://code.visualstudio.com/docs/getstarted/getting-started).
 
-### 3. Running Julia Code 
+**The most useful command in Visual Studio Code is the 
+command palette, where you can search for any commands!**
+- You can access it with the shortcut: `Shift + Command + P` _(Mac)_ or `Ctrl + Shift + P` _Windows/Linux_.
+  - For example: Search for `Preferences: Color Theme` to select a nice theme!
 
+### 3. Installing Julia dependencies
+ 
 
-- Download the lectures example code from
+- **Download the lectures example code from [github.com/SteffenPL/ParamEstimationLecture2024](https://github.com/SteffenPL/ParamEstimationLecture2024)**.
+- Open the folder with Visual Studio Code `File > Open Folder`.[^trust]
+- Open the file `000_setup.jl` and press the run button in the top right corner of the editor (or run the command `Julia: Execute Active File in REPL`[^2]). This should download and install all requirements.
+- To test the installation, open the file `002_first_example.jl` and also run this file. It should display a plot of an ODE solution.[^slow] 
 
-### 4. Installing Julia dependencies
+![](imgs/julia_ide.png)
 
-In Julia, we can install additional functions via packages. The integrated package manager 
-allows us to
-- install packages globally (into the main enviroment),
-- manage packages individually for each project folder (via a `Project.toml` file).
+### 4. Running Julia Code
 
-The recommendation is to use individual projects, which is useful as soon as one 
-works on several projects with different dependencies in parallel.
+You can also run Julia code by selecting a few lines in the editor and using the shortcut `Shift+Enter`.
 
-#### 4.1 The package manager
+### 5. A note on installing Julia packages
 
+One of the best features of Julia is the large ecosystem of very modern scientific computing packages. One can see a great overview at the [documentation side of the SciML project (Scientific Machine Learning)](https://docs.sciml.ai/). 
+
+![](imgs/docs.png)
+
+To `add` a new package to your current code, you can use the integrated Julia package manager as follows:
+- Open a Julia REPL.
+- Press the `]` key to enter the package mode.
+- Optional but recommended: Activate a new Julia enviroment for your current folder with the command `activate .` (where `.` denotes the current folder).
+- Use the command `add` to install a new package, for example via 
+```
+add OrdinaryDiffEq Plots
+```
+to install the two packages `OrdinaryDiffEq` and `Plots`.
+
+Once you added a package, you and use it's functions with the Julia command
+```
+using OrdinaryDiffEq, Plots
+```
+inside your Julia code.
 
 
     </div>
@@ -117,3 +140,5 @@ works on several projects with different dependencies in parallel.
 [^1]: If you prefer strict free open-source software, one might prefer [VSCodium](https://vscodium.com/).
 [^2]: To find any command in Visual Studio code, open the command palette via the shortcut `Shift + Command + P` _(Mac)_ or `Ctrl + Shift + P` _Windows/Linux_.
 [^deps]: The dependencies might change shortly before the lecture. If any problems arise, please contact me.
+[^slow]: The first runtime might be slow, due to one-time precompilation.
+[^trust]: The first time you open a new folder, Visual Studio Code might ask you to confirm that you trust the files. This is normal behaviour and in order to work on a program you need to agree to trust the folder: ![](imgs/trust.png)
