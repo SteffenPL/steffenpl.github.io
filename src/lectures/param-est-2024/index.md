@@ -14,7 +14,17 @@ layout: markdown
 
 _Statistics and optimisation theory provide rich theories to find optimal model parameters for given datapoints. These methodologies adapt well to ODE and PDE models. Depending on the number of unknown parameters and available data, different strategies are optimal. We will discuss optimisation based parameter estimation and automatic differentiation, a technique to obtain accurate gradients. Finally, we look at Bayesian inference, which provides statistical distribution of the most likely parameter combinations._
 
-![](imgs/anim_fps5.gif)
+<div class="drop-shadow-lg mx-auto">
+
+    <img src="imgs/anim_fps5.gif" class="mx-auto"></img>
+
+</div>
+
+<div class="text-center text-sm">
+
+    *Figure:* Example parameter fitting using an $L^2$ error and a quasi-Newton (LBFGS) solver. 
+
+</div>
 
 ## 📚 Material 
 
