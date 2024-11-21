@@ -151,12 +151,11 @@ inside your Julia code.
 ## 🔗 Useful links
 
 
-- Julia Tutorial: https://docs.julialang.org/en/v1/manual/variables/
-- Cheat-Sheet: https://steffenpl.github.io/Julia-Cheat-Sheet/
+- Julia Tutorial: [docs.julialang.org/en/v1](https://docs.julialang.org/en/v1/manual/variables/)
+- Cheat-Sheet: [steffenpl.github.io/Julia-Cheat-Sheet](https://steffenpl.github.io/Julia-Cheat-Sheet/)
 - Modern Julia: https://modernjuliaworkflows.org/
-
-- Noteworthy differences (from MATLAB/Python/C...): https://docs.julialang.org/en/v1/manual/noteworthy-differences/
-
+- Noteworthy differences (from MATLAB/Python/C...): [docs.julialang.org/en/v1/manual/noteworthy-differences](https://docs.julialang.org/en/v1/manual/noteworthy-differences/)
+- Very friendly discussion forum with some strong mathematicians as regulars: [discourse.julialang.org](https://discourse.julialang.org/)
 
 [^1]: If you prefer strict free open-source software, one might prefer [VSCodium](https://vscodium.com/).
 [^2]: To find any command in Visual Studio code, open the command palette via the shortcut `Shift + Command + P` _(Mac)_ or `Ctrl + Shift + P` _Windows/Linux_.
