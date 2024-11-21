@@ -148,6 +148,15 @@ inside your Julia code.
   - **JST CREST** _Grant Number JPMJCR1926_
   - **JST Moonshot Program** _Grant Number JPMJMS2023_
 
+## 🔗 Useful links
+
+
+- Julia Tutorial: https://docs.julialang.org/en/v1/manual/variables/
+- Cheat-Sheet: https://steffenpl.github.io/Julia-Cheat-Sheet/
+- Modern Julia: https://modernjuliaworkflows.org/
+
+- Noteworthy differences (from MATLAB/Python/C...): https://docs.julialang.org/en/v1/manual/noteworthy-differences/
+
 
 [^1]: If you prefer strict free open-source software, one might prefer [VSCodium](https://vscodium.com/).
 [^2]: To find any command in Visual Studio code, open the command palette via the shortcut `Shift + Command + P` _(Mac)_ or `Ctrl + Shift + P` _Windows/Linux_.
