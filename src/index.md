@@ -30,8 +30,15 @@ _September 2024:_ **New Nature Communications publications on [EMT](https://doi.
 
 _March 2024:_ Our **standalone EMT simulator**[^1] is online [semtor.github.io](https://semtor.github.io/){target="_blank"}! 🎉
 
-_Newest blog entries:_ {% for item in collections.blog %}
-[{{ item.data.title }}]({{ item.url | url}}); {% endfor %}
+_My blog posts:_ 
+<ul class="list-inside mt-0 pt-0">
+{% for item in collections.blog %}
+<li>
+    <i>{{item.data.date | readableDateMonths}}:</i>
+    <a href="{{ item.url | url}}">{{ item.data.title }}</a>
+</li>
+{% endfor %}
+</ul>
 
 ## Contact and links
 
