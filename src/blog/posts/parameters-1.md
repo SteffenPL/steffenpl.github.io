@@ -70,7 +70,7 @@ To tackle this issue, I decided that I need to study more existing examples. Her
 3. [SMBLToolkit.jl](https://github.com/SciML/SBMLToolkit.jl)
     - Always good to know how to load other people's models.
 
-I hope that this study will help me to improve my lecture material: [Parameter Estimation for Differential Equations with Julia]({{ 'lectures/param-est-2024' | url }})! 🚧
+I hope that this study will help me to improve my lecture material: [Parameter Estimation for Differential Equations with Julia]({{ '/lectures/param-est-2024' | url }})! 🚧
 
 
 
