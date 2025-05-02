@@ -5,6 +5,7 @@ layout: markdown
 desc: The role TLT in kidney disease is not well understood. We use models to capture their development.  
 order: 11
 img: ./imgs/TLT/thumb.png
+hide: true
 ---
 
 # {{ title }}
