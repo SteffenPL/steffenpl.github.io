@@ -16,7 +16,7 @@ I'm a program-specific researcher (post doc) at [ASHBi, KUIAS, Kyoto University]
 I studied mathematics at [TU Kaiserslautern](https://www.mathematik.uni-kl.de/en/) with stays at [TU Delft](https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics) and [The University of Auckland](https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-mathematics.html), obtained my PhD at [University of Vienna](https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/) in [Sara Merino-Aceituno's](https://sites.google.com/view/saramerinoaceituno/about) group and did a post doc in [Seirin-Lee's](https://sites.google.com/site/seirin711lee/home) lab.
 
 <div class="container md:hidden drop-shadow-xl">
-<img class="mx-auto max-w-[12em]" src="./steffen_red.jpg">
+<img class="mx-auto max-w-[12em]" src="./steffen_white.jpg">
 </div>
 
 
