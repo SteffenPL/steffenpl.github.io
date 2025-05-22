@@ -18,7 +18,7 @@ layout: markdown
 {reversed=reversed}
 
 9. **[P. C. Guruciaga](https://sites.google.com/view/pamelaguruciaga/home){target="_blank"}, [T. Ichikawa](https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/){target="_blank"}, S. Plunder, [T. Hiiragi](https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/){target="_blank"}, [A. Erzberger](https://www.embl.org/people/person/anna-erzberger/)**, _Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development_ **(2024)**
-[arxiv](https://arxiv.org/abs/2403.08710].
+[arxiv](https://arxiv.org/abs/2403.08710).
 {reversed=reversed}
 
 8. **S. Plunder, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.

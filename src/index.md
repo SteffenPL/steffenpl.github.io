@@ -24,7 +24,7 @@ You can find a description of my current projects in the [research section]({{ '
 
 ## News and Blog
 
-- _May 2025:_ New preprint! 
+- _May 2025:_ Two new preprints! 
 - _September 2024:_ **New Nature Communications publications on [EMT](https://doi.org/10.1038/s41467-024-51372-z){target="_blank"} and [gastrulation](https://doi.org/10.1038/s41467-024-51638-6){target="_blank"} are out!**
 - _March 2024:_ Our **standalone EMT simulator**[^1] is online [semtor.github.io](https://semtor.github.io/){target="_blank"}! 🎉
 
@@ -59,7 +59,7 @@ _My blog posts:_
 {reversed=reversed}
 
 9. **[P. C. Guruciaga](https://sites.google.com/view/pamelaguruciaga/home){target="_blank"}, [T. Ichikawa](https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/){target="_blank"}, S. Plunder, [T. Hiiragi](https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/){target="_blank"}, [A. Erzberger](https://www.embl.org/people/person/anna-erzberger/)**, _Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development_ **(2024)**
-[arxiv](https://arxiv.org/abs/2403.08710].
+[arxiv](https://arxiv.org/abs/2403.08710).
 {reversed=reversed}
 
 8. **S. Plunder, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
