@@ -43,7 +43,7 @@ _My blog posts:_
 <!--Office 03.125, Faculty of Mathematics, Oskar-Morgenstern-Platz 1, Vienna.<br>-->
 📧 <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a>
 
-🔗 [GitHub/SteffenPL](https://github.com/SteffenPL) | [Google Scholar](https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en)  | [ORCID](https://orcid.org/0000-0002-3371-3790) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder) | [Twitter/X](https://twitter.com/SteffenPlunder)
+🔗 [GitHub/SteffenPL](https://github.com/SteffenPL) | [Google Scholar](https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en)  | [ORCID](https://orcid.org/0000-0002-3371-3790) | [researchmap.jp](https://researchmap.jp/steffen-plunder) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder) | [Twitter/X](https://twitter.com/SteffenPlunder)
 
 
 
@@ -55,7 +55,7 @@ _My blog posts:_
 10. **[M. Mira Osuna](https://sbcf.fr/en/member/marta-mira-osuna/){target="_blank"}, S. Plunder, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Roland Le Borgne](https://igdr.univ-rennes.fr/en/roland-le-borgne){target="_blank"}**, _The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model._ **(2024)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.10.08.617152v1).
 {reversed=reversed}
 
-9. **[S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}**, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **(2024)** [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
+9. **[S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}**, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **(2024)** [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"} (accepted).
 {reversed=reversed}
 
 8. **S. Plunder, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.

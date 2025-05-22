@@ -14,7 +14,7 @@ layout: markdown
 10. **[M. Mira Osuna](https://sbcf.fr/en/member/marta-mira-osuna/){target="_blank"}, S. Plunder, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Roland Le Borgne](https://igdr.univ-rennes.fr/en/roland-le-borgne){target="_blank"}**, _The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model._ **(2024)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.10.08.617152v1).
 {reversed=reversed}
 
-9. **[S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}**, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **(2024)** [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
+9. **[S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}**, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **(2024)** [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"} (accepted).
 {reversed=reversed}
 
 8. **S. Plunder, [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}**, _Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs._ **(2023)** [arxiv](https://arxiv.org/abs/2310.01215){target="_blank"}.
