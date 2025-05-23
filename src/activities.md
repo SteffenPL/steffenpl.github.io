@@ -12,11 +12,13 @@ layout: markdown
 
 | | | |
 |---|---|---|
+| 01/2025 | [Emergence of digit-like structures through mechanical instabilities: A hybrid computational and experimental study](https://ashbi.kyoto-u.ac.jp/ja/event/event-retreat/2226/){target="_blank"} | ASHBi Retreat 2025 (Shiga)|
 | 09/2024 | [200 years old and still relevant: The Gauss-Seidel principle](/slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0){target="_blank"} | Lab Summer Conference 2024 (Kyoto) |
 | 09/2024 | [Modelling heterogeneity of EMT to identify main drivers of basal extrusion](/slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0){target="_blank"} | The 1st ASHBi-KAIST Joint Workshop (Kyoto) |
 | 07/2024 | [Agent-based modelling of heterogeneous EMT scenarios](/slides/2024/07-24-ESMTB/esmtb_2024.html#/0/0/0){target="_blank"} | Annual Meeting ESMTB (Toledo) |
 | 07/2024 | A live coding music performance with Julia ([Video](https://youtu.be/k-WUQFxWNj0?feature=shared){target="_blank"}) | JuliaCon 2024 (Eindhoven) |
 | 07/2024 | [Tools for agent-based modelling in developmental biology](/slides/2024/07-12-JuliaCon/juliacon_abm.html#/0/0/0){target="_blank"} ([Video](https://youtu.be/V3bc3_d9TIM?feature=shared){target="_blank"}) | JuliaCon 2024 (Eindhoven) | 
+| 07/2024 | Position-based dynamics as a numerical tool for agent-based cell migration models of dense populations | KSMB-SMB 2024 (SEOUL) |
 | 03/2024 | [Position-based dynamics: Convergence theory andapplications to agent-based models](/slides/2024/03-22-Vienna/slides_vienna.html#/0/0/0){target="_blank"} | PDE seminar (Vienna) | 
 | 03/2024 | [Towards kinetic theory for multi-scale muscle models](/slides/2024/03-08-Kinetic-theory-mucles/kinetic_theory.pdf){target="_blank"} | Inria (Paris) |
 | 08/2023 | [Convergence of position based dynamics for first-order particle systems with volume exclusion](/slides/2023/08-22-ICIAM/iciam.html#/0/0/0){target="_blank"} | ICIAM 2023 (Tokyo) |
@@ -46,6 +48,7 @@ _I organised (together with others) various events during my time as speaker of 
 | 2022 | [VSM Mini-Course on String Theory by Pavel Safronov](https://hackmd.io/@vsm/string-theory) (one week) |
 | 2021 | [VSM workshop: A PhD in mathematics &ndash; career possibilities & gender aspects](https://ps-mathematik.univie.ac.at/e/index.php?event=VSM-WS2021) (one day)  |
 | 2017 &ndash; 2019 | Student Talks (initiator of series of extracurricular talks at TU Kaiserslautern) |
+
 
 ## Software packages
 
