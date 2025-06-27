@@ -64,7 +64,7 @@ _My blog posts:_
 
 ## Publications (peer-reviewed)
 
-1. [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **Mathematical Models and Methods in Applied Sciences** **(2025)** [DOI:10.1142/S0218202525500356](https://doi.org/10.1142/S0218202525500356){target="_blank"}[arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
+1. [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **Mathematical Models and Methods in Applied Sciences** **(2025)** [DOI:10.1142/S0218202525500356](https://doi.org/10.1142/S0218202525500356){target="_blank"}, [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
 {reversed=reversed}
 
 2. H. Jäger, [É. Grosjean](https://grosjean1.github.io/){target="_blank"}, S. Plunder, C. Redenbach, A. Keilmann, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}, C. Surulescu, _Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration._ **Proceedings in Applied Mathematics & Mechanics** **(2024)** [DOI: 10.1002/pamm.202400133](http://doi.org/10.1002/pamm.202400133){target="_blank"}.
