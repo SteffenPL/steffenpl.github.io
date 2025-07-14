@@ -12,6 +12,7 @@ layout: markdown
 
 | | | |
 |---|---|---|
+| 07/2025 | [Position-based Dynamics for Multicellular Systems with Adhesion Memory](/slides/2025/07-08-ACMBJSMB/index.html#/0/0/0) | ACMB-JSMB 2025 (Kyoto) |
 | 01/2025 | [Emergence of digit-like structures through mechanical instabilities: A hybrid computational and experimental study](https://ashbi.kyoto-u.ac.jp/ja/event/event-retreat/2226/){target="_blank"} | ASHBi Retreat 2025 (Shiga)|
 | 09/2024 | [200 years old and still relevant: The Gauss-Seidel principle](/slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0){target="_blank"} | Lab Summer Conference 2024 (Kyoto) |
 | 09/2024 | [Modelling heterogeneity of EMT to identify main drivers of basal extrusion](/slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0){target="_blank"} | The 1st ASHBi-KAIST Joint Workshop (Kyoto) |
