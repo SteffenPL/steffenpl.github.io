@@ -8,7 +8,7 @@ layout: markdown
 
 ## Preprints
 
-13. [R. Tsutsumi](https://ashbi.kyoto-u.ac.jp/member/rio-tsutsumi/){target="_blank"}, [A. Diez](https://antoinediez.gitlab.io/){target="_blank"}, S. Plunder, R. Kimura, S. Oki, K. Takizawa, H. Akiyama, Y. Mii, R. Takada, S. Takada, [Mototsugu Eiraku](https://scholar.google.com/citations?user=pJQcDxEAAAAJ&hl=en){target-"_blank"},
+13. [R. Tsutsumi](https://ashbi.kyoto-u.ac.jp/member/rio-tsutsumi/){target="_blank"}, [A. Diez](https://antoinediez.gitlab.io/){target="_blank"}, S. Plunder, R. Kimura, S. Oki, K. Takizawa, H. Akiyama, [Y. Mii](https://sites.google.com/view/yusukemii/home){target="_blank"}, R. Takada, [S. Takada](https://www.nibb.ac.jp/cib2/english.html){target="_blank"}, [Mototsugu Eiraku](https://www2.infront.kyoto-u.ac.jp/bs01/){target-"_blank"},
 _Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids._ **(2025)** [bioRxiv](https://doi.org/10.1101/2025.08.31.673315).
 {reversed=reversed}
 
