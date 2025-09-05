@@ -8,6 +8,12 @@ layout: markdown
 
 ## Preprints
 
+13. [R. Tsutsumi](https://ashbi.kyoto-u.ac.jp/member/rio-tsutsumi/){target="_blank"}, [A. Diez](https://antoinediez.gitlab.io/){target="_blank"}, S. Plunder, R. Kimura, S. Oki, K. Takizawa, H. Akiyama, Y. Mii, R. Takada, S. Takada, [Mototsugu Eiraku](https://scholar.google.com/citations?user=pJQcDxEAAAAJ&hl=en){target-"_blank"},
+_Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids._ **(2025)** [bioRxiv](https://doi.org/10.1101/2025.08.31.673315).
+{reversed=reversed}
+
+https://www.biorxiv.org/content/10.1101/2025.08.31.673315v1
+
 12. [T. Ichikawa](https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/){target="_blank"}, [P. C. Guruciaga](https://sites.google.com/view/pamelaguruciaga/home){target="_blank"}, S. Hu, S. Plunder, M. Makino, M. Hamaji, A. Stokkermans, S. Yoshida, [A. Erzberger](https://www.embl.org/people/person/anna-erzberger/){target="_blank"}, [T. Hiiragi](https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/){target="_blank"}, _Boundary-guided cell alignment drives mouse epiblast maturation._ **(2025)** [bioRxiv](https://doi.org/10.1101/2025.04.28.650859).
 {reversed=reversed}
 

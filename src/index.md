@@ -24,6 +24,7 @@ You can find a description of my current projects in the [research section]({{ '
 
 ## News and Blog
 
+- _September 2025:_ New preptint on digit organoids!
 - _May 2025:_ Two new preprints! 
 - _September 2024:_ **New Nature Communications publications on [EMT](https://doi.org/10.1038/s41467-024-51372-z){target="_blank"} and [gastrulation](https://doi.org/10.1038/s41467-024-51638-6){target="_blank"} are out!**
 - _March 2024:_ Our **standalone EMT simulator**[^1] is online [semtor.github.io](https://semtor.github.io/){target="_blank"}! 🎉
@@ -48,6 +49,10 @@ _My blog posts:_
 
 
 ## Preprints
+
+13. [R. Tsutsumi](https://ashbi.kyoto-u.ac.jp/member/rio-tsutsumi/){target="_blank"}, [A. Diez](https://antoinediez.gitlab.io/){target="_blank"}, S. Plunder, R. Kimura, S. Oki, K. Takizawa, H. Akiyama, Y. Mii, R. Takada, S. Takada, [Mototsugu Eiraku](https://scholar.google.com/citations?user=pJQcDxEAAAAJ&hl=en){target-"_blank"},
+_Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids._ **(2025)** [bioRxiv](https://doi.org/10.1101/2025.08.31.673315).
+{reversed=reversed}
 
 12. [T. Ichikawa](https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/){target="_blank"}, [P. C. Guruciaga](https://sites.google.com/view/pamelaguruciaga/home){target="_blank"}, S. Hu, S. Plunder, M. Makino, M. Hamaji, A. Stokkermans, S. Yoshida, [A. Erzberger](https://www.embl.org/people/person/anna-erzberger/){target="_blank"}, [T. Hiiragi](https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/){target="_blank"}, _Boundary-guided cell alignment drives mouse epiblast maturation._ **(2025)** [bioRxiv](https://doi.org/10.1101/2025.04.28.650859).
 {reversed=reversed}
