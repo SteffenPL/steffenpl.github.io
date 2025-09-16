@@ -12,6 +12,7 @@ layout: markdown
 
 | | | |
 |---|---|---|
+| 09/2025 | Modeling the Directionality of Cell Migration in Epithelial-to-Mesenchymal Transitions with Non-Smooth Dynamical Systems | [NCTS Webinar on Nonlinear Evolutionary Dynamics](https://ncts.ntu.edu.tw/events_1_detail.php?nid=2964){target="_blank"} |
 | 07/2025 | [Position-based Dynamics for Multicellular Systems with Adhesion Memory](/slides/2025/07-08-ACMBJSMB/index.html#/0/0/0){target="_blank"} | ACMB-JSMB 2025 (Kyoto) |
 | 01/2025 | [Emergence of digit-like structures through mechanical instabilities: A hybrid computational and experimental study](https://ashbi.kyoto-u.ac.jp/ja/event/event-retreat/2226/){target="_blank"} | ASHBi Retreat 2025 (Shiga)|
 | 09/2024 | [200 years old and still relevant: The Gauss-Seidel principle](/slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0){target="_blank"} | Lab Summer Conference 2024 (Kyoto) |
