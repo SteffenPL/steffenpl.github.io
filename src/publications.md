@@ -15,10 +15,7 @@ _Self-organized fingering instabilities drive the emergence of tissue morphogene
 12. [T. Ichikawa](https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/){target="_blank"}, [P. C. Guruciaga](https://sites.google.com/view/pamelaguruciaga/home){target="_blank"}, S. Hu, S. Plunder, M. Makino, M. Hamaji, A. Stokkermans, S. Yoshida, [A. Erzberger](https://www.embl.org/people/person/anna-erzberger/){target="_blank"}, [T. Hiiragi](https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/){target="_blank"}, _Boundary-guided cell alignment drives mouse epiblast maturation._ **(2025)** [bioRxiv](https://doi.org/10.1101/2025.04.28.650859).
 {reversed=reversed}
 
-11. [M. Mira Osuna](https://sbcf.fr/en/member/marta-mira-osuna/){target="_blank"}, S. Plunder, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Roland Le Borgne](https://igdr.univ-rennes.fr/en/roland-le-borgne){target="_blank"}, _The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model._ **(2024)** [bioRxiv](https://www.biorxiv.org/content/10.1101/2024.10.08.617152v1).
-{reversed=reversed}
-
-9. [P. C. Guruciaga](https://sites.google.com/view/pamelaguruciaga/home){target="_blank"}, [T. Ichikawa](https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/){target="_blank"}, S. Plunder, [T. Hiiragi](https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/){target="_blank"}, [A. Erzberger](https://www.embl.org/people/person/anna-erzberger/), _Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development_ **(2024)**
+11. [P. C. Guruciaga](https://sites.google.com/view/pamelaguruciaga/home){target="_blank"}, [T. Ichikawa](https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/){target="_blank"}, S. Plunder, [T. Hiiragi](https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/){target="_blank"}, [A. Erzberger](https://www.embl.org/people/person/anna-erzberger/), _Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development_ **(2024)**
 [arxiv](https://arxiv.org/abs/2403.08710).
 {reversed=reversed}
 
@@ -27,7 +24,10 @@ _Self-organized fingering instabilities drive the emergence of tissue morphogene
 
 ## Publications (peer-reviewed)
 
-1. [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **Mathematical Models and Methods in Applied Sciences** **(2025)** [DOI:10.1142/S0218202525500356](https://doi.org/10.1142/S0218202525500356){target="_blank"}, [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
+1. [M. Mira Osuna](https://sbcf.fr/en/member/marta-mira-osuna/){target="_blank"}, S. Plunder, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Roland Le Borgne](https://igdr.univ-rennes.fr/en/roland-le-borgne){target="_blank"}, _The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model._ **iScience** ***(2025)** [DOI: 10.1016/j.isci.2025.113663](https://doi.org/10.1016/j.isci.2025.113663).
+{reversed=reversed}
+
+2. [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **Mathematical Models and Methods in Applied Sciences** **(2025)** [DOI:10.1142/S0218202525500356](https://doi.org/10.1142/S0218202525500356){target="_blank"}, [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
 {reversed=reversed}
 
 2. H. Jäger, [É. Grosjean](https://grosjean1.github.io/){target="_blank"}, S. Plunder, C. Redenbach, A. Keilmann, [B. Simeon](https://www.mathematik.uni-kl.de/en/das/people/head/simeon){target="_blank"}, C. Surulescu, _Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration._ **Proceedings in Applied Mathematics & Mechanics** **(2024)** [DOI: 10.1002/pamm.202400133](http://doi.org/10.1002/pamm.202400133){target="_blank"}.
@@ -56,18 +56,18 @@ In: Reis, T., Grundel, S., Schöps, S. (eds) **Progress in Differential-Algebrai
 
 <div class="md:grid md:grid-cols-2 gap-4 md:flex-none flex flex-col-reverse md:max-w-none max-w-xs mx-auto">
 
-<div onclick="location.href='/steffen.plunder/assets/thesis/plunder_phd_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
+<div onclick="location.href='/assets/thesis/plunder_phd_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
 <img src="{{ 'imgs/phd_thesis_preview.png' | url }}">
 <a href="{{ '/assets/thesis/plunder_phd_thesis.pdf'| url }}">PhD thesis on Mathematical modelling and simulation of
 epithelial-to-mesenchymal transitions leading to cell migration</a> (supervisor Prof. Sara Merino-Aceituno). 
 </div>
 
-<div onclick="location.href='/steffen.plunder/assets/thesis/plunder_masters_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
+<div onclick="location.href='/assets/thesis/plunder_masters_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
 <img src="{{ 'imgs/master_thesis_preview.png' | url }}">
 <a href="{{ '/assets/thesis/plunder_masters_thesis.pdf'| url }}">Master's thesis on modelling and simulation of skeletal muscle tissue</a> (supervisor Prof. Bernd Simeon). 
 </div>
 
-<div onclick="location.href='/steffen.plunder/assets/thesis/plunder_bachelor_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
+<div onclick="location.href='/assets/thesis/plunder_bachelor_thesis.pdf'" class="cursor-pointer drop-shadow-xl">
 <img src="{{ 'imgs/bachelor_thesis_preview.png' | url }}">
 <a href="{{ '/assets/thesis/plunder_bachelor_thesis.pdf'| url }}">Bachelor's thesis on molecular dynamics</a> (supervisor Dr. Wolfgang Bock).
 </div>
