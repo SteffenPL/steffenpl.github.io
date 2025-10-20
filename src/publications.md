@@ -24,7 +24,7 @@ _Self-organized fingering instabilities drive the emergence of tissue morphogene
 
 ## Publications (peer-reviewed)
 
-1. [M. Mira Osuna](https://sbcf.fr/en/member/marta-mira-osuna/){target="_blank"}, S. Plunder, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Roland Le Borgne](https://igdr.univ-rennes.fr/en/roland-le-borgne){target="_blank"}, _The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model._ **iScience** ***(2025)** [DOI: 10.1016/j.isci.2025.113663](https://doi.org/10.1016/j.isci.2025.113663).
+1. [M. Mira Osuna](https://sbcf.fr/en/member/marta-mira-osuna/){target="_blank"}, S. Plunder, [E. Theveneau](https://cbi-toulouse.fr/eng/equipe-theveneau){target="_blank"}, [Roland Le Borgne](https://igdr.univ-rennes.fr/en/roland-le-borgne){target="_blank"}, _The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model._ **iScience** **(2025)** [DOI: 10.1016/j.isci.2025.113663](https://doi.org/10.1016/j.isci.2025.113663).
 {reversed=reversed}
 
 2. [S. Merino-Aceituno](https://sites.google.com/view/saramerinoaceituno){target="_blank"}, S. Plunder, C. Wytrzens, [H. Yoldaş](https://sites.google.com/view/havvayoldas/home){target="_blank"}, _Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects._ **Mathematical Models and Methods in Applied Sciences** **(2025)** [DOI:10.1142/S0218202525500356](https://doi.org/10.1142/S0218202525500356){target="_blank"}, [arxiv](http://arxiv.org/abs/2410.06740){target="_blank"}.
