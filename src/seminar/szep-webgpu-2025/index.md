@@ -5,7 +5,8 @@ layout: markdown
 
 # Grisha Szep: Emergent locomotion with scalable cytoskeleton simulations in WebGPU
 
-We would like to kindly invite you to the following interdisciplinary seminar at the cross-section of mathematical modeling, modern computational tools and cell biology.
+We would like to kindly invite you to the following interdisciplinary seminar at the cross-section of mathematical modeling, modern computational tools and cell biology. (Take a look at his simulation here [gszep.com/fluid-structure-interactive/cyto](https://gszep.com/fluid-structure-interactive/cyto).)
+
 
 📅 Date: November 12 (Wed), 14:00
 
@@ -13,6 +14,7 @@ We would like to kindly invite you to the following interdisciplinary seminar at
 Medicine Faculty Bldg. B, Seminar Room (1st floor)
 
 💻 Zoom-Link: [https://kyoto-u-edu.zoom.us/j/88217675051?pwd=ZwdLXhOgS0dVfaLgRUq2YPpPKZ0mbG.1](https://kyoto-u-edu.zoom.us/j/88217675051?pwd=ZwdLXhOgS0dVfaLgRUq2YPpPKZ0mbG.1)
+
 
 
 <img src="./poster.svg"></img>
