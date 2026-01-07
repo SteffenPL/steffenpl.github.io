@@ -3,23 +3,18 @@
   "version": "1.0.0",
   "description": "Personal webpage.",
   "main": "index.js",
-  "config": {
-    "11ty": "eleventy",
-    "css": "tailwindcss -i src/_styles/_main.pcss -o dist/assets/main.bundle.css --postcss",
-    "js": "esbuild src/_scripts/_main.js --outfile=dist/assets/main.bundle.js --bundle"
-  },
   "scripts": {
     "build": "cross-env NODE_ENV=production npm-run-all -p build:*",
-    "build:11ty": "cross-var \"$npm_package_config_11ty\"",
-    "build:css": "cross-var \"$npm_package_config_css --minify\"",
-    "build:js": "cross-var \"$npm_package_config_js --minify\"",
+    "build:11ty": "eleventy",
+    "build:css": "tailwindcss -i src/_styles/_main.pcss -o dist/assets/main.bundle.css --postcss --minify",
+    "build:js": "esbuild src/_scripts/_main.js --outfile=dist/assets/main.bundle.js --bundle --minify",
     "build_uni": "cross-env NODE_ENV=production npm-run-all -p build_uni:11ty_uni build:css build:js",
-    "build_uni:11ty_uni": "cross-var \"$npm_package_config_11ty_uni\"",
+    "build_uni:11ty_uni": "eleventy",
     "clean": "rm -rf dist",
-    "dev": "cross-var \"cross-env NODE_ENV=development npm-run-all -p dev:*\"",
-    "dev:11ty": "cross-var \"$npm_package_config_11ty --serve\"",
-    "dev:css": "cross-var \"$npm_package_config_css --watch\"",
-    "dev:js": "cross-var \"$npm_package_config_js\"",
+    "dev": "cross-env NODE_ENV=development npm-run-all -p dev:*",
+    "dev:11ty": "eleventy --serve",
+    "dev:css": "tailwindcss -i src/_styles/_main.pcss -o dist/assets/main.bundle.css --postcss --watch",
+    "dev:js": "esbuild src/_scripts/_main.js --outfile=dist/assets/main.bundle.js --bundle",
     "upload": "scp -r ./dist/* u\\\\plunders95@webspace-access.univie.ac.at:/u/plunders95/steffenp57/html"
   },
   "repository": {
