@@ -3,15 +3,18 @@ var markdownItp = require("markdown-it")();
 const tm = require("markdown-it-texmath");
 const { DateTime } = require("luxon");
 const pageAssetsPlugin = require('eleventy-plugin-page-assets');
+const yaml = require("js-yaml");
 
 // const pathPrefix = 'steffenpl.github.io'
 
 module.exports = (config) => {
+  config.addDataExtension("yaml", contents => yaml.load(contents));
+
 
   config.addWatchTarget("./src/**/*");
 
   config.addPassthroughCopy({ 'public': './' })
-  config.addPassthroughCopy({'src/assets': 'assets'})
+  config.addPassthroughCopy({ 'src/assets': 'assets' })
   config.addPassthroughCopy('src/internal/**/*.js')
   config.addPassthroughCopy('src/research/**/*.js')
   config.addPassthroughCopy('src/blog/**/*.js')
@@ -20,7 +23,8 @@ module.exports = (config) => {
     open: false,
   })
   let markdownLibrary = markdownIt({
-    html: true,     breaks: false,     linkify: false,   })
+    html: true, breaks: false, linkify: false,
+  })
     .use(require("markdown-it-emoji"))
     .use(require("markdown-it-footnote"))
     .use(require("markdown-it-prism"))
@@ -28,8 +32,9 @@ module.exports = (config) => {
     .use(require("markdown-it-attrs"))
     .use(require("markdown-it-anchor").default)
     .use(require("markdown-it-table-of-contents"), {
-      "includeLevel": [2,3,4], "containerClass": ""})
-    .use(tm,  {
+      "includeLevel": [2, 3, 4], "containerClass": ""
+    })
+    .use(tm, {
       engine: require("katex"),
       delimiters: "dollars",
       katexOptions: { macros: { "\\RR": "\\mathbb{R}" } }
@@ -41,34 +46,34 @@ module.exports = (config) => {
       ? markdownLibrary.renderInline(content)
       : markdownLibrary.render(content);
   });
-  
+
   // add collections 
   config.addCollection('projects',
     collection => {
       return collection.getFilteredByGlob('./src/research/projects/**/*.md').sort(
-        (a, b) => ( a.data.order < b.data.order ? 1 : -1 )
+        (a, b) => (a.data.order < b.data.order ? 1 : -1)
       )
     });
 
-    config.addCollection('past_projects',
-      collection => {
-        return collection.getFilteredByGlob('./src/research/past_projects/**/*.md').sort(
-          (a, b) => ( a.data.order < b.data.order ? 1 : -1 )
-        )
-      });
-  
+  config.addCollection('past_projects',
+    collection => {
+      return collection.getFilteredByGlob('./src/research/past_projects/**/*.md').sort(
+        (a, b) => (a.data.order < b.data.order ? 1 : -1)
+      )
+    });
 
 
-    config.addCollection('blog',
+
+  config.addCollection('blog',
     collection => {
       return collection.getFilteredByGlob('./src/blog/posts/**/*.md').sort(
-        (a, b) => ( a.data.id < b.data.id ? 1 : -1 )
+        (a, b) => (a.data.id < b.data.id ? 1 : -1)
       )
     });
-    config.addCollection('kyoto_blog',
+  config.addCollection('kyoto_blog',
     collection => {
       return collection.getFilteredByGlob('./src/blog/kyoto/**/*.md').sort(
-        (a, b) => ( a.data.id < b.data.id ? 1 : -1 )
+        (a, b) => (a.data.id < b.data.id ? 1 : -1)
       )
     });
   // date config

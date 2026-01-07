@@ -1,0 +1,225 @@
+preprints:
+  - id: 13
+    title: "Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids."
+    year: "(2025)"
+    authors:
+      - name: "R. Tsutsumi"
+        url: "https://ashbi.kyoto-u.ac.jp/member/rio-tsutsumi/"
+      - name: "A. Diez"
+        url: "https://antoinediez.gitlab.io/"
+      - name: "S. Plunder"
+      - name: "R. Kimura"
+      - name: "S. Oki"
+      - name: "K. Takizawa"
+      - name: "H. Akiyama"
+      - name: "Y. Mii"
+        url: "https://sites.google.com/view/yusukemii/home"
+      - name: "R. Takada"
+      - name: "S. Takada"
+        url: "https://www.nibb.ac.jp/cib2/english.html"
+      - name: "Mototsugu Eiraku"
+        url: "https://www2.infront.kyoto-u.ac.jp/bs01/"
+    links:
+      - name: "bioRxiv"
+        url: "https://doi.org/10.1101/2025.08.31.673315"
+
+  - id: 12
+    title: "Boundary-guided cell alignment drives mouse epiblast maturation."
+    year: "(2025)"
+    authors:
+      - name: "T. Ichikawa"
+        url: "https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/"
+      - name: "P. C. Guruciaga"
+        url: "https://sites.google.com/view/pamelaguruciaga/home"
+      - name: "S. Hu"
+      - name: "S. Plunder"
+      - name: "M. Makino"
+      - name: "M. Hamaji"
+      - name: "A. Stokkermans"
+      - name: "S. Yoshida"
+      - name: "A. Erzberger"
+        url: "https://www.embl.org/people/person/anna-erzberger/"
+      - name: "T. Hiiragi"
+        url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
+    links:
+      - name: "bioRxiv"
+        url: "https://doi.org/10.1101/2025.04.28.650859"
+
+  - id: 11
+    title: "Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development"
+    year: "(2024)"
+    authors:
+      - name: "P. C. Guruciaga"
+        url: "https://sites.google.com/view/pamelaguruciaga/home"
+      - name: "T. Ichikawa"
+        url: "https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/"
+      - name: "S. Plunder"
+      - name: "T. Hiiragi"
+        url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
+      - name: "A. Erzberger"
+        url: "https://www.embl.org/people/person/anna-erzberger/"
+    links:
+      - name: "arxiv"
+        url: "https://arxiv.org/abs/2403.08710"
+
+  - id: 8
+    title: "Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs."
+    year: "(2023)"
+    authors:
+      - name: "S. Plunder"
+      - name: "S. Merino-Aceituno"
+        url: "https://sites.google.com/view/saramerinoaceituno"
+    links:
+      - name: "arxiv"
+        url: "https://arxiv.org/abs/2310.01215"
+
+peer_reviewed:
+  - id: 1
+    title: "The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model."
+    journal: "**iScience**"
+    year: "**(2025)**"
+    authors:
+      - name: "M. Mira Osuna"
+        url: "https://sbcf.fr/en/member/marta-mira-osuna/"
+      - name: "S. Plunder"
+      - name: "E. Theveneau"
+        url: "https://cbi-toulouse.fr/eng/equipe-theveneau"
+      - name: "Roland Le Borgne"
+        url: "https://igdr.univ-rennes.fr/en/roland-le-borgne"
+    links:
+      - name: "DOI: 10.1016/j.isci.2025.113663"
+        url: "https://doi.org/10.1016/j.isci.2025.113663"
+
+  - id: 2
+    title: "Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects."
+    journal: "**Mathematical Models and Methods in Applied Sciences**"
+    year: "**(2025)**"
+    authors:
+      - name: "S. Merino-Aceituno"
+        url: "https://sites.google.com/view/saramerinoaceituno"
+      - name: "S. Plunder"
+      - name: "C. Wytrzens"
+      - name: "H. Yoldaş"
+        url: "https://sites.google.com/view/havvayoldas/home"
+    links:
+      - name: "DOI:10.1142/S0218202525500356"
+        url: "https://doi.org/10.1142/S0218202525500356"
+      - name: "arxiv"
+        url: "http://arxiv.org/abs/2410.06740"
+
+  - id: 3
+    title: "Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration."
+    journal: "**Proceedings in Applied Mathematics & Mechanics**"
+    year: "**(2024)**"
+    authors:
+      - name: "H. Jäger"
+      - name: "É. Grosjean"
+        url: "https://grosjean1.github.io/"
+      - name: "S. Plunder"
+      - name: "C. Redenbach"
+      - name: "A. Keilmann"
+      - name: "B. Simeon"
+        url: "https://www.mathematik.uni-kl.de/en/das/people/head/simeon"
+      - name: "C. Surulescu"
+    links:
+      - name: "DOI: 10.1002/pamm.202400133"
+        url: "http://doi.org/10.1002/pamm.202400133"
+
+  - id: 4
+    title: "Non-apical mitoses contribute to cell delamination during mouse gastrulation."
+    journal: "**Nature Communications**"
+    year: "**(2024)**"
+    authors:
+      - name: "E. Despin-Guitard"
+      - name: "V. S. Rosa"
+      - name: "S. Plunder"
+      - name: "N. Mathiah"
+      - name: "K. Van Schoor"
+      - name: "E. Nehme"
+      - name: "S. Merino-Aceituno"
+      - name: "J. Egea"
+      - name: "M. N. Shahbazi"
+      - name: "E. Theveneau"
+        url: "https://cbi-toulouse.fr/eng/equipe-theveneau"
+      - name: "I. Migeotte"
+        url: "https://iribhm.org/isabelle-migeotte/"
+    links:
+      - name: "DOI:10.1038/s41467-024-51638-6"
+        url: "https://doi.org/10.1038/s41467-024-51638-6"
+
+  - id: 5
+    title: "Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion."
+    journal: "**Nature Communications**"
+    year: "**(2024)**"
+    authors:
+      - name: "S. Plunder"
+      - name: "C. Danesin"
+      - name: "B. Glise"
+      - name: "M. A. Ferreira"
+        url: "https://marinaaferreira.com/"
+      - name: "S. Merino-Aceituno"
+        url: "https://sites.google.com/view/saramerinoaceituno"
+      - name: "E. Theveneau"
+        url: "https://cbi-toulouse.fr/eng/equipe-theveneau"
+    links:
+      - name: "DOI:10.1038/s41467-024-51372-z"
+        url: "https://doi.org/10.1038/s41467-024-51372-z"
+
+  - id: 6
+    title: "Determination of optimal phage load and administration time for antibacterial treatment."
+    journal: "**Current Protocols**"
+    year: "**(2024)**"
+    authors:
+      - name: "S. Plunder"
+      - name: "M. Burkard"
+      - name: "T. Helling"
+      - name: "U. M. Lauer"
+      - name: "L. E. Hoelzle"
+      - name: "L. Marongiu"
+        url: "https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en"
+    links:
+      - name: "DOI:10.1002/cpz1.954"
+        url: "https://doi.org/10.1002/cpz1.954"
+
+  - id: 7
+    title: "The mean-field limit for particle systems with uniform full-rank constraints."
+    journal: "**Kinetic and Related Models**"
+    year: "**(2023)**"
+    authors:
+      - name: "S. Plunder"
+      - name: "B. Simeon"
+        url: "https://www.mathematik.uni-kl.de/en/das/people/head/simeon"
+    links:
+      - name: "DOI:10.3934/krm.2023012"
+        url: "https://www.aimsciences.org/article/doi/10.3934/krm.2023012"
+      - name: "arxiv"
+        url: "https://arxiv.org/abs/2203.07249"
+
+  - id: 8
+    title: "Determination of phage load and administration time in simulated occurrences of antibacterial treatments."
+    journal: "**Frontiers of Medicine**"
+    year: "**(2022)**"
+    authors:
+      - name: "S. Plunder"
+      - name: "M. Burkard"
+      - name: "U. Lauer"
+      - name: "S. Venturelli"
+      - name: "L. Marongiu"
+        url: "https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en"
+    links:
+      - name: "DOI: 10.3389/fmed.2022.1040457"
+        url: "https://doi.org/10.3389/fmed.2022.1040457"
+
+  - id: 9
+    title: "Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue."
+    journal: "In: Reis, T., Grundel, S., Schöps, S. (eds) **Progress in Differential-Algebraic Equations II. Differential-Algebraic Equations Forum. Springer**"
+    year: "**(2020)**"
+    authors:
+      - name: "S. Plunder"
+      - name: "B. Simeon"
+        url: "https://www.mathematik.uni-kl.de/en/das/people/head/simeon"
+    links:
+      - name: "DOI: 10.1007/978-3-030-53905-4_12"
+        url: "https://doi.org/10.1007/978-3-030-53905-4_12"
+      - name: "arxiv"
+        url: "https://arxiv.org/abs/1911.05468"
