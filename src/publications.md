@@ -6,7 +6,7 @@ layout: markdown
 ## Preprints
 
 {% for pub in publications.preprints %}
-{{ pub.id }}. {% for author in pub.authors %}{% if author.url %}[{{ author.name }}]({{ author.url }}){target="_blank"}{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}, _{{ pub.title }}_ **{{ pub.year }}**{% for link in pub.links %} [{{ link.name }}]({{ link.url }}){target="_blank"}{% if not loop.last %}, {% endif %}{% endfor %}
+{{ pub.id }}. {% for author in pub.authors %}{% if author.url %}[{{ author.name }}]({{ author.url }}){target="_blank"}{% else %}{{ author.name }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %}, _{{ pub.title }}_ {% if pub.journal %}{{ pub.journal }} {% endif %}**{{ pub.year }}**{% for link in pub.links %} [{{ link.name }}]({{ link.url }}){target="_blank"}{% if not loop.last %}, {% endif %}{% endfor %}
 {reversed=reversed}
 {% endfor %}
 

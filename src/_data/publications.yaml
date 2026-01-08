@@ -24,28 +24,6 @@ preprints:
         url: "https://doi.org/10.1101/2025.08.31.673315"
 
   - id: 12
-    title: "Boundary-guided cell alignment drives mouse epiblast maturation."
-    year: "(2025)"
-    authors:
-      - name: "T. Ichikawa"
-        url: "https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/"
-      - name: "P. C. Guruciaga"
-        url: "https://sites.google.com/view/pamelaguruciaga/home"
-      - name: "S. Hu"
-      - name: "S. Plunder"
-      - name: "M. Makino"
-      - name: "M. Hamaji"
-      - name: "A. Stokkermans"
-      - name: "S. Yoshida"
-      - name: "A. Erzberger"
-        url: "https://www.embl.org/people/person/anna-erzberger/"
-      - name: "T. Hiiragi"
-        url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
-    links:
-      - name: "bioRxiv"
-        url: "https://doi.org/10.1101/2025.04.28.650859"
-
-  - id: 11
     title: "Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development"
     year: "(2024)"
     authors:
@@ -62,7 +40,7 @@ preprints:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2403.08710"
 
-  - id: 8
+  - id: 11
     title: "Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs."
     year: "(2023)"
     authors:
@@ -74,7 +52,30 @@ preprints:
         url: "https://arxiv.org/abs/2310.01215"
 
 peer_reviewed:
-  - id: 1
+  - id: 10
+    title: "Boundary-guided cell alignment drives mouse epiblast maturation."
+    year: "**(2026)**"
+    authors:
+      - name: "T. Ichikawa"
+        url: "https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/"
+      - name: "P. C. Guruciaga"
+        url: "https://sites.google.com/view/pamelaguruciaga/home"
+      - name: "S. Hu"
+      - name: "S. Plunder"
+      - name: "M. Makino"
+      - name: "M. Hamaji"
+      - name: "A. Stokkermans"
+      - name: "S. Yoshida"
+      - name: "A. Erzberger"
+        url: "https://www.embl.org/people/person/anna-erzberger/"
+      - name: "T. Hiiragi"
+        url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
+    journal: "**Nature Physics [accepted]**"
+    links:
+      - name: "bioRxiv"
+        url: "https://doi.org/10.1101/2025.04.28.650859"
+
+  - id: 9
     title: "The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model."
     journal: "**iScience**"
     year: "**(2025)**"
@@ -90,7 +91,7 @@ peer_reviewed:
       - name: "DOI: 10.1016/j.isci.2025.113663"
         url: "https://doi.org/10.1016/j.isci.2025.113663"
 
-  - id: 2
+  - id: 8
     title: "Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects."
     journal: "**Mathematical Models and Methods in Applied Sciences**"
     year: "**(2025)**"
@@ -107,7 +108,7 @@ peer_reviewed:
       - name: "arxiv"
         url: "http://arxiv.org/abs/2410.06740"
 
-  - id: 3
+  - id: 7
     title: "Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration."
     journal: "**Proceedings in Applied Mathematics & Mechanics**"
     year: "**(2024)**"
@@ -125,7 +126,7 @@ peer_reviewed:
       - name: "DOI: 10.1002/pamm.202400133"
         url: "http://doi.org/10.1002/pamm.202400133"
 
-  - id: 4
+  - id: 6
     title: "Non-apical mitoses contribute to cell delamination during mouse gastrulation."
     journal: "**Nature Communications**"
     year: "**(2024)**"
@@ -165,7 +166,7 @@ peer_reviewed:
       - name: "DOI:10.1038/s41467-024-51372-z"
         url: "https://doi.org/10.1038/s41467-024-51372-z"
 
-  - id: 6
+  - id: 4
     title: "Determination of optimal phage load and administration time for antibacterial treatment."
     journal: "**Current Protocols**"
     year: "**(2024)**"
@@ -181,7 +182,7 @@ peer_reviewed:
       - name: "DOI:10.1002/cpz1.954"
         url: "https://doi.org/10.1002/cpz1.954"
 
-  - id: 7
+  - id: 3
     title: "The mean-field limit for particle systems with uniform full-rank constraints."
     journal: "**Kinetic and Related Models**"
     year: "**(2023)**"
@@ -195,7 +196,7 @@ peer_reviewed:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2203.07249"
 
-  - id: 8
+  - id: 2
     title: "Determination of phage load and administration time in simulated occurrences of antibacterial treatments."
     journal: "**Frontiers of Medicine**"
     year: "**(2022)**"
@@ -210,7 +211,7 @@ peer_reviewed:
       - name: "DOI: 10.3389/fmed.2022.1040457"
         url: "https://doi.org/10.3389/fmed.2022.1040457"
 
-  - id: 9
+  - id: 1
     title: "Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue."
     journal: "In: Reis, T., Grundel, S., Schöps, S. (eds) **Progress in Differential-Algebraic Equations II. Differential-Algebraic Equations Forum. Springer**"
     year: "**(2020)**"
