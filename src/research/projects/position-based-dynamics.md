@@ -29,7 +29,7 @@ Before we go into the mathematics behind PBD, let's have a look how such simulat
 _Note: You can add more disks by clicking inside the rectangle._
 
 <div class="container mx-auto w-max">
-<button id="sim_1_run" class="flex border-2 border-lime-800 hover:bg-lime-300 bg-lime-200 rounded-xl pl-4 pr-4 my-4 drop-shadow-xl">Restart</button>
+<button id="sim_1_run" class="flex border-2 border-blue-800 hover:bg-blue-300 bg-blue-200 rounded-xl pl-4 pr-4 my-4 drop-shadow-xl">Restart</button>
 </div>
 <div class="container mx-auto w-max">
 <div id="sim_1" class="flex drop-shadow-xl border-2 w-[240px]"></div>

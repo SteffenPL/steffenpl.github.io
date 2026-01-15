@@ -21,8 +21,8 @@ module.exports = {
       typography: (theme) => ({
         DEFAULT: {
           css: {
-            a: {  color: theme('colors.lime.800'),
-              '&:hover': {  color: theme('colors.lime.600') }
+            a: {  color: theme('colors.blue.800'),
+              '&:hover': {  color: theme('colors.blue.600') }
             }
             // ...
           },
