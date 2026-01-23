@@ -22,15 +22,27 @@ I studied mathematics at [TU Kaiserslautern](https://www.mathematik.uni-kl.de/en
 
 You can find a description of my current projects in the [research section]({{ '/research' | url }}), talk and activities [here]({{'/activities' | url}}) and more info in my [CV]({{'/cv' | url}}).
 
-## News and Blog
+<div class="flex flex-wrap justify-center gap-4 my-4">
+  <video autoplay loop muted playsinline class="w-full sm:w-[30%] rounded">
+    <source src="/assets/compressed/C.mp4" type="video/mp4">
+  </video>
+  <video autoplay loop muted playsinline class="w-full sm:w-[30%] rounded">
+    <source src="/assets/compressed/bacteria.mp4" type="video/mp4">
+  </video>
+  <video autoplay loop muted playsinline class="w-full sm:w-[30%] rounded">
+    <source src="/assets/compressed/cells.mp4" type="video/mp4">
+  </video>
+</div>
 
+## News and Blog
+<!-- 
 - _November 2025:_ New iScience publication.
 - _September 2025:_ New preptint on digit organoids!
 - _May 2025:_ Two new preprints! 
 - _September 2024:_ **New Nature Communications publications on [EMT](https://doi.org/10.1038/s41467-024-51372-z){target="_blank"} and [gastrulation](https://doi.org/10.1038/s41467-024-51638-6){target="_blank"} are out!**
-- _March 2024:_ Our **standalone EMT simulator**[^1] is online [semtor.github.io](https://semtor.github.io/){target="_blank"}! 🎉
+- _March 2024:_ Our **standalone EMT simulator**[^1] is online [semtor.github.io](https://semtor.github.io/){target="_blank"}! 🎉 -->
 
-_My blog posts:_ 
+<!-- _My blog posts:_  -->
 <ul class="list-inside mt-0 pt-0">
 {% for item in collections.blog %}
 <li>

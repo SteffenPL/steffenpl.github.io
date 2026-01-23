@@ -11,6 +11,7 @@
     "build_uni": "cross-env NODE_ENV=production npm-run-all -p build_uni:11ty_uni build:css build:js",
     "build_uni:11ty_uni": "eleventy",
     "clean": "rm -rf dist",
+    "compress-videos": "./scripts/compress-videos.sh",
     "dev": "cross-env NODE_ENV=development npm-run-all -p dev:*",
     "dev:11ty": "eleventy --serve",
     "dev:css": "tailwindcss -i src/_styles/_main.pcss -o dist/assets/main.bundle.css --postcss --watch",

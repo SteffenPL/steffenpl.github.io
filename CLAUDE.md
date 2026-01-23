@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+This project uses beads 'bd'.
+
 ## Project Overview
 
 Personal academic webpage built with the TEA stack (TailwindCSS, Eleventy, Alpine.js). Static site generator that builds markdown content into HTML pages with math support, code highlighting, and interactive simulators.
