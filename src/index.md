@@ -34,30 +34,37 @@ You can find a description of my current projects in the [research section]({{ '
   </video>
 </div>
 
-## News and Blog
-<!-- 
-- _November 2025:_ New iScience publication.
-- _September 2025:_ New preptint on digit organoids!
-- _May 2025:_ Two new preprints! 
-- _September 2024:_ **New Nature Communications publications on [EMT](https://doi.org/10.1038/s41467-024-51372-z){target="_blank"} and [gastrulation](https://doi.org/10.1038/s41467-024-51638-6){target="_blank"} are out!**
-- _March 2024:_ Our **standalone EMT simulator**[^1] is online [semtor.github.io](https://semtor.github.io/){target="_blank"}! 🎉 -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div>
 
-<!-- _My blog posts:_  -->
-<ul class="list-inside mt-0 pt-0">
+## News and Blog
+
+<ul class="list-none m-0 p-0 space-y-1">
 {% for item in collections.blog %}
-<li>
-    <i>{{item.data.date | readableDateMonths}}:</i>
-    <a href="{{ item.url | url}}">{{ item.data.title }}</a>
-</li>
+<li class="text-sm"><span class="text-gray-500">{{item.data.date | readableDateMonths}}</span> — <a href="{{ item.url | url}}">{{ item.data.title }}</a></li>
 {% endfor %}
 </ul>
 
+</div>
+<div>
+
 ## Contact and links
 
-<!--Office 03.125, Faculty of Mathematics, Oskar-Morgenstern-Platz 1, Vienna.<br>-->
-📧 <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a>
+<div class="space-y-2">
+  <p class="m-0">📧 <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a></p>
+  <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+    <a href="https://github.com/SteffenPL" target="_blank">🐙 GitHub</a>
+    <a href="https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en" target="_blank">🎓 Google Scholar</a>
+    <a href="https://orcid.org/0000-0002-3371-3790" target="_blank">🆔 ORCID</a>
+    <a href="https://researchmap.jp/steffen-plunder" target="_blank">🗾 researchmap.jp</a>
+    <a href="https://www.researchgate.net/profile/Steffen-Plunder" target="_blank">🔬 ResearchGate</a>
+    <a href="https://at.linkedin.com/in/steffen-plunder" target="_blank">💼 LinkedIn</a>
+    <!-- <a href="https://twitter.com/SteffenPlunder" target="_blank">🐦 Twitter/X</a> -->
+  </div>
+</div>
 
-🔗 [GitHub/SteffenPL](https://github.com/SteffenPL) | [Google Scholar](https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en)  | [ORCID](https://orcid.org/0000-0002-3371-3790) | [researchmap.jp](https://researchmap.jp/steffen-plunder) | [ResearchGate](https://www.researchgate.net/profile/Steffen-Plunder) | [LinkedIn](https://at.linkedin.com/in/steffen-plunder) | [Twitter/X](https://twitter.com/SteffenPlunder)
+</div>
+</div>
 
 
 
