@@ -23,23 +23,6 @@ preprints:
       - name: "bioRxiv"
         url: "https://doi.org/10.1101/2025.08.31.673315"
 
-  - id: 12
-    title: "Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development"
-    year: "(2024)"
-    authors:
-      - name: "P. C. Guruciaga"
-        url: "https://sites.google.com/view/pamelaguruciaga/home"
-      - name: "T. Ichikawa"
-        url: "https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/"
-      - name: "S. Plunder"
-      - name: "T. Hiiragi"
-        url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
-      - name: "A. Erzberger"
-        url: "https://www.embl.org/people/person/anna-erzberger/"
-    links:
-      - name: "arxiv"
-        url: "https://arxiv.org/abs/2403.08710"
-
   - id: 11
     title: "Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs."
     year: "(2023)"
@@ -52,6 +35,24 @@ preprints:
         url: "https://arxiv.org/abs/2310.01215"
 
 peer_reviewed:
+  - id: 11
+    title: "Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development"
+    year: "**(2026)**"
+    authors:
+      - name: "P. C. Guruciaga"
+        url: "https://sites.google.com/view/pamelaguruciaga/home"
+      - name: "T. Ichikawa"
+        url: "https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/"
+      - name: "S. Plunder"
+      - name: "T. Hiiragi"
+        url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
+      - name: "A. Erzberger"
+        url: "https://www.embl.org/people/person/anna-erzberger/"
+    journal: "**Nature Materials [accepted]**"
+    links:
+      - name: "arxiv"
+        url: "https://arxiv.org/abs/2403.08710"
+
   - id: 10
     title: "Boundary-guided cell alignment drives mouse epiblast maturation."
     year: "**(2026)**"
