@@ -51,15 +51,14 @@ You can find a description of my current projects in the [research section]({{ '
 ## Contact and links
 
 <div class="space-y-2">
-  <p class="m-0">📧 <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a></p>
+  <p class="m-0"><i class="fa-solid fa-envelope"></i> <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a></p>
   <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-    <a href="https://github.com/SteffenPL" target="_blank">🐙 GitHub</a>
-    <a href="https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en" target="_blank">🎓 Google Scholar</a>
-    <a href="https://orcid.org/0000-0002-3371-3790" target="_blank">🆔 ORCID</a>
-    <a href="https://researchmap.jp/steffen-plunder" target="_blank">🗾 researchmap.jp</a>
-    <a href="https://www.researchgate.net/profile/Steffen-Plunder" target="_blank">🔬 ResearchGate</a>
-    <a href="https://at.linkedin.com/in/steffen-plunder" target="_blank">💼 LinkedIn</a>
-    <!-- <a href="https://twitter.com/SteffenPlunder" target="_blank">🐦 Twitter/X</a> -->
+    <a href="https://github.com/SteffenPL" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+    <a href="https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en" target="_blank"><i class="ai ai-google-scholar"></i> Google Scholar</a>
+    <a href="https://orcid.org/0000-0002-3371-3790" target="_blank"><i class="ai ai-orcid"></i> ORCID</a>
+    <a href="https://researchmap.jp/steffen-plunder" target="_blank"><i class="fa-solid fa-map"></i> researchmap.jp</a>
+    <a href="https://www.researchgate.net/profile/Steffen-Plunder" target="_blank"><i class="ai ai-researchgate"></i> ResearchGate</a>
+    <a href="https://at.linkedin.com/in/steffen-plunder" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
   </div>
 </div>
 
