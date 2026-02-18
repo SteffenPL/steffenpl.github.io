@@ -16,6 +16,7 @@ module.exports = (config) => {
   config.addPassthroughCopy({ 'public': './' })
   config.addPassthroughCopy({ 'src/assets': 'assets' })
   config.addPassthroughCopy({ 'src/internal': 'internal' })
+  config.addPassthroughCopy('src/pbd')
   config.addPassthroughCopy('src/research/**/*.js')
   config.addPassthroughCopy('src/blog/**/*.js')
   config.setBrowserSyncConfig({
