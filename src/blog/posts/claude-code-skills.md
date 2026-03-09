@@ -18,7 +18,7 @@ I recommend scrolling through the curated list at [claude.com/plugins](https://c
 
  Below are my personal recommendations.
 
-## Superpowers
+## [Superpowers](https://claude.com/plugins/superpowers)
 
 This is a skill pack that adds structured workflows for brainstorming, debugging, TDD, and code review. It sounds fancy but the practical effect is simple: Claude follows more disciplined processes instead of jumping straight into coding.
 
@@ -40,7 +40,7 @@ Here is an example of the brainstorming workflow:
 
 ![Example of the Superpowers brainstorming workflow](imgs/brainstorm_example.png)
 
-## Context7
+## [Context7](https://claude.com/plugins/context7)
 
 An MCP that pulls up-to-date library documentation directly into context. Instead of Claude hallucinating APIs from its training data, it fetches the current docs.
 
@@ -50,7 +50,7 @@ Very useful when working with libraries that update frequently.
 claude mcp add context7 -- npx -y @upstash/context7-mcp@latest
 ```
 
-## Explanatory Output Style
+## [Explanatory Output Style](https://claude.com/plugins/explanatory-output-style)
 
 A lightweight skill that makes Claude add brief educational insights about your codebase as it works. It highlights implementation patterns and design choices specific to your project.
 
