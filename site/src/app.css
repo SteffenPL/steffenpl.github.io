@@ -1,0 +1,163 @@
+@import 'tailwindcss';
+@import '@fontsource/ubuntu/400.css';
+@import '@fontsource/ubuntu/500.css';
+@import '@fontsource/ubuntu/700.css';
+@import '@fontsource/ubuntu-mono/400.css';
+@import '@fontsource/ubuntu-mono/700.css';
+@import 'katex/dist/katex.min.css';
+
+@theme {
+	--font-sans: 'Ubuntu', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'Ubuntu Mono', ui-monospace, monospace;
+
+	/* Light mode accent — lime */
+	--color-accent-50: #f7fee7;
+	--color-accent-100: #ecfccb;
+	--color-accent-200: #d9f99d;
+	--color-accent-300: #bef264;
+	--color-accent-400: #a3e635;
+	--color-accent-500: #84cc16;
+	--color-accent-600: #65a30d;
+	--color-accent-700: #4d7c0f;
+	--color-accent-800: #3f6212;
+	--color-accent-900: #365314;
+
+	/* Layout */
+	--max-w-content: 72rem;
+	--max-w-prose: 65ch;
+}
+
+/* ─── Semantic color tokens ─── */
+
+:root {
+	--color-surface: #ffffff;
+	--color-surface-elevated: #f8fafc;
+	--color-surface-hover: #f1f5f9;
+	--color-text-primary: #1a1a2e;
+	--color-text-secondary: #64748b;
+	--color-text-muted: #94a3b8;
+	--color-border: #e2e8f0;
+	--color-border-subtle: #f1f5f9;
+	--color-link: var(--color-accent-600);
+	--color-link-hover: var(--color-accent-700);
+	--color-code-bg: #f1f5f9;
+}
+
+[data-theme='dark'] {
+	--color-surface: #1e1e2e;
+	--color-surface-elevated: #262637;
+	--color-surface-hover: #2e2e42;
+	--color-text-primary: #cdd6f4;
+	--color-text-secondary: #a6adc8;
+	--color-text-muted: #6c7086;
+	--color-border: #313244;
+	--color-border-subtle: #262637;
+	--color-code-bg: #262637;
+
+	/* Dark mode accent — friendly warm orange */
+	--color-accent-50: #fff7ed;
+	--color-accent-100: #ffedd5;
+	--color-accent-200: #fed7aa;
+	--color-accent-300: #fdba74;
+	--color-accent-400: #fb923c;
+	--color-accent-500: #f97316;
+	--color-accent-600: #ea580c;
+	--color-accent-700: #c2410c;
+	--color-accent-800: #9a3412;
+	--color-accent-900: #7c2d12;
+
+	--color-link: var(--color-accent-400);
+	--color-link-hover: var(--color-accent-300);
+}
+
+/* ─── Base styles ─── */
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: var(--font-sans);
+	background-color: var(--color-surface);
+	color: var(--color-text-primary);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+}
+
+/* ─── Link styles ─── */
+
+a {
+	color: var(--color-link);
+	text-decoration: none;
+	transition: color 0.15s ease;
+}
+
+a:hover {
+	color: var(--color-link-hover);
+}
+
+/* ─── Selection ─── */
+
+::selection {
+	background-color: var(--color-accent-200);
+	color: var(--color-accent-900);
+}
+
+[data-theme='dark'] ::selection {
+	background-color: var(--color-accent-800);
+	color: var(--color-accent-100);
+}
+
+/* ─── Scrollbar (subtle) ─── */
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--color-border);
+	border-radius: 4px;
+}
+
+/* ─── Typography prose overrides ─── */
+
+.prose {
+	--tw-prose-body: var(--color-text-primary);
+	--tw-prose-headings: var(--color-text-primary);
+	--tw-prose-links: var(--color-link);
+	--tw-prose-bold: var(--color-text-primary);
+	--tw-prose-code: var(--color-text-primary);
+	--tw-prose-pre-bg: var(--color-code-bg);
+	--tw-prose-quotes: var(--color-text-secondary);
+	--tw-prose-counters: var(--color-text-muted);
+	--tw-prose-bullets: var(--color-text-muted);
+	--tw-prose-hr: var(--color-border);
+	--tw-prose-th-borders: var(--color-border);
+	--tw-prose-td-borders: var(--color-border-subtle);
+}
+
+/* ─── Code blocks ─── */
+
+code {
+	font-family: var(--font-mono);
+	font-size: 0.9em;
+}
+
+:not(pre) > code {
+	background: var(--color-code-bg);
+	padding: 0.15em 0.4em;
+	border-radius: 0.25rem;
+}
+
+/* ─── KaTeX overrides ─── */
+
+.katex-display {
+	overflow-x: auto;
+	overflow-y: hidden;
+	padding: 0.5em 0;
+}
