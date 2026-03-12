@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gradient Pairings — Orange Accent</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0c1222;
+  color: #f0f0f0;
+  padding: 3rem 1.5rem;
+  min-height: 100vh;
+}
+h1 {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.subtitle {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  margin-bottom: 3rem;
+}
+.grid {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+.swatch {
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.gradient-bar {
+  height: 80px;
+  position: relative;
+}
+.gradient-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 24px;
+  background: linear-gradient(to top, rgba(255,255,255,0.04), transparent);
+}
+.swatch-body { padding: 1rem 1.25rem; }
+.swatch-name {
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+.swatch-vibe {
+  color: #94a3b8;
+  font-size: 0.78rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+.color-dots {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.dot-label {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.68rem;
+  color: #64748b;
+}
+.swatch-line {
+  height: 3px;
+  border-radius: 2px;
+  margin-top: 0.75rem;
+}
+.pick {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 0.65rem;
+  color: #f97316;
+  background: rgba(249,115,22,0.1);
+  border: 1px solid rgba(249,115,22,0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  margin-left: auto;
+}
+</style>
+</head>
+<body>
+
+<h1>Orange accent pairings</h1>
+<p class="subtitle">Gradient bars show the full range · thin line shows how it looks at UI scale</p>
+
+<div class="grid">
+
+  <div class="swatch">
+    <div class="gradient-bar" style="background: linear-gradient(135deg, #f97316, #22d3ee);"></div>
+    <div class="swatch-body">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div class="swatch-name">Orange + Cyan</div>
+      </div>
+      <p class="swatch-vibe">High contrast, complementary, techy</p>
+      <div class="color-dots">
+        <div class="dot" style="background:#f97316;"></div>
+        <div class="dot-label">#f97316</div>
+        <div class="dot" style="background:#22d3ee;"></div>
+        <div class="dot-label">#22d3ee</div>
+      </div>
+      <div class="swatch-line" style="background: linear-gradient(90deg, #f97316, #22d3ee);"></div>
+    </div>
+  </div>
+
+  <div class="swatch">
+    <div class="gradient-bar" style="background: linear-gradient(135deg, #f97316, #a78bfa);"></div>
+    <div class="swatch-body">
+      <div class="swatch-name">Orange + Violet</div>
+      <p class="swatch-vibe">Warm/cool tension, creative, expressive</p>
+      <div class="color-dots">
+        <div class="dot" style="background:#f97316;"></div>
+        <div class="dot-label">#f97316</div>
+        <div class="dot" style="background:#a78bfa;"></div>
+        <div class="dot-label">#a78bfa</div>
+      </div>
+      <div class="swatch-line" style="background: linear-gradient(90deg, #f97316, #a78bfa);"></div>
+    </div>
+  </div>
+
+  <div class="swatch">
+    <div class="gradient-bar" style="background: linear-gradient(135deg, #f97316, #34d399);"></div>
+    <div class="swatch-body">
+      <div style="display:flex;align-items:center;gap:0.5rem;">
+        <div class="swatch-name">Orange + Emerald</div>
+        <span class="pick">recommended</span>
+      </div>
+      <p class="swatch-vibe">Organic, natural — fits computational biology</p>
+      <div class="color-dots">
+        <div class="dot" style="background:#f97316;"></div>
+        <div class="dot-label">#f97316</div>
+        <div class="dot" style="background:#34d399;"></div>
+        <div class="dot-label">#34d399</div>
+      </div>
+      <div class="swatch-line" style="background: linear-gradient(90deg, #f97316, #34d399);"></div>
+    </div>
+  </div>
+
+  <div class="swatch">
+    <div class="gradient-bar" style="background: linear-gradient(135deg, #f97316, #38bdf8);"></div>
+    <div class="swatch-body">
+      <div class="swatch-name">Orange + Sky Blue</div>
+      <p class="swatch-vibe">Clean, readable, classic warm/cool balance</p>
+      <div class="color-dots">
+        <div class="dot" style="background:#f97316;"></div>
+        <div class="dot-label">#f97316</div>
+        <div class="dot" style="background:#38bdf8;"></div>
+        <div class="dot-label">#38bdf8</div>
+      </div>
+      <div class="swatch-line" style="background: linear-gradient(90deg, #f97316, #38bdf8);"></div>
+    </div>
+  </div>
+
+  <div class="swatch">
+    <div class="gradient-bar" style="background: linear-gradient(135deg, #f97316, #f472b6);"></div>
+    <div class="swatch-body">
+      <div class="swatch-name">Orange + Pink</div>
+      <p class="swatch-vibe">Playful, bold, sunset energy</p>
+      <div class="color-dots">
+        <div class="dot" style="background:#f97316;"></div>
+        <div class="dot-label">#f97316</div>
+        <div class="dot" style="background:#f472b6;"></div>
+        <div class="dot-label">#f472b6</div>
+      </div>
+      <div class="swatch-line" style="background: linear-gradient(90deg, #f97316, #f472b6);"></div>
+    </div>
+  </div>
+
+  <div class="swatch">
+    <div class="gradient-bar" style="background: linear-gradient(135deg, #f97316, #eab308);"></div>
+    <div class="swatch-body">
+      <div class="swatch-name">Orange + Gold</div>
+      <p class="swatch-vibe">Monochromatic warmth, subtle, cohesive</p>
+      <div class="color-dots">
+        <div class="dot" style="background:#f97316;"></div>
+        <div class="dot-label">#f97316</div>
+        <div class="dot" style="background:#eab308;"></div>
+        <div class="dot-label">#eab308</div>
+      </div>
+      <div class="swatch-line" style="background: linear-gradient(90deg, #f97316, #eab308);"></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

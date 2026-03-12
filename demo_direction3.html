@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steffen Plunder — Mathematician · Computational Biologist · Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Source+Code+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ─── Reset & Base ─── */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  /* Dark mode: orange primary, lime secondary */
+  --bg: #0c1222;
+  --bg-card: rgba(255,255,255,0.04);
+  --bg-card-border: rgba(255,255,255,0.08);
+  --text: #f0f0f0;
+  --text-muted: #94a3b8;
+  --accent: #f97316;
+  --accent-glow: rgba(249,115,22,0.3);
+  --accent-secondary: #a3e635;
+  --gradient-accent: linear-gradient(135deg, #f97316, #a3e635);
+  --shadow-card: 0 4px 32px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3);
+  --shadow-card-hover: 0 8px 48px rgba(249,115,22,0.15), 0 2px 8px rgba(0,0,0,0.4);
+  --font-display: 'Source Code Pro', monospace;
+  --font-body: 'Inter', sans-serif;
+  --ease-organic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --container: 1100px;
+  --particle-color: 249, 115, 22;
+}
+
+[data-theme="light"] {
+  /* Light mode: lime primary, orange secondary (symmetric flip) */
+  --bg: #f4f6f9;
+  --bg-card: rgba(255,255,255,0.7);
+  --bg-card-border: rgba(0,0,0,0.08);
+  --text: #0c1222;
+  --text-muted: #475569;
+  --accent: #65a30d;
+  --accent-glow: rgba(101,163,13,0.25);
+  --accent-secondary: #f97316;
+  --gradient-accent: linear-gradient(135deg, #84cc16, #f97316);
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 8px 40px rgba(101,163,13,0.12), 0 2px 8px rgba(0,0,0,0.1);
+  --particle-color: 101, 163, 13;
+}
+
+html { scroll-behavior: smooth; }
+
+/* View Transitions: circular wipe from toggle button */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) {
+  z-index: 9999;
+  animation: circular-reveal 0.6s ease-in-out;
+}
+@keyframes circular-reveal {
+  from { clip-path: circle(0% at var(--toggle-x, 95%) var(--toggle-y, 2%)); }
+  to   { clip-path: circle(150% at var(--toggle-x, 95%) var(--toggle-y, 2%)); }
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.5s var(--ease-smooth), color 0.5s var(--ease-smooth);
+}
+
+/* ─── Nav Bar ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 1.5rem;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: transparent;
+  transition: background 0.3s, backdrop-filter 0.3s, border-color 0.3s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--bg-card-border);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+  letter-spacing: -0.01em;
+}
+.nav-links a:hover {
+  color: var(--accent);
+  background: rgba(255,255,255,0.05);
+}
+[data-theme="light"] .nav-links a:hover {
+  background: rgba(0,0,0,0.04);
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ─── Theme Toggle ─── */
+.theme-toggle {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--bg-card-border);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: color 0.2s, background 0.2s;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  background: rgba(255,255,255,0.05);
+}
+[data-theme="light"] .theme-toggle:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+/* ─── Mobile Menu ─── */
+.nav-hamburger {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--text-muted);
+  border-radius: 1px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--bg-card-border);
+  padding: 0.75rem 1.5rem 1rem;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.6rem 0.5rem;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+.mobile-menu a:hover {
+  color: var(--accent);
+  background: rgba(255,255,255,0.05);
+}
+
+/* ─── Hero ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, transparent 0%, var(--bg) 75%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 2rem;
+  max-width: 800px;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text);
+  text-shadow: 0 0 40px var(--accent-glow), 0 0 80px rgba(249,115,22,0.06);
+  margin-bottom: 0.6rem;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.hero-bio {
+  font-weight: 300;
+  font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: all 0.35s var(--ease-organic);
+  border: 1px solid var(--bg-card-border);
+}
+
+.cta-btn--primary {
+  background: var(--accent);
+  color: #0c1222;
+  border-color: var(--accent);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+.cta-btn--primary:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: var(--accent-secondary);
+  border-color: var(--accent-secondary);
+  box-shadow: 0 0 36px rgba(52,211,153,0.3), 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.cta-btn--secondary {
+  background: var(--bg-card);
+  color: var(--text);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.cta-btn--secondary:hover {
+  transform: translateY(-2px) scale(1.04);
+  background: rgba(255,255,255,0.1);
+  box-shadow: 0 0 20px rgba(255,255,255,0.05);
+}
+
+/* ─── Sections ─── */
+section {
+  padding: 5rem 1.5rem;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+  letter-spacing: -0.01em;
+}
+
+.accent-line {
+  width: 48px;
+  height: 3px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+/* ─── Project Cards Grid ─── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+@media (min-width: 768px) {
+  .cards-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: 14px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.4s var(--ease-organic), box-shadow 0.4s var(--ease-smooth);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  gap: 1.15rem;
+  padding: 1rem;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+.card:hover::before { opacity: 1; }
+
+.card-thumb {
+  width: 110px;
+  min-height: 90px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+/* Placeholder gradient when no image */
+.card-thumb--placeholder {
+  background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(52,211,153,0.15));
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0.5rem;
+}
+[data-theme="light"] .card-thumb--placeholder {
+  background: linear-gradient(135deg, rgba(101,163,13,0.15), rgba(249,115,22,0.15));
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.card-desc {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.tag {
+  font-size: 0.68rem;
+  font-weight: 500;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(249,115,22,0.08);
+  color: var(--accent);
+  border: 1px solid rgba(249,115,22,0.15);
+  letter-spacing: 0.02em;
+}
+[data-theme="light"] .tag {
+  background: rgba(101,163,13,0.1);
+  border-color: rgba(101,163,13,0.2);
+}
+
+.card-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+.card-link {
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.2s, gap 0.3s var(--ease-organic);
+}
+.card-link:hover { color: var(--accent-secondary); gap: 0.45rem; }
+.card-link-arrow { transition: transform 0.3s var(--ease-organic); font-size: 0.75rem; }
+.card-link:hover .card-link-arrow { transform: translateX(2px); }
+
+/* ─── Publications ─── */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pub-card {
+  background: var(--bg-card);
+  border: 1px solid var(--bg-card-border);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  transition: transform 0.4s var(--ease-organic), box-shadow 0.4s;
+}
+.pub-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.pub-year {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: var(--accent);
+  flex-shrink: 0;
+  min-width: 55px;
+  line-height: 1.2;
+}
+
+.pub-info { flex: 1; }
+
+.pub-title {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.45;
+}
+
+.pub-journal {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.pub-link {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.pub-link:hover { color: var(--accent-secondary); }
+
+/* ─── Footer ─── */
+.footer {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid var(--bg-card-border);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--accent-secondary); }
+
+.footer-copy {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  opacity: 0.6;
+}
+
+/* ─── Scroll Reveals ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-organic);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 720px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .hero-content { padding: 1.5rem; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .pub-card { flex-direction: column; gap: 0.5rem; }
+  .pub-year { font-size: 1.1rem; min-width: unset; }
+  section { padding: 3.5rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Steffen Plunder</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#talks">Talks</a></li>
+    <li><a href="#cv">CV</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+      <span id="themeIcon">&#9790;</span>
+    </button>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#projects">Projects</a>
+  <a href="#publications">Publications</a>
+  <a href="#blog">Blog</a>
+  <a href="#talks">Talks</a>
+  <a href="#cv">CV</a>
+</div>
+
+<!-- Hero -->
+<section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-name">Steffen Plunder</h1>
+    <p class="hero-subtitle">Mathematician &middot; Computational Biologist &middot; Developer</p>
+    <p class="hero-bio">
+      Program-specific researcher at ASHBi, Kyoto University. I build computational models and interactive simulations to understand how cells move, organize, and form living structures.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:steffen.plunder@example.com" class="cta-btn cta-btn--primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        Email
+      </a>
+      <a href="https://github.com/SteffenPL" class="cta-btn cta-btn--secondary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://scholar.google.com/" class="cta-btn cta-btn--secondary" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/></svg>
+        Scholar
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects -->
+<section id="projects">
+  <div class="container">
+    <div class="reveal">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Computational models and tools for understanding living systems</p>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal" style="transition-delay: 0.05s;">
+        <div class="card-thumb card-thumb--placeholder">thumbnail</div>
+        <div class="card-body">
+          <h3 class="card-title">Computational model for in vitro limb morphogenesis</h3>
+          <p class="card-desc">Agent-based simulation capturing self-organization of mesenchymal cells into digit-like structures.</p>
+          <div class="card-tags">
+            <span class="tag">Julia</span>
+            <span class="tag">Agent-based models</span>
+            <span class="tag">Dev. Biology</span>
+          </div>
+          <div class="card-links">
+            <a href="#" class="card-link">Paper <span class="card-link-arrow">&rarr;</span></a>
+            <a href="#" class="card-link">Code <span class="card-link-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="transition-delay: 0.1s;">
+        <div class="card-thumb card-thumb--placeholder">thumbnail</div>
+        <div class="card-body">
+          <h3 class="card-title">First-order position-based dynamics</h3>
+          <p class="card-desc">A framework for overdamped particle dynamics with constraints for simulating soft biological matter.</p>
+          <div class="card-tags">
+            <span class="tag">Julia</span>
+            <span class="tag">Particle dynamics</span>
+            <span class="tag">Soft matter</span>
+          </div>
+          <div class="card-links">
+            <a href="#" class="card-link">Paper <span class="card-link-arrow">&rarr;</span></a>
+            <a href="#" class="card-link">Code <span class="card-link-arrow">&rarr;</span></a>
+            <a href="#" class="card-link">Demo <span class="card-link-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="transition-delay: 0.15s;">
+        <div class="card-thumb card-thumb--placeholder">thumbnail</div>
+        <div class="card-body">
+          <h3 class="card-title">Epithelial-to-mesenchymal transitions</h3>
+          <p class="card-desc">Modeling the transition of epithelial cells to a migratory mesenchymal state in cancer and wound healing.</p>
+          <div class="card-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Cell migration</span>
+            <span class="tag">Cancer biology</span>
+          </div>
+          <div class="card-links">
+            <a href="#" class="card-link">Paper <span class="card-link-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="transition-delay: 0.2s;">
+        <div class="card-thumb card-thumb--placeholder">thumbnail</div>
+        <div class="card-body">
+          <h3 class="card-title">Cell migration model for plithotaxis</h3>
+          <p class="card-desc">How cells collectively migrate guided by intercellular stress patterns and mechanical forces.</p>
+          <div class="card-tags">
+            <span class="tag">Julia</span>
+            <span class="tag">Collective migration</span>
+          </div>
+          <div class="card-links">
+            <a href="#" class="card-link">Paper <span class="card-link-arrow">&rarr;</span></a>
+            <a href="#" class="card-link">Code <span class="card-link-arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Recent Publications -->
+<section id="publications">
+  <div class="container">
+    <div class="reveal">
+      <div class="accent-line"></div>
+      <h2 class="section-title">Recent Publications</h2>
+      <p class="section-subtitle">Selected works in computational biology and applied mathematics</p>
+    </div>
+    <div class="pub-list">
+      <div class="pub-card reveal" style="transition-delay: 0.05s;">
+        <span class="pub-year">2024</span>
+        <div class="pub-info">
+          <h3 class="pub-title">First-order position-based dynamics: Theory and application to cell mechanics</h3>
+          <p class="pub-journal">Computers &amp; Mathematics with Applications</p>
+          <a href="#" class="pub-link">View publication &rarr;</a>
+        </div>
+      </div>
+      <div class="pub-card reveal" style="transition-delay: 0.12s;">
+        <span class="pub-year">2023</span>
+        <div class="pub-info">
+          <h3 class="pub-title">Agent-based modeling of in vitro limb bud morphogenesis</h3>
+          <p class="pub-journal">Development</p>
+          <a href="#" class="pub-link">View publication &rarr;</a>
+        </div>
+      </div>
+      <div class="pub-card reveal" style="transition-delay: 0.19s;">
+        <span class="pub-year">2023</span>
+        <div class="pub-info">
+          <h3 class="pub-title">Computational models of epithelial-to-mesenchymal transitions in collective cell migration</h3>
+          <p class="pub-journal">PLOS Computational Biology</p>
+          <a href="#" class="pub-link">View publication &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-links">
+    <a href="mailto:steffen.plunder@example.com">Email</a>
+    <a href="https://github.com/SteffenPL" target="_blank">GitHub</a>
+    <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+    <a href="https://steffenpl.github.io" target="_blank">Blog</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Steffen Plunder. Built with curiosity and code.</p>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   Particle Constellation Simulation
+   ═══════════════════════════════════════════ */
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let width, height;
+  let mouse = { x: -9999, y: -9999 };
+  const PARTICLE_COUNT = 80;
+  const CONNECTION_DIST = 150;
+  const MOUSE_RADIUS = 180;
+  let scrollY = 0;
+
+  function resize() {
+    const hero = canvas.parentElement;
+    width = canvas.width = hero.offsetWidth;
+    height = canvas.height = hero.offsetHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 2 + 1,
+        baseAlpha: Math.random() * 0.5 + 0.3,
+        pulse: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+
+  function getParticleColor() {
+    const style = getComputedStyle(document.documentElement);
+    return style.getPropertyValue('--particle-color').trim();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, width, height);
+    const pc = getParticleColor();
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECTION_DIST) {
+          const alpha = (1 - dist / CONNECTION_DIST) * 0.15;
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(${pc}, ${alpha})`;
+          ctx.lineWidth = 0.6;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw particles
+    for (const p of particles) {
+      p.pulse += 0.015;
+      const glow = Math.sin(p.pulse) * 0.15 + 0.85;
+      const alpha = p.baseAlpha * glow;
+
+      // Particle glow
+      const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.radius * 4);
+      gradient.addColorStop(0, `rgba(${pc}, ${alpha * 0.6})`);
+      gradient.addColorStop(1, `rgba(${pc}, 0)`);
+      ctx.beginPath();
+      ctx.fillStyle = gradient;
+      ctx.arc(p.x, p.y, p.radius * 4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Particle core
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(${pc}, ${alpha})`;
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function update() {
+    for (const p of particles) {
+      // Mouse repulsion
+      const dx = p.x - mouse.x;
+      const dy = p.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < MOUSE_RADIUS && dist > 0) {
+        const force = (MOUSE_RADIUS - dist) / MOUSE_RADIUS * 0.8;
+        p.vx += (dx / dist) * force;
+        p.vy += (dy / dist) * force;
+      }
+
+      // Damping
+      p.vx *= 0.98;
+      p.vy *= 0.98;
+
+      // Base drift
+      p.vx += (Math.random() - 0.5) * 0.02;
+      p.vy += (Math.random() - 0.5) * 0.02;
+
+      p.x += p.vx;
+      p.y += p.vy;
+
+      // Wrap around
+      if (p.x < -20) p.x = width + 20;
+      if (p.x > width + 20) p.x = -20;
+      if (p.y < -20) p.y = height + 20;
+      if (p.y > height + 20) p.y = -20;
+    }
+  }
+
+  function loop() {
+    update();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  // Parallax scroll offset for canvas
+  window.addEventListener('scroll', () => {
+    scrollY = window.scrollY;
+    canvas.style.transform = `translateY(${scrollY * 0.25}px)`;
+  }, { passive: true });
+
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+
+  window.addEventListener('resize', () => {
+    resize();
+  });
+
+  resize();
+  createParticles();
+  loop();
+})();
+
+/* ═══════════════════════════════════════════
+   Scroll Reveal (IntersectionObserver)
+   ═══════════════════════════════════════════ */
+(function() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+})();
+
+/* ═══════════════════════════════════════════
+   Theme Toggle (with View Transitions API)
+   ═══════════════════════════════════════════ */
+(function() {
+  const toggle = document.getElementById('themeToggle');
+  const icon = document.getElementById('themeIcon');
+  const html = document.documentElement;
+
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    icon.innerHTML = theme === 'dark' ? '&#9790;' : '&#9728;';
+  }
+
+  toggle.addEventListener('click', (e) => {
+    const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+
+    // Set the origin point for the circular wipe to the toggle button center
+    const rect = toggle.getBoundingClientRect();
+    const x = ((rect.left + rect.width / 2) / window.innerWidth * 100).toFixed(1);
+    const y = ((rect.top + rect.height / 2) / window.innerHeight * 100).toFixed(1);
+    html.style.setProperty('--toggle-x', x + '%');
+    html.style.setProperty('--toggle-y', y + '%');
+
+    if (document.startViewTransition) {
+      document.startViewTransition(() => setTheme(newTheme));
+    } else {
+      setTheme(newTheme);
+    }
+  });
+})();
+
+/* ═══════════════════════════════════════════
+   Nav: scroll glass effect & hamburger
+   ═══════════════════════════════════════════ */
+(function() {
+  const nav = document.getElementById('nav');
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  // Add glass background when scrolled past hero
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Hamburger toggle
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+})();
+</script>
+</body>
+</html>
