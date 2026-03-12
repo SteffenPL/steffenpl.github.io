@@ -1,18 +1,27 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import ThemeToggle from './ThemeToggle.svelte';
 	import type { NavItem } from '$lib/types';
 
 	const nav: NavItem[] = [
-		{ name: 'Home', route: '/' },
-		{ name: 'Research', route: '/research' },
+		{ name: 'Projects', route: '/research' },
 		{ name: 'Publications', route: '/publications' },
 		{ name: 'Blog', route: '/blog' },
-		{ name: 'CV', route: '/cv' },
-		{ name: 'Talks', route: '/talks' }
+		{ name: 'Talks', route: '/talks' },
+		{ name: 'CV', route: '/cv' }
 	];
 
 	let mobileOpen = $state(false);
+	let scrolled = $state(false);
+
+	onMount(() => {
+		const onScroll = () => {
+			scrolled = window.scrollY > 60;
+		};
+		window.addEventListener('scroll', onScroll, { passive: true });
+		return () => window.removeEventListener('scroll', onScroll);
+	});
 
 	function isActive(route: string): boolean {
 		if (route === '/') return page.url.pathname === '/';
@@ -21,31 +30,44 @@
 </script>
 
 <header
-	class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[var(--color-surface)]/80 backdrop-blur-lg"
+	class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+	class:scrolled
+	style="
+		background: {scrolled ? 'var(--color-surface-elevated)' : 'transparent'};
+		backdrop-filter: {scrolled ? 'blur(16px)' : 'none'};
+		-webkit-backdrop-filter: {scrolled ? 'blur(16px)' : 'none'};
+		border-bottom: 1px solid {scrolled ? 'var(--color-card-border)' : 'transparent'};
+	"
 >
-	<div class="mx-auto flex max-w-[var(--max-w-content)] items-center justify-between px-6 py-3">
-		<!-- Logo / Name -->
-		<a href="/" class="text-lg font-bold tracking-tight text-[var(--color-text-primary)] hover:text-[var(--color-text-primary)]">
+	<div class="mx-auto flex max-w-[var(--max-w-content)] items-center justify-between px-6" style="height: 56px;">
+		<!-- Logo -->
+		<a
+			href="/"
+			class="font-mono text-[0.95rem] font-semibold tracking-tight text-[var(--color-text-primary)] hover:text-[var(--color-text-primary)]"
+			style="letter-spacing: -0.02em;"
+		>
 			Steffen Plunder
 		</a>
 
 		<!-- Desktop nav -->
-		<nav class="hidden items-center gap-1 md:flex">
-			{#each nav as item}
-				<a
-					href={item.route}
-					class="rounded-lg px-3 py-1.5 text-sm font-medium transition-colors
-						{isActive(item.route)
-						? 'bg-accent-500/10 text-accent-600 [html[data-theme=dark]_&]:text-accent-400'
-						: 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)] hover:text-[var(--color-text-primary)]'}"
-				>
-					{item.name}
-				</a>
-			{/each}
-			<div class="ml-2 border-l border-[var(--color-border)] pl-2">
+		<div class="hidden items-center gap-1 md:flex">
+			<nav class="flex items-center gap-0.5">
+				{#each nav as item}
+					<a
+						href={item.route}
+						class="rounded-md px-3 py-1.5 font-mono text-[0.78rem] font-medium transition-colors"
+						style="letter-spacing: -0.01em;"
+						class:text-accent-500={isActive(item.route)}
+						class:text-[var(--color-text-muted)]={!isActive(item.route)}
+					>
+						{item.name}
+					</a>
+				{/each}
+			</nav>
+			<div class="ml-2">
 				<ThemeToggle />
 			</div>
-		</nav>
+		</div>
 
 		<!-- Mobile controls -->
 		<div class="flex items-center gap-2 md:hidden">
@@ -53,16 +75,16 @@
 			<button
 				onclick={() => (mobileOpen = !mobileOpen)}
 				aria-label="Toggle menu"
-				class="flex h-9 w-9 items-center justify-center rounded-lg hover:bg-[var(--color-surface-hover)]"
+				class="flex h-9 w-9 flex-col items-center justify-center gap-[5px] rounded-lg"
 			>
 				{#if mobileOpen}
 					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
 						<path d="M18 6 6 18" /><path d="m6 6 12 12" />
 					</svg>
 				{:else}
-					<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-						<line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" />
-					</svg>
+					<span class="block h-[1.5px] w-5 rounded-sm bg-[var(--color-text-muted)]"></span>
+					<span class="block h-[1.5px] w-5 rounded-sm bg-[var(--color-text-muted)]"></span>
+					<span class="block h-[1.5px] w-5 rounded-sm bg-[var(--color-text-muted)]"></span>
 				{/if}
 			</button>
 		</div>
@@ -70,16 +92,23 @@
 
 	<!-- Mobile menu -->
 	{#if mobileOpen}
-		<nav class="border-t border-[var(--color-border)] px-6 py-3 md:hidden">
+		<nav
+			class="px-6 py-3 md:hidden"
+			style="
+				background: var(--color-surface-elevated);
+				backdrop-filter: blur(20px);
+				-webkit-backdrop-filter: blur(20px);
+				border-bottom: 1px solid var(--color-card-border);
+			"
+		>
 			<div class="flex flex-col gap-1">
 				{#each nav as item}
 					<a
 						href={item.route}
 						onclick={() => (mobileOpen = false)}
-						class="rounded-lg px-3 py-2 text-sm font-medium transition-colors
-							{isActive(item.route)
-							? 'bg-accent-500/10 text-accent-600'
-							: 'text-[var(--color-text-secondary)] hover:bg-[var(--color-surface-hover)]'}"
+						class="rounded-md px-3 py-2 font-mono text-[0.85rem] font-medium transition-colors"
+						class:text-accent-500={isActive(item.route)}
+						class:text-[var(--color-text-muted)]={!isActive(item.route)}
 					>
 						{item.name}
 					</a>
