@@ -26,8 +26,7 @@
 	<div class="mx-auto flex max-w-[var(--max-w-content)] items-center justify-between px-6 py-3">
 		<!-- Logo / Name -->
 		<a href="/" class="text-lg font-bold tracking-tight text-[var(--color-text-primary)] hover:text-[var(--color-text-primary)]">
-			<span class="text-accent-500">S</span>teffen
-			<span class="text-accent-500">P</span>lunder
+			Steffen Plunder
 		</a>
 
 		<!-- Desktop nav -->
