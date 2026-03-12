@@ -1,26 +1,35 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { theme } from '$lib/stores/theme';
-	import Header from '$lib/components/layout/Header.svelte';
-	import Footer from '$lib/components/layout/Footer.svelte';
 	import '../app.css';
+	import Nav from '$lib/components/layout/Nav.svelte';
+	import Footer from '$lib/components/layout/Footer.svelte';
+	import { theme } from '$lib/stores/theme';
+	import { onMount } from 'svelte';
 
 	let { children } = $props();
 
 	onMount(() => {
 		theme.init();
+
+		const reveals = document.querySelectorAll('.reveal');
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('visible');
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+		);
+		reveals.forEach((el) => observer.observe(el));
+
+		return () => observer.disconnect();
 	});
 </script>
 
-<svelte:head>
-	<title>Steffen Plunder</title>
-	<meta name="description" content="Steffen Plunder — Mathematician, computational biologist, and developer." />
-</svelte:head>
-
-<div class="flex min-h-screen flex-col">
-	<Header />
-	<main class="flex-1">
-		{@render children()}
-	</main>
-	<Footer />
-</div>
+<Nav />
+<main>
+	{@render children()}
+</main>
+<Footer />

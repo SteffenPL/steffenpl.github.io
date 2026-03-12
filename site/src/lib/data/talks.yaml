@@ -1,0 +1,121 @@
+- date: 2025-09
+  title: "Modeling the Directionality of Cell Migration in Epithelial-to-Mesenchymal Transitions with Non-Smooth Dynamical Systems"
+  venue: "NCTS Webinar on Nonlinear Evolutionary Dynamics"
+  url: https://ncts.ntu.edu.tw/events_1_detail.php?nid=2964
+
+- date: 2025-07
+  title: "Position-based Dynamics for Multicellular Systems with Adhesion Memory"
+  venue: "ACMB-JSMB 2025 (Kyoto)"
+  url: /slides/2025/07-08-ACMBJSMB/index.html#/0/0/0
+
+- date: 2025-01
+  title: "Emergence of digit-like structures through mechanical instabilities"
+  venue: "ASHBi Retreat 2025 (Shiga)"
+  url: https://ashbi.kyoto-u.ac.jp/ja/event/event-retreat/2226/
+
+- date: 2024-09
+  title: "200 years old and still relevant: The Gauss-Seidel principle"
+  venue: "Lab Summer Conference 2024 (Kyoto)"
+  url: /slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0
+
+- date: 2024-09
+  title: "Modelling heterogeneity of EMT to identify main drivers of basal extrusion"
+  venue: "The 1st ASHBi-KAIST Joint Workshop (Kyoto)"
+  url: /slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0
+
+- date: 2024-07
+  title: "Agent-based modelling of heterogeneous EMT scenarios"
+  venue: "Annual Meeting ESMTB (Toledo)"
+  url: /slides/2024/07-24-ESMTB/esmtb_2024.html#/0/0/0
+
+- date: 2024-07
+  title: "A live coding music performance with Julia"
+  venue: "JuliaCon 2024 (Eindhoven)"
+  url: https://youtu.be/k-WUQFxWNj0?feature=shared
+
+- date: 2024-07
+  title: "Tools for agent-based modelling in developmental biology"
+  venue: "JuliaCon 2024 (Eindhoven)"
+  url: /slides/2024/07-12-JuliaCon/juliacon_abm.html#/0/0/0
+  video: https://youtu.be/V3bc3_d9TIM?feature=shared
+
+- date: 2024-07
+  title: "Position-based dynamics as a numerical tool for agent-based cell migration models of dense populations"
+  venue: "KSMB-SMB 2024 (Seoul)"
+
+- date: 2024-03
+  title: "Position-based dynamics: Convergence theory and applications to agent-based models"
+  venue: "PDE seminar (Vienna)"
+  url: /slides/2024/03-22-Vienna/slides_vienna.html#/0/0/0
+
+- date: 2024-03
+  title: "Towards kinetic theory for multi-scale muscle models"
+  venue: "Inria (Paris)"
+  url: /slides/2024/03-08-Kinetic-theory-mucles/kinetic_theory.pdf
+
+- date: 2023-08
+  title: "Convergence of position based dynamics for first-order particle systems with volume exclusion"
+  venue: "ICIAM 2023 (Tokyo)"
+  url: /slides/2023/08-22-ICIAM/iciam.html#/0/0/0
+
+- date: 2022-12
+  title: "Testing in scientific computing"
+  venue: "Vienna"
+
+- date: 2022-12
+  title: "A short introduction to git"
+  venue: "Vienna"
+
+- date: 2021-11
+  title: "Position-based dynamics for ODEs with inequality constraints"
+  venue: "PDE afternoon (Vienna)"
+
+- date: 2020-05
+  title: "Partially kinetic systems (aka 'particles on rails')"
+  venue: "Kinetic Theory Coffee Break (online)"
+  url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2020/partially_kinetic_systems/index.html
+
+- date: 2019-06
+  title: "Short introduction to finite element exterior calculus"
+  venue: "PhD seminar (Kaiserslautern)"
+
+- date: 2019-03
+  title: "Partially mesoscopic and Lagrangian systems"
+  venue: "DESCRIPTOR (Paderborn)"
+
+- date: 2019-02
+  title: "Lagrangian perspective on skeletal muscle models"
+  venue: "GAMM, 90th Annual Meeting (Vienna)"
+
+- date: 2018-10
+  title: "Fiber based muscle simulation (master's thesis)"
+  venue: "Hausdorff Center of Mathematics (Bonn)"
+  url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis_short/index.html
+
+- date: 2018-07
+  title: "Tangent spaces"
+  venue: "Student-Talk (Kaiserslautern)"
+  url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/index.html
+
+- date: 2018-06
+  title: "Simulation of skeletal muscle tissue with fiber-based dynamics"
+  venue: "Applied Math Seminar (Kaiserslautern)"
+  url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis/index.html
+
+- date: 2018-05
+  title: "Parameter identification in ODE models"
+  venue: "The University of Auckland"
+  url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/param_id_in_ode/index.html
+
+- date: 2018-04
+  title: "Symplectic numerical integration"
+  venue: "PhD seminar (Auckland)"
+  url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/symplectic_methods/index.html
+
+- date: 2017-09
+  title: "Symplectic molecular dynamics"
+  venue: "19th OeMG Meeting and Annual DMV Meeting (Salzburg)"
+
+- date: 2017-01
+  title: "Optimization of B-Spline Parametrizations using G+SMo and IPOPT"
+  venue: "G+SMo Developer Days (TU Delft)"

@@ -12,8 +12,8 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
-		"@fontsource/ubuntu": "^5.2.8",
-		"@fontsource/ubuntu-mono": "^5.2.8",
+		"@fontsource/inter": "^5.2.8",
+		"@fontsource/source-code-pro": "^5.2.7",
 		"@rollup/plugin-yaml": "^4.1.2",
 		"@sveltejs/adapter-auto": "^7.0.0",
 		"@sveltejs/adapter-static": "^3.0.10",
@@ -21,7 +21,6 @@
 		"@sveltejs/vite-plugin-svelte": "^6.2.4",
 		"@tailwindcss/typography": "^0.5.19",
 		"@tailwindcss/vite": "^4.2.1",
-		"@types/js-yaml": "^4.0.9",
 		"js-yaml": "^4.1.1",
 		"katex": "^0.16.38",
 		"mdsvex": "^0.12.7",

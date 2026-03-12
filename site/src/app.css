@@ -1,232 +1,115 @@
 @import 'tailwindcss';
-@import '@fontsource/ubuntu/400.css';
-@import '@fontsource/ubuntu/500.css';
-@import '@fontsource/ubuntu/700.css';
-@import '@fontsource/ubuntu-mono/400.css';
-@import '@fontsource/ubuntu-mono/700.css';
+@import '@fontsource/source-code-pro/400.css';
+@import '@fontsource/source-code-pro/500.css';
+@import '@fontsource/source-code-pro/600.css';
+@import '@fontsource/source-code-pro/700.css';
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/500.css';
+@import '@fontsource/inter/600.css';
 @import 'katex/dist/katex.min.css';
 
 @theme {
-	--font-sans: 'Ubuntu', ui-sans-serif, system-ui, sans-serif;
-	--font-mono: 'Ubuntu Mono', ui-monospace, monospace;
-
-	/* Light mode accent — lime primary */
-	--color-accent-50: #f7fee7;
-	--color-accent-100: #ecfccb;
-	--color-accent-200: #d9f99d;
-	--color-accent-300: #bef264;
-	--color-accent-400: #a3e635;
-	--color-accent-500: #84cc16;
-	--color-accent-600: #65a30d;
-	--color-accent-700: #4d7c0f;
-	--color-accent-800: #3f6212;
-	--color-accent-900: #365314;
-
-	/* Secondary accent (orange) — used for gradients */
-	--color-secondary-400: #fb923c;
-	--color-secondary-500: #f97316;
-	--color-secondary-600: #ea580c;
-
-	/* Layout */
-	--max-w-content: 68rem;
-	--max-w-prose: 65ch;
+	--font-display: 'Source Code Pro', monospace;
+	--font-body: 'Inter', sans-serif;
 }
-
-/* ─── Semantic color tokens ─── */
 
 :root {
-	--color-surface: #f4f6f9;
-	--color-surface-elevated: rgba(255, 255, 255, 0.7);
-	--color-surface-hover: rgba(0, 0, 0, 0.04);
-	--color-card-border: rgba(0, 0, 0, 0.08);
-	--color-text-primary: #0c1222;
-	--color-text-secondary: #475569;
-	--color-text-muted: #94a3b8;
-	--color-border: rgba(0, 0, 0, 0.08);
-	--color-border-subtle: rgba(0, 0, 0, 0.04);
-	--color-link: var(--color-accent-600);
-	--color-link-hover: var(--color-accent-700);
-	--color-code-bg: rgba(0, 0, 0, 0.05);
-	--color-accent-glow: rgba(101, 163, 13, 0.25);
-	--color-gradient-accent: linear-gradient(135deg, #84cc16, #f97316);
-	--shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
-	--shadow-card-hover: 0 8px 40px rgba(101, 163, 13, 0.12), 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme='dark'] {
-	--color-surface: #0c1222;
-	--color-surface-elevated: rgba(255, 255, 255, 0.04);
-	--color-surface-hover: rgba(255, 255, 255, 0.05);
-	--color-card-border: rgba(255, 255, 255, 0.08);
-	--color-text-primary: #f0f0f0;
-	--color-text-secondary: #94a3b8;
-	--color-text-muted: #64748b;
-	--color-border: rgba(255, 255, 255, 0.08);
-	--color-border-subtle: rgba(255, 255, 255, 0.04);
-	--color-code-bg: rgba(255, 255, 255, 0.06);
-	--color-accent-glow: rgba(249, 115, 22, 0.3);
-	--color-gradient-accent: linear-gradient(135deg, #f97316, #a3e635);
+	/* Dark mode: orange primary, lime secondary */
+	--bg: #0c1222;
+	--bg-card: rgba(255, 255, 255, 0.04);
+	--bg-card-border: rgba(255, 255, 255, 0.08);
+	--text: #f0f0f0;
+	--text-muted: #94a3b8;
+	--accent: #f97316;
+	--accent-glow: rgba(249, 115, 22, 0.3);
+	--accent-secondary: #a3e635;
+	--gradient-accent: linear-gradient(135deg, #f97316, #a3e635);
 	--shadow-card: 0 4px 32px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
 	--shadow-card-hover: 0 8px 48px rgba(249, 115, 22, 0.15), 0 2px 8px rgba(0, 0, 0, 0.4);
-
-	/* Dark mode accent — orange primary */
-	--color-accent-50: #fff7ed;
-	--color-accent-100: #ffedd5;
-	--color-accent-200: #fed7aa;
-	--color-accent-300: #fdba74;
-	--color-accent-400: #fb923c;
-	--color-accent-500: #f97316;
-	--color-accent-600: #ea580c;
-	--color-accent-700: #c2410c;
-	--color-accent-800: #9a3412;
-	--color-accent-900: #7c2d12;
-
-	/* Secondary flips to lime in dark */
-	--color-secondary-400: #a3e635;
-	--color-secondary-500: #84cc16;
-	--color-secondary-600: #65a30d;
-
-	--color-link: var(--color-accent-400);
-	--color-link-hover: var(--color-accent-300);
+	--particle-color: 249, 115, 22;
 }
 
-/* ─── Base styles ─── */
+[data-theme='light'] {
+	/* Light mode: lime primary, orange secondary */
+	--bg: #f4f6f9;
+	--bg-card: rgba(255, 255, 255, 0.7);
+	--bg-card-border: rgba(0, 0, 0, 0.08);
+	--text: #0c1222;
+	--text-muted: #475569;
+	--accent: #65a30d;
+	--accent-glow: rgba(101, 163, 13, 0.25);
+	--accent-secondary: #f97316;
+	--gradient-accent: linear-gradient(135deg, #84cc16, #f97316);
+	--shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
+	--shadow-card-hover: 0 8px 40px rgba(101, 163, 13, 0.12), 0 2px 8px rgba(0, 0, 0, 0.1);
+	--particle-color: 101, 163, 13;
+}
+
+/* View Transitions: circular wipe */
+::view-transition-old(root),
+::view-transition-new(root) {
+	animation: none;
+	mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+	z-index: 1;
+}
+::view-transition-new(root) {
+	z-index: 9999;
+	animation: circular-reveal 0.6s ease-in-out;
+}
+@keyframes circular-reveal {
+	from {
+		clip-path: circle(0% at var(--toggle-x, 95%) var(--toggle-y, 2%));
+	}
+	to {
+		clip-path: circle(150% at var(--toggle-x, 95%) var(--toggle-y, 2%));
+	}
+}
 
 html {
 	scroll-behavior: smooth;
 }
 
 body {
-	font-family: var(--font-sans);
-	background-color: var(--color-surface);
-	color: var(--color-text-primary);
+	font-family: var(--font-body);
+	background: var(--bg);
+	color: var(--text);
 	line-height: 1.6;
 	overflow-x: hidden;
-	transition:
-		background-color 0.5s ease,
-		color 0.5s ease;
 }
-
-/* ─── Link styles ─── */
-
-a {
-	color: var(--color-link);
-	text-decoration: none;
-	transition: color 0.2s ease;
-}
-
-a:hover {
-	color: var(--color-link-hover);
-}
-
-/* ─── Selection ─── */
 
 ::selection {
-	background-color: var(--color-accent-200);
-	color: var(--color-accent-900);
+	background: rgba(249, 115, 22, 0.3);
+}
+[data-theme='light'] ::selection {
+	background: rgba(101, 163, 13, 0.3);
 }
 
-[data-theme='dark'] ::selection {
-	background-color: var(--color-accent-800);
-	color: var(--color-accent-100);
-}
-
-/* ─── Scrollbar (subtle) ─── */
-
-::-webkit-scrollbar {
-	width: 8px;
-}
-
-::-webkit-scrollbar-track {
-	background: var(--color-surface);
-}
-
-::-webkit-scrollbar-thumb {
-	background: var(--color-border);
-	border-radius: 4px;
-}
-
-/* ─── Glass card base ─── */
-
-.glass-card {
-	background: var(--color-surface-elevated);
-	border: 1px solid var(--color-card-border);
-	border-radius: 14px;
-	backdrop-filter: blur(16px);
-	-webkit-backdrop-filter: blur(16px);
-	box-shadow: var(--shadow-card);
-	position: relative;
-	overflow: hidden;
-	transition:
-		transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
-		box-shadow 0.4s ease;
-}
-
-.glass-card::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 2px;
-	background: var(--color-gradient-accent);
-	opacity: 0;
-	transition: opacity 0.4s;
-}
-
-.glass-card:hover {
-	transform: translateY(-4px);
-	box-shadow: var(--shadow-card-hover);
-}
-
-.glass-card:hover::before {
-	opacity: 1;
-}
-
-/* ─── Accent gradient line (for section headers) ─── */
-
-.accent-line {
-	width: 48px;
-	height: 3px;
-	background: var(--color-gradient-accent);
-	border-radius: 2px;
-	margin-bottom: 1rem;
-}
-
-/* ─── Typography prose overrides ─── */
-
+/* Prose overrides for blog posts */
 .prose {
-	--tw-prose-body: var(--color-text-primary);
-	--tw-prose-headings: var(--color-text-primary);
-	--tw-prose-links: var(--color-link);
-	--tw-prose-bold: var(--color-text-primary);
-	--tw-prose-code: var(--color-text-primary);
-	--tw-prose-pre-bg: var(--color-code-bg);
-	--tw-prose-quotes: var(--color-text-secondary);
-	--tw-prose-counters: var(--color-text-muted);
-	--tw-prose-bullets: var(--color-text-muted);
-	--tw-prose-hr: var(--color-border);
-	--tw-prose-th-borders: var(--color-border);
-	--tw-prose-td-borders: var(--color-border-subtle);
+	--tw-prose-body: var(--text);
+	--tw-prose-headings: var(--text);
+	--tw-prose-links: var(--accent);
+	--tw-prose-bold: var(--text);
+	--tw-prose-code: var(--accent);
+	--tw-prose-quotes: var(--text-muted);
 }
 
-/* ─── Code blocks ─── */
-
-code {
-	font-family: var(--font-mono);
-	font-size: 0.9em;
+.prose a:hover {
+	color: var(--accent-secondary);
 }
 
-:not(pre) > code {
-	background: var(--color-code-bg);
-	padding: 0.15em 0.4em;
-	border-radius: 0.25rem;
+/* Scroll reveal utility */
+.reveal {
+	opacity: 0;
+	transform: translateY(32px);
+	transition:
+		opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+		transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-
-/* ─── KaTeX overrides ─── */
-
-.katex-display {
-	overflow-x: auto;
-	overflow-y: hidden;
-	padding: 0.5em 0;
+.reveal.visible {
+	opacity: 1;
+	transform: translateY(0);
 }

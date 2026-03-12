@@ -1,3 +1,19 @@
+export type Theme = 'light' | 'dark';
+
+export interface Project {
+	slug: string;
+	title: string;
+	desc: string;
+	image: string;
+	tags: string[];
+	status: 'active' | 'completed';
+	start: string;
+	end?: string;
+	publications: number[];
+	links: { label: string; url: string }[];
+	blog?: string;
+}
+
 export interface Author {
 	name: string;
 	url?: string;
@@ -22,28 +38,17 @@ export interface PublicationsData {
 	peer_reviewed: Publication[];
 }
 
-export interface Project {
-	slug: string;
+export interface Talk {
+	date: string;
 	title: string;
-	description: string;
-	image?: string;
-	tags: string[];
-	links: { label: string; url: string }[];
-	publicationIds: number[];
-	status: 'active' | 'archived';
-	start?: string;
-	end?: string;
+	venue: string;
+	url?: string;
+	video?: string;
 }
 
 export interface BlogPostMeta {
 	slug: string;
 	title: string;
 	date: string;
-	description?: string;
-	tags: string[];
-}
-
-export interface NavItem {
-	name: string;
-	route: string;
+	tags?: string[];
 }

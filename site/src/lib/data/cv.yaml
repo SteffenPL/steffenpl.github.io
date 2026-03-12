@@ -1,0 +1,68 @@
+affiliation:
+  role: "Program-specific researcher (Post doc)"
+  institution: "ASHBi, KUIAS, Kyoto University"
+  url: https://ashbi.kyoto-u.ac.jp/
+  lab: "Seirin-Lee's lab"
+  lab_url: https://sites.google.com/site/seirin711lee/home
+  start: 2023
+
+education:
+  - period: "2019 – 2023"
+    title: "PhD candidate at University of Vienna"
+  - period: "2018 – 2019"
+    title: "Teaching assistant at TU Kaiserslautern"
+  - period: "2018 (2 months)"
+    title: "Academic visit at Hausdorff Center of Mathematics Bonn"
+  - period: "2018 (4 months)"
+    title: "Academic visit at The University of Auckland"
+  - period: "2016 (6 months)"
+    title: "ERASMUS at TU Delft"
+  - period: "2013 – 2018"
+    title: "B.Sc. & M.Sc. in Mathematics at TU Kaiserslautern"
+
+teaching:
+  - period: "2021 – 2022"
+    title: "Programming crash courses in Julia and Python for PhD students in Vienna"
+  - period: "2014 – 2016"
+    title: "Tutor at TU Kaiserslautern (8 courses): Analysis, Linear Algebra, Numerical Methods"
+  - period: "2012 – 2016"
+    title: "Programming assistant at Fraunhofer ITWM"
+
+skills:
+  programming: "Over 10 years of experience. Advanced skills in Julia, C++, Python, Matlab, JavaScript."
+
+grants:
+  - period: "2024 – 2027"
+    title: "Kakenhi: Early-Career Scientists, PI (2,000k JPY)"
+  - period: "2023 – 2025"
+    title: "ASHBi Fusion Research Grant, Co-PI (5,000k JPY)"
+    url: https://ashbi.kyoto-u.ac.jp/news/20230309_ashbi-fusion-research-grant/
+  - period: "2021"
+    title: "EMBO scientific exchange grant for academic visit in Toulouse"
+  - period: "2018"
+    title: "DAAD-PROMOS scholarship for academic visit in Auckland"
+  - period: "2017"
+    title: "Main prize on DMV students conference 2017"
+  - period: "2016 – 2018"
+    title: "Felix-Klein scholarship (Fraunhofer ITWM Kaiserslautern)"
+  - period: "2014 – 2016"
+    title: "Deutschlandstipendium"
+
+software:
+  - name: "SpatialHashTables.jl"
+    url: https://github.com/SteffenPL/SpatialHashTables.jl
+    desc: "Spatial hashing of particles in 2D and 3D for fast collision detection."
+  - name: "BoundedDegreeGraphs.jl"
+    url: https://github.com/SteffenPL/BoundedDegreeGraphs.jl
+    desc: "Graphs with bounded degree, allocation-free operations for agent-based modelling."
+
+organisation:
+  - period: "2023"
+    title: "Workshop: Development across Scale 2023"
+    url: https://sites.google.com/kyoto-u.ac.jp/dev-across-scales-2023/home
+  - period: "2022"
+    title: "VSM Mini-Course on String Theory by Pavel Safronov"
+  - period: "2021"
+    title: "VSM workshop: A PhD in mathematics – career possibilities & gender aspects"
+  - period: "2017 – 2019"
+    title: "Student Talks (initiator of extracurricular talks at TU Kaiserslautern)"
