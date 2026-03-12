@@ -4,8 +4,6 @@ date: "2026-02-02"
 slug: "5-tips-for-using-ai-in-research"
 ---
 
-# 5 Tips for Using AI in research:
-
 Coding assistants have recently taken the world by storm. Simply put, there are now extremely capable code writers which can work on large complex problems & code bases. The frontier of tools and techniques moves extremely fast. And in this blog we will explore the frontier!
 
 But first things first, before we can talk in the future about advanced tools, let's start with the essentials first.

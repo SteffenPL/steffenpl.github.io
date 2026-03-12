@@ -4,8 +4,6 @@ date: "2022-06-13"
 slug: "p5js"
 ---
 
-# Interactive modelling with p5.js
-
 I worked a lot with particle models (molecular dynamics, agent-based models).
 In all those cases plotting is at times even more tedious than writing the simulation itself.
 

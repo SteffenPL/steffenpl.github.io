@@ -4,8 +4,6 @@ date: "2022-06-14"
 slug: "mypaintedslides"
 ---
 
-# MyPaintEdSlides
-
 _Till today I couldn't find any satisfying tool to create
 handdrawn slides. So I made one myself!_
 

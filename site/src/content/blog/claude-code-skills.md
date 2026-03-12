@@ -4,8 +4,6 @@ date: "2026-03-09"
 slug: "claude-code-skills"
 ---
 
-# My favourite Claude Code skills and MCPs
-
 I use Claude Code a lot for coding and research tasks.
 One of its strengths is that you can extend it with **Skills** and **MCPs** (Model Context Protocol servers).
 
@@ -13,7 +11,7 @@ Skills are modular instructions that Claude loads on-demand when relevant. MCPs 
 
 I recommend scrolling through the curated list at [claude.com/plugins](https://claude.com/plugins#plugins) to find what is useful for you.
 
-![The Claude Code plugins directory](imgs/claude_code_plugins_list.png)
+![The Claude Code plugins directory](/images/blog/claude_code_plugins_list.png)
 
  Below are my personal recommendations.
 
@@ -37,7 +35,7 @@ Some of the `/commands` it adds:
 
 Here is an example of the brainstorming workflow:
 
-![Example of the Superpowers brainstorming workflow](imgs/brainstorm_example.png)
+![Example of the Superpowers brainstorming workflow](/images/blog/brainstorm_example.png)
 
 ## [Context7](https://claude.com/plugins/context7)
 
@@ -61,7 +59,7 @@ claude install-skill https://claude.com/plugins/explanatory-output-style
 
 Here is an example of the output style in a rather technical project of mine:
 
-![Example of the Explanatory Output Style in action](imgs/insights.png)
+![Example of the Explanatory Output Style in action](/images/blog/insights.png)
 
 ## Where to find more
 

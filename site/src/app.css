@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@plugin '@tailwindcss/typography';
 @import '@fontsource/source-code-pro/400.css';
 @import '@fontsource/source-code-pro/500.css';
 @import '@fontsource/source-code-pro/600.css';
@@ -100,6 +101,30 @@ body {
 .prose a:hover {
 	color: var(--accent-secondary);
 }
+
+.prose img {
+	border-radius: 0.5rem;
+	border: 1px solid var(--bg-card-border);
+	max-width: 680px;
+	margin-inline: auto;
+}
+
+.prose pre {
+	background: var(--bg-card) !important;
+	border: 1px solid var(--bg-card-border);
+}
+
+.prose code:not(pre code) {
+	background: var(--bg-card);
+	padding: 0.15em 0.35em;
+	border-radius: 0.25rem;
+	font-size: 0.875em;
+}
+
+.prose hr {
+	border-color: var(--bg-card-border);
+}
+
 
 /* Scroll reveal utility */
 .reveal {
