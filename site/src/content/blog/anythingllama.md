@@ -24,7 +24,7 @@ That's why I wrote this short post of how to install it, so that you can try it 
 
 3. Now you can chat in the terminal.
 
-![](/images/blog/ollama_limb.png)
+![Chatting with LLama3 in the terminal via Ollama](/images/blog/ollama_limb.png)
 
 ## Adding a user interface
 
@@ -43,13 +43,13 @@ That's why I wrote this short post of how to install it, so that you can try it 
 7. Chat.
 
 
-![](/images/blog/anythingllm_demo.png)
+![AnythingLLM chat interface with LLama3](/images/blog/anythingllm_demo.png)
 
 ## Integration with Obsidian
 
 8. Install the community plugin `Smart Second Brain`
     1. Select `llama3` as Chat Model in the plugin configuration:
-    ![](/images/blog/obsidian_s2b_1.png)
+    ![Smart Second Brain plugin settings in Obsidian](/images/blog/obsidian_s2b_1.png)
     2. Run
         ```
         OLLAMA_HOST=127.0.0.1:11434 OLLAMA_ORIGINS="app://obsidian.md*" ollama serve
@@ -60,5 +60,5 @@ That's why I wrote this short post of how to install it, so that you can try it 
     4. At first install, it will ask you questions. Pick: `llama3`, the right port (as above) and `nomic-embed-text`.
 9. Chat with your notes.
 
-![](/images/blog/obsidian_s2b_4.png)
+![Smart Second Brain chat example in Obsidian](/images/blog/obsidian_s2b_4.png)
 *Example of using Smart Second Brain on my notes. It is a bit hit & miss to be honest. One can play with the creativity/similarity sliders to get better results. But the output is often just wrong.*

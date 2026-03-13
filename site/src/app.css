@@ -110,8 +110,9 @@ body {
 }
 
 .prose pre {
-	background: var(--bg-card) !important;
+	background: #1e293b !important;
 	border: 1px solid var(--bg-card-border);
+	color: #e2e8f0 !important;
 }
 
 .prose code:not(pre code) {

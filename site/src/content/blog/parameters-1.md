@@ -27,7 +27,7 @@ However, the practice of it seems much less satisfying. Many online tutorials ta
 
 <div class="drop-shadow-lg mx-auto">
 
-    <img src="imgs/anim_fps5.gif" class="mx-auto"/>
+    <img src="/images/blog/anim_fps5.gif" alt="Parameter fitting animation using L2 error and LBFGS solver" class="mx-auto"/>
 
 </div>
 
@@ -43,7 +43,7 @@ For example, in my current project with Seirin-Lee and Jinghao Chen, we face a m
 
 <div class="drop-shadow-lg mx-auto">
 
-    <img src="imgs/2024_11_06_params.png" class="mx-auto"/>
+    <img src="/images/blog/2024_11_06_params.png" alt="Parameter estimation results" class="mx-auto"/>
 
 </div>
 

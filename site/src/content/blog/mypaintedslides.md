@@ -11,8 +11,8 @@ If you want to try it, check out the repository [github.com/SteffenPL/MyPaintEdS
 
 It allows you to create slides like this. <br>(Use the down arrow for the next content and left/right arrows to navigate slides.)
 
-<div class="container mx-auto bg-lime-200 aspect-video">
-<iframe class="h-full w-full" width="16" height="9" src="
+<div class="container mx-auto bg-lime-200 aspect-video" style="max-width: 680px;">
+<iframe class="h-full w-full" width="16" height="9" title="MyPaintEdSlides student talk example" src="
 https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/index.html#/2/11">
 </iframe>
 </div>
@@ -20,8 +20,8 @@ https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/inde
 These kind of slides totally change how content is presented, images and formulas are at the front page
 and only your drawing skills are the limit (instead of LaTeX).
 
-<div class="container mx-auto bg-lime-200 aspect-video">
-<iframe class="h-full w-full" width="16" height="9" src="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis/index.html#/3/1">
+<div class="container mx-auto bg-lime-200 aspect-video" style="max-width: 680px;">
+<iframe class="h-full w-full" width="16" height="9" title="MyPaintEdSlides master thesis example" src="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis/index.html#/3/1">
 </iframe>
 </div>
 
