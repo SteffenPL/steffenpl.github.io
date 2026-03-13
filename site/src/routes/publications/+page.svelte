@@ -7,6 +7,10 @@
   function formatAuthors(authors: any[]) {
     return authors;
   }
+
+  function cleanYear(year: string): string {
+    return year.replace(/\*\*/g, '').replace(/[()]/g, '');
+  }
 </script>
 
 <section class="py-20 px-6">
@@ -16,7 +20,7 @@
     </h1>
     <div class="mt-2 mb-12 h-[3px] w-[48px] rounded-full" style="background: var(--gradient-accent);"></div>
 
-    {#each [{ label: 'Preprints', items: preprints }, { label: 'Peer-reviewed', items: peerReviewed }] as section}
+    {#each [{ label: `Preprints (${preprints.length})`, items: preprints }, { label: `Peer-reviewed (${peerReviewed.length})`, items: peerReviewed }] as section}
       {#if section.items.length > 0}
         <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
           {section.label}
@@ -33,7 +37,7 @@
                   class="font-display text-sm font-semibold shrink-0 pt-0.5"
                   style="color: var(--accent);"
                 >
-                  {@html pub.year}
+                  {cleanYear(pub.year)}
                 </span>
 
                 <div class="min-w-0">

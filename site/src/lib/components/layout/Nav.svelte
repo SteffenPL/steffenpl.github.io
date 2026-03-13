@@ -7,7 +7,6 @@
 	let mobileOpen = $state(false);
 
 	const links = [
-		{ href: '/projects', label: 'Projects' },
 		{ href: '/publications', label: 'Publications' },
 		{ href: '/blog', label: 'Blog' },
 		{ href: '/talks', label: 'Talks' },

@@ -1,21 +1,6 @@
 <script lang="ts">
   import HeroCanvas from '$lib/components/home/HeroCanvas.svelte';
-  import projects from '$lib/data/projects.yaml';
   import publications from '$lib/data/publications.yaml';
-
-  interface Project {
-    slug: string;
-    title: string;
-    desc: string;
-    image: string;
-    tags: string[];
-    status: string;
-    start: string;
-    end?: string;
-    publications: number[];
-    links: { label: string; url: string }[];
-    blog?: string;
-  }
 
   interface Author {
     name: string;
@@ -31,8 +16,6 @@
     links: { name: string; url: string }[];
   }
 
-  const featuredProjects: Project[] = (projects as Project[]).slice(0, 4);
-
   const recentPubs: Publication[] = (publications as { peer_reviewed: Publication[] }).peer_reviewed.slice(0, 3);
 
   function formatAuthors(authors: Author[]): string {
@@ -40,7 +23,7 @@
   }
 
   function cleanMarkdown(text: string): string {
-    return text.replace(/\*\*/g, '');
+    return text.replace(/\*\*/g, '').replace(/[()]/g, '');
   }
 </script>
 
@@ -128,85 +111,6 @@
   </div>
 </section>
 
-<!-- Featured Projects Section -->
-<section class="px-6 py-20" style="background: var(--bg);">
-  <div class="mx-auto max-w-[1100px]">
-    <div class="reveal">
-      <div class="accent-line"></div>
-      <h2
-        class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-semibold"
-        style="color: var(--text);"
-      >
-        Featured Projects
-      </h2>
-      <p class="mb-12 mt-2 text-[0.95rem]" style="color: var(--text-muted);">
-        Computational models and tools for understanding living systems
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-      {#each featuredProjects as project, i}
-        <article
-          class="card reveal"
-          style="transition-delay: {(i + 1) * 0.05}s;"
-        >
-          <!-- Thumbnail -->
-          {#if project.image}
-            <div class="card-thumb">
-              <img
-                src={project.image}
-                alt={project.title}
-                class="h-full w-full rounded-[10px] object-cover"
-              />
-            </div>
-          {:else}
-            <div class="card-thumb card-thumb--placeholder">thumbnail</div>
-          {/if}
-
-          <!-- Content -->
-          <div class="flex flex-1 flex-col">
-            <h3
-              class="mb-1 text-[0.95rem] font-semibold leading-snug"
-              style="color: var(--text);"
-            >
-              {project.title}
-            </h3>
-            <p
-              class="mb-2 text-[0.82rem] leading-relaxed"
-              style="color: var(--text-muted);"
-            >
-              {project.desc}
-            </p>
-
-            <!-- Tags -->
-            <div class="mb-2 flex flex-wrap gap-1">
-              {#each project.tags as tag}
-                <span class="tag">{tag}</span>
-              {/each}
-            </div>
-
-            <!-- Links -->
-            {#if project.links && project.links.length > 0}
-              <div class="mt-auto flex flex-wrap gap-3">
-                {#each project.links as link}
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="card-link"
-                  >
-                    {link.label} <span class="card-link-arrow">&rarr;</span>
-                  </a>
-                {/each}
-              </div>
-            {/if}
-          </div>
-        </article>
-      {/each}
-    </div>
-  </div>
-</section>
-
 <!-- Recent Publications Section -->
 <section class="px-6 py-20">
   <div class="mx-auto max-w-[1100px]">
@@ -266,6 +170,12 @@
         </article>
       {/each}
     </div>
+
+    <div class="mt-8 text-center">
+      <a href="/publications" class="card-link text-[0.9rem]">
+        Complete list <span class="card-link-arrow">&rarr;</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -315,78 +225,6 @@
     background: var(--gradient-accent);
     border-radius: 2px;
     margin-bottom: 1rem;
-  }
-
-  /* ─── Project Cards ─── */
-  .card {
-    background: var(--bg-card);
-    border: 1px solid var(--bg-card-border);
-    border-radius: 14px;
-    backdrop-filter: blur(16px);
-    box-shadow: var(--shadow-card);
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    gap: 1.15rem;
-    padding: 1rem;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, var(--accent), transparent);
-    opacity: 0;
-    transition: opacity 0.4s;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-card-hover);
-  }
-  .card:hover::before {
-    opacity: 1;
-  }
-
-  .card-thumb {
-    width: 110px;
-    min-height: 90px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.06);
-    flex-shrink: 0;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .card-thumb--placeholder {
-    background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(52, 211, 153, 0.15));
-    font-family: var(--font-display);
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    text-align: center;
-    padding: 0.5rem;
-  }
-  :global([data-theme='light']) .card-thumb--placeholder {
-    background: linear-gradient(135deg, rgba(101, 163, 13, 0.15), rgba(249, 115, 22, 0.15));
-  }
-
-  /* ─── Tags ─── */
-  .tag {
-    font-size: 0.68rem;
-    font-weight: 500;
-    padding: 0.2rem 0.55rem;
-    border-radius: 999px;
-    background: rgba(249, 115, 22, 0.08);
-    color: var(--accent);
-    border: 1px solid rgba(249, 115, 22, 0.15);
-    letter-spacing: 0.02em;
-  }
-  :global([data-theme='light']) .tag {
-    background: rgba(101, 163, 13, 0.1);
-    border-color: rgba(101, 163, 13, 0.2);
   }
 
   /* ─── Card Links ─── */
@@ -442,9 +280,6 @@
 
   /* ─── Responsive ─── */
   @media (max-width: 720px) {
-    .card-thumb {
-      display: none;
-    }
     .pub-card {
       flex-direction: column;
       gap: 0.5rem;
