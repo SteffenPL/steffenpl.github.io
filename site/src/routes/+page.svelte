@@ -1,5 +1,6 @@
 <script lang="ts">
   import HeroCanvas from '$lib/components/home/HeroCanvas.svelte';
+  import ForceGraph from '$lib/components/home/ForceGraph.svelte';
   import PublicationList from '$lib/components/publications/PublicationList.svelte';
   import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
   import projects from '$lib/data/projects.yaml';
@@ -48,9 +49,9 @@
       class="mx-auto mb-10 max-w-[580px] font-light leading-[1.7]"
       style="font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: var(--text-muted);"
     >
-      Program-specific researcher at ASHBi, Kyoto University. I build computational models
-      and interactive simulations to understand how cells move, organize, and form living
-      structures.
+      Researcher (Post doc) at the Institute for Advanced Study of Human Biology (ASHBi), Kyoto University. 
+      I build computational models and interactive simulations to understand how cells move, organize, and form living
+      structures. <br>Coding + numerical math + biology = ❤️.
     </p>
 
     <div class="flex flex-wrap items-center justify-center gap-4">
@@ -166,6 +167,27 @@
       <a href="/publications" class="card-link text-[0.9rem]">
         Complete list <span class="card-link-arrow">&rarr;</span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- Knowledge Graph Section -->
+<section class="px-6 py-16">
+  <div class="mx-auto max-w-[1100px]">
+    <div class="reveal">
+      <div class="accent-line"></div>
+      <h2
+        class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-semibold"
+        style="color: var(--text);"
+      >
+        Overview
+      </h2>
+      <p class="mb-8 mt-2 text-[0.95rem]" style="color: var(--text-muted);">
+        An interactive map of research, software, publications, talks, and blog posts
+      </p>
+    </div>
+    <div class="reveal">
+      <ForceGraph />
     </div>
   </div>
 </section>

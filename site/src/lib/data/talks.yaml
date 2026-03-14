@@ -1,137 +1,227 @@
-- date: 2025-12
+- slug: plunder_2025_brest_pbd
+  date: 2025-12
   title: "Numerical Convergence of Position-based Dynamics for First-Order Differential Inclusions"
   venue: "University of Brest"
+  projects: [position-based-dynamics]
+  tags: [Numerical analysis, Particle simulations, Constrained dynamics]
 
-- date: 2026-01
+- slug: plunder_2026_vienna_ch
+  date: 2026-01
   title: "A Cahn–Hilliard Equation Emerging from Mechano-Chemical Modeling of Finger Formation"
   venue: "University of Vienna"
+  projects: [limb-morphogenesis]
+  tags: [Developmental Biology, PDE, Mathematical Biology]
 
-- date: 2026-01
+- slug: plunder_2026_toulouse_digits
+  date: 2026-01
   title: "Beyond Turing patterns: A mechano-chemical model for digit-organoids"
   venue: "Center of Integrative Biology (Toulouse)"
+  projects: [limb-morphogenesis]
+  tags: [Developmental Biology, Agent-based models, PDE]
 
-- date: 2025-12
+- slug: plunder_2025_brest_ch
+  date: 2025-12
   title: "A Cahn–Hilliard Equation Emerging from Mechano-Chemical Modeling of Finger Formation"
   venue: "University of Brest"
+  projects: [limb-morphogenesis]
+  tags: [Developmental Biology, PDE, Mathematical Biology]
 
-- date: 2025-09
+- slug: plunder_2025_ncts_emt
+  date: 2025-09
   title: "Modeling the Directionality of Cell Migration in Epithelial-to-Mesenchymal Transitions with Non-Smooth Dynamical Systems"
   venue: "NCTS Webinar on Nonlinear Evolutionary Dynamics"
   url: https://ncts.ntu.edu.tw/events_1_detail.php?nid=2964
+  projects: [epithelial-to-mesenchymal, cell-migration-model]
+  tags: [Cell migration, Cancer biology, Agent-based models, Constrained dynamics]
 
-- date: 2025-07
+- slug: plunder_2025_acmbjsmb
+  date: 2025-07
   title: "Position-based Dynamics for Multicellular Systems with Adhesion Memory"
   venue: "ACMB-JSMB 2025 (Kyoto)"
   url: /slides/2025/07-08-ACMBJSMB/index.html#/0/0/0
+  projects: [position-based-dynamics, cell-migration-model]
+  tags: [Particle simulations, Agent-based models, Cell migration]
 
-- date: 2025-01
+- slug: plunder_2025_ashbi_retreat
+  date: 2025-01
   title: "Emergence of digit-like structures through mechanical instabilities"
   venue: "ASHBi Retreat 2025 (Shiga)"
   url: https://ashbi.kyoto-u.ac.jp/ja/event/event-retreat/2226/
+  projects: [limb-morphogenesis]
+  tags: [Developmental Biology, Agent-based models, Mechanics]
 
-- date: 2024-09
+- slug: plunder_2024_lab_gs
+  date: 2024-09
   title: "200 years old and still relevant: The Gauss-Seidel principle"
   venue: "Lab Summer Conference 2024 (Kyoto)"
   url: /slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0
+  projects: [position-based-dynamics]
+  tags: [Numerical analysis, Constrained dynamics]
 
-- date: 2024-09
+- slug: plunder_2024_ashbi_kaist
+  date: 2024-09
   title: "Modelling heterogeneity of EMT to identify main drivers of basal extrusion"
   venue: "The 1st ASHBi-KAIST Joint Workshop (Kyoto)"
   url: /slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0
+  projects: [epithelial-to-mesenchymal]
+  tags: [Cell migration, Cancer biology, Agent-based models]
 
-- date: 2024-07
+- slug: plunder_2024_esmtb
+  date: 2024-07
   title: "Agent-based modelling of heterogeneous EMT scenarios"
   venue: "Annual Meeting ESMTB (Toledo)"
   url: /slides/2024/07-24-ESMTB/esmtb_2024.html#/0/0/0
+  projects: [epithelial-to-mesenchymal]
+  tags: [Agent-based models, Cell migration, Cancer biology, Mathematical Biology]
 
-- date: 2024-07
+- slug: plunder_2024_juliacon_music
+  date: 2024-07
   title: "A live coding music performance with Julia"
   venue: "JuliaCon 2024 (Eindhoven)"
   url: https://youtu.be/k-WUQFxWNj0?feature=shared
+  projects: [portmidi]
+  tags: [Julia, Music, Scientific Communication]
 
-- date: 2024-07
+- slug: plunder_2024_juliacon_abm
+  date: 2024-07
   title: "Tools for agent-based modelling in developmental biology"
   venue: "JuliaCon 2024 (Eindhoven)"
   url: /slides/2024/07-12-JuliaCon/juliacon_abm.html#/0/0/0
   video: https://youtu.be/V3bc3_d9TIM?feature=shared
+  projects: [cell-migration-model]
+  tags: [Julia, Agent-based models, Developmental Biology, Performance]
 
-- date: 2024-07
+- slug: plunder_2024_ksmb_smb
+  date: 2024-07
   title: "Position-based dynamics as a numerical tool for agent-based cell migration models of dense populations"
   venue: "KSMB-SMB 2024 (Seoul)"
+  projects: [position-based-dynamics, cell-migration-model]
+  tags: [Particle simulations, Agent-based models, Cell migration]
 
-- date: 2024-03
+- slug: plunder_2024_vienna_pbd
+  date: 2024-03
   title: "Position-based dynamics: Convergence theory and applications to agent-based models"
   venue: "PDE seminar (Vienna)"
   url: /slides/2024/03-22-Vienna/slides_vienna.html#/0/0/0
+  projects: [position-based-dynamics]
+  tags: [Numerical analysis, Particle simulations, Constrained dynamics]
 
-- date: 2024-03
+- slug: plunder_2024_inria_kinetic
+  date: 2024-03
   title: "Towards kinetic theory for multi-scale muscle models"
   venue: "Inria (Paris)"
   url: /slides/2024/03-08-Kinetic-theory-mucles/kinetic_theory.pdf
+  projects: [constraints-mean-field]
+  tags: [Kinetic theory, Mechanics, PDE]
 
-- date: 2023-08
+- slug: plunder_2023_iciam
+  date: 2023-08
   title: "Convergence of position based dynamics for first-order particle systems with volume exclusion"
   venue: "ICIAM 2023 (Tokyo)"
   url: /slides/2023/08-22-ICIAM/iciam.html#/0/0/0
+  projects: [position-based-dynamics]
+  tags: [Numerical analysis, Particle simulations, Constrained dynamics]
 
-- date: 2022-12
+- slug: plunder_2022_testing
+  date: 2022-12
   title: "Testing in scientific computing"
   venue: "Vienna"
+  projects: []
+  tags: [Julia, Scientific Communication]
 
-- date: 2022-12
+- slug: plunder_2022_git
+  date: 2022-12
   title: "A short introduction to git"
   venue: "Vienna"
+  projects: []
+  tags: [Scientific Communication]
 
-- date: 2021-11
+- slug: plunder_2021_pbd_odes
+  date: 2021-11
   title: "Position-based dynamics for ODEs with inequality constraints"
   venue: "PDE afternoon (Vienna)"
+  projects: [position-based-dynamics]
+  tags: [Numerical analysis, Particle simulations, ODE, Constrained dynamics]
 
-- date: 2020-05
+- slug: plunder_2020_pks
+  date: 2020-05
   title: "Partially kinetic systems (aka 'particles on rails')"
   venue: "Kinetic Theory Coffee Break (online)"
   url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2020/partially_kinetic_systems/index.html
+  projects: [constraints-mean-field]
+  tags: [Kinetic theory, PDE, Constrained dynamics]
 
-- date: 2019-06
+- slug: plunder_2019_feec
+  date: 2019-06
   title: "Short introduction to finite element exterior calculus"
   venue: "PhD seminar (Kaiserslautern)"
+  projects: []
+  tags: [Finite element method, Numerical analysis]
 
-- date: 2019-03
+- slug: plunder_2019_descriptor
+  date: 2019-03
   title: "Partially mesoscopic and Lagrangian systems"
   venue: "DESCRIPTOR (Paderborn)"
+  projects: [constraints-mean-field]
+  tags: [Kinetic theory, Constrained dynamics, Mechanics]
 
-- date: 2019-02
+- slug: plunder_2019_gamm
+  date: 2019-02
   title: "Lagrangian perspective on skeletal muscle models"
   venue: "GAMM, 90th Annual Meeting (Vienna)"
+  projects: [constraints-mean-field]
+  tags: [Kinetic theory, Mechanics, Constrained dynamics]
 
-- date: 2018-10
+- slug: plunder_2018_bonn
+  date: 2018-10
   title: "Fiber based muscle simulation (master's thesis)"
   venue: "Hausdorff Center of Mathematics (Bonn)"
   url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis_short/index.html
+  projects: [constraints-mean-field]
+  tags: [Kinetic theory, Mechanics, Finite element method, Constrained dynamics]
 
-- date: 2018-07
+- slug: plunder_2018_tangent
+  date: 2018-07
   title: "Tangent spaces"
   venue: "Student-Talk (Kaiserslautern)"
   url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/index.html
+  projects: []
+  tags: [Scientific Communication]
 
-- date: 2018-06
+- slug: plunder_2018_kl_muscles
+  date: 2018-06
   title: "Simulation of skeletal muscle tissue with fiber-based dynamics"
   venue: "Applied Math Seminar (Kaiserslautern)"
   url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis/index.html
+  projects: [constraints-mean-field]
+  tags: [Mechanics, Kinetic theory, Finite element method, Constrained dynamics]
 
-- date: 2018-05
+- slug: plunder_2018_auckland_param
+  date: 2018-05
   title: "Parameter identification in ODE models"
   venue: "The University of Auckland"
   url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/param_id_in_ode/index.html
+  projects: []
+  tags: [Parameter estimation, ODE]
 
-- date: 2018-04
+- slug: plunder_2018_auckland_symplectic
+  date: 2018-04
   title: "Symplectic numerical integration"
   venue: "PhD seminar (Auckland)"
   url: https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/symplectic_methods/index.html
+  projects: []
+  tags: [Numerical analysis, ODE]
 
-- date: 2017-09
+- slug: plunder_2017_salzburg
+  date: 2017-09
   title: "Symplectic molecular dynamics"
   venue: "19th OeMG Meeting and Annual DMV Meeting (Salzburg)"
+  projects: []
+  tags: [Particle simulations, Numerical analysis, C++]
 
-- date: 2017-01
+- slug: plunder_2017_delft
+  date: 2017-01
   title: "Optimization of B-Spline Parametrizations using G+SMo and IPOPT"
   venue: "G+SMo Developer Days (TU Delft)"
+  projects: []
+  tags: [C++, Numerical analysis, Finite element method]

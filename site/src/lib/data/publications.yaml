@@ -1,6 +1,6 @@
 theses:
   - slug: plunder_2023_phd
-    title: "Mathematical modelling and simulation of epithelial-to-mesenchymal transitions leading to cell migration."
+    title: "PhD Thesis:Mathematical modelling and simulation of epithelial-to-mesenchymal transitions leading to cell migration."
     year: "2023"
     journal: "PhD Thesis · University of Vienna"
     authors: []
@@ -9,7 +9,7 @@ theses:
         url: "/theses/plunder_phd_thesis.pdf"
 
   - slug: plunder_2018_msc
-    title: "Modelling and simulation of skeletal muscle tissue."
+    title: "Master's Thesis: Modelling and simulation of skeletal muscle tissue."
     year: "2018"
     journal: "Master's Thesis · TU Kaiserslautern"
     authors: []
@@ -18,7 +18,7 @@ theses:
         url: "/theses/plunder_masters_thesis.pdf"
 
   - slug: plunder_2016_bsc
-    title: "Molecular dynamics."
+    title: "Bachelor's Thesis: Molecular dynamics."
     year: "2016"
     journal: "Bachelor's Thesis · TU Kaiserslautern"
     authors: []

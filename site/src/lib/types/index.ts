@@ -42,11 +42,14 @@ export interface PublicationsData {
 }
 
 export interface Talk {
+	slug: string;
 	date: string;
 	title: string;
 	venue: string;
 	url?: string;
 	video?: string;
+	projects: string[];
+	tags: string[];
 }
 
 export interface BlogPostMeta {

@@ -1,13 +1,7 @@
 <script lang="ts">
   import talks from '$lib/data/talks.yaml';
 
-  type Talk = {
-    date: string;
-    title: string;
-    venue: string;
-    url?: string;
-    video?: string;
-  };
+  import type { Talk } from '$lib/types';
 
   const talksByYear = $derived.by(() => {
     const groups: Record<string, Talk[]> = {};

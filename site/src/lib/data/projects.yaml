@@ -2,8 +2,8 @@ research:
   - slug: epiblast-orientation
     title: "Nematic orientation maps in epiblast formation"
     desc: "Topological defect transitions and cell alignment in mouse epiblast, combining theory with quantitative image analysis."
-    image: /images/projects/placeholder.svg
-    tags: [Julia, Topological defects, Developmental Biology]
+    image: /images/projects/epiblast-orientation.svg
+    tags: [Julia, Topological defects, Developmental Biology, Image Analysis]
     status: active
     year: "2023"
     publications: [guruciaga_2026_natmat, ichikawa_2026_natphys]
@@ -19,7 +19,7 @@ research:
     title: "Modelling digit organoids"
     desc: "Agent-based model for symmetry breaking and digit-like elongation in limb organoids."
     image: /images/projects/limb.png
-    tags: [Julia, Agent-based models, Developmental Biology]
+    tags: [Python, GPU Programming, Performance, PDE, Particle simulations, Cell migration, Developmental Biology]
     status: active
     year: "2023"
     publications: [tsutsumi_2025_biorxiv]
@@ -35,7 +35,7 @@ research:
     title: "Epithelial-to-mesenchymal transitions"
     desc: "Mechanical modelling of different EMT scenarios and their effect on cell delamination and migration."
     image: /images/projects/emt.png
-    tags: [Python, Cell migration, Cancer biology]
+    tags: [Julia, Python, Cell migration, Cancer biology, Agent-based models]
     status: completed
     year: "2019"
     end: "2024"
@@ -52,7 +52,7 @@ research:
     title: "Cell migration model for plithotaxis"
     desc: "Agent-based model for collective cell migration guided by intercellular stress patterns."
     image: /images/projects/cm.png
-    tags: [Julia, Collective migration, Agent-based models]
+    tags: [Julia, Collective migration, Agent-based models, Cell migration]
     status: active
     year: "2021"
     publications: [plunder_2024_natcomms, mira_2025_iscience]
@@ -64,7 +64,7 @@ research:
     title: "Germinal center morphology"
     desc: "Modelling growth and shape of germinal centers in the immune system."
     image: /images/projects/gc.png
-    tags: [Julia, Immunology, Agent-based models]
+    tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
     status: active
     year: "2023"
     publications: []
@@ -75,8 +75,8 @@ research:
   - slug: tlt-model
     title: "Tertiary lymphoid tissue modelling"
     desc: "Agent-based simulation of tertiary lymphoid structure formation."
-    image: /images/projects/placeholder.svg
-    tags: [Julia, Immunology, Agent-based models]
+    image: /images/projects/tlt-model.svg
+    tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
     status: active
     year: "2024"
     publications: []
@@ -89,7 +89,7 @@ research:
   - slug: eht-model
     title: "Endothelial-to-hematopoietic transition"
     desc: "Modelling the endothelial-to-hematopoietic transition during embryonic blood cell formation."
-    image: /images/projects/placeholder.svg
+    image: /images/projects/eht-model.svg
     tags: [Julia, Agent-based models, Developmental Biology]
     status: active
     year: "2024"
@@ -104,7 +104,7 @@ research:
     title: "First-order position-based dynamics"
     desc: "Convergence analysis and efficient numerical scheme for inequality constrained ODEs from computer graphics."
     image: /images/projects/pbd.png
-    tags: [Julia, Particle dynamics, Numerical analysis]
+    tags: [Julia, Particle simulations, Numerical analysis, Constrained dynamics]
     status: active
     year: "2020"
     publications: [plunder_2023_arxiv_pbd]
@@ -119,8 +119,8 @@ research:
   - slug: anisotropic-particles
     title: "Anisotropic particle simulations"
     desc: "Macroscopic analysis of nematic alignment from anisotropic Gaussian-type repulsive potentials."
-    image: /images/projects/placeholder.svg
-    tags: [Mathematics, Kinetic theory, Nematic alignment]
+    image: /images/projects/anisotropic-particles.svg
+    tags: [Kinetic theory, Particle simulations, PDE]
     status: completed
     year: "2023"
     end: "2025"
@@ -133,7 +133,7 @@ research:
     title: "Mean-field limit for constrained particles"
     desc: "Proof of the mean-field limit for particle systems with full-rank constraints, applied to muscle tissue modelling."
     image: /images/projects/pks.png
-    tags: [Mathematics, Kinetic theory, PDE]
+    tags: [Kinetic theory, PDE, Constrained dynamics, Mechanics]
     status: completed
     year: "2018"
     end: "2023"
@@ -146,8 +146,8 @@ coding:
   - slug: spatial-hash-tables
     title: "SpatialHashTables.jl"
     desc: "Julia package for spatial hashing, enabling fast neighbor queries in particle simulations."
-    image: /images/projects/placeholder.svg
-    tags: [Julia, Data structures, Performance]
+    image: /images/projects/spatial-hash-tables.svg
+    tags: [Julia, GPU Programming, Performance, Particle simulations]
     status: active
     year: "2022"
     publications: []
@@ -160,8 +160,8 @@ coding:
   - slug: bounded-degree-graphs
     title: "BoundedDegreeGraphs.jl"
     desc: "Memory-efficient graph data structure with bounded vertex degree for agent-based simulations."
-    image: /images/projects/placeholder.svg
-    tags: [Julia, Data structures, Graphs]
+    image: /images/projects/bounded-degree-graphs.svg
+    tags: [Julia, GPU Programming, Performance, Graphs]
     status: active
     year: "2023"
     publications: []
@@ -171,11 +171,25 @@ coding:
     links: []
     blogs: []
 
+  - slug: portmidi
+    title: "PortMidi.jl"
+    desc: "Julia wrapper for the PortMidi library, enabling MIDI input/output for live coding music performances."
+    image: /images/projects/placeholder.svg
+    tags: [Julia, C++, Music, Scientific Communication]
+    status: active
+    year: "2024"
+    publications: []
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/PortMidi.jl
+    links: []
+    blogs: []
+
   - slug: semtor-web
     title: "sEMTor — online EMT simulator"
     desc: "Interactive browser-based simulator for epithelial-to-mesenchymal transitions, built with p5.js."
-    image: /images/projects/placeholder.svg
-    tags: [JavaScript, p5.js, Simulation]
+    image: /images/projects/semtor-web.svg
+    tags: [JavaScript/TypeScript, Cancer biology, Cell migration]
     status: completed
     year: "2022"
     publications: [plunder_2024_natcomms]
@@ -190,8 +204,8 @@ coding:
   - slug: ink-reveal
     title: "InkReveal"
     desc: "Inkscape extension to generate reveal.js presentation slides from vector graphics."
-    image: /images/projects/placeholder.svg
-    tags: [Python, Inkscape, Presentations]
+    image: /images/projects/ink-reveal.svg
+    tags: [Python, Scientific Communication]
     status: completed
     year: "2021"
     publications: []
@@ -204,8 +218,8 @@ coding:
   - slug: differential-inclusions
     title: "DifferentialInclusions.jl"
     desc: "Julia prototype for solving differential inclusions, extending standard ODE solver interfaces."
-    image: /images/projects/placeholder.svg
-    tags: [Julia, Mathematics, ODE]
+    image: /images/projects/differential-inclusions.svg
+    tags: [Julia, ODE, Constrained dynamics]
     status: completed
     year: "2021"
     publications: []
@@ -218,8 +232,8 @@ coding:
   - slug: delayed-sweeping
     title: "Sweeping processes with memory effects"
     desc: "Interactive web simulator for delayed sweeping processes and position-based dynamics."
-    image: /images/projects/placeholder.svg
-    tags: [JavaScript, Simulation, Mathematics]
+    image: /images/projects/delayed-sweeping.svg
+    tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis]
     status: completed
     year: "2023"
     publications: []

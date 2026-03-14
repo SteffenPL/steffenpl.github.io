@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#a3e635" stop-opacity="0.15"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="400" fill="url(#g)"/>
+  <!-- Grid lines for spatial hash -->
+  <g stroke="#a3e635" stroke-width="0.8" opacity="0.2">
+    <line x1="60" y1="60" x2="60" y2="340"/>
+    <line x1="130" y1="60" x2="130" y2="340"/>
+    <line x1="200" y1="60" x2="200" y2="340"/>
+    <line x1="270" y1="60" x2="270" y2="340"/>
+    <line x1="340" y1="60" x2="340" y2="340"/>
+    <line x1="60" y1="60" x2="340" y2="60"/>
+    <line x1="60" y1="130" x2="340" y2="130"/>
+    <line x1="60" y1="200" x2="340" y2="200"/>
+    <line x1="60" y1="270" x2="340" y2="270"/>
+    <line x1="60" y1="340" x2="340" y2="340"/>
+  </g>
+  <!-- Highlighted cell -->
+  <rect x="130" y="130" width="70" height="70" fill="#f97316" fill-opacity="0.1" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
+  <!-- Neighbor cells -->
+  <g fill="#a3e635" fill-opacity="0.05" stroke="#a3e635" stroke-width="1" opacity="0.25">
+    <rect x="60" y="60" width="70" height="70"/>
+    <rect x="130" y="60" width="70" height="70"/>
+    <rect x="200" y="60" width="70" height="70"/>
+    <rect x="60" y="130" width="70" height="70"/>
+    <rect x="200" y="130" width="70" height="70"/>
+    <rect x="60" y="200" width="70" height="70"/>
+    <rect x="130" y="200" width="70" height="70"/>
+    <rect x="200" y="200" width="70" height="70"/>
+  </g>
+  <!-- Particles scattered across grid -->
+  <g fill="#f97316" opacity="0.6">
+    <!-- In highlighted cell -->
+    <circle cx="155" cy="160" r="4"/>
+    <circle cx="175" cy="175" r="3.5"/>
+    <circle cx="145" cy="185" r="3"/>
+    <!-- Other cells -->
+    <circle cx="90" cy="85" r="3"/>
+    <circle cx="240" cy="100" r="3.5"/>
+    <circle cx="310" cy="170" r="3"/>
+    <circle cx="85" cy="250" r="3.5"/>
+    <circle cx="170" cy="240" r="3"/>
+    <circle cx="250" cy="230" r="3"/>
+    <circle cx="310" cy="290" r="3.5"/>
+    <circle cx="100" cy="310" r="3"/>
+    <circle cx="230" cy="310" r="3.5"/>
+    <circle cx="290" cy="160" r="3"/>
+  </g>
+  <!-- Query radius circle -->
+  <circle cx="155" cy="165" r="55" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.4"/>
+</svg>
