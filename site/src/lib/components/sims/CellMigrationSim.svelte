@@ -15,12 +15,37 @@
 
 	let restartFlag = $state(0);
 
+	/** Parse a CSS color string (hex or rgb) into [r, g, b] */
+	function parseColor(str) {
+		if (str.startsWith('#')) {
+			const hex = str.slice(1);
+			const bigint = parseInt(hex, 16);
+			return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
+		}
+		const m = str.match(/\d+/g);
+		return m ? m.slice(0, 3).map(Number) : [128, 128, 128];
+	}
+
+	/** Read current theme colors from CSS variables */
+	function getThemeColors() {
+		const s = getComputedStyle(document.documentElement);
+		const bg = parseColor(s.getPropertyValue('--bg').trim());
+		const text = parseColor(s.getPropertyValue('--text').trim());
+		const accent = parseColor(s.getPropertyValue('--accent').trim());
+		const accentSec = parseColor(s.getPropertyValue('--accent-secondary').trim());
+		const muted = parseColor(s.getPropertyValue('--text-muted').trim());
+		const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+		return { bg, text, accent, accentSec, muted, isDark };
+	}
+
 	onMount(async () => {
 		const p5Module = await import('p5');
 		const p5 = p5Module.default;
 
 		const sketch = (p) => {
 			const pv = p5.Vector;
+
+			let colors = getThemeColors();
 
 			const p_def = {
 				r: 20,
@@ -72,22 +97,29 @@
 					this.type = t;
 					this.mode = 0;
 					this.pos = p.createVector(p.random(0, w / 2), p.random(h / 4, (3 * h) / 4));
-					this.col = { r: 80, g: 150, b: 50 };
 				}
 				draw() {
+					const c = colors.accent;
 					p.noStroke();
-					p.fill(this.col.r, this.col.g, this.col.b, 80);
+					// Outer soft radius
+					p.fill(c[0], c[1], c[2], colors.isDark ? 50 : 60);
 					p.circle(this.pos.x, this.pos.y, this.r_s * 2);
-					p.fill(this.col.r, this.col.g, this.col.b);
+					// Inner hard radius
+					p.fill(c[0], c[1], c[2], colors.isDark ? 180 : 200);
 					p.circle(this.pos.x, this.pos.y, this.r_h * 2);
-					p.stroke(0, 0, 0, 120);
+					// Polarity line
+					const m = colors.muted;
+					p.stroke(m[0], m[1], m[2], 140);
+					p.strokeWeight(1.5);
 					p.line(
 						this.pos.x,
 						this.pos.y,
 						this.pos.x + this.r_s * this.pol.x,
 						this.pos.y + this.r_s * this.pol.y
 					);
-					p.stroke(150, 0, 0, 70);
+					// Force line
+					const as = colors.accentSec;
+					p.stroke(as[0], as[1], as[2], 90);
 					p.line(
 						this.pos.x,
 						this.pos.y,
@@ -119,11 +151,12 @@
 					return this.cnts[i][j];
 				}
 				draw(cells) {
-					p.strokeWeight(4);
+					const as = colors.accentSec;
+					p.strokeWeight(3);
 					p.stroke(
-						200,
-						100,
-						0,
+						as[0],
+						as[1],
+						as[2],
 						120 * p.map(p1.adh_stiffness, 0, p_def.adh_stiffness * 2, 0, 2)
 					);
 					for (let i = 0; i < cells.length; ++i) {
@@ -139,6 +172,7 @@
 			let N = 100;
 			let first_step = true;
 			let prevRestartFlag = 0;
+			let colorRefreshCounter = 0;
 
 			function init() {
 				first_step = true;
@@ -191,14 +225,12 @@
 			}
 
 			function timeStep() {
-				// Check restart
 				if (restartFlag !== prevRestartFlag) {
 					prevRestartFlag = restartFlag;
 					init();
 					return;
 				}
 
-				// Read slider values
 				if (slN != cells.length) {
 					N = Math.max(slN, 2);
 					init();
@@ -226,7 +258,6 @@
 				const dt = p.min(p.deltaTime / p1.n_substeps, 50 / p1.n_substeps);
 
 				for (let step = 0; step < p1.n_substeps; ++step) {
-					// remove contacts
 					for (let i = 0; i < cells.length; ++i) {
 						for (let j = 0; j < i; ++j) {
 							if (expRand(p1.break_adh_dur)) {
@@ -235,7 +266,6 @@
 						}
 					}
 
-					// add contacts
 					for (let i = 0; i < cells.length; ++i) {
 						for (let j = 0; j < i; ++j) {
 							const Rij = cells[i].r_s + cells[j].r_s;
@@ -249,7 +279,6 @@
 						}
 					}
 
-					// switch between modes
 					for (let i = 0; i < cells.length; ++i) {
 						let n_contacts = 0;
 						let j = 0;
@@ -331,7 +360,6 @@
 						}
 					}
 
-					// compute forces
 					const mu_f = 0.1;
 					for (let i = 0; i < cells.length; ++i) {
 						cells[i].f.set(0.0, 0.0);
@@ -430,7 +458,15 @@
 			let sX, sY;
 
 			p.draw = function () {
-				p.background(255);
+				// Refresh theme colors periodically (every ~1s at 30fps)
+				colorRefreshCounter++;
+				if (colorRefreshCounter % 30 === 0) {
+					colors = getThemeColors();
+				}
+
+				const bg = colors.bg;
+				p.background(bg[0], bg[1], bg[2]);
+
 				const aspect_adj = p.width / p.height;
 				sX = p.width / w;
 				sY = (p.height / h) * (aspect_adj / aspect);
@@ -438,10 +474,14 @@
 				p.strokeWeight(2);
 				p.noStroke();
 
-				for (let r = 0; r < 25; ++r) {
-					p.noStroke();
-					p.fill(255, 128, 0, 60.0 * p1.chemo);
-					p.circle(grads.pos.x, grads.pos.y, r * 30);
+				// Chemotaxis gradient
+				if (p1.chemo > 0) {
+					const as = colors.accentSec;
+					for (let r = 25; r >= 0; --r) {
+						p.noStroke();
+						p.fill(as[0], as[1], as[2], 40.0 * p1.chemo * (1 - r / 25));
+						p.circle(grads.pos.x, grads.pos.y, r * 30);
+					}
 				}
 
 				t = t + p.deltaTime;
@@ -457,11 +497,14 @@
 					cells[i].draw();
 				}
 
+				// Draw walls
+				const wc = colors.text;
 				for (let i = 0; i < walls.length; i++) {
 					const wl = walls[i];
 					const dx = (wl.normal.y * wl.l) / 2;
 					const dy = (-wl.normal.x * wl.l) / 2;
-					p.stroke(0);
+					p.stroke(wc[0], wc[1], wc[2], 180);
+					p.strokeWeight(2);
 					p.line(wl.pos.x - dx, wl.pos.y - dy, wl.pos.x + dx, wl.pos.y + dy);
 				}
 			};
@@ -507,44 +550,155 @@
 	}
 </script>
 
-<div class="sim-controls grid md:grid-cols-3 grid-cols-2 gap-x-4 gap-y-1 mb-4">
-	<label class="flex flex-col text-sm">
-		Plithotaxis
-		<input type="range" bind:value={slPlitho} min="0" max="100" />
-	</label>
-	<label class="flex flex-col text-sm">
-		Confinement
-		<input type="range" bind:value={slConfinement} min="0" max="100" />
-	</label>
-	<label class="flex flex-col text-sm">
-		Cell-cell repulsion
-		<input type="range" bind:value={slSoftRep} min="0" max="100" />
-	</label>
-	<label class="flex flex-col text-sm">
-		Adhesion strength
-		<input type="range" bind:value={slAdhStiffness} min="0" max="100" />
-	</label>
-	<label class="flex flex-col text-sm">
-		Heterogeneity
-		<input type="range" bind:value={slHeterogeneity} min="0" max="100" />
-	</label>
-	<label class="flex flex-col text-sm">
-		Chemotaxis
-		<input type="range" bind:value={slChemo} min="0" max="100" />
-	</label>
-	<label class="flex flex-col text-sm">
-		Number of cells
-		<input type="range" bind:value={slN} min="0" max="120" step="10" />
-	</label>
+<div class="sim-wrapper">
+	<div class="sim-controls">
+		<label>
+			<span>Plithotaxis</span>
+			<input type="range" bind:value={slPlitho} min="0" max="100" />
+		</label>
+		<label>
+			<span>Confinement</span>
+			<input type="range" bind:value={slConfinement} min="0" max="100" />
+		</label>
+		<label>
+			<span>Cell-cell repulsion</span>
+			<input type="range" bind:value={slSoftRep} min="0" max="100" />
+		</label>
+		<label>
+			<span>Adhesion strength</span>
+			<input type="range" bind:value={slAdhStiffness} min="0" max="100" />
+		</label>
+		<label>
+			<span>Heterogeneity</span>
+			<input type="range" bind:value={slHeterogeneity} min="0" max="100" />
+		</label>
+		<label>
+			<span>Chemotaxis</span>
+			<input type="range" bind:value={slChemo} min="0" max="100" />
+		</label>
+		<label>
+			<span>Number of cells</span>
+			<input type="range" bind:value={slN} min="0" max="120" step="10" />
+		</label>
+	</div>
+
+	<div bind:this={container} class="sim-canvas"></div>
+
+	<div class="sim-footer">
+		<button class="sim-restart" onclick={handleRestart}>Restart</button>
+	</div>
 </div>
 
-<div bind:this={container} class="w-full border rounded"></div>
+<style>
+	.sim-wrapper {
+		max-width: 680px;
+		margin: 1.5rem auto;
+	}
 
-<div class="flex justify-center mt-2 mb-4">
-	<button
-		onclick={handleRestart}
-		class="border-2 border-red-600 hover:bg-red-300 bg-red-200 rounded-xl px-4 py-1 cursor-pointer"
-	>
-		Restart
-	</button>
-</div>
+	.sim-controls {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 0.5rem 1rem;
+		padding: 1rem;
+		border-radius: 0.5rem;
+		margin-bottom: 0.75rem;
+		background: var(--bg-card);
+		border: 1px solid var(--bg-card-border);
+	}
+
+	@media (min-width: 640px) {
+		.sim-controls {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	.sim-controls label {
+		display: flex;
+		flex-direction: column;
+		gap: 0.15rem;
+		font-size: 0.78rem;
+		color: var(--text-muted);
+		letter-spacing: 0.01em;
+	}
+
+	.sim-controls input[type='range'] {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 4px;
+		border-radius: 2px;
+		background: var(--bg-card-border);
+		outline: none;
+		cursor: pointer;
+	}
+
+	.sim-controls input[type='range']::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: var(--accent);
+		border: 2px solid var(--bg);
+		cursor: pointer;
+		transition: transform 0.1s;
+	}
+
+	.sim-controls input[type='range']::-webkit-slider-thumb:hover {
+		transform: scale(1.2);
+	}
+
+	.sim-controls input[type='range']::-moz-range-thumb {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		background: var(--accent);
+		border: 2px solid var(--bg);
+		cursor: pointer;
+	}
+
+	.sim-controls input[type='range']::-moz-range-track {
+		height: 4px;
+		border-radius: 2px;
+		background: var(--bg-card-border);
+	}
+
+	.sim-canvas {
+		width: 100%;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		border: 1px solid var(--bg-card-border);
+	}
+
+	/* Ensure p5 canvas fills the container */
+	.sim-canvas :global(canvas) {
+		display: block;
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.sim-footer {
+		display: flex;
+		justify-content: center;
+		margin-top: 0.5rem;
+	}
+
+	.sim-restart {
+		font-size: 0.8rem;
+		padding: 0.3rem 1.2rem;
+		border-radius: 0.375rem;
+		border: 1px solid var(--bg-card-border);
+		background: var(--bg-card);
+		color: var(--text-muted);
+		cursor: pointer;
+		transition:
+			background 0.15s,
+			color 0.15s;
+	}
+
+	.sim-restart:hover {
+		background: var(--accent);
+		color: var(--bg);
+		border-color: var(--accent);
+	}
+</style>
