@@ -32,19 +32,19 @@
 }
 
 [data-theme='light'] {
-	/* Light mode: lime primary, orange secondary */
+	/* Light mode: lime primary, orange secondary (darkened for readability) */
 	--bg: #f4f6f9;
 	--bg-card: rgba(255, 255, 255, 0.7);
 	--bg-card-border: rgba(0, 0, 0, 0.08);
 	--text: #0c1222;
 	--text-muted: #475569;
-	--accent: #65a30d;
-	--accent-glow: rgba(101, 163, 13, 0.25);
-	--accent-secondary: #f97316;
-	--gradient-accent: linear-gradient(135deg, #84cc16, #f97316);
+	--accent: #5a9a0d;
+	--accent-glow: rgba(90, 154, 13, 0.25);
+	--accent-secondary: #f26318;
+	--gradient-accent: linear-gradient(135deg, #5a9a0d, #f26318);
 	--shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.06);
-	--shadow-card-hover: 0 8px 40px rgba(101, 163, 13, 0.12), 0 2px 8px rgba(0, 0, 0, 0.1);
-	--particle-color: 101, 163, 13;
+	--shadow-card-hover: 0 8px 40px rgba(90, 154, 13, 0.12), 0 2px 8px rgba(0, 0, 0, 0.1);
+	--particle-color: 90, 154, 13;
 }
 
 /* View Transitions: circular wipe */
