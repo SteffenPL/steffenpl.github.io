@@ -31,6 +31,7 @@
   title: "Modeling the Directionality of Cell Migration in Epithelial-to-Mesenchymal Transitions with Non-Smooth Dynamical Systems"
   venue: "NCTS Webinar on Nonlinear Evolutionary Dynamics"
   url: https://ncts.ntu.edu.tw/events_1_detail.php?nid=2964
+  video: https://www.youtube.com/watch?v=nQ6WYgHhvjQ
   projects: [epithelial-to-mesenchymal, cell-migration-model]
   tags: [Cell migration, Cancer biology, Agent-based models, Constrained dynamics]
 

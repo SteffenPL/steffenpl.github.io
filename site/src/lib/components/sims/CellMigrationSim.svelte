@@ -26,6 +26,89 @@
 		return m ? m.slice(0, 3).map(Number) : [128, 128, 128];
 	}
 
+	class Cell {
+		constructor(p, w, h, p1, t) {
+			const alpha = p.random(0, 2 * p.PI);
+			this.pol = p.createVector(p.sin(alpha), p.cos(alpha));
+			this.f = p.createVector(0.0, 0.0);
+			this.r_h = 10;
+			this.r_s = 20;
+			this.rand = p.random(0, 1);
+			this.type = t;
+			this.mode = 0;
+			this.pos = p.createVector(p.random(0, w / 2), p.random(h / 4, (3 * h) / 4));
+		}
+		draw(p, colors) {
+			const c = colors.accent;
+			p.noStroke();
+			// Outer soft radius
+			p.fill(c[0], c[1], c[2], colors.isDark ? 50 : 60);
+			p.circle(this.pos.x, this.pos.y, this.r_s * 2);
+			// Inner hard radius
+			p.fill(c[0], c[1], c[2], colors.isDark ? 180 : 200);
+			p.circle(this.pos.x, this.pos.y, this.r_h * 2);
+			// Polarity line
+			const m = colors.muted;
+			p.stroke(m[0], m[1], m[2], 140);
+			p.strokeWeight(1.5);
+			p.line(
+				this.pos.x,
+				this.pos.y,
+				this.pos.x + this.r_s * this.pol.x,
+				this.pos.y + this.r_s * this.pol.y
+			);
+			// Force line
+			const as = colors.accentSec;
+			p.stroke(as[0], as[1], as[2], 90);
+			p.line(
+				this.pos.x,
+				this.pos.y,
+				this.pos.x + this.r_s * this.f.x,
+				this.pos.y + this.r_s * this.f.y
+			);
+		}
+	}
+
+	class Contacts {
+		constructor(N) {
+			this.cnts = [];
+			for (let i = 0; i < N; ++i) {
+				this.cnts[i] = [];
+				for (let j = 0; j < N; ++j) {
+					this.cnts[i][j] = false;
+				}
+			}
+		}
+		addContact(i, j) {
+			this.cnts[i][j] = true;
+			this.cnts[j][i] = true;
+		}
+		removeContact(i, j) {
+			this.cnts[i][j] = false;
+			this.cnts[j][i] = false;
+		}
+		hasContact(i, j) {
+			return this.cnts[i][j];
+		}
+		draw(p, colors, cells, p1, p_def) {
+			const as = colors.accentSec;
+			p.strokeWeight(3);
+			p.stroke(
+				as[0],
+				as[1],
+				as[2],
+				120 * p.map(p1.adh_stiffness, 0, p_def.adh_stiffness * 2, 0, 2)
+			);
+			for (let i = 0; i < cells.length; ++i) {
+				for (let j = 0; j < i; ++j) {
+					if (this.cnts[i][j]) {
+						p.line(cells[i].pos.x, cells[i].pos.y, cells[j].pos.x, cells[j].pos.y);
+					}
+				}
+			}
+		}
+	}
+
 	/** Read current theme colors from CSS variables */
 	function getThemeColors() {
 		const s = getComputedStyle(document.documentElement);
@@ -86,89 +169,6 @@
 				cnts,
 				grads;
 
-			class Cell {
-				constructor(t) {
-					const alpha = p.random(0, 2 * p.PI);
-					this.pol = p.createVector(p.sin(alpha), p.cos(alpha));
-					this.f = p.createVector(0.0, 0.0);
-					this.r_h = 10;
-					this.r_s = 20;
-					this.rand = p.random(0, 1);
-					this.type = t;
-					this.mode = 0;
-					this.pos = p.createVector(p.random(0, w / 2), p.random(h / 4, (3 * h) / 4));
-				}
-				draw() {
-					const c = colors.accent;
-					p.noStroke();
-					// Outer soft radius
-					p.fill(c[0], c[1], c[2], colors.isDark ? 50 : 60);
-					p.circle(this.pos.x, this.pos.y, this.r_s * 2);
-					// Inner hard radius
-					p.fill(c[0], c[1], c[2], colors.isDark ? 180 : 200);
-					p.circle(this.pos.x, this.pos.y, this.r_h * 2);
-					// Polarity line
-					const m = colors.muted;
-					p.stroke(m[0], m[1], m[2], 140);
-					p.strokeWeight(1.5);
-					p.line(
-						this.pos.x,
-						this.pos.y,
-						this.pos.x + this.r_s * this.pol.x,
-						this.pos.y + this.r_s * this.pol.y
-					);
-					// Force line
-					const as = colors.accentSec;
-					p.stroke(as[0], as[1], as[2], 90);
-					p.line(
-						this.pos.x,
-						this.pos.y,
-						this.pos.x + this.r_s * this.f.x,
-						this.pos.y + this.r_s * this.f.y
-					);
-				}
-			}
-
-			class Contacts {
-				constructor(N) {
-					this.cnts = [];
-					for (let i = 0; i < N; ++i) {
-						this.cnts[i] = [];
-						for (let j = 0; j < N; ++j) {
-							this.cnts[i][j] = false;
-						}
-					}
-				}
-				addContact(i, j) {
-					this.cnts[i][j] = true;
-					this.cnts[j][i] = true;
-				}
-				removeContact(i, j) {
-					this.cnts[i][j] = false;
-					this.cnts[j][i] = false;
-				}
-				hasContact(i, j) {
-					return this.cnts[i][j];
-				}
-				draw(cells) {
-					const as = colors.accentSec;
-					p.strokeWeight(3);
-					p.stroke(
-						as[0],
-						as[1],
-						as[2],
-						120 * p.map(p1.adh_stiffness, 0, p_def.adh_stiffness * 2, 0, 2)
-					);
-					for (let i = 0; i < cells.length; ++i) {
-						for (let j = 0; j < i; ++j) {
-							if (this.cnts[i][j]) {
-								p.line(cells[i].pos.x, cells[i].pos.y, cells[j].pos.x, cells[j].pos.y);
-							}
-						}
-					}
-				}
-			}
-
 			let N = 100;
 			let first_step = true;
 			let prevRestartFlag = 0;
@@ -194,7 +194,7 @@
 
 				cells.length = 0;
 				for (let i = 0; i < N; i++) {
-					cells.push(new Cell(0));
+					cells.push(new Cell(p, w, h, p1, 0));
 				}
 
 				cnts = new Contacts(cells.length);
@@ -492,9 +492,9 @@
 					cells[dragIndex].pos.y = p.mouseY / sY;
 				}
 
-				cnts.draw(cells);
+				cnts.draw(p, colors, cells, p1, p_def);
 				for (let i = 0; i < cells.length; ++i) {
-					cells[i].draw();
+					cells[i].draw(p, colors);
 				}
 
 				// Draw walls

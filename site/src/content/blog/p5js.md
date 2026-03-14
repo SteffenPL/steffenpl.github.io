@@ -195,8 +195,10 @@ Finally, the `draw` function will draw the canvas white and iterate the _symplec
 [^2]: The symplectic Euler method is preferable to the explicit or implicit Euler method here, as it will almost conserve the total energy of the system.
 
 $$
-v_{n+1} = v_n + \Delta t f(x_n), \\
-x_{n+1} = x_n + \Delta t v_{n+1}.
+\begin{aligned}
+v_{n+1} &= v_n + \Delta t f(x_n), \\
+x_{n+1} &= x_n + \Delta t v_{n+1}.
+\end{aligned}
 $$
 Then we ensure that the apple stays within the canvas[^1]
 and draw it.

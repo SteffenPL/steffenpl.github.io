@@ -49,9 +49,9 @@
       class="mx-auto mb-10 max-w-[580px] font-light leading-[1.7]"
       style="font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: var(--text-muted);"
     >
-      Researcher (Post doc) at the Institute for Advanced Study of Human Biology (ASHBi), Kyoto University. 
-      I build computational models and interactive simulations to understand how cells move, organize, and form living
-      structures. <br>Coding + numerical math + biology = ❤️.
+      Post-doctoral researcher at <strong style="color: var(--text);">ASHBi, Kyoto University</strong>.
+      I develop mathematical models and high-performance simulations that <strong style="color: var(--text);">bridge theory and experiment</strong>, in developmental biology, particle dynamics, and beyond.
+      <br>Math + coding + applications = ❤️
     </p>
 
     <div class="flex flex-wrap items-center justify-center gap-4">
