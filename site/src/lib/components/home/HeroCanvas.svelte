@@ -54,8 +54,10 @@
     // Rendering
     cellAlpha: 0.55,
     bondAlpha: 0.25,
+    polarityAlpha: 0.7,    // polarity indicator opacity (0 = hidden)
+    polarityLength: 0.8,   // fraction of hard radius for line length
     forceLineAlpha: 0,     // set >0 to debug forces
-    polarityLineAlpha: 0,  // set >0 to debug polarity
+    polarityLineAlpha: 0,  // set >0 to debug polarity (raw)
   };
 
   // ──────────────────────────────────────────────
@@ -466,30 +468,47 @@
     }
 
     // Cells
+    const scale = Math.min(sX, sY);
     for (const cell of cells) {
       const cx = cell.pos.x * sX;
       const cy = cell.pos.y * sY - parallaxY;
 
       // Soft radius (transparent)
       ctx.beginPath();
-      ctx.arc(cx, cy, cell.rSoft * Math.min(sX, sY), 0, Math.PI * 2);
+      ctx.arc(cx, cy, cell.rSoft * scale, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${params.cellAlpha * 0.25})`;
       ctx.fill();
 
       // Hard radius (solid)
       ctx.beginPath();
-      ctx.arc(cx, cy, cell.rHard * Math.min(sX, sY), 0, Math.PI * 2);
+      ctx.arc(cx, cy, cell.rHard * scale, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${params.cellAlpha})`;
       ctx.fill();
 
+      // Polarity indicator: line from center toward leading edge
+      if (params.polarityAlpha > 0) {
+        const polMag = vMag(cell.pol);
+        if (polMag > 0.01) {
+          const nx = cell.pol.x / polMag;
+          const ny = cell.pol.y / polMag;
+          const len = cell.rHard * scale * params.polarityLength;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.lineTo(cx + nx * len, cy + ny * len);
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${params.polarityAlpha})`;
+          ctx.lineWidth = 2.5 * scale;
+          ctx.lineCap = 'round';
+          ctx.stroke();
+        }
+      }
+
       // Debug: polarity line
       if (params.polarityLineAlpha > 0) {
-        const scale = Math.min(sX, sY);
         ctx.beginPath();
         ctx.strokeStyle = `rgba(0, 0, 0, ${params.polarityLineAlpha})`;
         ctx.lineWidth = 1;
         ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + cell.pol.x * cell.rSoft * scale / vMag(cell.pol || { x: 1, y: 0 }), cy + cell.pol.y * cell.rSoft * scale / (vMag(cell.pol) || 1));
+        ctx.lineTo(cx + cell.pol.x * cell.rSoft * scale / (vMag(cell.pol) || 1), cy + cell.pol.y * cell.rSoft * scale / (vMag(cell.pol) || 1));
         ctx.stroke();
       }
     }
