@@ -34,6 +34,7 @@ export interface Publication {
 }
 
 export interface PublicationsData {
+	theses: Publication[];
 	preprints: Publication[];
 	peer_reviewed: Publication[];
 }

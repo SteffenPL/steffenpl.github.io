@@ -1,3 +1,31 @@
+theses:
+  - id: 101
+    title: "Mathematical modelling and simulation of epithelial-to-mesenchymal transitions leading to cell migration."
+    year: "2023"
+    journal: "PhD Thesis · University of Vienna"
+    authors: []
+    links:
+      - name: "PDF"
+        url: "/theses/plunder_phd_thesis.pdf"
+
+  - id: 102
+    title: "Modelling and simulation of skeletal muscle tissue."
+    year: "2018"
+    journal: "Master's Thesis · TU Kaiserslautern"
+    authors: []
+    links:
+      - name: "PDF"
+        url: "/theses/plunder_masters_thesis.pdf"
+
+  - id: 103
+    title: "Molecular dynamics."
+    year: "2016"
+    journal: "Bachelor's Thesis · TU Kaiserslautern"
+    authors: []
+    links:
+      - name: "PDF"
+        url: "/theses/plunder_bachelor_thesis.pdf"
+
 preprints:
   - id: 13
     title: "Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids."
@@ -37,7 +65,7 @@ preprints:
 peer_reviewed:
   - id: 11
     title: "Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development"
-    year: "**(2026)**"
+    year: "2026"
     authors:
       - name: "P. C. Guruciaga"
         url: "https://sites.google.com/view/pamelaguruciaga/home"
@@ -48,14 +76,14 @@ peer_reviewed:
         url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
       - name: "A. Erzberger"
         url: "https://www.embl.org/people/person/anna-erzberger/"
-    journal: "**Nature Materials [accepted]**"
+    journal: "Nature Materials [accepted]"
     links:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2403.08710"
 
   - id: 10
     title: "Boundary-guided cell alignment drives mouse epiblast maturation."
-    year: "**(2026)**"
+    year: "2026"
     authors:
       - name: "T. Ichikawa"
         url: "https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/"
@@ -71,15 +99,15 @@ peer_reviewed:
         url: "https://www.embl.org/people/person/anna-erzberger/"
       - name: "T. Hiiragi"
         url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
-    journal: "**Nature Physics [accepted]**"
+    journal: "Nature Physics [accepted]"
     links:
       - name: "bioRxiv"
         url: "https://doi.org/10.1101/2025.04.28.650859"
 
   - id: 9
     title: "The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model."
-    journal: "**iScience**"
-    year: "**(2025)**"
+    journal: "iScience"
+    year: "2025"
     authors:
       - name: "M. Mira Osuna"
         url: "https://sbcf.fr/en/member/marta-mira-osuna/"
@@ -94,8 +122,8 @@ peer_reviewed:
 
   - id: 8
     title: "Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects."
-    journal: "**Mathematical Models and Methods in Applied Sciences**"
-    year: "**(2025)**"
+    journal: "Mathematical Models and Methods in Applied Sciences"
+    year: "2025"
     authors:
       - name: "S. Merino-Aceituno"
         url: "https://sites.google.com/view/saramerinoaceituno"
@@ -111,8 +139,8 @@ peer_reviewed:
 
   - id: 7
     title: "Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration."
-    journal: "**Proceedings in Applied Mathematics & Mechanics**"
-    year: "**(2024)**"
+    journal: "Proceedings in Applied Mathematics & Mechanics"
+    year: "2024"
     authors:
       - name: "H. Jäger"
       - name: "É. Grosjean"
@@ -129,8 +157,8 @@ peer_reviewed:
 
   - id: 6
     title: "Non-apical mitoses contribute to cell delamination during mouse gastrulation."
-    journal: "**Nature Communications**"
-    year: "**(2024)**"
+    journal: "Nature Communications"
+    year: "2024"
     authors:
       - name: "E. Despin-Guitard"
       - name: "V. S. Rosa"
@@ -151,8 +179,8 @@ peer_reviewed:
 
   - id: 5
     title: "Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion."
-    journal: "**Nature Communications**"
-    year: "**(2024)**"
+    journal: "Nature Communications"
+    year: "2024"
     authors:
       - name: "S. Plunder"
       - name: "C. Danesin"
@@ -169,8 +197,8 @@ peer_reviewed:
 
   - id: 4
     title: "Determination of optimal phage load and administration time for antibacterial treatment."
-    journal: "**Current Protocols**"
-    year: "**(2024)**"
+    journal: "Current Protocols"
+    year: "2024"
     authors:
       - name: "S. Plunder"
       - name: "M. Burkard"
@@ -185,8 +213,8 @@ peer_reviewed:
 
   - id: 3
     title: "The mean-field limit for particle systems with uniform full-rank constraints."
-    journal: "**Kinetic and Related Models**"
-    year: "**(2023)**"
+    journal: "Kinetic and Related Models"
+    year: "2023"
     authors:
       - name: "S. Plunder"
       - name: "B. Simeon"
@@ -199,8 +227,8 @@ peer_reviewed:
 
   - id: 2
     title: "Determination of phage load and administration time in simulated occurrences of antibacterial treatments."
-    journal: "**Frontiers of Medicine**"
-    year: "**(2022)**"
+    journal: "Frontiers of Medicine"
+    year: "2022"
     authors:
       - name: "S. Plunder"
       - name: "M. Burkard"
@@ -214,8 +242,8 @@ peer_reviewed:
 
   - id: 1
     title: "Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue."
-    journal: "In: Reis, T., Grundel, S., Schöps, S. (eds) **Progress in Differential-Algebraic Equations II. Differential-Algebraic Equations Forum. Springer**"
-    year: "**(2020)**"
+    journal: "Progress in Differential-Algebraic Equations II. (Conference Proceeding)"
+    year: "2020"
     authors:
       - name: "S. Plunder"
       - name: "B. Simeon"

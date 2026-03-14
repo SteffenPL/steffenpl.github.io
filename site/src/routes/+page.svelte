@@ -1,30 +1,6 @@
 <script lang="ts">
   import HeroCanvas from '$lib/components/home/HeroCanvas.svelte';
-  import publications from '$lib/data/publications.yaml';
-
-  interface Author {
-    name: string;
-    url?: string;
-  }
-
-  interface Publication {
-    id: number;
-    title: string;
-    year: string;
-    authors: Author[];
-    journal?: string;
-    links: { name: string; url: string }[];
-  }
-
-  const recentPubs: Publication[] = (publications as { peer_reviewed: Publication[] }).peer_reviewed.slice(0, 3);
-
-  function formatAuthors(authors: Author[]): string {
-    return authors.map((a) => a.name).join(', ');
-  }
-
-  function cleanMarkdown(text: string): string {
-    return text.replace(/\*\*/g, '').replace(/[()]/g, '');
-  }
+  import PublicationList from '$lib/components/publications/PublicationList.svelte';
 </script>
 
 <svelte:head>
@@ -111,7 +87,7 @@
   </div>
 </section>
 
-<!-- Recent Publications Section -->
+<!-- Selected Publications Section -->
 <section class="px-6 py-20">
   <div class="mx-auto max-w-[1100px]">
     <div class="reveal">
@@ -120,56 +96,14 @@
         class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-semibold"
         style="color: var(--text);"
       >
-        Recent Publications
+        Selected Publications
       </h2>
       <p class="mb-12 mt-2 text-[0.95rem]" style="color: var(--text-muted);">
         Selected works in computational biology and applied mathematics
       </p>
     </div>
 
-    <div class="flex flex-col gap-5">
-      {#each recentPubs as pub, i}
-        <article
-          class="pub-card reveal"
-          style="transition-delay: {(i + 1) * 0.07}s;"
-        >
-          <span class="pub-year">{cleanMarkdown(pub.year)}</span>
-          <div class="flex-1">
-            <h3
-              class="mb-1 text-[0.95rem] font-semibold leading-snug"
-              style="color: var(--text);"
-            >
-              {pub.title}
-            </h3>
-
-            <p class="mb-1 text-[0.85rem]" style="color: var(--text-muted);">
-              {formatAuthors(pub.authors)}
-            </p>
-
-            {#if pub.journal}
-              <p class="mb-2 text-[0.85rem] italic" style="color: var(--text-muted);">
-                {cleanMarkdown(pub.journal)}
-              </p>
-            {/if}
-
-            {#if pub.links && pub.links.length > 0}
-              <div class="flex flex-wrap gap-3">
-                {#each pub.links as link}
-                  <a
-                    href={link.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="card-link"
-                  >
-                    {link.name} <span class="card-link-arrow">&rarr;</span>
-                  </a>
-                {/each}
-              </div>
-            {/if}
-          </div>
-        </article>
-      {/each}
-    </div>
+    <PublicationList ids={[11, 10, 5, 9]} />
 
     <div class="mt-8 text-center">
       <a href="/publications" class="card-link text-[0.9rem]">
@@ -250,43 +184,8 @@
     transform: translateX(2px);
   }
 
-  /* ─── Publication Cards ─── */
-  .pub-card {
-    background: var(--bg-card);
-    border: 1px solid var(--bg-card-border);
-    border-radius: 14px;
-    padding: 1.5rem 1.75rem;
-    backdrop-filter: blur(16px);
-    box-shadow: var(--shadow-card);
-    display: flex;
-    gap: 1.5rem;
-    align-items: flex-start;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;
-  }
-  .pub-card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-card-hover);
-  }
-
-  .pub-year {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.3rem;
-    color: var(--accent);
-    flex-shrink: 0;
-    min-width: 55px;
-    line-height: 1.2;
-  }
-
   /* ─── Responsive ─── */
   @media (max-width: 720px) {
-    .pub-card {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    .pub-year {
-      font-size: 1.1rem;
-      min-width: unset;
-    }
+    /* pub-card responsive styles live in PublicationCard.svelte */
   }
 </style>
