@@ -74,7 +74,7 @@
 
     <div class="flex flex-wrap items-center justify-center gap-4">
       <a
-        href="mailto:steffen.plunder@ashbi.kyoto-u.ac.jp"
+        href="mailto:plunder.steffen.2a@kyoto-u.ac.jp"
         class="cta-btn cta-btn--primary"
       >
         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">

@@ -8,7 +8,7 @@ Personal academic webpage for Steffen Plunder. SvelteKit 5 static site deployed 
 
 - **SvelteKit 5** (Svelte 5 runes syntax) + **TypeScript**
 - **Tailwind CSS 4** with `@tailwindcss/vite`
-- **mdsvex** for markdown blog posts (with remark-math + rehype-katex for math)
+- **mdsvex** for markdown blog posts (with custom KaTeX preprocessor for math)
 - **Static adapter** → builds to `build/`
 - Fonts: Source Code Pro (display/monospace), Inter (body)
 
@@ -73,8 +73,7 @@ Theme toggle uses View Transitions API with circular wipe animation.
 
 ## Known Issues
 
-- 4 project blog posts in `src/content/blog/_drafts/` need math escaping for mdsvex (curly braces in LaTeX parsed as Svelte expressions)
-- Blog post images from old site not yet copied to `static/`
+- 1 draft blog post in `src/content/blog/_drafts/` (constraints-mean-field) remains to be published
 - Google Scholar ID placeholder in footer (`GOOGLE_SCHOLAR_ID`)
 
 ## Adding Content
