@@ -37,35 +37,33 @@
             </span>
 
             <div class="min-w-0">
+              <span class="text-sm font-medium" style="color: var(--text);">
+                {talk.title}
+              </span>
+
+              <span class="text-xs ml-2" style="color: var(--text-muted);">
+                {talk.venue}
+              </span>
+
               {#if talk.url}
                 <a
                   href={talk.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-sm font-medium hover:opacity-80 transition-opacity"
-                  style="color: var(--text);"
+                  class="talk-link slides"
                 >
-                  {talk.title}
+                  slides <span class="arrow">→</span>
                 </a>
-              {:else}
-                <span class="text-sm font-medium" style="color: var(--text);">
-                  {talk.title}
-                </span>
               {/if}
-
-              <span class="text-xs ml-2" style="color: var(--text-muted);">
-                {talk.venue}
-              </span>
 
               {#if talk.video}
                 <a
                   href={talk.video}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-[11px] font-display font-medium ml-2 hover:opacity-80 transition-opacity"
-                  style="color: var(--accent-secondary);"
+                  class="talk-link video"
                 >
-                  Video
+                  video <span class="arrow">→</span>
                 </a>
               {/if}
             </div>
@@ -75,3 +73,37 @@
     {/each}
   </div>
 </section>
+
+<style>
+  .talk-link {
+    font-size: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-left: 0.5rem;
+    transition: color 0.2s, gap 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .talk-link.slides {
+    color: var(--accent-secondary);
+  }
+  .talk-link.slides:hover {
+    color: var(--accent);
+    gap: 0.4rem;
+  }
+  .talk-link.video {
+    color: var(--accent);
+  }
+  .talk-link.video:hover {
+    color: var(--accent-secondary);
+    gap: 0.4rem;
+  }
+  .arrow {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .talk-link:hover .arrow {
+    transform: translateX(2px);
+  }
+</style>

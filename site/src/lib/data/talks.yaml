@@ -39,7 +39,7 @@
   date: 2025-07
   title: "Position-based Dynamics for Multicellular Systems with Adhesion Memory"
   venue: "ACMB-JSMB 2025 (Kyoto)"
-  url: /slides/2025/07-08-ACMBJSMB/index.html#/0/0/0
+  url: https://steffenpl.github.io/slides/2025/07-08-ACMBJSMB/index.html#/0/0/0
   projects: [position-based-dynamics, cell-migration-model]
   tags: [Particle simulations, Agent-based models, Cell migration]
 
@@ -55,7 +55,7 @@
   date: 2024-09
   title: "200 years old and still relevant: The Gauss-Seidel principle"
   venue: "Lab Summer Conference 2024 (Kyoto)"
-  url: /slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0
+  url: https://steffenpl.github.io/slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0
   projects: [position-based-dynamics]
   tags: [Numerical analysis, Constrained dynamics]
 
@@ -63,7 +63,7 @@
   date: 2024-09
   title: "Modelling heterogeneity of EMT to identify main drivers of basal extrusion"
   venue: "The 1st ASHBi-KAIST Joint Workshop (Kyoto)"
-  url: /slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0
+  url: https://steffenpl.github.io/slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0
   projects: [epithelial-to-mesenchymal]
   tags: [Cell migration, Cancer biology, Agent-based models]
 
@@ -71,7 +71,7 @@
   date: 2024-07
   title: "Agent-based modelling of heterogeneous EMT scenarios"
   venue: "Annual Meeting ESMTB (Toledo)"
-  url: /slides/2024/07-24-ESMTB/esmtb_2024.html#/0/0/0
+  url: https://steffenpl.github.io/slides/2024/07-24-ESMTB/esmtb_2024.html#/0/0/0
   projects: [epithelial-to-mesenchymal]
   tags: [Agent-based models, Cell migration, Cancer biology, Mathematical Biology]
 
@@ -79,7 +79,7 @@
   date: 2024-07
   title: "A live coding music performance with Julia"
   venue: "JuliaCon 2024 (Eindhoven)"
-  url: https://youtu.be/k-WUQFxWNj0?feature=shared
+  video: https://www.youtube.com/watch?v=k-WUQFxWNj0
   projects: [portmidi]
   tags: [Julia, Music, Scientific Communication]
 
@@ -87,8 +87,8 @@
   date: 2024-07
   title: "Tools for agent-based modelling in developmental biology"
   venue: "JuliaCon 2024 (Eindhoven)"
-  url: /slides/2024/07-12-JuliaCon/juliacon_abm.html#/0/0/0
-  video: https://youtu.be/V3bc3_d9TIM?feature=shared
+  url: https://steffenpl.github.io/slides/2024/07-12-JuliaCon/juliacon_abm.html#/0/0/0
+  video: https://www.youtube.com/watch?v=V3bc3_d9TIM
   projects: [cell-migration-model]
   tags: [Julia, Agent-based models, Developmental Biology, Performance]
 
@@ -103,7 +103,7 @@
   date: 2024-03
   title: "Position-based dynamics: Convergence theory and applications to agent-based models"
   venue: "PDE seminar (Vienna)"
-  url: /slides/2024/03-22-Vienna/slides_vienna.html#/0/0/0
+  url: https://steffenpl.github.io/slides/2024/03-22-Vienna/slides_vienna.html#/0/0/0
   projects: [position-based-dynamics]
   tags: [Numerical analysis, Particle simulations, Constrained dynamics]
 
@@ -111,7 +111,7 @@
   date: 2024-03
   title: "Towards kinetic theory for multi-scale muscle models"
   venue: "Inria (Paris)"
-  url: /slides/2024/03-08-Kinetic-theory-mucles/kinetic_theory.pdf
+  url: https://steffenpl.github.io/slides/2024/03-08-Kinetic-theory-mucles/kinetic_theory.pdf
   projects: [constraints-mean-field]
   tags: [Kinetic theory, Mechanics, PDE]
 
@@ -119,7 +119,7 @@
   date: 2023-08
   title: "Convergence of position based dynamics for first-order particle systems with volume exclusion"
   venue: "ICIAM 2023 (Tokyo)"
-  url: /slides/2023/08-22-ICIAM/iciam.html#/0/0/0
+  url: https://steffenpl.github.io/slides/2023/08-22-ICIAM/iciam.html#/0/0/0
   projects: [position-based-dynamics]
   tags: [Numerical analysis, Particle simulations, Constrained dynamics]
 

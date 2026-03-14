@@ -229,6 +229,7 @@
       draw(); return;
     }
     const found = findNodeAt(world.x, world.y);
+    if (found !== hoveredNode) hoverNeedsPreIterate = true;
     hoveredNode = found;
     canvas.style.cursor = found ? 'pointer' : 'grab';
   }
@@ -325,7 +326,7 @@
   // ── Animated label rotation system ──
   // 5 tag labels (accent) + 3 general labels (secondary), freeze during hover
   const LABEL_FONT_SIZE = 18;
-  const LABEL_MAX_AGE = 10;
+  const LABEL_MAX_AGE = 30;
 
   interface AnimLabel {
     node: GraphNode;
@@ -354,13 +355,16 @@
   function initAnimLabels() {
     animLabels = [];
     usedAnimIds.clear();
+    const totalSlots = Math.min(5, tagNodes.length) + Math.min(3, nonTagNodes.length);
+    const stagger = totalSlots > 0 ? LABEL_MAX_AGE / totalSlots : 0;
+    let slotIdx = 0;
     for (let i = 0; i < Math.min(5, tagNodes.length); i++) {
       const node = pickAnimOverlapFree(tagNodes);
-      if (node) { animLabels.push({ node, age: i * 2, opacity: 1, fading: false, kind: 'tag' }); usedAnimIds.add(node.id); }
+      if (node) { animLabels.push({ node, age: slotIdx * stagger, opacity: 1, fading: false, kind: 'tag' }); usedAnimIds.add(node.id); slotIdx++; }
     }
     for (let i = 0; i < Math.min(3, nonTagNodes.length); i++) {
       const node = pickAnimOverlapFree(nonTagNodes);
-      if (node) { animLabels.push({ node, age: i * 3, opacity: 1, fading: false, kind: 'general' }); usedAnimIds.add(node.id); }
+      if (node) { animLabels.push({ node, age: slotIdx * stagger, opacity: 1, fading: false, kind: 'general' }); usedAnimIds.add(node.id); slotIdx++; }
     }
   }
 
@@ -371,7 +375,7 @@
       slot.age += dt;
       if (!slot.fading && slot.age >= LABEL_MAX_AGE) slot.fading = true;
       if (slot.fading) {
-        slot.opacity = Math.max(0, slot.opacity - dt);
+        slot.opacity = Math.max(0, slot.opacity - dt * 0.33); // 3s fade out
         if (slot.opacity <= 0) {
           usedAnimIds.delete(slot.node.id);
           const pool = slot.kind === 'tag' ? tagNodes : nonTagNodes;
@@ -380,12 +384,20 @@
           slot.age = 0; slot.opacity = 0; slot.fading = false;
         }
       } else if (slot.opacity < 1) {
-        slot.opacity = Math.min(1, slot.opacity + dt);
+        slot.opacity = Math.min(1, slot.opacity + dt * 0.33); // 3s fade in
       }
     }
   }
 
-  // ── Hover label info (for neighbor labels + arrows) ──
+  // ── Label placement force simulation ──
+  // Labels are nodes that repel each other but are pulled toward their anchor (graph node screen pos).
+  interface LabelNode extends SimulationNodeDatum {
+    id: string;
+    anchorX: number;
+    anchorY: number;
+    opacity: number;
+  }
+
   interface FloatingLabel {
     label: string;
     color: string;
@@ -395,38 +407,121 @@
     labelX: number;
     labelY: number;
     align: 'left' | 'right';
+    isHoveredLabel?: boolean;
   }
   let floatingLabels: FloatingLabel[] = $state([]);
   let animLabelInfos: FloatingLabel[] = $state([]);
 
-  function computeFloatingLabel(
-    node: GraphNode,
-    existingLabels: FloatingLabel[],
-    colors: any,
-    centerX?: number,
-    centerY?: number,
-  ): FloatingLabel {
-    const snx = (node.x! - camX) * zoom + width / 2;
-    const sny = (node.y! - camY) * zoom + height / 2;
+  // ── Hover label cycling (when >10 neighbors) ──
+  const MAX_HOVER_LABELS = 7;
+  const HOVER_CYCLE_AGE = 30; // same as animated labels
 
-    // Push label outward from reference center (canvas center or hovered node)
-    const cx = centerX ?? width / 2;
-    const cy = centerY ?? height / 2;
-    let dx = snx - cx, dy = sny - cy;
-    const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-    dx /= dist; dy /= dist;
+  interface HoverCycleSlot {
+    nodeId: string;
+    age: number;
+    opacity: number;
+    fading: boolean;
+  }
 
-    let lx = snx + dx * 80;
-    let ly = sny + dy * 80;
+  let hoverCycleSlots: HoverCycleSlot[] = [];
+  let hoverCycleUsedIds = new Set<string>();
+  let lastHoveredId: string | null = null;
+  let hoverNeedsPreIterate = false; // flag to pre-iterate label sim on hover start
 
-    // Clamp to bounds
-    lx = Math.max(60, Math.min(width - 60, lx));
-    ly = Math.max(24, Math.min(height - 24, ly));
+  function initHoverCycle(allNeighborIds: string[]) {
+    hoverCycleSlots = [];
+    hoverCycleUsedIds.clear();
+    const shuffled = [...allNeighborIds];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const count = Math.min(MAX_HOVER_LABELS, shuffled.length);
+    const stagger = count > 0 ? HOVER_CYCLE_AGE / count : 0;
+    for (let i = 0; i < count; i++) {
+      hoverCycleSlots.push({ nodeId: shuffled[i], age: i * stagger, opacity: 1, fading: false });
+      hoverCycleUsedIds.add(shuffled[i]);
+    }
+  }
 
-    const align = lx > snx ? 'left' : 'right';
-    const color = nodeColor(node.type);
+  function updateHoverCycle(dt: number, allNeighborIds: string[]) {
+    for (const slot of hoverCycleSlots) {
+      slot.age += dt;
+      if (!slot.fading && slot.age >= HOVER_CYCLE_AGE) slot.fading = true;
+      if (slot.fading) {
+        slot.opacity = Math.max(0, slot.opacity - dt * 0.33); // 3s fade out
+        if (slot.opacity <= 0) {
+          hoverCycleUsedIds.delete(slot.nodeId);
+          const candidates = allNeighborIds.filter(id => !hoverCycleUsedIds.has(id));
+          if (candidates.length > 0) {
+            const pick = candidates[Math.floor(Math.random() * candidates.length)];
+            slot.nodeId = pick;
+            hoverCycleUsedIds.add(pick);
+          }
+          slot.age = 0; slot.opacity = 0; slot.fading = false;
+        }
+      } else if (slot.opacity < 1) {
+        slot.opacity = Math.min(1, slot.opacity + dt * 0.33); // 3s fade in
+      }
+    }
+  }
 
-    return { label: node.label, color, opacity: 1, nodeScreenX: snx, nodeScreenY: sny, labelX: lx, labelY: ly, align };
+  let labelSimNodes: LabelNode[] = [];
+  let labelSim: Simulation<LabelNode, never> | null = null;
+
+  function rebuildLabelSim(entries: { id: string; anchorX: number; anchorY: number; opacity: number }[]) {
+    const oldMap = new Map<string, LabelNode>();
+    for (const n of labelSimNodes) oldMap.set(n.id, n);
+
+    labelSimNodes = entries.map(e => {
+      const old = oldMap.get(e.id);
+      return {
+        id: e.id,
+        anchorX: e.anchorX,
+        anchorY: e.anchorY,
+        opacity: e.opacity,
+        x: old?.x ?? e.anchorX + (Math.random() - 0.5) * 20,
+        y: old?.y ?? e.anchorY - 60 + (Math.random() - 0.5) * 20,
+      };
+    });
+
+    if (labelSim) labelSim.stop();
+
+    labelSim = forceSimulation<LabelNode>(labelSimNodes)
+      .force('repel', forceManyBody<LabelNode>()
+        .strength(d => -200 * (d as LabelNode).opacity)
+        .distanceMax(200))
+      .force('anchor', () => {
+        for (const n of labelSimNodes) {
+          const dx = n.anchorX - (n.x || 0);
+          const dy = n.anchorY - (n.y || 0);
+          const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+          const targetDist = 80 * n.opacity; // fading labels collapse toward anchor
+          const force = (dist - targetDist) * 0.05 * Math.max(n.opacity, 0.1);
+          n.vx = (n.vx || 0) + dx / dist * force;
+          n.vy = (n.vy || 0) + dy / dist * force;
+        }
+      })
+      .force('bounds', () => {
+        const margin = 40;
+        for (const n of labelSimNodes) {
+          if ((n.x || 0) < margin) n.vx = (n.vx || 0) + 2;
+          if ((n.x || 0) > width - margin) n.vx = (n.vx || 0) - 2;
+          if ((n.y || 0) < 20) n.vy = (n.vy || 0) + 2;
+          if ((n.y || 0) > height - 20) n.vy = (n.vy || 0) - 2;
+        }
+      })
+      .velocityDecay(0.5)
+      .alphaDecay(0.05)
+      .alpha(0.5);
+  }
+
+  function updateLabelAnchors(entries: { id: string; anchorX: number; anchorY: number; opacity: number }[]) {
+    for (const e of entries) {
+      const n = labelSimNodes.find(ln => ln.id === e.id);
+      if (n) { n.anchorX = e.anchorX; n.anchorY = e.anchorY; n.opacity = e.opacity; }
+    }
+    if (labelSim && labelSim.alpha() < 0.05) labelSim.alpha(0.1).restart();
   }
 
   function drawCurvedArrow(
@@ -444,29 +539,29 @@
     const asx = fromX;
     const asy = fromY;
 
-    // Perpendicular control point
+    // Perpendicular control point (2x curvature)
     const midX = (asx + aex) / 2, midY = (asy + aey) / 2;
     const perpX = -(asy - aey), perpY = asx - aex;
     const perpDist = Math.sqrt(perpX * perpX + perpY * perpY) || 1;
-    const cpx = midX + (perpX / perpDist) * 25;
-    const cpy = midY + (perpY / perpDist) * 25;
+    const cpx = midX + (perpX / perpDist) * 50;
+    const cpy = midY + (perpY / perpDist) * 50;
 
     ctx.beginPath();
     ctx.moveTo(asx, asy);
     ctx.quadraticCurveTo(cpx, cpy, aex, aey);
     ctx.strokeStyle = color;
     ctx.globalAlpha = alpha;
-    ctx.lineWidth = 1.2;
-    ctx.setLineDash([3, 3]);
+    ctx.lineWidth = 2;
+    ctx.setLineDash([5, 4]);
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Arrowhead
+    // Arrowhead (2x size)
     const t = 0.94;
     const prevX = (1 - t) ** 2 * asx + 2 * (1 - t) * t * cpx + t * t * aex;
     const prevY = (1 - t) ** 2 * asy + 2 * (1 - t) * t * cpy + t * t * aey;
     const angle = Math.atan2(aey - prevY, aex - prevX);
-    const hl = 5;
+    const hl = 10;
     ctx.beginPath();
     ctx.moveTo(aex, aey);
     ctx.lineTo(aex - hl * Math.cos(angle - 0.4), aey - hl * Math.sin(angle - 0.4));
@@ -493,7 +588,7 @@
     ctx.scale(zoom, zoom);
     ctx.translate(-camX, -camY);
 
-    const hovered = hoveredNode;
+    const hovered = isPanning ? null : (draggedNode || hoveredNode);
     const hasHover = hovered !== null && !hovered.hidden;
     const neighborIds = hasHover ? getNeighborIds(hovered.id) : new Set<string>();
 
@@ -528,15 +623,22 @@
       }
     }
 
-    // ── Nodes ──
-    for (const node of nodes) {
-      if (node.hidden) continue;
+    // ── Nodes (draw hovered last so it's always on top) ──
+    function drawNode(node: GraphNode) {
       const x = node.x || 0, y = node.y || 0;
       const isHov = node === hovered;
       const isNeighbor = hasHover && neighborIds.has(node.id);
       const isDimmed = hasHover && !isHov && !isNeighbor;
-      const r = isHov ? node.radius + 2 : node.radius;
+      const r = isHov ? node.radius + 3 : node.radius;
       const color = nodeColor(node.type);
+
+      // Glow for hovered node
+      if (isHov) {
+        ctx.beginPath();
+        ctx.arc(x, y, r + 8, 0, Math.PI * 2);
+        ctx.fillStyle = color + '30';
+        ctx.fill();
+      }
 
       ctx.beginPath();
       ctx.arc(x, y, r, 0, Math.PI * 2);
@@ -546,7 +648,7 @@
       if (isHov) {
         ctx.beginPath();
         ctx.arc(x, y, r + 4, 0, Math.PI * 2);
-        ctx.strokeStyle = color + 'aa';
+        ctx.strokeStyle = color;
         ctx.lineWidth = 2.5 / zoom;
         ctx.stroke();
       }
@@ -559,47 +661,145 @@
       }
     }
 
+    // Draw non-hovered nodes first
+    for (const node of nodes) {
+      if (node.hidden || node === hovered) continue;
+      drawNode(node);
+    }
+    // Draw hovered node on top
+    if (hovered && !hovered.hidden) drawNode(hovered);
+
     ctx.restore();
 
-    // ── Hover labels + arrows (screen space) ──
-    const newLabels: FloatingLabel[] = [];
+    // ── Collect all label entries for the label force sim ──
+    interface LabelEntry {
+      id: string;
+      graphNode: GraphNode;
+      anchorX: number;
+      anchorY: number;
+      color: string;
+      opacity: number;
+      source: 'hover' | 'anim';
+    }
+    const allLabelEntries: LabelEntry[] = [];
+
+    // Hovered node label + neighbor labels (with fade in/out)
     if (hasHover) {
-      const hovScreen = worldToScreen(hovered!.x || 0, hovered!.y || 0);
+      // Fade in
+      hoverFade = Math.min(1, hoverFade + dt * 2); // 0.5s fade in
 
-      // Arrow from preview panel (top-left) to hovered node
-      drawCurvedArrow(ctx, 12, 50, hovScreen.x, hovScreen.y,
-        (hovered!.radius + 3) * zoom, colors.accent, 0.5);
+      const hovScr = worldToScreen(hovered!.x || 0, hovered!.y || 0);
+      allLabelEntries.push({
+        id: `hovered:${hovered!.id}`, graphNode: hovered!,
+        anchorX: hovScr.x, anchorY: hovScr.y,
+        color: colors.text, opacity: hoverFade, source: 'hover',
+      });
 
-      // Neighbor labels (centered around hovered node)
-      for (const nId of neighborIds) {
-        const neighbor = nodeMap.get(nId);
-        if (!neighbor || neighbor.hidden) continue;
-        const label = computeFloatingLabel(neighbor, newLabels, colors, hovScreen.x, hovScreen.y);
-        newLabels.push(label);
+      const visibleNeighborIds = [...neighborIds].filter(id => {
+        const n = nodeMap.get(id);
+        return n && !n.hidden;
+      });
 
-        // Arrow from label to neighbor node
-        const startX = label.align === 'left' ? label.labelX - 4 : label.labelX + 4;
-        drawCurvedArrow(ctx, startX, label.labelY,
-          label.nodeScreenX, label.nodeScreenY,
-          (neighbor.radius + 3) * zoom, label.color, 0.45);
+      if (visibleNeighborIds.length <= MAX_HOVER_LABELS) {
+        lastHoveredId = null;
+        for (const nId of visibleNeighborIds) {
+          const neighbor = nodeMap.get(nId)!;
+          const scr = worldToScreen(neighbor.x || 0, neighbor.y || 0);
+          allLabelEntries.push({
+            id: `hover:${neighbor.id}`, graphNode: neighbor,
+            anchorX: scr.x, anchorY: scr.y,
+            color: nodeColor(neighbor.type), opacity: hoverFade, source: 'hover',
+          });
+        }
+      } else {
+        if (lastHoveredId !== hovered!.id) {
+          lastHoveredId = hovered!.id;
+          initHoverCycle(visibleNeighborIds);
+        }
+        updateHoverCycle(dt, visibleNeighborIds);
+
+        for (const slot of hoverCycleSlots) {
+          if (slot.opacity <= 0) continue;
+          const neighbor = nodeMap.get(slot.nodeId);
+          if (!neighbor || neighbor.hidden) continue;
+          const scr = worldToScreen(neighbor.x || 0, neighbor.y || 0);
+          allLabelEntries.push({
+            id: `hover:${neighbor.id}`, graphNode: neighbor,
+            anchorX: scr.x, anchorY: scr.y,
+            color: nodeColor(neighbor.type), opacity: slot.opacity * hoverFade, source: 'hover',
+          });
+        }
       }
+    } else {
+      hoverFade = 0;
+      lastHoveredId = null;
     }
-    floatingLabels = newLabels;
 
-    // ── Animated labels (always visible, freeze during hover) ──
-    const newAnimInfos: FloatingLabel[] = [];
+    // Animated labels (hidden during hover/drag)
     for (const slot of animLabels) {
+      if (hasHover) break;
       if (slot.opacity <= 0 || slot.node.hidden) continue;
-      const info = computeFloatingLabel(slot.node, newAnimInfos, colors);
-      info.color = slot.kind === 'tag' ? colors.accent : colors.secondary;
-      info.opacity = slot.opacity;
-      newAnimInfos.push(info);
-
-      const startX = info.align === 'left' ? info.labelX - 4 : info.labelX + 4;
-      drawCurvedArrow(ctx, startX, info.labelY,
-        info.nodeScreenX, info.nodeScreenY,
-        (slot.node.radius + 3) * zoom, info.color, slot.opacity * 0.4);
+      const scr = worldToScreen(slot.node.x || 0, slot.node.y || 0);
+      allLabelEntries.push({
+        id: `anim:${slot.node.id}`, graphNode: slot.node,
+        anchorX: scr.x, anchorY: scr.y,
+        color: slot.kind === 'tag' ? colors.accent : colors.secondary,
+        opacity: slot.opacity, source: 'anim',
+      });
     }
+
+    // Rebuild or update label sim
+    const currentIds = new Set(allLabelEntries.map(e => e.id));
+    const simIds = new Set(labelSimNodes.map(n => n.id));
+    const needsRebuild = allLabelEntries.length !== labelSimNodes.length ||
+      allLabelEntries.some(e => !simIds.has(e.id));
+
+    if (needsRebuild) {
+      rebuildLabelSim(allLabelEntries.map(e => ({ id: e.id, anchorX: e.anchorX, anchorY: e.anchorY, opacity: e.opacity })));
+    } else {
+      updateLabelAnchors(allLabelEntries.map(e => ({ id: e.id, anchorX: e.anchorX, anchorY: e.anchorY, opacity: e.opacity })));
+    }
+
+    // Tick the label sim a few steps for responsiveness
+    if (labelSim) {
+      for (let i = 0; i < 3; i++) labelSim.tick();
+    }
+
+    // Read positions from label sim and build FloatingLabel arrays
+    const labelPosMap = new Map<string, { x: number; y: number }>();
+    for (const ln of labelSimNodes) {
+      labelPosMap.set(ln.id, { x: ln.x || ln.anchorX, y: ln.y || ln.anchorY });
+    }
+
+    const newHoverLabels: FloatingLabel[] = [];
+    const newAnimInfos: FloatingLabel[] = [];
+
+    // Draw arrows + build label data
+    for (const entry of allLabelEntries) {
+      const pos = labelPosMap.get(entry.id);
+      if (!pos) continue;
+      const lx = pos.x, ly = pos.y;
+      const snx = entry.anchorX, sny = entry.anchorY;
+      const align = lx > snx ? 'left' : 'right';
+      const isHoveredLabel = entry.id.startsWith('hovered:');
+
+      const info: FloatingLabel = {
+        label: entry.graphNode.label, color: entry.color, opacity: entry.opacity,
+        nodeScreenX: snx, nodeScreenY: sny, labelX: lx, labelY: ly, align,
+        isHoveredLabel,
+      };
+
+      // Draw arrow
+      const startX = align === 'left' ? lx - 4 : lx + 4;
+      const arrowAlpha = entry.source === 'hover' ? 0.55 : entry.opacity * 0.4;
+      drawCurvedArrow(ctx, startX, ly, snx, sny,
+        (entry.graphNode.radius + 3) * zoom, entry.color, arrowAlpha);
+
+      if (entry.source === 'hover') newHoverLabels.push(info);
+      else newAnimInfos.push(info);
+    }
+
+    floatingLabels = newHoverLabels;
     animLabelInfos = newAnimInfos;
   }
 
@@ -767,28 +967,15 @@
     </span>
   {/each}
 
-  <!-- Hover neighbor labels -->
+  <!-- Hover labels (neighbors + hovered node) -->
   {#each floatingLabels as info}
-    <span class="floating-label"
+    <span class="floating-label {info.isHoveredLabel ? 'floating-label--hovered' : ''}"
       style="left: {info.labelX}px; top: {info.labelY}px;
-        text-align: {info.align}; color: {info.color};
+        text-align: {info.align}; color: {info.isHoveredLabel ? 'var(--text)' : info.color};
         transform: translate({info.align === 'left' ? '0' : '-100%'}, -50%);">
       {info.label}
     </span>
   {/each}
-
-  <!-- Preview (top-left) -->
-  {#if hoveredNode}
-    <div class="graph-preview">
-      <span class="preview-type" style="color: {typeColors[hoveredNode.type]};">
-        {typeLabels[hoveredNode.type]}
-      </span>
-      <span class="preview-label">{hoveredNode.label}</span>
-      {#if hoveredNode.href}
-        <span class="preview-hint">Click to navigate</span>
-      {/if}
-    </div>
-  {/if}
 </div>
 
 <style>
@@ -866,17 +1053,15 @@
     border-radius: 4px; line-height: 1.3;
   }
 
-  /* ─── Preview ─── */
-  .graph-preview {
-    position: absolute; top: 0.75rem; left: 0.75rem; z-index: 100;
-    pointer-events: none; background: var(--bg-card); backdrop-filter: blur(12px);
-    border: 1px solid var(--bg-card-border); border-radius: 6px;
-    padding: 0.5rem 0.75rem; display: flex; flex-direction: column;
-    gap: 0.15rem; max-width: 300px; box-shadow: var(--shadow-card);
+  .floating-label--hovered {
+    font-size: 1.05rem;
+    font-weight: 700;
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 80%, transparent);
+    backdrop-filter: blur(10px);
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
   }
-  .preview-type { font-family: var(--font-display); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
-  .preview-label { font-size: 0.78rem; color: var(--text); line-height: 1.3; }
-  .preview-hint { font-size: 0.6rem; color: var(--text-muted); font-style: italic; }
 
   @media (max-width: 640px) { .force-graph-wrap { height: 50vh; min-height: 300px; } }
 </style>
