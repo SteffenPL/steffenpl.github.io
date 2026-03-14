@@ -18,7 +18,7 @@
     cellCount: 60,
     radius: 16,            // hard radius (µm)
     radiusSoft: 32,        // soft/interaction radius
-    radiusSpread: 4,       // heterogeneity in size
+    radiusSpread: 6.4,     // heterogeneity in size (~10% of radiusSoft)
 
     // Movement speeds
     runSpeed: 1.2,
@@ -436,7 +436,7 @@
 
     // Fade chemotaxis: active only while mouse is moving
     const timeSinceMove = timestamp - lastMouseMoveTime;
-    const fadeMs = 100;
+    const fadeMs = 400;
     chemoFade = Math.max(0, 1 - timeSinceMove / fadeMs);
 
     // Run physics
@@ -460,9 +460,9 @@
 
     // Subtle chemotaxis glow at mouse position
     if (chemoFade > 0.01 && mouseX > -999) {
-      const glowRadius = 80 * Math.min(sX, sY);
+      const glowRadius = 160 * Math.min(sX, sY);
       const grad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, glowRadius);
-      grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${0.08 * chemoFade})`);
+      grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${0.25 * chemoFade})`);
       grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
       ctx.beginPath();
       ctx.arc(mouseX, mouseY, glowRadius, 0, Math.PI * 2);
