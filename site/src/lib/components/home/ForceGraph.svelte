@@ -1036,7 +1036,7 @@
 
   /* ─── Legend ─── */
   .legend {
-    position: absolute; bottom: 0.75rem; left: 0.75rem;
+    position: absolute; top: 0.75rem; left: 0.75rem;
     display: flex; flex-direction: column; gap: 0.4rem;
     font-size: 0.7rem; font-family: var(--font-display); color: var(--text-muted);
     pointer-events: none; background: var(--bg-card); backdrop-filter: blur(12px);
