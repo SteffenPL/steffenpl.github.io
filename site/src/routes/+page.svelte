@@ -97,7 +97,7 @@
       </a>
 
       <a
-        href="https://scholar.google.com/citations?user=GOOGLE_SCHOLAR_ID"
+        href="https://scholar.google.com/citations?user=-QyslKMAAAAJ&hl=en"
         target="_blank"
         rel="noopener noreferrer"
         class="cta-btn cta-btn--secondary"
