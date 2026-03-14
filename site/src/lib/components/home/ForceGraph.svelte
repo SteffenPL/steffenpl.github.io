@@ -683,16 +683,13 @@
     }
     const allLabelEntries: LabelEntry[] = [];
 
-    // Hovered node label + neighbor labels (with fade in/out)
+    // Hovered node label + neighbor labels (instant, pre-iterated)
     if (hasHover) {
-      // Fade in
-      hoverFade = Math.min(1, hoverFade + dt * 2); // 0.5s fade in
-
       const hovScr = worldToScreen(hovered!.x || 0, hovered!.y || 0);
       allLabelEntries.push({
         id: `hovered:${hovered!.id}`, graphNode: hovered!,
         anchorX: hovScr.x, anchorY: hovScr.y,
-        color: colors.text, opacity: hoverFade, source: 'hover',
+        color: colors.text, opacity: 1, source: 'hover',
       });
 
       const visibleNeighborIds = [...neighborIds].filter(id => {
@@ -708,7 +705,7 @@
           allLabelEntries.push({
             id: `hover:${neighbor.id}`, graphNode: neighbor,
             anchorX: scr.x, anchorY: scr.y,
-            color: nodeColor(neighbor.type), opacity: hoverFade, source: 'hover',
+            color: nodeColor(neighbor.type), opacity: 1, source: 'hover',
           });
         }
       } else {
@@ -726,12 +723,11 @@
           allLabelEntries.push({
             id: `hover:${neighbor.id}`, graphNode: neighbor,
             anchorX: scr.x, anchorY: scr.y,
-            color: nodeColor(neighbor.type), opacity: slot.opacity * hoverFade, source: 'hover',
+            color: nodeColor(neighbor.type), opacity: slot.opacity, source: 'hover',
           });
         }
       }
     } else {
-      hoverFade = 0;
       lastHoveredId = null;
     }
 
@@ -760,9 +756,16 @@
       updateLabelAnchors(allLabelEntries.map(e => ({ id: e.id, anchorX: e.anchorX, anchorY: e.anchorY, opacity: e.opacity })));
     }
 
-    // Tick the label sim a few steps for responsiveness
+    // Tick the label sim
     if (labelSim) {
-      for (let i = 0; i < 3; i++) labelSim.tick();
+      if (hoverNeedsPreIterate && needsRebuild) {
+        // Pre-iterate to settled positions before first display
+        labelSim.alpha(1);
+        for (let i = 0; i < 60; i++) labelSim.tick();
+        hoverNeedsPreIterate = false;
+      } else {
+        for (let i = 0; i < 3; i++) labelSim.tick();
+      }
     }
 
     // Read positions from label sim and build FloatingLabel arrays
