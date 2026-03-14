@@ -7,6 +7,8 @@
   let scrollY = $state(0);
   let mouseX = $state(-9999);
   let mouseY = $state(-9999);
+  let lastMouseMoveTime = 0;
+  let chemoFade = 0;  // 0..1, smoothly fades out after mouse stops
 
   // ──────────────────────────────────────────────
   // Simulation parameters — easy to update at runtime
@@ -42,14 +44,14 @@
     substeps: 10,
 
     // Plithotaxis
-    plithoAlign: 50,
+    plithoAlign: 80,
     plithoMax: 50,
     plithoMin: 0.1,
     plithoSpread: Math.PI / 1.5,
     plithoDuration: 3,
 
     // Chemotaxis toward mouse pointer
-    chemoStrength: 0.1,    // 0 = off, higher = cells turn toward mouse faster
+    chemoStrength: 0.033,    // 0 = off, higher = cells turn toward mouse faster
 
     // Rendering
     cellAlpha: 0.55,
@@ -269,8 +271,9 @@
         cells[i].f.x = 0; cells[i].f.y = 0;
       }
 
-      // ── Chemotaxis: rotate polarity toward mouse ──
-      if (P.chemoStrength > 0 && mouseX > -999 && mouseY > -999) {
+      // ── Chemotaxis: rotate polarity toward mouse (only while moving) ──
+      const chemoEff = P.chemoStrength * chemoFade;
+      if (chemoEff > 0.001 && mouseX > -999 && mouseY > -999) {
         const sX = canvasW / simW;
         const sY = canvasH / simH;
         const targetX = mouseX / sX;
@@ -288,7 +291,7 @@
             const angle = Math.atan2(cross, dot);
             // Rotate polarity toward mouse
             const heading = Math.atan2(ci.pol.y, ci.pol.x);
-            const newHeading = heading + dt / 100 * P.chemoStrength * angle;
+            const newHeading = heading + dt / 100 * chemoEff * angle;
             ci.pol.x = Math.cos(newHeading) * polMag;
             ci.pol.y = Math.sin(newHeading) * polMag;
           }
@@ -431,6 +434,11 @@
     const frameDt = lastTime === 0 ? 33 : Math.min(timestamp - lastTime, 100);
     lastTime = timestamp;
 
+    // Fade chemotaxis: active only while mouse is moving
+    const timeSinceMove = timestamp - lastMouseMoveTime;
+    const fadeMs = 100;
+    chemoFade = Math.max(0, 1 - timeSinceMove / fadeMs);
+
     // Run physics
     stepSim(frameDt);
 
@@ -449,6 +457,18 @@
     const sY = canvasH / simH;
 
     const parallaxY = scrollY * 0.3;
+
+    // Subtle chemotaxis glow at mouse position
+    if (chemoFade > 0.01 && mouseX > -999) {
+      const glowRadius = 80 * Math.min(sX, sY);
+      const grad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, glowRadius);
+      grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${0.08 * chemoFade})`);
+      grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+      ctx.beginPath();
+      ctx.arc(mouseX, mouseY, glowRadius, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.fill();
+    }
 
     // Adhesion bonds
     if (params.bondAlpha > 0) {
@@ -526,6 +546,7 @@
     const rect = canvas.getBoundingClientRect();
     mouseX = e.clientX - rect.left;
     mouseY = e.clientY - rect.top;
+    lastMouseMoveTime = performance.now();
   }
 
   function handleMouseDown(e: MouseEvent) {
