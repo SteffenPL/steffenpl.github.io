@@ -1,11 +1,12 @@
 research:
   - slug: epiblast-orientation
     title: "Nematic orientation maps in epiblast formation"
-    desc: "Topological defect transitions and cell alignment in mouse epiblast, combining theory with quantitative image analysis."
+    desc: "Topological defect transitions and cell alignment in mouse epiblast, my role was to bridge experiments and theory with quantitative image analysis."
     image: /images/projects/epiblast-orientation.svg
-    tags: [Julia, Topological defects, Developmental Biology, Image Analysis]
-    status: active
+    tags: [Python, Topological defects, Developmental Biology, Image Analysis]
+    status: completed
     year: "2023"
+    end: "2026"
     publications: [guruciaga_2026_natmat, ichikawa_2026_natphys]
     repos:
       - label: EpiblastOrientationMaps
@@ -16,7 +17,7 @@ research:
     blogs: []
 
   - slug: limb-morphogenesis
-    title: "Modelling digit organoids"
+    title: "Modelling digit formation in organoids"
     desc: "Agent-based model for symmetry breaking and digit-like elongation in limb organoids."
     image: /images/projects/limb.png
     tags: [Python, GPU Programming, Performance, PDE, Particle simulations, Cell migration, Developmental Biology]

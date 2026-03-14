@@ -1,6 +1,7 @@
 <script lang="ts">
   import HeroCanvas from '$lib/components/home/HeroCanvas.svelte';
   import ForceGraph from '$lib/components/home/ForceGraph.svelte';
+
   import PublicationList from '$lib/components/publications/PublicationList.svelte';
   import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
   import projects from '$lib/data/projects.yaml';

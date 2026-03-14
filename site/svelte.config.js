@@ -1,6 +1,13 @@
 import adapter from '@sveltejs/adapter-static';
 import { mdsvex } from 'mdsvex';
 import { katexPreprocessor } from './src/lib/katex-preprocessor.js';
+import { createHighlighter } from 'shiki';
+import remarkGfm from 'remark-gfm';
+
+const highlighter = await createHighlighter({
+	themes: ['github-dark'],
+	langs: ['javascript', 'typescript', 'html', 'css', 'bash', 'python', 'json', 'svelte']
+});
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,7 +15,17 @@ const config = {
 	preprocess: [
 		katexPreprocessor(),
 		mdsvex({
-			extensions: ['.md']
+			extensions: ['.md'],
+			remarkPlugins: [remarkGfm],
+			highlight: {
+				highlighter: (code, lang) => {
+					const html = highlighter.codeToHtml(code, {
+						lang: lang || 'text',
+						theme: 'github-dark'
+					});
+					return `{@html \`${html.replace(/`/g, '\\`')}\`}`;
+				}
+			}
 		})
 	],
 	kit: {
