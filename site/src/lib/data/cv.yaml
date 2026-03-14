@@ -33,9 +33,10 @@ skills:
 
 grants:
   - period: "2024 – 2027"
-    title: "Kakenhi: Early-Career Scientists, PI (2,000k JPY)"
+    title: "Kakenhi: Early-Career Scientists, PI (2,000k JPY, ~12k EUR)"
+    highlight: true
   - period: "2023 – 2025"
-    title: "ASHBi Fusion Research Grant, Co-PI (5,000k JPY)"
+    title: "ASHBi Fusion Research Grant, Co-PI (5,000k JPY, ~30k EUR)"
     url: https://ashbi.kyoto-u.ac.jp/news/20230309_ashbi-fusion-research-grant/
   - period: "2021"
     title: "EMBO scientific exchange grant for academic visit in Toulouse"

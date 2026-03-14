@@ -65,11 +65,14 @@
     </h2>
     <div class="flex flex-col gap-2 mb-8">
       {#each cv.grants as item}
-        <div class="flex gap-4 py-2 border-b" style="border-color: var(--bg-card-border);">
+        <div
+          class="flex gap-4 py-2 border-b {item.highlight ? 'rounded-lg px-3 -mx-3' : ''}"
+          style="border-color: var(--bg-card-border); {item.highlight ? 'background: color-mix(in srgb, var(--accent) 8%, transparent);' : ''}"
+        >
           <span class="font-display text-xs shrink-0 tabular-nums w-[140px]" style="color: var(--accent);">
             {item.period}
           </span>
-          <span class="text-sm" style="color: var(--text);">
+          <span class="text-sm {item.highlight ? 'font-semibold' : ''}" style="color: var(--text);">
             {#if item.url}
               <a href={item.url} target="_blank" rel="noopener noreferrer" class="hover:opacity-80" style="color: var(--accent-secondary);">
                 {item.title}
