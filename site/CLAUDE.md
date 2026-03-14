@@ -26,35 +26,33 @@ npm run check     # Type-check
 ### Routing
 
 All pages are prerendered (static). Routes:
-- `/` — Home (hero + featured projects + recent publications)
-- `/projects` — All projects (active/completed)
-- `/publications` — Full publication list
+- `/` — Home (hero + projects grid + selected publications)
+- `/research` — Research project listing (active/completed)
+- `/coding` — Software project listing (active/completed)
+- `/publications` — Full publication list (peer-reviewed, preprints, theses)
 - `/blog` — Blog listing
 - `/blog/[slug]` — Individual blog posts (mdsvex markdown)
 - `/talks` — Talks grouped by year
 - `/cv` — Curriculum vitae
 
-### Data
+### Data & Cross-referencing
 
-Structured data lives in `src/lib/data/` as YAML files imported via `@rollup/plugin-yaml`:
-- `projects.yaml` — Projects with tags, publication IDs, links, optional blog slug
-- `publications.yaml` — Preprints + peer-reviewed (migrated from old site, keep as-is)
-- `talks.yaml` — Talks with date, title, venue, optional URL/video
-- `cv.yaml` — Education, grants, teaching, software, organisation
+All structured data lives in `src/lib/data/` as YAML files (imported via `@rollup/plugin-yaml`). Content is linked by **slug strings** — human-readable keys that make cross-references self-documenting.
 
-Projects reference publications by `id` field (matching IDs in `publications.yaml`).
+- `publications.yaml` — Sections: `theses`, `preprints`, `peer_reviewed`. Each entry has a unique `slug` (e.g. `plunder_2024_natcomms`, `guruciaga_2026_natmat`).
+- `projects.yaml` — Sections: `research`, `coding`. Each entry has a `slug` and references publications by their slugs in the `publications` array. Also has `repos`, `links`, `blogs` arrays.
+- `talks.yaml` — Talks with date, title, venue, optional URL/video.
+- `cv.yaml` — Education, grants, teaching, software, organisation.
 
-### Blog Posts
+Project → Publication links resolve at render time: `ProjectCard` looks up publication slugs to display abbreviated journal names (NatMat, NatComms, etc.) linking to `/publications#slug`. `PublicationCard` renders with `id={pub.slug}` for anchor targeting with a highlight animation.
 
-Markdown files in `src/content/blog/*.md` with frontmatter:
-```yaml
----
-title: "Post Title"
-date: "YYYY-MM-DD"
-slug: "filename-without-extension"
----
-```
-Loaded via `import.meta.glob` in the blog listing and dynamic import in `[slug]/+page.ts`.
+### Reusable Components
+
+- `src/lib/components/publications/PublicationCard.svelte` — Single publication card (used on home, publications page, and in blog posts via `PublicationList`)
+- `src/lib/components/publications/PublicationList.svelte` — Renders filtered publications by `slugs`, `section`, or `limit`. Usable in mdsvex blog posts.
+- `src/lib/components/projects/ProjectCard.svelte` — Project card with `compact` (hero grid) and full (listing) variants. Resolves publication refs automatically.
+- `src/lib/components/layout/` — Nav, Footer
+- `src/lib/components/home/` — HeroCanvas (particle simulation)
 
 ### Styling
 
@@ -63,25 +61,13 @@ CSS variables for theming (defined in `src/app.css`). Two themes:
 - **Light**: Lime (`#65a30d`) primary, orange (`#f97316`) secondary
 
 Use `var(--accent)`, `var(--text)`, `var(--bg)`, etc. — not hardcoded colors.
-Theme toggle uses View Transitions API with circular wipe animation.
-
-### Components
-
-- `src/lib/components/layout/` — Nav, Footer
-- `src/lib/components/home/` — HeroCanvas (particle simulation)
-- `src/lib/stores/theme.ts` — Theme store with localStorage persistence
-
-## Known Issues
-
-- 1 draft blog post in `src/content/blog/_drafts/` (constraints-mean-field) remains to be published
-- Google Scholar ID placeholder in footer (`GOOGLE_SCHOLAR_ID`)
 
 ## Adding Content
 
-**New project**: Add entry to `src/lib/data/projects.yaml`, add thumbnail to `static/images/projects/`.
+**New publication**: Add entry to `publications.yaml` with slug `firstauthor_year_venue`.
 
-**New blog post**: Create `src/content/blog/my-post.md` with the frontmatter format above.
+**New project**: Add entry to `projects.yaml` under `research` or `coding`. Reference publications by slug. Add thumbnail to `static/images/projects/`.
 
-**New publication**: Add entry to `src/lib/data/publications.yaml` under `preprints` or `peer_reviewed`.
+**New blog post**: Create `src/content/blog/my-post.md`. Can embed publications with `<PublicationList slugs={[...]} />`.
 
-**New talk**: Add entry to `src/lib/data/talks.yaml`.
+**New talk**: Add entry to `talks.yaml`.
