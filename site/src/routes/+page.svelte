@@ -1,6 +1,11 @@
 <script lang="ts">
   import HeroCanvas from '$lib/components/home/HeroCanvas.svelte';
   import PublicationList from '$lib/components/publications/PublicationList.svelte';
+  import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
+  import projects from '$lib/data/projects.yaml';
+
+  const featuredResearch = projects.research.slice(0, 3).map((p: any) => ({ ...p, type: 'research' }));
+  const featuredCoding = projects.coding.slice(0, 3).map((p: any) => ({ ...p, type: 'coding' }));
 </script>
 
 <svelte:head>
@@ -83,6 +88,58 @@
         </svg>
         Scholar
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section class="px-6 py-20">
+  <div class="mx-auto max-w-[1100px]">
+    <div class="reveal">
+      <div class="accent-line"></div>
+      <h2
+        class="font-display text-[clamp(1.3rem,2.5vw,1.8rem)] font-semibold"
+        style="color: var(--text);"
+      >
+        Projects
+      </h2>
+      <p class="mb-10 mt-2 text-[0.95rem]" style="color: var(--text-muted);">
+        Research and software for computational biology and applied mathematics
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <div>
+        <h3 class="font-display text-sm font-semibold mb-4 uppercase tracking-wider" style="color: var(--accent);">
+          Research
+        </h3>
+        <div class="flex flex-col gap-3">
+          {#each featuredResearch as project, i}
+            <ProjectCard {project} compact />
+          {/each}
+        </div>
+        <div class="mt-4">
+          <a href="/research" class="card-link text-[0.85rem]">
+            All research <span class="card-link-arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="font-display text-sm font-semibold mb-4 uppercase tracking-wider" style="color: var(--accent);">
+          Software
+        </h3>
+        <div class="flex flex-col gap-3">
+          {#each featuredCoding as project, i}
+            <ProjectCard {project} compact />
+          {/each}
+        </div>
+        <div class="mt-4">
+          <a href="/coding" class="card-link text-[0.85rem]">
+            All software <span class="card-link-arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -184,8 +241,16 @@
     transform: translateX(2px);
   }
 
-  /* ─── Responsive ─── */
+  /* ─── Projects Grid ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
   @media (max-width: 720px) {
-    /* pub-card responsive styles live in PublicationCard.svelte */
+    .projects-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
   }
 </style>

@@ -1,78 +1,232 @@
-- slug: limb-morphogenesis
-  title: "Computational model for in vitro limb morphogenesis"
-  desc: "Symmetry breaking and elongation in limb-like organoids using agent-based models."
-  image: /images/projects/limb.png
-  tags: [Julia, Agent-based models, Developmental Biology]
-  status: active
-  start: 2023-10
-  publications: [13]
-  links:
-    - label: bioRxiv
-      url: https://doi.org/10.1101/2025.08.31.673315
-  blog: limb-morphogenesis
+research:
+  - slug: epiblast-orientation
+    title: "Nematic orientation maps in epiblast formation"
+    desc: "Topological defect transitions and cell alignment in mouse epiblast, combining theory with quantitative image analysis."
+    image: /images/projects/placeholder.svg
+    tags: [Julia, Topological defects, Developmental Biology]
+    status: active
+    year: "2023"
+    publications: [11, 10]
+    repos:
+      - label: EpiblastOrientationMaps
+        url: https://github.com/SteffenPL/EpiblastOrientationMaps
+      - label: EpiblastOrientationImageAnalysis
+        url: https://github.com/SteffenPL/EpiblastOrientationImageAnalysis
+    links: []
+    blogs: []
 
-- slug: position-based-dynamics
-  title: "First-order position-based dynamics"
-  desc: "Numerical analysis of a fast and stable method for inequality constrained ODEs from computer graphics."
-  image: /images/projects/pbd.png
-  tags: [Julia, Particle dynamics, Numerical analysis]
-  status: active
-  start: 2020-10
-  publications: [11]
-  links:
-    - label: arXiv
-      url: https://arxiv.org/abs/2310.01215
-    - label: Code
-      url: https://github.com/SteffenPL
-  blog: position-based-dynamics
+  - slug: limb-morphogenesis
+    title: "Modelling digit organoids"
+    desc: "Agent-based model for symmetry breaking and digit-like elongation in limb organoids."
+    image: /images/projects/limb.png
+    tags: [Julia, Agent-based models, Developmental Biology]
+    status: active
+    year: "2023"
+    publications: [13]
+    repos:
+      - label: LimbMorph.jl
+        url: https://github.com/SteffenPL/LimbMorph.jl
+      - label: webLimbMorph
+        url: https://github.com/SteffenPL/webLimbMorph
+    links: []
+    blogs: []
 
-- slug: epithelial-to-mesenchymal
-  title: "Mechanical modelling of epithelial-to-mesenchymal transitions"
-  desc: "Modelling different EMT scenarios to study their effect on cell migration and metastasis."
-  image: /images/projects/emt.png
-  tags: [Python, Cell migration, Cancer biology]
-  status: completed
-  start: 2019-10
-  end: 2024-08
-  publications: [5, 6]
-  links:
-    - label: Nature Comms
-      url: https://doi.org/10.1038/s41467-024-51372-z
-  blog: epithelial-to-mesenchymal
+  - slug: epithelial-to-mesenchymal
+    title: "Epithelial-to-mesenchymal transitions"
+    desc: "Mechanical modelling of different EMT scenarios and their effect on cell delamination and migration."
+    image: /images/projects/emt.png
+    tags: [Python, Cell migration, Cancer biology]
+    status: completed
+    year: "2019"
+    end: "2024"
+    publications: [5, 6, 9]
+    repos:
+      - label: sEMTor.jl
+        url: https://github.com/SteffenPL/sEMTor.jl
+      - label: semtor_js
+        url: https://github.com/SteffenPL/semtor_js
+    links: []
+    blogs: []
 
-- slug: cell-migration-model
-  title: "Cell migration model for plithotaxis"
-  desc: "Agent-based model for collective cell migration guided by intercellular stress patterns."
-  image: /images/projects/cm.png
-  tags: [Julia, Collective migration, Agent-based models]
-  status: active
-  start: 2021-06
-  publications: [5, 9]
-  links: []
-  blog: cell-migration-model
+  - slug: cell-migration-model
+    title: "Cell migration model for plithotaxis"
+    desc: "Agent-based model for collective cell migration guided by intercellular stress patterns."
+    image: /images/projects/cm.png
+    tags: [Julia, Collective migration, Agent-based models]
+    status: active
+    year: "2021"
+    publications: [5, 9]
+    repos: []
+    links: []
+    blogs: []
 
-- slug: germinal-centers
-  title: "Germinal center morphology"
-  desc: "Modelling growth and shape of germinal centers."
-  image: /images/projects/gc.png
-  tags: [Julia, Immunology, Agent-based models]
-  status: active
-  start: 2023-04
-  publications: []
-  links: []
+  - slug: germinal-centers
+    title: "Germinal center morphology"
+    desc: "Modelling growth and shape of germinal centers in the immune system."
+    image: /images/projects/gc.png
+    tags: [Julia, Immunology, Agent-based models]
+    status: active
+    year: "2023"
+    publications: []
+    repos: []
+    links: []
+    blogs: []
 
-- slug: constraints-mean-field
-  title: "Mean-field limit for constrained particles"
-  desc: "Proof of the mean-field limit for an abstraction of a muscle tissue model."
-  image: /images/projects/pks.png
-  tags: [Mathematics, Kinetic theory, PDE]
-  status: completed
-  start: 2018-03
-  end: 2022-03
-  publications: [1, 3]
-  links:
-    - label: arXiv
-      url: https://arxiv.org/abs/2203.07249
-    - label: DOI
-      url: https://www.aimsciences.org/article/doi/10.3934/krm.2023012
-  blog: constraints-mean-field
+  - slug: tlt-model
+    title: "Tertiary lymphoid tissue modelling"
+    desc: "Agent-based simulation of tertiary lymphoid structure formation."
+    image: /images/projects/placeholder.svg
+    tags: [Julia, Immunology, Agent-based models]
+    status: active
+    year: "2024"
+    publications: []
+    repos:
+      - label: TLT-model
+        url: https://github.com/SteffenPL/TLT-model
+    links: []
+    blogs: []
+
+  - slug: eht-model
+    title: "Endothelial-to-hematopoietic transition"
+    desc: "Modelling the endothelial-to-hematopoietic transition during embryonic blood cell formation."
+    image: /images/projects/placeholder.svg
+    tags: [Julia, Agent-based models, Developmental Biology]
+    status: active
+    year: "2024"
+    publications: []
+    repos:
+      - label: EHT
+        url: https://github.com/SteffenPL/EHT
+    links: []
+    blogs: []
+
+  - slug: position-based-dynamics
+    title: "First-order position-based dynamics"
+    desc: "Convergence analysis and efficient numerical scheme for inequality constrained ODEs from computer graphics."
+    image: /images/projects/pbd.png
+    tags: [Julia, Particle dynamics, Numerical analysis]
+    status: active
+    year: "2020"
+    publications: [11]
+    repos:
+      - label: PBD_publication
+        url: https://github.com/SteffenPL/PBD_publication
+      - label: DelayedPBD
+        url: https://github.com/SteffenPL/DelayedPBD
+    links: []
+    blogs: []
+
+  - slug: anisotropic-particles
+    title: "Anisotropic particle simulations"
+    desc: "Macroscopic analysis of nematic alignment from anisotropic Gaussian-type repulsive potentials."
+    image: /images/projects/placeholder.svg
+    tags: [Mathematics, Kinetic theory, Nematic alignment]
+    status: completed
+    year: "2023"
+    end: "2025"
+    publications: [8]
+    repos: []
+    links: []
+    blogs: []
+
+  - slug: constraints-mean-field
+    title: "Mean-field limit for constrained particles"
+    desc: "Proof of the mean-field limit for particle systems with full-rank constraints, applied to muscle tissue modelling."
+    image: /images/projects/pks.png
+    tags: [Mathematics, Kinetic theory, PDE]
+    status: completed
+    year: "2018"
+    end: "2023"
+    publications: [1, 3]
+    repos: []
+    links: []
+    blogs: []
+
+coding:
+  - slug: spatial-hash-tables
+    title: "SpatialHashTables.jl"
+    desc: "Julia package for spatial hashing, enabling fast neighbor queries in particle simulations."
+    image: /images/projects/placeholder.svg
+    tags: [Julia, Data structures, Performance]
+    status: active
+    year: "2022"
+    publications: []
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/SpatialHashTables.jl
+    links: []
+    blogs: []
+
+  - slug: bounded-degree-graphs
+    title: "BoundedDegreeGraphs.jl"
+    desc: "Memory-efficient graph data structure with bounded vertex degree for agent-based simulations."
+    image: /images/projects/placeholder.svg
+    tags: [Julia, Data structures, Graphs]
+    status: active
+    year: "2023"
+    publications: []
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/BoundedDegreeGraphs.jl
+    links: []
+    blogs: []
+
+  - slug: semtor-web
+    title: "sEMTor — online EMT simulator"
+    desc: "Interactive browser-based simulator for epithelial-to-mesenchymal transitions, built with p5.js."
+    image: /images/projects/placeholder.svg
+    tags: [JavaScript, p5.js, Simulation]
+    status: completed
+    year: "2022"
+    publications: [5]
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/semtor_js
+    links:
+      - label: Live demo
+        url: https://semtor.github.io
+    blogs: []
+
+  - slug: ink-reveal
+    title: "InkReveal"
+    desc: "Inkscape extension to generate reveal.js presentation slides from vector graphics."
+    image: /images/projects/placeholder.svg
+    tags: [Python, Inkscape, Presentations]
+    status: completed
+    year: "2021"
+    publications: []
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/InkReveal
+    links: []
+    blogs: []
+
+  - slug: differential-inclusions
+    title: "DifferentialInclusions.jl"
+    desc: "Julia prototype for solving differential inclusions, extending standard ODE solver interfaces."
+    image: /images/projects/placeholder.svg
+    tags: [Julia, Mathematics, ODE]
+    status: completed
+    year: "2021"
+    publications: []
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/DifferentialInclusions.jl
+    links: []
+    blogs: []
+
+  - slug: delayed-sweeping
+    title: "Sweeping processes with memory effects"
+    desc: "Interactive web simulator for delayed sweeping processes and position-based dynamics."
+    image: /images/projects/placeholder.svg
+    tags: [JavaScript, Simulation, Mathematics]
+    status: completed
+    year: "2023"
+    publications: []
+    repos:
+      - label: delayed-sweeping
+        url: https://github.com/SteffenPL/delayed-sweeping
+      - label: DelayedPBD
+        url: https://github.com/SteffenPL/DelayedPBD
+    links: []
+    blogs: []

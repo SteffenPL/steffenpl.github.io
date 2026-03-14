@@ -2,16 +2,18 @@ export type Theme = 'light' | 'dark';
 
 export interface Project {
 	slug: string;
+	type: 'research' | 'coding';
 	title: string;
 	desc: string;
 	image: string;
 	tags: string[];
 	status: 'active' | 'completed';
-	start: string;
+	year: string;
 	end?: string;
 	publications: number[];
+	repos: { label: string; url: string }[];
 	links: { label: string; url: string }[];
-	blog?: string;
+	blogs: string[];
 }
 
 export interface Author {
