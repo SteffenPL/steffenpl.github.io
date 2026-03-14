@@ -32,17 +32,16 @@
 
   interface Ref {
     label: string;
-    url: string;
+    href: string;
   }
 
   const refs = $derived(
     project.publications
-      .map((id) => allPubs.find((p: any) => p.id === id))
+      .map((slug) => allPubs.find((p: any) => p.slug === slug))
       .filter((p): p is any => !!p)
       .map((p): Ref => {
         const label = p.journal ? abbreviate(p.journal) : (p.links?.[0]?.name || 'Paper');
-        const url = p.links?.[0]?.url || '#';
-        return { label, url };
+        return { label, href: `/publications#${p.slug}` };
       })
   );
 
@@ -80,7 +79,7 @@
         <div class="link-row">
           {#each refs.slice(0, 2) as ref}
             <span class="link-item" onclick={(e) => e.stopPropagation()}>
-              <a href={ref.url} target="_blank" rel="noopener noreferrer" class="ref-link">{ref.label}</a>
+              <a href={ref.href} class="ref-link">{ref.label}</a>
             </span>
           {/each}
         </div>
@@ -126,7 +125,7 @@
         <div class="link-row">
           {#each refs as ref}
             <span class="link-item" onclick={(e) => e.stopPropagation()}>
-              <a href={ref.url} target="_blank" rel="noopener noreferrer" class="ref-link">{ref.label}</a>
+              <a href={ref.href} class="ref-link">{ref.label}</a>
             </span>
           {/each}
         </div>

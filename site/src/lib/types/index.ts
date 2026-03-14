@@ -10,7 +10,7 @@ export interface Project {
 	status: 'active' | 'completed';
 	year: string;
 	end?: string;
-	publications: number[];
+	publications: string[];
 	repos: { label: string; url: string }[];
 	links: { label: string; url: string }[];
 	blogs: string[];
@@ -27,7 +27,7 @@ export interface PublicationLink {
 }
 
 export interface Publication {
-	id: number;
+	slug: string;
 	title: string;
 	year: string;
 	authors: Author[];

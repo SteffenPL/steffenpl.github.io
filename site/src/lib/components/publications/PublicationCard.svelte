@@ -14,7 +14,7 @@
   }
 </script>
 
-<article class="pub-card" style="transition-delay: {animationDelay};">
+<article id={pub.slug} class="pub-card" style="transition-delay: {animationDelay};">
   <div class="pub-left">
     <span class="pub-year">{cleanYear(pub.year)}</span>
     {#if counter !== undefined}
@@ -73,9 +73,18 @@
     display: flex;
     gap: 1.25rem;
     align-items: flex-start;
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s, border-color 0.6s;
     position: relative;
     overflow: hidden;
+    scroll-margin-top: 5rem;
+  }
+  .pub-card:target {
+    border-color: var(--accent);
+    animation: highlight-fade 2s ease-out 0.3s forwards;
+  }
+  @keyframes highlight-fade {
+    0% { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+    100% { border-color: var(--bg-card-border); box-shadow: var(--shadow-card); }
   }
   .pub-card::before {
     content: '';

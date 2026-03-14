@@ -1,5 +1,5 @@
 theses:
-  - id: 101
+  - slug: plunder_2023_phd
     title: "Mathematical modelling and simulation of epithelial-to-mesenchymal transitions leading to cell migration."
     year: "2023"
     journal: "PhD Thesis · University of Vienna"
@@ -8,7 +8,7 @@ theses:
       - name: "PDF"
         url: "/theses/plunder_phd_thesis.pdf"
 
-  - id: 102
+  - slug: plunder_2018_msc
     title: "Modelling and simulation of skeletal muscle tissue."
     year: "2018"
     journal: "Master's Thesis · TU Kaiserslautern"
@@ -17,7 +17,7 @@ theses:
       - name: "PDF"
         url: "/theses/plunder_masters_thesis.pdf"
 
-  - id: 103
+  - slug: plunder_2016_bsc
     title: "Molecular dynamics."
     year: "2016"
     journal: "Bachelor's Thesis · TU Kaiserslautern"
@@ -27,7 +27,7 @@ theses:
         url: "/theses/plunder_bachelor_thesis.pdf"
 
 preprints:
-  - id: 13
+  - slug: tsutsumi_2025_biorxiv
     title: "Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids."
     year: "(2025)"
     authors:
@@ -51,7 +51,7 @@ preprints:
       - name: "bioRxiv"
         url: "https://doi.org/10.1101/2025.08.31.673315"
 
-  - id: 11
+  - slug: plunder_2023_arxiv_pbd
     title: "Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs."
     year: "(2023)"
     authors:
@@ -63,7 +63,7 @@ preprints:
         url: "https://arxiv.org/abs/2310.01215"
 
 peer_reviewed:
-  - id: 11
+  - slug: guruciaga_2026_natmat
     title: "Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development"
     year: "2026"
     authors:
@@ -81,7 +81,7 @@ peer_reviewed:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2403.08710"
 
-  - id: 10
+  - slug: ichikawa_2026_natphys
     title: "Boundary-guided cell alignment drives mouse epiblast maturation."
     year: "2026"
     authors:
@@ -104,7 +104,7 @@ peer_reviewed:
       - name: "bioRxiv"
         url: "https://doi.org/10.1101/2025.04.28.650859"
 
-  - id: 9
+  - slug: mira_2025_iscience
     title: "The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model."
     journal: "iScience"
     year: "2025"
@@ -120,7 +120,7 @@ peer_reviewed:
       - name: "DOI: 10.1016/j.isci.2025.113663"
         url: "https://doi.org/10.1016/j.isci.2025.113663"
 
-  - id: 8
+  - slug: merino_2025_m3as
     title: "Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects."
     journal: "Mathematical Models and Methods in Applied Sciences"
     year: "2025"
@@ -137,7 +137,7 @@ peer_reviewed:
       - name: "arxiv"
         url: "http://arxiv.org/abs/2410.06740"
 
-  - id: 7
+  - slug: jaeger_2024_pamm
     title: "Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration."
     journal: "Proceedings in Applied Mathematics & Mechanics"
     year: "2024"
@@ -155,7 +155,7 @@ peer_reviewed:
       - name: "DOI: 10.1002/pamm.202400133"
         url: "http://doi.org/10.1002/pamm.202400133"
 
-  - id: 6
+  - slug: despin_2024_natcomms
     title: "Non-apical mitoses contribute to cell delamination during mouse gastrulation."
     journal: "Nature Communications"
     year: "2024"
@@ -177,7 +177,7 @@ peer_reviewed:
       - name: "DOI:10.1038/s41467-024-51638-6"
         url: "https://doi.org/10.1038/s41467-024-51638-6"
 
-  - id: 5
+  - slug: plunder_2024_natcomms
     title: "Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion."
     journal: "Nature Communications"
     year: "2024"
@@ -195,7 +195,7 @@ peer_reviewed:
       - name: "DOI:10.1038/s41467-024-51372-z"
         url: "https://doi.org/10.1038/s41467-024-51372-z"
 
-  - id: 4
+  - slug: plunder_2024_currprot
     title: "Determination of optimal phage load and administration time for antibacterial treatment."
     journal: "Current Protocols"
     year: "2024"
@@ -211,7 +211,7 @@ peer_reviewed:
       - name: "DOI:10.1002/cpz1.954"
         url: "https://doi.org/10.1002/cpz1.954"
 
-  - id: 3
+  - slug: plunder_2023_krm
     title: "The mean-field limit for particle systems with uniform full-rank constraints."
     journal: "Kinetic and Related Models"
     year: "2023"
@@ -225,7 +225,7 @@ peer_reviewed:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2203.07249"
 
-  - id: 2
+  - slug: plunder_2022_frontmed
     title: "Determination of phage load and administration time in simulated occurrences of antibacterial treatments."
     journal: "Frontiers of Medicine"
     year: "2022"
@@ -240,7 +240,7 @@ peer_reviewed:
       - name: "DOI: 10.3389/fmed.2022.1040457"
         url: "https://doi.org/10.3389/fmed.2022.1040457"
 
-  - id: 1
+  - slug: plunder_2020_dae
     title: "Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue."
     journal: "Progress in Differential-Algebraic Equations II. (Conference Proceeding)"
     year: "2020"

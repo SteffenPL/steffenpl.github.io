@@ -160,7 +160,7 @@
       </p>
     </div>
 
-    <PublicationList ids={[11, 10, 5, 9]} />
+    <PublicationList slugs={['guruciaga_2026_natmat', 'ichikawa_2026_natphys', 'plunder_2024_natcomms', 'mira_2025_iscience']} />
 
     <div class="mt-8 text-center">
       <a href="/publications" class="card-link text-[0.9rem]">
