@@ -95,8 +95,9 @@
 
   let cells: Cell[] = [];
   let contacts: boolean[][] = [];
-  let simW = 800;   // internal simulation width
-  let simH = 600;   // internal simulation height
+  let simW = 800;   // internal simulation width (adjusted on resize)
+  let simH = 600;   // internal simulation height (adjusted on resize)
+  let simScale = 1; // pixels per sim-unit (uniform in x and y)
   let canvasW = 0;
   let canvasH = 0;
   let firstStep = true;
@@ -274,10 +275,8 @@
       // ── Chemotaxis: rotate polarity toward mouse (only while moving) ──
       const chemoEff = P.chemoStrength * chemoFade;
       if (chemoEff > 0.001 && mouseX > -999 && mouseY > -999) {
-        const sX = canvasW / simW;
-        const sY = canvasH / simH;
-        const targetX = mouseX / sX;
-        const targetY = mouseY / sY;
+        const targetX = mouseX / simScale;
+        const targetY = mouseY / simScale;
         for (let i = 0; i < N; i++) {
           const ci = cells[i];
           const toMouseX = targetX - ci.pos.x;
@@ -410,6 +409,9 @@
     return { r: 249, g: 115, b: 22 };
   }
 
+  // Reference: how many sim-units the larger canvas dimension spans
+  const simRefSize = 800;
+
   function resize() {
     if (!canvas) return;
     const dpr = window.devicePixelRatio || 1;
@@ -420,6 +422,20 @@
     canvas.height = canvasH * dpr;
     ctx = canvas.getContext('2d');
     if (ctx) ctx.scale(dpr, dpr);
+
+    // Uniform scaling: 1 sim-unit = same pixel size in x and y
+    const maxDim = Math.max(canvasW, canvasH);
+    simScale = maxDim / simRefSize;
+    simW = canvasW / simScale;
+    simH = canvasH / simScale;
+
+    // Update walls to match new sim dimensions
+    walls = [
+      { pos: { x: simW / 2, y: 10 },       normal: { x: 0, y: 1 },  halfLen: (simW - 20) / 2 },
+      { pos: { x: simW / 2, y: simH - 10 }, normal: { x: 0, y: -1 }, halfLen: (simW - 20) / 2 },
+      { pos: { x: 10,       y: simH / 2 },  normal: { x: 1, y: 0 },  halfLen: (simH - 20) / 2 },
+      { pos: { x: simW - 10, y: simH / 2 }, normal: { x: -1, y: 0 }, halfLen: (simH - 20) / 2 },
+    ];
   }
 
   let lastTime = 0;
@@ -444,23 +460,20 @@
 
     // Handle mouse dragging in sim space
     if (dragging && dragIndex >= 0 && dragIndex < cells.length) {
-      const sX = canvasW / simW;
-      const sY = canvasH / simH;
-      cells[dragIndex].pos.x = mouseX / sX;
-      cells[dragIndex].pos.y = mouseY / sY;
+      cells[dragIndex].pos.x = mouseX / simScale;
+      cells[dragIndex].pos.y = mouseY / simScale;
     }
 
     // Draw
     ctx.clearRect(0, 0, canvasW, canvasH);
     const { r, g, b } = getParticleColor();
-    const sX = canvasW / simW;
-    const sY = canvasH / simH;
+    const s = simScale;
 
     const parallaxY = scrollY * 0.3;
 
     // Subtle chemotaxis glow at mouse position
     if (chemoFade > 0.01 && mouseX > -999) {
-      const glowRadius = 160 * Math.min(sX, sY);
+      const glowRadius = 160 * s;
       const grad = ctx.createRadialGradient(mouseX, mouseY, 0, mouseX, mouseY, glowRadius);
       grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, ${0.25 * chemoFade})`);
       grad.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
@@ -472,15 +485,15 @@
 
     // Adhesion bonds
     if (params.bondAlpha > 0) {
-      ctx.lineWidth = 1.5 * Math.min(sX, sY);
+      ctx.lineWidth = 1.5 * s;
       const bondA = params.bondAlpha;
       ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${bondA})`;
       ctx.beginPath();
       for (let i = 0; i < cells.length; i++) {
         for (let j = 0; j < i; j++) {
           if (contacts[i][j]) {
-            ctx.moveTo(cells[i].pos.x * sX, cells[i].pos.y * sY - parallaxY);
-            ctx.lineTo(cells[j].pos.x * sX, cells[j].pos.y * sY - parallaxY);
+            ctx.moveTo(cells[i].pos.x * s, cells[i].pos.y * s - parallaxY);
+            ctx.lineTo(cells[j].pos.x * s, cells[j].pos.y * s - parallaxY);
           }
         }
       }
@@ -488,20 +501,19 @@
     }
 
     // Cells
-    const scale = Math.min(sX, sY);
     for (const cell of cells) {
-      const cx = cell.pos.x * sX;
-      const cy = cell.pos.y * sY - parallaxY;
+      const cx = cell.pos.x * s;
+      const cy = cell.pos.y * s - parallaxY;
 
       // Soft radius (transparent)
       ctx.beginPath();
-      ctx.arc(cx, cy, cell.rSoft * scale, 0, Math.PI * 2);
+      ctx.arc(cx, cy, cell.rSoft * s, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${params.cellAlpha * 0.25})`;
       ctx.fill();
 
       // Hard radius (solid)
       ctx.beginPath();
-      ctx.arc(cx, cy, cell.rHard * scale, 0, Math.PI * 2);
+      ctx.arc(cx, cy, cell.rHard * s, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${params.cellAlpha})`;
       ctx.fill();
 
@@ -511,12 +523,12 @@
         if (polMag > 0.01) {
           const nx = cell.pol.x / polMag;
           const ny = cell.pol.y / polMag;
-          const len = cell.rHard * scale * params.polarityLength;
+          const len = cell.rHard * s * params.polarityLength;
           ctx.beginPath();
           ctx.moveTo(cx, cy);
           ctx.lineTo(cx + nx * len, cy + ny * len);
           ctx.strokeStyle = `rgba(${r}, ${g}, ${b}, ${params.polarityAlpha})`;
-          ctx.lineWidth = 2.5 * scale;
+          ctx.lineWidth = 2.5 * s;
           ctx.lineCap = 'round';
           ctx.stroke();
         }
@@ -528,7 +540,7 @@
         ctx.strokeStyle = `rgba(0, 0, 0, ${params.polarityLineAlpha})`;
         ctx.lineWidth = 1;
         ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + cell.pol.x * cell.rSoft * scale / (vMag(cell.pol) || 1), cy + cell.pol.y * cell.rSoft * scale / (vMag(cell.pol) || 1));
+        ctx.lineTo(cx + cell.pol.x * cell.rSoft * s / (vMag(cell.pol) || 1), cy + cell.pol.y * cell.rSoft * s / (vMag(cell.pol) || 1));
         ctx.stroke();
       }
     }
@@ -553,10 +565,8 @@
     const rect = canvas.getBoundingClientRect();
     const mx = e.clientX - rect.left;
     const my = e.clientY - rect.top;
-    const sX = canvasW / simW;
-    const sY = canvasH / simH;
-    const simMx = mx / sX;
-    const simMy = my / sY;
+    const simMx = mx / simScale;
+    const simMy = my / simScale;
 
     let bestDist = Infinity;
     let bestIdx = -1;
