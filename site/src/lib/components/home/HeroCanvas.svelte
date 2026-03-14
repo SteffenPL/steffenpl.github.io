@@ -44,8 +44,8 @@
     substeps: 10,
 
     // Plithotaxis
-    plithoAlign: 80,
-    plithoMax: 50,
+    plithoAlign: 70,
+    plithoMax: 40,
     plithoMin: 0.1,
     plithoSpread: Math.PI / 1.5,
     plithoDuration: 3,
