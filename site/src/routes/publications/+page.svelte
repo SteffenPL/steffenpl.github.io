@@ -14,18 +14,37 @@
     </h1>
     <div class="mt-2 mb-12 h-[3px] w-[48px] rounded-full" style="background: var(--gradient-accent);"></div>
 
-    {#each [{ label: `Peer-reviewed (${peerReviewed.length})`, items: peerReviewed }, { label: `Preprints (${preprints.length})`, items: preprints }, { label: 'Theses', items: theses }] as section}
-      {#if section.items.length > 0}
-        <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
-          {section.label}
-        </h2>
+    {#if preprints.length > 0}
+      <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
+        Preprints ({preprints.length})
+      </h2>
+      <div class="flex flex-col gap-4">
+        {#each preprints as pub, i}
+          <PublicationCard {pub} animationDelay="{i * 0.05}s" />
+        {/each}
+      </div>
+    {/if}
 
-        <div class="flex flex-col gap-4">
-          {#each section.items as pub, i}
-            <PublicationCard {pub} animationDelay="{i * 0.05}s" />
-          {/each}
-        </div>
-      {/if}
-    {/each}
+    {#if peerReviewed.length > 0}
+      <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
+        Peer-reviewed ({peerReviewed.length})
+      </h2>
+      <div class="flex flex-col gap-4">
+        {#each peerReviewed as pub, i}
+          <PublicationCard {pub} animationDelay="{i * 0.05}s" counter={peerReviewed.length - i} />
+        {/each}
+      </div>
+    {/if}
+
+    {#if theses.length > 0}
+      <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
+        Theses
+      </h2>
+      <div class="flex flex-col gap-4">
+        {#each theses as pub, i}
+          <PublicationCard {pub} animationDelay="{i * 0.05}s" />
+        {/each}
+      </div>
+    {/if}
   </div>
 </section>

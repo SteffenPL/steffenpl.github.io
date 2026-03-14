@@ -4,9 +4,10 @@
   interface Props {
     pub: Publication;
     animationDelay?: string;
+    counter?: number;
   }
 
-  let { pub, animationDelay = '0s' }: Props = $props();
+  let { pub, animationDelay = '0s', counter }: Props = $props();
 
   function cleanYear(year: string): string {
     return year.replace(/\*\*/g, '').replace(/[()]/g, '');
@@ -14,7 +15,12 @@
 </script>
 
 <article class="pub-card" style="transition-delay: {animationDelay};">
-  <span class="pub-year">{cleanYear(pub.year)}</span>
+  <div class="pub-left">
+    <span class="pub-year">{cleanYear(pub.year)}</span>
+    {#if counter !== undefined}
+      <span class="pub-counter">[{counter}]</span>
+    {/if}
+  </div>
 
   <div class="pub-body">
     <h3 class="pub-title">{pub.title}</h3>
@@ -68,10 +74,36 @@
     gap: 1.25rem;
     align-items: flex-start;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+  .pub-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
   }
   .pub-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-card-hover);
+  }
+  .pub-card:hover::before {
+    opacity: 1;
+  }
+
+  .pub-left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+    min-width: 44px;
+    padding-top: 0.1rem;
+    gap: 0.2rem;
   }
 
   .pub-year {
@@ -79,10 +111,15 @@
     font-weight: 600;
     font-size: 1rem;
     color: var(--accent);
-    flex-shrink: 0;
-    min-width: 44px;
     line-height: 1.4;
-    padding-top: 0.1rem;
+  }
+
+  .pub-counter {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1;
   }
 
   .pub-body {
@@ -162,9 +199,14 @@
       flex-direction: column;
       gap: 0.4rem;
     }
+    .pub-left {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.4rem;
+      min-width: unset;
+    }
     .pub-year {
       font-size: 0.9rem;
-      min-width: unset;
     }
   }
 </style>
