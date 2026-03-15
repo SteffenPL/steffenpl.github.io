@@ -177,7 +177,7 @@ coding:
   - slug: portmidi
     title: "PortMidi.jl"
     desc: "Julia wrapper for the PortMidi library, enabling MIDI input/output for live coding music performances."
-    image: /images/projects/placeholder.svg
+    image: /images/projects/portmidi.svg
     tags: [Julia, C++, Music, Scientific Communication]
     status: active
     year: "2024"

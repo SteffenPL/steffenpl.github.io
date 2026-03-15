@@ -6,7 +6,11 @@
   import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
   import projects from '$lib/data/projects.yaml';
 
-  const featuredResearch = projects.research.slice(0, 3).map((p: any) => ({ ...p, type: 'research' }));
+  const featuredSlugs = ['epiblast-orientation', 'epithelial-to-mesenchymal', 'position-based-dynamics', 'limb-morphogenesis'];
+  const featuredResearch = featuredSlugs
+    .map((slug: string) => projects.research.find((p: any) => p.slug === slug))
+    .filter(Boolean)
+    .map((p: any) => ({ ...p, type: 'research' }));
   const featuredCoding = projects.coding.slice(0, 3).map((p: any) => ({ ...p, type: 'coding' }));
 </script>
 
