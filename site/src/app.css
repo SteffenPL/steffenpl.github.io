@@ -140,6 +140,37 @@ body {
 	border-color: var(--bg-card-border);
 }
 
+/* Footnotes */
+.footnote-ref a {
+	color: var(--accent);
+	text-decoration: none;
+	font-size: 0.75em;
+}
+
+.footnotes {
+	margin-top: 2rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--bg-card-border);
+	font-size: 0.85rem;
+	color: var(--text-muted);
+}
+
+.footnotes ol {
+	padding-left: 1.5rem;
+}
+
+.footnotes li {
+	margin-bottom: 0.5rem;
+}
+
+.footnotes li a {
+	color: var(--accent);
+}
+
+.footnote-backref {
+	text-decoration: none;
+	margin-left: 0.25rem;
+}
 
 /* Scroll reveal utility */
 .reveal {

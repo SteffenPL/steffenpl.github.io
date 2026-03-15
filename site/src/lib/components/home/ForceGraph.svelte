@@ -192,17 +192,33 @@
   let isPanning = false;
   let panStartX = 0, panStartY = 0, panStartCamX = 0, panStartCamY = 0;
 
-  const typeColors: Record<NodeType, string> = {
-    tag: 'var(--accent)', research: 'var(--accent-secondary)',
-    coding: '#60a5fa', publication: '#94a3b8',
-    blog: '#c084fc', talk: '#fb923c',
-  };
+  // Resolved at runtime for canvas compatibility
+  let resolvedAccent = '#f97316';
+  let resolvedSecondary = '#a3e635';
+
+  function resolveThemeColors() {
+    if (typeof getComputedStyle === 'undefined' || !canvas) return;
+    const s = getComputedStyle(canvas);
+    resolvedAccent = s.getPropertyValue('--accent').trim() || '#f97316';
+    resolvedSecondary = s.getPropertyValue('--accent-secondary').trim() || '#a3e635';
+  }
+
+  function getTypeColors(): Record<NodeType, string> {
+    return {
+      tag: resolvedAccent,
+      research: resolvedSecondary,
+      coding: '#38bdf8',        // sky blue
+      publication: '#a78bfa',   // violet
+      blog: '#f472b6',          // pink
+      talk: '#fbbf24',          // amber
+    };
+  }
   const typeLabels: Record<NodeType, string> = {
     research: 'Research', coding: 'Software', publication: 'Publication',
     blog: 'Blog', talk: 'Talk', tag: 'Tag',
   };
 
-  function nodeColor(type: NodeType) { return typeColors[type]; }
+  function nodeColor(type: NodeType) { return getTypeColors()[type]; }
 
   function findNodeAt(wx: number, wy: number): GraphNode | null {
     const hitBonus = Math.max(4, 6 / zoom);
@@ -340,6 +356,7 @@
   // ── Rendering ──
   function draw() {
     if (!ctx) return;
+    resolveThemeColors();
 
     // Auto-focus timer (real dt)
     const now = performance.now() / 1000;
@@ -543,7 +560,7 @@
               {#each allTypes as type}
                 <button class="cat-btn" class:cat-btn--off={!visibility[type]}
                   onclick={() => { visibility[type] = !visibility[type]; updateVisibility(); }}>
-                  <span class="cat-dot" style="background: {typeColors[type]}; {!visibility[type] ? 'opacity: 0.3;' : ''}"></span>
+                  <span class="cat-dot" style="background: {getTypeColors()[type]}; {!visibility[type] ? 'opacity: 0.3;' : ''}"></span>
                   {typeLabels[type]}
                 </button>
               {/each}
@@ -578,7 +595,7 @@
       {#each allTypes as type}
         <button class="legend-item" class:legend-item--off={!visibility[type]}
           onclick={() => { visibility[type] = !visibility[type]; updateVisibility(); }}>
-          <span class="legend-dot" style="background: {typeColors[type]}; {!visibility[type] ? 'opacity: 0.3;' : ''}"></span>
+          <span class="legend-dot" style="background: {getTypeColors()[type]}; {!visibility[type] ? 'opacity: 0.3;' : ''}"></span>
           {typeLabels[type]}
         </button>
       {/each}
@@ -600,57 +617,55 @@
       </span>
     {/each}
 
-    <!-- Detail panel (inside graph, overlapping bottom) -->
-    <div class="detail-panel">
-      {#if selectedNode}
-        <div class="detail-content">
-          <span class="detail-type" style="color: {typeColors[selectedNode.type]};">
-            {typeLabels[selectedNode.type]}
-          </span>
-          {#if selectedNode.href}
-            <a href={selectedNode.href} class="detail-title detail-title--link">
-              {selectedNode.label}
-            </a>
-          {:else}
-            <span class="detail-title">{selectedNode.label}</span>
-          {/if}
-          {#if selectedNode.desc}
-            <span class="detail-desc">{selectedNode.desc}</span>
-          {/if}
-        </div>
-      {:else}
-        <div class="detail-content">
-          <span class="detail-desc">Hover over a node to explore</span>
-        </div>
-      {/if}
-    </div>
+  </div>
+
+  <!-- Detail panel (strictly below graph) -->
+  <div class="detail-panel">
+    {#if selectedNode}
+      <div class="detail-content">
+        <span class="detail-type" style="color: {getTypeColors()[selectedNode.type]};">
+          {typeLabels[selectedNode.type]}
+        </span>
+        {#if selectedNode.href}
+          <a href={selectedNode.href} class="detail-title detail-title--link">
+            {selectedNode.label}
+          </a>
+        {:else}
+          <span class="detail-title">{selectedNode.label}</span>
+        {/if}
+        {#if selectedNode.desc}
+          <span class="detail-desc">{selectedNode.desc}</span>
+        {/if}
+      </div>
+    {:else}
+      <div class="detail-content">
+        <span class="detail-desc">Hover over a node to explore</span>
+      </div>
+    {/if}
   </div>
 </div>
 
 <style>
-  .force-graph-outer { position: relative; }
+  .force-graph-outer { display: flex; flex-direction: column; gap: 0; }
 
   .force-graph-wrap {
     position: relative; width: 100%; height: 70vh;
     min-height: 400px; max-height: 800px;
-    border-radius: 12px;
-    border: 1px solid var(--bg-card-border);
-    background: var(--bg-card); box-shadow: var(--shadow-card); overflow: hidden;
+    border-radius: 12px 12px 0 0;
+    border: 1px solid var(--bg-card-border); border-bottom: none;
+    background: var(--bg-card); overflow: hidden;
   }
   .force-graph-canvas { width: 100%; height: 100%; display: block; cursor: grab; }
 
-  /* ─── Detail panel (overlaps bottom of graph) ─── */
+  /* ─── Detail panel (below graph) ─── */
   .detail-panel {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 5rem;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid var(--bg-card-border);
+    height: 7.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border); border-top: none;
     border-radius: 0 0 12px 12px;
-    padding: 0.75rem 1.25rem;
-    z-index: 20;
-    display: flex; align-items: center;
+    box-shadow: var(--shadow-card);
+    padding: 1rem 1.25rem;
+    display: flex; align-items: flex-start;
   }
   .detail-content { display: flex; flex-direction: column; gap: 0.25rem; }
   .detail-type {

@@ -45,13 +45,19 @@
       })
   );
 
-  const hasCodeLinks = $derived(project.repos.length > 0 || project.blogs.length > 0 || project.links.length > 0);
+  const hasCodeLinks = $derived((project.repos?.length || 0) > 0 || (project.blogs?.length || 0) > 0 || (project.links?.length || 0) > 0);
 </script>
 
 {#if compact}
-  <a href="/{project.type === 'research' ? 'research' : 'coding'}" class="compact-card">
+  <div class="compact-card" role="link" tabindex="0"
+    onclick={() => window.location.href = `/${project.type === 'research' ? 'research' : 'coding'}`}
+    onkeydown={(e) => { if (e.key === 'Enter') window.location.href = `/${project.type === 'research' ? 'research' : 'coding'}`; }}>
     <div class="compact-thumb">
-      <img src={project.image} alt={project.title} />
+      {#if project.media}
+        <video src={project.media} autoplay loop muted playsinline></video>
+      {:else}
+        <img src={project.image} alt={project.title} />
+      {/if}
     </div>
     <div class="compact-body">
       <h3 class="compact-title">{project.title}</h3>
@@ -85,11 +91,17 @@
         </div>
       {/if}
     </div>
-  </a>
+  </div>
 {:else}
-  <a href="/{project.type === 'research' ? 'research' : 'coding'}" class="full-card">
+  <div class="full-card" role="link" tabindex="0"
+    onclick={() => window.location.href = `/${project.type === 'research' ? 'research' : 'coding'}`}
+    onkeydown={(e) => { if (e.key === 'Enter') window.location.href = `/${project.type === 'research' ? 'research' : 'coding'}`; }}>
     <div class="full-thumb">
-      <img src={project.image} alt={project.title} />
+      {#if project.media}
+        <video src={project.media} autoplay loop muted playsinline></video>
+      {:else}
+        <img src={project.image} alt={project.title} />
+      {/if}
     </div>
     <div class="full-body">
       <div class="full-header">
@@ -131,7 +143,7 @@
         </div>
       {/if}
     </div>
-  </a>
+  </div>
 {/if}
 
 <style>
@@ -235,7 +247,8 @@
     overflow: hidden;
     background: rgba(255, 255, 255, 0.04);
   }
-  .compact-thumb img {
+  .compact-thumb img,
+  .compact-thumb video {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -317,7 +330,8 @@
     overflow: hidden;
     background: rgba(255, 255, 255, 0.04);
   }
-  .full-thumb img {
+  .full-thumb img,
+  .full-thumb video {
     width: 100%;
     height: 100%;
     object-fit: cover;

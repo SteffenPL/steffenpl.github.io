@@ -1,55 +1,168 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f97316" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#a3e635" stop-opacity="0.15"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="400"
+   height="400"
+   viewBox="0 0 400 400"
+   version="1.1"
+   id="svg32"
+   sodipodi:docname="spatial-hash-tables.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview32"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.0406061"
+     inkscape:cx="208.53231"
+     inkscape:cy="261.86661"
+     inkscape:window-width="1512"
+     inkscape:window-height="872"
+     inkscape:window-x="0"
+     inkscape:window-y="33"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg32" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="g"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         stop-color="#f97316"
+         stop-opacity="0.15"
+         id="stop1" />
+      <stop
+         offset="100%"
+         stop-color="#a3e635"
+         stop-opacity="0.15"
+         id="stop2" />
     </linearGradient>
   </defs>
-  <rect width="400" height="400" fill="url(#g)"/>
   <!-- Grid lines for spatial hash -->
-  <g stroke="#a3e635" stroke-width="0.8" opacity="0.2">
-    <line x1="60" y1="60" x2="60" y2="340"/>
-    <line x1="130" y1="60" x2="130" y2="340"/>
-    <line x1="200" y1="60" x2="200" y2="340"/>
-    <line x1="270" y1="60" x2="270" y2="340"/>
-    <line x1="340" y1="60" x2="340" y2="340"/>
-    <line x1="60" y1="60" x2="340" y2="60"/>
-    <line x1="60" y1="130" x2="340" y2="130"/>
-    <line x1="60" y1="200" x2="340" y2="200"/>
-    <line x1="60" y1="270" x2="340" y2="270"/>
-    <line x1="60" y1="340" x2="340" y2="340"/>
-  </g>
   <!-- Highlighted cell -->
-  <rect x="130" y="130" width="70" height="70" fill="#f97316" fill-opacity="0.1" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
   <!-- Neighbor cells -->
-  <g fill="#a3e635" fill-opacity="0.05" stroke="#a3e635" stroke-width="1" opacity="0.25">
-    <rect x="60" y="60" width="70" height="70"/>
-    <rect x="130" y="60" width="70" height="70"/>
-    <rect x="200" y="60" width="70" height="70"/>
-    <rect x="60" y="130" width="70" height="70"/>
-    <rect x="200" y="130" width="70" height="70"/>
-    <rect x="60" y="200" width="70" height="70"/>
-    <rect x="130" y="200" width="70" height="70"/>
-    <rect x="200" y="200" width="70" height="70"/>
-  </g>
   <!-- Particles scattered across grid -->
-  <g fill="#f97316" opacity="0.6">
-    <!-- In highlighted cell -->
-    <circle cx="155" cy="160" r="4"/>
-    <circle cx="175" cy="175" r="3.5"/>
-    <circle cx="145" cy="185" r="3"/>
-    <!-- Other cells -->
-    <circle cx="90" cy="85" r="3"/>
-    <circle cx="240" cy="100" r="3.5"/>
-    <circle cx="310" cy="170" r="3"/>
-    <circle cx="85" cy="250" r="3.5"/>
-    <circle cx="170" cy="240" r="3"/>
-    <circle cx="250" cy="230" r="3"/>
-    <circle cx="310" cy="290" r="3.5"/>
-    <circle cx="100" cy="310" r="3"/>
-    <circle cx="230" cy="310" r="3.5"/>
-    <circle cx="290" cy="160" r="3"/>
-  </g>
   <!-- Query radius circle -->
-  <circle cx="155" cy="165" r="55" fill="none" stroke="#f97316" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.4"/>
+  <g
+     id="g32"
+     style="fill:#8ae234">
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="path35"
+       cx="113.69387"
+       cy="75.472244"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle35"
+       cx="209.96732"
+       cy="157.7126"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle36"
+       cx="233.92407"
+       cy="71.320251"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle37"
+       cx="134.26082"
+       cy="169.95505"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle38"
+       cx="190.56946"
+       cy="233.31873"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle39"
+       cx="287.4361"
+       cy="192.06696"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle41"
+       cx="107.58647"
+       cy="307.46756"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle42"
+       cx="242.54482"
+       cy="315.10272"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle43"
+       cx="293.30157"
+       cy="263.19946"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle44"
+       cx="92.786987"
+       cy="227.51749"
+       r="9.6317205" />
+    <circle
+       style="fill:#8ae234;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+       id="circle45"
+       cx="358.55408"
+       cy="76.810738"
+       r="9.6317205" />
+  </g>
+  <path
+     style="fill:#888a85;stroke:#888a85;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9.45839, 18.9168;stroke-dashoffset:0;paint-order:stroke fill markers"
+     d="M 11.985949,25.392519 H 389.41538"
+     id="path146" />
+  <path
+     style="fill:#888a85;stroke:#888a85;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9.45839, 18.9168;stroke-dashoffset:0;paint-order:stroke fill markers"
+     d="M 11.985949,138.00654 H 389.41538"
+     id="path147" />
+  <path
+     style="fill:#888a85;stroke:#888a85;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9.45839, 18.9168;stroke-dashoffset:0;paint-order:stroke fill markers"
+     d="M 11.985949,246.86686 H 389.41538"
+     id="path148" />
+  <path
+     style="fill:#888a85;stroke:#888a85;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9.45839, 18.9168;stroke-dashoffset:0;paint-order:stroke fill markers"
+     d="M 11.985949,338.20934 H 389.41538"
+     id="path149" />
+  <path
+     style="fill:#888a85;stroke:#888a85;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9.45839, 18.9168;stroke-dashoffset:0;paint-order:stroke fill markers"
+     d="M 75.573966,11.855277 V 389.28462"
+     id="path150" />
+  <path
+     style="fill:#888a85;stroke:#888a85;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9.45839, 18.9168;stroke-dashoffset:0;paint-order:stroke fill markers"
+     d="M 213.21334,11.855277 V 389.28462"
+     id="path151" />
+  <path
+     style="fill:#888a85;stroke:#888a85;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:9.45839, 18.9168;stroke-dashoffset:0;paint-order:stroke fill markers"
+     d="M 338.34009,11.855277 V 389.28462"
+     id="path152" />
+  <ellipse
+     style="opacity:0.398158;fill:#73d216;stroke:none;stroke-width:3.41852;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-dashoffset:0;paint-order:stroke fill markers"
+     id="path360"
+     cx="236.93535"
+     cy="214.33386"
+     rx="114.63838"
+     ry="109.52116" />
+  <circle
+     style="fill:#f57900;stroke-width:4.7292;stroke-linecap:round;stroke-linejoin:round;paint-order:stroke fill markers"
+     id="circle40"
+     cx="235.2486"
+     cy="215.56857"
+     r="9.6317205" />
 </svg>

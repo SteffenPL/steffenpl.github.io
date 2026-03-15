@@ -1,8 +1,8 @@
 import adapter from '@sveltejs/adapter-static';
 import { mdsvex } from 'mdsvex';
+import { footnotePreprocessor } from './src/lib/footnote-preprocessor.js';
 import { katexPreprocessor } from './src/lib/katex-preprocessor.js';
 import { createHighlighter } from 'shiki';
-import remarkGfm from 'remark-gfm';
 
 const highlighter = await createHighlighter({
 	themes: ['github-dark'],
@@ -13,10 +13,10 @@ const highlighter = await createHighlighter({
 const config = {
 	extensions: ['.svelte', '.md'],
 	preprocess: [
+		footnotePreprocessor(),
 		katexPreprocessor(),
 		mdsvex({
 			extensions: ['.md'],
-			remarkPlugins: [remarkGfm],
 			highlight: {
 				highlighter: (code, lang) => {
 					const html = highlighter.codeToHtml(code, {

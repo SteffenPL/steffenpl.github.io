@@ -19,23 +19,18 @@ research:
   - slug: limb-morphogenesis
     title: "Modelling digit formation in organoids"
     desc: "Agent-based model for symmetry breaking and digit-like elongation in limb organoids."
-    image: /images/projects/limb.png
-    tags: [Python, GPU Programming, Performance, PDE, Particle simulations, Cell migration, Developmental Biology]
+    media: /videos/limb-morphogenesis.mp4
+    tags: [Python, GPU Programming, PDE, Particle simulations, Morphogenesis, Developmental Biology]
     status: active
     year: "2023"
     publications: [tsutsumi_2025_biorxiv]
-    repos:
-      - label: LimbMorph.jl
-        url: https://github.com/SteffenPL/LimbMorph.jl
-      - label: webLimbMorph
-        url: https://github.com/SteffenPL/webLimbMorph
     links: []
     blogs: []
 
   - slug: epithelial-to-mesenchymal
     title: "Epithelial-to-mesenchymal transitions"
     desc: "Mechanical modelling of different EMT scenarios and their effect on cell delamination and migration."
-    image: /images/projects/emt.png
+    image: /images/projects/emt.svg
     tags: [Julia, Python, Cell migration, Cancer biology, Agent-based models]
     status: completed
     year: "2019"
@@ -109,12 +104,17 @@ research:
     status: active
     year: "2020"
     publications: [plunder_2023_arxiv_pbd]
+    # repos:
+    #   - label: PBD_publication
+    #     url: https://github.com/SteffenPL/PBD_publication
+    #   - label: DelayedPBD
+    #     url: https://github.com/SteffenPL/DelayedPBD
     repos:
-      - label: PBD_publication
-        url: https://github.com/SteffenPL/PBD_publication
-      - label: DelayedPBD
-        url: https://github.com/SteffenPL/DelayedPBD
-    links: []
+      - label: DifferentialInclusions.jl
+        url: https://github.com/SteffenPL/DifferentialInclusions.jl
+    links:
+      - label: Web teaser
+        url: https://steffenpl.github.io/pbd/
     blogs: []
 
   - slug: anisotropic-particles

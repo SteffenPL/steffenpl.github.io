@@ -5,7 +5,8 @@ export interface Project {
 	type: 'research' | 'coding';
 	title: string;
 	desc: string;
-	image: string;
+	image?: string;
+	media?: string;
 	tags: string[];
 	status: 'active' | 'completed';
 	year: string;
