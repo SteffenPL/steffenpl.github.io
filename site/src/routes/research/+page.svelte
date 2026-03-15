@@ -3,8 +3,9 @@
   import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
 
   const research = (projects.research || []).map((p: any) => ({ ...p, type: 'research' }));
-  const active = research.filter((p: any) => p.status === 'active');
-  const completed = research.filter((p: any) => p.status === 'completed');
+  const current = research.filter((p: any) => p.status === 'current');
+  const published = research.filter((p: any) => p.status === 'published');
+  const ideas = research.filter((p: any) => p.status === 'ideas');
 </script>
 
 <section class="py-20 px-6">
@@ -14,23 +15,34 @@
     </h1>
     <div class="mt-2 mb-12 h-[3px] w-[48px] rounded-full" style="background: var(--gradient-accent);"></div>
 
-    {#if active.length > 0}
+    {#if current.length > 0}
       <h2 class="font-display font-semibold text-lg mt-8 mb-6" style="color: var(--text);">
-        Active ({active.length})
+        Current ({current.length})
       </h2>
       <div class="grid gap-4">
-        {#each active as project, i}
+        {#each current as project, i}
           <ProjectCard {project} />
         {/each}
       </div>
     {/if}
 
-    {#if completed.length > 0}
+    {#if published.length > 0}
       <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
-        Completed ({completed.length})
+        Published ({published.length})
       </h2>
       <div class="grid gap-4">
-        {#each completed as project, i}
+        {#each published as project, i}
+          <ProjectCard {project} />
+        {/each}
+      </div>
+    {/if}
+
+    {#if ideas.length > 0}
+      <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
+        Ideas ({ideas.length})
+      </h2>
+      <div class="grid gap-4">
+        {#each ideas as project, i}
           <ProjectCard {project} />
         {/each}
       </div>

@@ -4,7 +4,7 @@ research:
     desc: "Topological defect transitions and cell alignment in mouse epiblast, my role was to bridge experiments and theory with quantitative image analysis."
     image: /images/projects/epiblast-orientation.svg
     tags: [Python, Topological defects, Developmental Biology, Image Analysis]
-    status: completed
+    status: published
     year: "2023"
     end: "2026"
     publications: [guruciaga_2026_natmat, ichikawa_2026_natphys]
@@ -21,7 +21,7 @@ research:
     desc: "Agent-based model for symmetry breaking and digit-like elongation in limb organoids."
     media: /videos/limb-morphogenesis.mp4
     tags: [Python, GPU Programming, PDE, Particle simulations, Morphogenesis, Developmental Biology]
-    status: active
+    status: current
     year: "2023"
     publications: [tsutsumi_2025_biorxiv]
     links: []
@@ -32,7 +32,7 @@ research:
     desc: "Mechanical modelling of different EMT scenarios and their effect on cell delamination and migration."
     image: /images/projects/emt.svg
     tags: [Julia, Python, Cell migration, Cancer biology, Agent-based models]
-    status: completed
+    status: published
     year: "2019"
     end: "2024"
     publications: [plunder_2024_natcomms, despin_2024_natcomms, mira_2025_iscience]
@@ -42,14 +42,14 @@ research:
       - label: semtor_js
         url: https://github.com/SteffenPL/semtor_js
     links: []
-    blogs: []
+    blogs: [epithelial-to-mesenchymal]
 
   - slug: cell-migration-model
     title: "Cell migration model for plithotaxis"
     desc: "Agent-based model for collective cell migration guided by intercellular stress patterns."
     image: /images/projects/cm.png
     tags: [Julia, Collective migration, Agent-based models, Cell migration]
-    status: active
+    status: ideas
     year: "2021"
     publications: [plunder_2024_natcomms, mira_2025_iscience]
     repos: []
@@ -61,7 +61,7 @@ research:
     desc: "Modelling growth and shape of germinal centers in the immune system."
     image: /images/projects/gc.png
     tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
-    status: active
+    status: ideas
     year: "2023"
     publications: []
     repos: []
@@ -73,7 +73,7 @@ research:
     desc: "Agent-based simulation of tertiary lymphoid structure formation."
     image: /images/projects/tlt-model.svg
     tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
-    status: active
+    status: ideas
     year: "2024"
     publications: []
     repos:
@@ -87,7 +87,7 @@ research:
     desc: "Modelling the endothelial-to-hematopoietic transition during embryonic blood cell formation."
     image: /images/projects/eht-model.svg
     tags: [Julia, Agent-based models, Developmental Biology]
-    status: active
+    status: current
     year: "2024"
     publications: []
     repos:
@@ -101,7 +101,7 @@ research:
     desc: "Convergence analysis and efficient numerical scheme for inequality constrained ODEs from computer graphics."
     image: /images/projects/pbd.png
     tags: [Julia, Particle simulations, Numerical analysis, Constrained dynamics]
-    status: active
+    status: current
     year: "2020"
     publications: [plunder_2023_arxiv_pbd]
     # repos:
@@ -115,18 +115,20 @@ research:
     links:
       - label: Web teaser
         url: https://steffenpl.github.io/pbd/
-    blogs: []
+    blogs: [position-based-dynamics]
 
   - slug: anisotropic-particles
     title: "Anisotropic particle simulations"
     desc: "Macroscopic analysis of nematic alignment from anisotropic Gaussian-type repulsive potentials."
     image: /images/projects/anisotropic-particles.svg
-    tags: [Kinetic theory, Particle simulations, PDE]
-    status: completed
+    tags: [Kinetic theory, Particle simulations, PDE, Julia]
+    status: published
     year: "2023"
     end: "2025"
     publications: [merino_2025_m3as]
-    repos: []
+    repos: 
+      - label: AnisotropicParticles
+        url: https://github.com/cwytrzens/anisotropic_particles
     links: []
     blogs: []
 
@@ -135,7 +137,7 @@ research:
     desc: "Proof of the mean-field limit for particle systems with full-rank constraints, applied to muscle tissue modelling."
     image: /images/projects/pks.png
     tags: [Kinetic theory, PDE, Constrained dynamics, Mechanics]
-    status: completed
+    status: published
     year: "2018"
     end: "2023"
     publications: [plunder_2020_dae, plunder_2023_krm]
@@ -238,10 +240,12 @@ coding:
     status: completed
     year: "2023"
     publications: []
-    repos:
-      - label: delayed-sweeping
-        url: https://github.com/SteffenPL/delayed-sweeping
-      - label: DelayedPBD
-        url: https://github.com/SteffenPL/DelayedPBD
-    links: []
+    # repos:
+    #   - label: delayed-sweeping
+    #     url: https://github.com/SteffenPL/delayed-sweeping
+    #   - label: DelayedPBD
+    #     url: https://github.com/SteffenPL/DelayedPBD
+    links: 
+      - label: Live demo
+        url: https://steffenpl.github.io/delayed-sweeping/
     blogs: []
