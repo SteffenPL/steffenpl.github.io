@@ -1,0 +1,257 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="/assets/main.bundle.js" defer=""></script>
+  <script src="/assets/p5.min.js"></script>
+  <script src="/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Steffen Plunder | Parameter Estimation for differential equations with Julia</title>
+  <meta name="description" content="Steffen Plunder, personal webpage and blog about applied math, programming and more.Parameter Estimation for differential equations with Julia">
+  <meta name="author" content="Steffen Plunder">
+  <meta name="keywords" content="mathematics, academic webpage, biomathematics, Julia programming">
+</head>
+<body class=" container max-w-4xl mx-auto min-h-screen bg-cover" style="background-image:url(/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex max-w-4xl justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/">
+          About me
+        </a>
+      
+        <a class="" href="/research/">
+          Research
+        </a>
+      
+        <a class="" href="/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/">
+        About me
+      </a>
+    
+      <a class="" href="/research/">
+        Research
+      </a>
+    
+      <a class="" href="/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4 ">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="%F0%9F%93%8A-parameter-estimation-for-differential-equations-with-julia" tabindex="-1">📊 Parameter Estimation for differential equations with Julia</h1>
+<!-- <img src="https://raw.githubusercontent.com/JuliaLang/julia-logo-graphics/refs/heads/master/images/julia-logo-color.svg"/> -->
+<p><em>This lecture is part of the lecture series organized by the <a href="https://mmc01.es.hokudai.ac.jp/msc/en/" target="_blank">Research Center of Mathematics for Social Creativity, Research Institute for Electronic Science, Hokkaido University</a>.</em></p>
+<hr>
+<h2 id="%F0%9F%93%91-summary" tabindex="-1">📑 Summary</h2>
+<p><em>Statistics and optimisation theory provide rich theories to find optimal model parameters for given datapoints. These methodologies adapt well to ODE and PDE models. Depending on the number of unknown parameters and available data, different strategies are optimal. We will discuss optimisation based parameter estimation and automatic differentiation, a technique to obtain accurate gradients.</em></p>
+<div class="drop-shadow-lg mx-auto">
+<p><img src="./1a2f3a4d3b777cb28b0e8b8b575ef0c800713364.gif" class="mx-auto" integrity="sha1-1a2f3a4d3b777cb28b0e8b8b575ef0c800713364"></p>
+</div>
+<div class="text-center text-sm">
+<p><em>Figure:</em> Example parameter fitting using an <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">L^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq> error and a quasi-Newton (LBFGS) solver.</p>
+</div>
+<h2 id="%F0%9F%93%9A-material" tabindex="-1">📚 Material</h2>
+<p><a href="/assets/param_est_2024.pdf">Lecture notes</a> and <a href="https://github.com/SteffenPL/ParamEstimationLecture2024">example code</a> (links in preparation).</p>
+<h2 id="%F0%9F%92%BB-setup-instructions" tabindex="-1">💻 Setup instructions</h2>
+<p>This lecture will be interactive with various coding sessions. Please install Julia in advace! 👍</p>
+<div class="mb-4 border-b  border-gray-200 dark:border-gray-700">
+    <ul class="flex flex-wrap -mb-px font-medium text-center list-none" id="default-tab" data-tabs-active-classes="text-lime-600 hover:text-lime-600 dark:text-lime-500 dark:hover:text-lime-500 border-lime-600 dark:border-lime-500" data-tabs-inactive-classes="dark:border-transparent text-gray-500 hover:text-gray-600 dark:text-gray-400 border-gray-100 hover:border-gray-300 dark:border-gray-700 dark:hover:text-gray-300" data-tabs-toggle="#default-tab-content" role="tablist">
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">🚀 Short instructions</button>
+        </li>
+        <li class="me-2" role="presentation">
+            <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">🐢 Detailed instructions</button>
+        </li>
+    </ul>
+</div>
+<div id="default-tab-content">
+    <div class="hidden px-8 py-2 " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+<p>Please install:</p>
+<ol>
+<li>
+<p><a href="https://julialang.org/downloads/">The Julia programming language</a>,</p>
+</li>
+<li>
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a>,</p>
+</li>
+<li>
+<p><a href="https://www.julia-vscode.org/">Julia for Visual Studio Code</a>,</p>
+</li>
+<li>
+<p>Clone <a href="https://github.com/SteffenPL/ParamEstimationLecture2024">github.com/SteffenPL/ParamEstimationLecture2024</a>,</p>
+</li>
+<li>
+<p>Install all required Julia dependencies<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> either by running the file <code>000_setup.jl</code> or with the following steps:</p>
+<ul>
+<li>Open the repository in VS Code and <strong>Open Julia REPL</strong><sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>,</li>
+<li>enter package mode by pressing <code>]</code> inside the Julia REPL and</li>
+<li>run <code>activate .</code> and <code>instantiate</code>.</li>
+</ul>
+ </li></ol></div>
+ <div class="hidden px-8 py-2 " id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+
+
+<h3 id="1.-installation-of-the-julia-programming-language" tabindex="-1">1. Installation of the Julia programming language</h3>
+<p>We will follow the official installation instructions from <a href="https://julialang.org/downloads/">julialang.org/downloads</a>.</p>
+<ul>
+<li>
+<p>For Windows, open a terminal and type</p>
+<pre class="language-cmd"><code class="language-cmd">winget install julia -s msstore
+</code></pre>
+</li>
+<li>
+<p>For Linux/MacOS, open a terminal and type</p>
+<pre class="language-cmd"><code class="language-cmd">curl -fsSL https://install.julialang.org | sh
+</code></pre>
+</li>
+</ul>
+<p>To test the installation, you can
+type <code>julia</code> into the terminal, which should start the most recent version of Julia!</p>
+<h3 id="2.-installation-of-vs-code-and-the-julia-extensions" tabindex="-1">2. Installation of VS Code and the Julia extensions</h3>
+<p><a href="https://code.visualstudio.com/">Visual Studio Code</a> is a modern text editor<sup class="footnote-ref"><a href="#fn3" id="fnref3">[3]</a></sup> which can function as an IDE for many programming languages. It is the current de-facto standard for programming in Julia.</p>
+<p>We will follow the instructions from <a href="https://code.visualstudio.com/docs/languages/julia#_getting-started">code.visualstudio.com/docs/languages/julia</a>.</p>
+<ul>
+<li>Install VS Code for your platform: <a href="code.visualstudio.com/download">https://code.visualstudio.com/download</a>.</li>
+<li>Open the Julia extension on the VS Code Marketplace and press <strong>Install</strong>; or manually install by doing the following steps:
+<ul>
+<li>Start VS Code.</li>
+<li>Inside VS Code, go to the Extensions view by clicking <strong>View</strong> on the top menu bar and then selecting <strong>Extensions</strong>.</li>
+<li>In the Extensions view, search for the term "julia" in the Marketplace search box, then select the Julia extension (julialang.language-julia) and select the <strong>Install</strong> button.</li>
+<li>Restart VS Code.</li>
+</ul>
+</li>
+</ul>
+<p>For basic operations inside VS Code, please check <a href="https://code.visualstudio.com/docs/getstarted/getting-started">code.visualstudio.com/docs/getstarted/getting-started</a>.</p>
+<p><strong>The most useful command in Visual Studio Code is the
+command palette, where you can search for any commands!</strong></p>
+<ul>
+<li>You can access it with the shortcut: <code>Shift + Command + P</code> <em>(Mac)</em> or <code>Ctrl + Shift + P</code> <em>Windows/Linux</em>.
+<ul>
+<li>For example: Search for <code>Preferences: Color Theme</code> to select a nice theme!</li>
+</ul>
+</li>
+</ul>
+<h3 id="3.-installing-julia-dependencies" tabindex="-1">3. Installing Julia dependencies</h3>
+<ul>
+<li><strong>Download the lectures example code from <a href="https://github.com/SteffenPL/ParamEstimationLecture2024">github.com/SteffenPL/ParamEstimationLecture2024</a></strong>.</li>
+<li>Open the folder with Visual Studio Code <code>File &gt; Open Folder</code>.<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup></li>
+<li>Open the file <code>000_setup.jl</code> and press the run button in the top right corner of the editor (or run the command <code>Julia: Execute Active File in REPL</code><sup class="footnote-ref"><a href="#fn2" id="fnref2:1">[2:1]</a></sup>). This should download and install all requirements.</li>
+<li>To test the installation, open the file <code>002_first_example.jl</code> and also run this file. It should display a plot of an ODE solution.<sup class="footnote-ref"><a href="#fn5" id="fnref5">[5]</a></sup></li>
+</ul>
+<p><img src="./108fd4a4de11840646fb2c16e1d894f8ea2bc72e.png" alt="" integrity="sha1-108fd4a4de11840646fb2c16e1d894f8ea2bc72e"></p>
+<h3 id="4.-running-julia-code" tabindex="-1">4. Running Julia Code</h3>
+<p>You can also run Julia code by selecting a few lines in the editor and using the shortcut <code>Shift+Enter</code>.</p>
+<h3 id="5.-a-note-on-installing-julia-packages" tabindex="-1">5. A note on installing Julia packages</h3>
+<p>One of the best features of Julia is the large ecosystem of very modern scientific computing packages. One can see a great overview at the <a href="https://docs.sciml.ai/">documentation side of the SciML project (Scientific Machine Learning)</a>.</p>
+<p><img src="./33414ab85fb5a2e77dca0dc12bc7033c4fdaa20f.png" alt="" integrity="sha1-33414ab85fb5a2e77dca0dc12bc7033c4fdaa20f"></p>
+<p>To <code>add</code> a new package to your current code, you can use the integrated Julia package manager as follows:</p>
+<ul>
+<li>Open a Julia REPL.</li>
+<li>Press the <code>]</code> key to enter the package mode.</li>
+<li>Optional but recommended: Activate a new Julia enviroment for your current folder with the command <code>activate .</code> (where <code>.</code> denotes the current folder).</li>
+<li>Use the command <code>add</code> to install a new package, for example via</li>
+</ul>
+<pre><code>add OrdinaryDiffEq Plots
+</code></pre>
+<p>to install the two packages <code>OrdinaryDiffEq</code> and <code>Plots</code>.</p>
+<p>Once you added a package, you and use it's functions with the Julia command</p>
+<pre><code>using OrdinaryDiffEq, Plots
+</code></pre>
+<p>inside your Julia code.</p>
+<p></p></div><p></p>
+</div>
+<h2 id="%F0%9F%92%AC-organisation" tabindex="-1">💬 Organisation</h2>
+<ul>
+<li>This lecture is given in <strong>English</strong>.</li>
+<li>It is part of the lecture series organized by the <a href="https://mmc01.es.hokudai.ac.jp/msc/en/" target="_blank">Research Center of Mathematics for Social Creativity, Research Institute for Electronic Science, Hokkaido University</a>.</li>
+<li>This lecture series is supported by
+<ul>
+<li><strong>JSPS KAKENHI</strong> <em>Grant Number JP23H04936, 23K13013, 24H00188</em></li>
+<li><strong>JST CREST</strong> <em>Grant Number JPMJCR1926</em></li>
+<li><strong>JST Moonshot Program</strong> <em>Grant Number JPMJMS2023</em></li>
+</ul>
+</li>
+</ul>
+<h2 id="%F0%9F%94%97-useful-links" tabindex="-1">🔗 Useful links</h2>
+<ul>
+<li>Julia Tutorial: <a href="https://docs.julialang.org/en/v1/manual/variables/">docs.julialang.org/en/v1</a></li>
+<li>Cheat-Sheet: <a href="https://steffenpl.github.io/Julia-Cheat-Sheet/">steffenpl.github.io/Julia-Cheat-Sheet</a></li>
+<li>Modern Julia: https://modernjuliaworkflows.org/</li>
+<li>Noteworthy differences (from MATLAB/Python/C...): <a href="https://docs.julialang.org/en/v1/manual/noteworthy-differences/">docs.julialang.org/en/v1/manual/noteworthy-differences</a></li>
+<li>Very friendly discussion forum with some strong mathematicians as regulars: <a href="https://discourse.julialang.org/">discourse.julialang.org</a></li>
+</ul>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>The dependencies might change shortly before the lecture. If any problems arise, please contact me. <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p>To find any command in Visual Studio code, open the command palette via the shortcut <code>Shift + Command + P</code> <em>(Mac)</em> or <code>Ctrl + Shift + P</code> <em>Windows/Linux</em>. <a href="#fnref2" class="footnote-backref">↩︎</a> <a href="#fnref2:1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn3" class="footnote-item"><p>If you prefer strict free open-source software, one might prefer <a href="https://vscodium.com/">VSCodium</a>. <a href="#fnref3" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn4" class="footnote-item"><p>The first time you open a new folder, Visual Studio Code might ask you to confirm that you trust the files. This is normal behaviour and in order to work on a program you need to agree to trust the folder: <img src="./3a78e0e19f39e7b9caa69403392af52ec27dc53c.png" alt="" integrity="sha1-3a78e0e19f39e7b9caa69403392af52ec27dc53c"> <a href="#fnref4" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn5" class="footnote-item"><p>The first runtime might be slow, due to one-time precompilation. <a href="#fnref5" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

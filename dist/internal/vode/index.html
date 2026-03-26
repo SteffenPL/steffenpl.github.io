@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODE Simulator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+    <style>
+        .range-inputs {
+            display: none;
+        }
+        .range-inputs.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-6">ODE Simulator</h1>
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">Enter ODE equations:</h2>
+            <textarea id="ode-input" class="w-full h-32 p-2 border rounded" placeholder="Enter ODE equations, one per line. For example:
+dx/dt = -y*a
+dy/dt = -x*b"></textarea>
+        </div>
+        <div id="warning" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4"></div>
+        <div id="inputs" class="space-y-4"></div>
+        <div class="flex items-center mb-4">
+            <label for="n-steps" class="mr-2">Number of steps:</label>
+            <input type="number" id="n-steps" value="1000" min="100" max="10000" step="100" class="border rounded p-1 w-24">
+        </div>
+        <button id="solve-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">Solve</button>
+        <div id="plot" class="w-full h-96"></div>
+    </div>
+
+    <script>
+        const odeInput = document.getElementById('ode-input');
+        const warningDiv = document.getElementById('warning');
+        const inputsDiv = document.getElementById('inputs');
+        const solveBtn = document.getElementById('solve-btn');
+        const plotDiv = document.getElementById('plot');
+
+        let equations = [];
+        let variables = [];
+        let parameters = [];
+        let independentVar = '';
+
+        odeInput.addEventListener('input', parseEquations);
+        solveBtn.addEventListener('click', solve);
+
+        function updateInputs() {
+            inputsDiv.innerHTML = '';
+
+            // Independent variable range
+            const indepVarGroup = createInputGroup('\'' + independentVar + '\' range', 'range', independentVar, [0, 10]);
+            inputsDiv.appendChild(indepVarGroup);
+
+            // Initial conditions for variables
+            variables.forEach(variable => {
+                const varGroup = createInputGroup('\'' + variable + '\' initial value', 'number', variable, 1);
+                const initValue = varGroup.querySelector(`#${variable}-input`);
+                initValue.addEventListener('input', () => {if (plotDiv.innerHTML) solve();});
+                inputsDiv.appendChild(varGroup);
+            });
+
+            // Parameter inputs and sliders
+            parameters.forEach(param => {
+                const paramGroup = document.createElement('div');
+                paramGroup.className = 'mb-4';
+                paramGroup.innerHTML = `
+                    <div class="flex items-center mb-2">
+                        <label for="${param}-slider" class="mr-2 w-24">'${param}' value:</label>
+                        <input type="range" id="${param}-slider" min="-1" max="2" step="0.01" value="1" class="w-full mr-2">
+                        <output id="${param}-value" for="${param}-slider" class="w-12">1</output>
+                        <button id="${param}-toggle" class="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-1 px-2 rounded">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="${param}-range-inputs" class="range-inputs flex space-x-2">
+                        <input type="number" id="${param}-min" value="-1" step="0.1" class="border rounded p-1 w-24">
+                        <input type="number" id="${param}-max" value="2" step="0.1" class="border rounded p-1 w-24">
+                    </div>
+                `;
+                inputsDiv.appendChild(paramGroup);
+
+                const slider = paramGroup.querySelector(`#${param}-slider`);
+                const valueSpan = paramGroup.querySelector(`#${param}-value`);
+                const rangeMin = paramGroup.querySelector(`#${param}-min`);
+                const rangeMax = paramGroup.querySelector(`#${param}-max`);
+                const toggleBtn = paramGroup.querySelector(`#${param}-toggle`);
+                const rangeInputs = paramGroup.querySelector(`#${param}-range-inputs`);
+
+                slider.addEventListener('input', () => {
+                    valueSpan.textContent = parseFloat(slider.value).toFixed(2);
+                    if (plotDiv.innerHTML) solve();
+                });
+
+                [rangeMin, rangeMax].forEach((rangeBnd) => rangeBnd.addEventListener('input', () => {
+                    const min = parseFloat(document.getElementById(`${param}-min`).value);
+                    const max = parseFloat(document.getElementById(`${param}-max`).value);
+                    slider.min = min;
+                    slider.max = max;
+                    slider.value = Math.min(max, Math.max(min, slider.value));
+                    valueSpan.textContent = parseFloat(slider.value).toFixed(2);
+                    if (plotDiv.innerHTML) solve();
+                }));
+
+                toggleBtn.addEventListener('click', () => {
+                    rangeInputs.classList.toggle('show');
+                });
+            });
+        }
+
+        function createInputGroup(label, type, name, defaultValue) {
+            const group = document.createElement('div');
+            group.className = 'mb-4';
+            group.innerHTML = `
+                <label for="${name}-input" class="block mb-2">${label}:</label>
+                ${type === 'range'
+                    ? `<div class="flex space-x-2">
+                         <input type="number" id="${name}-min" value="${defaultValue[0]}" step="0.1" class="border rounded p-1 w-24">
+                         <input type="number" id="${name}-max" value="${defaultValue[1]}" step="0.1" class="border rounded p-1 w-24">
+                       </div>`
+                    : `<input type="${type}" id="${name}-input" value="${defaultValue}" step="0.1" class="border rounded p-1 w-24">`
+                }
+            `;
+            return group;
+        }
+
+        let nSteps = 1000;
+
+        function parseEquations() {
+            const input = odeInput.value.trim();
+            equations = input.split('\n').map(eq => eq.trim()).filter(eq => eq);
+            variables = [];
+            parameters = [];
+            independentVar = '';
+
+            const vars = new Set();
+            const indepVars = new Set();
+
+            // First pass: identify variables and independent variables
+            equations.forEach(eq => {
+                const [lhs, rhs] = eq.split('=').map(side => side.trim());
+                const match = lhs.match(/d(\w+)\/d(\w+)/);
+                if (match) {
+                    vars.add(match[1]);
+                    indepVars.add(match[2]);
+                }
+            });
+
+            variables = Array.from(vars);
+
+            if (indepVars.size > 1) {
+                warningDiv.textContent = 'Warning: Equations have different independent variables.';
+                warningDiv.classList.remove('hidden');
+            } else if (indepVars.size === 1) {
+                independentVar = Array.from(indepVars)[0];
+                warningDiv.textContent = '';
+                warningDiv.classList.add('hidden');
+            } else {
+                warningDiv.textContent = 'Error: No independent variable found.';
+                warningDiv.classList.remove('hidden');
+                return;  // Exit the function if no independent variable is found
+            }
+
+            // Second pass: identify parameters
+            const allSymbols = new Set();
+            equations.forEach(eq => {
+                const [, rhs] = eq.split('=').map(side => side.trim());
+
+                try {
+                    const symbols = math.parse(rhs).filter(node => node.isSymbolNode).map(node => node.name);
+                    symbols.forEach(symbol => allSymbols.add(symbol));
+                } catch (e) {
+                    warningDiv.textContent = 'Warning: Cannot parse equations (yet).';
+                    warningDiv.classList.remove('hidden');
+                }
+            });
+
+            parameters = Array.from(allSymbols).filter(symbol =>
+                !vars.has(symbol) && symbol !== independentVar
+            );
+
+            updateInputs();
+        }
+
+        function solve() {
+            const tMin = parseFloat(document.getElementById(independentVar + '-min').value);
+            const tMax = parseFloat(document.getElementById(independentVar + '-max').value);
+            nSteps = parseInt(document.getElementById('n-steps').value);
+            const initialConditions = {};
+            variables.forEach(variable => {
+                initialConditions[variable] = parseFloat(document.getElementById(variable + '-input').value);
+            });
+            const paramValues = {};
+            parameters.forEach(param => {
+                paramValues[param] = parseFloat(document.getElementById(param + '-slider').value);
+            });
+
+            const solution = rungeKutta(equations, variables, paramValues, independentVar, initialConditions, tMin, tMax);
+
+            const traces = variables.map(variable => ({
+                x: solution.map(point => point[independentVar]),
+                y: solution.map(point => point[variable]),
+                mode: 'lines',
+                name: variable
+            }));
+
+            const layout = {
+                title: 'ODE Solution',
+                xaxis: {
+                    title: independentVar,
+                    tickformat: `.${Math.max(0, -Math.floor(Math.log10(tMax)) + 2)}f`
+                },
+                yaxis: { title: 'Value' }
+            };
+
+            Plotly.newPlot(plotDiv, traces, layout);
+        }
+
+        function rungeKutta(equations, variables, parameters, independentVar, initialConditions, tMin, tMax) {
+            const h = (tMax - tMin) / nSteps;
+            const solution = [{ [independentVar]: tMin, ...initialConditions }];
+
+            const compiledEquations = equations.map(eq => {
+                const [, rhs] = eq.split('=').map(side => side.trim());
+                return math.compile(rhs);
+            });
+
+            for (let t = tMin; t < tMax; t += h) {
+                const current = solution[solution.length - 1];
+                const k1 = calculateK(compiledEquations, current, parameters, h);
+                const k2 = calculateK(compiledEquations, addK(variables, current, k1, 0.5), parameters, h);
+                const k3 = calculateK(compiledEquations, addK(variables, current, k2, 0.5), parameters, h);
+                const k4 = calculateK(compiledEquations, addK(variables, current, k3, 1), parameters, h);
+
+                const next = { [independentVar]: t + h };
+                variables.forEach((variable, i) => {
+                    next[variable] = current[variable] + (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]) / 6;
+                });
+                solution.push(next);
+            }
+
+            return solution;
+        }
+
+        function calculateK(equations, point, parameters, h) {
+            return equations.map(eq => h * eq.evaluate({ ...point, ...parameters }));
+        }
+
+        function addK(variables, point, k, factor) {
+            const result = { ...point };
+            variables.forEach((key, i) => {
+                if (key !== independentVar) {
+                    result[key] += factor * k[i];
+                }
+            });
+            return result;
+        }
+    </script>
+</body>
+
+</html>

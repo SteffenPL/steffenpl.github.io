@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="/assets/main.bundle.js" defer=""></script>
+  <script src="/assets/p5.min.js"></script>
+  <script src="/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Steffen Plunder | About me</title>
+  <meta name="description" content="Steffen Plunder, personal webpage and blog about applied math, programming and more.About me">
+  <meta name="author" content="Steffen Plunder">
+  <meta name="keywords" content="mathematics, academic webpage, biomathematics, Julia programming">
+</head>
+<body class=" container max-w-4xl mx-auto min-h-screen bg-cover" style="background-image:url(/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex max-w-4xl justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="font-black" href="/">
+          About me
+        </a>
+      
+        <a class="" href="/research/">
+          Research
+        </a>
+      
+        <a class="" href="/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="font-black" href="/">
+        About me
+      </a>
+    
+      <a class="" href="/research/">
+        Research
+      </a>
+    
+      <a class="" href="/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4 ">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <div class="sm:float-right sm:max-w-[12em] sm:ml-2 md:flex hidden">
+    <img src="./9b3021aef65fd70bbb0135403bf485ab44a7e96b.jpg" integrity="sha1-9b3021aef65fd70bbb0135403bf485ab44a7e96b">
+</div>
+<p>I'm a program-specific researcher (post doc) at <a href="https://ashbi.kyoto-u.ac.jp/">ASHBi, KUIAS, Kyoto University</a>.</p>
+<blockquote>
+<p>My expertise is to apply math and computer science to real biology.</p>
+</blockquote>
+<p>I studied mathematics at <a href="https://www.mathematik.uni-kl.de/en/">TU Kaiserslautern</a> with stays at <a href="https://www.tudelft.nl/en/eemcs/the-faculty/departments/applied-mathematics">TU Delft</a> and <a href="https://www.auckland.ac.nz/en/science/about-the-faculty/department-of-mathematics.html">The University of Auckland</a>, obtained my PhD at <a href="https://mathematik.univie.ac.at/en/research/biomathematics-and-dynamical-systems/">University of Vienna</a> in <a href="https://sites.google.com/view/saramerinoaceituno/about">Sara Merino-Aceituno's</a> group and did a post doc in <a href="https://sites.google.com/site/seirin711lee/home">Seirin-Lee's</a> lab.</p>
+<div class="container md:hidden drop-shadow-xl">
+<img class="mx-auto max-w-[12em]" src="./9b3021aef65fd70bbb0135403bf485ab44a7e96b.jpg" integrity="sha1-9b3021aef65fd70bbb0135403bf485ab44a7e96b">
+</div>
+<p>You can find a description of my current projects in the <a href="/research">research section</a>, talk and activities <a href="/activities">here</a> and more info in my <a href="/cv">CV</a>.</p>
+<div class="flex flex-wrap justify-center gap-4 my-4">
+  <video autoplay="" loop="" muted="" playsinline="" class="w-full sm:w-[30%] rounded">
+    <source src="/assets/compressed/C.mp4" type="video/mp4">
+  </video>
+  <video autoplay="" loop="" muted="" playsinline="" class="w-full sm:w-[30%] rounded">
+    <source src="/assets/compressed/bacteria.mp4" type="video/mp4">
+  </video>
+  <video autoplay="" loop="" muted="" playsinline="" class="w-full sm:w-[30%] rounded">
+    <source src="/assets/compressed/cells.mp4" type="video/mp4">
+  </video>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<div>
+<h2 id="news-and-blog" tabindex="-1">News and Blog</h2>
+<ul class="list-none m-0 p-0 space-y-1">
+<li class="text-sm"><span class="text-gray-500">Mar 2026</span> — <a href="/blog/posts/claude-code-skills/">🔌 My favourite Claude Code skills &amp; MCPs</a></li>
+<li class="text-sm"><span class="text-gray-500">Feb 2026</span> — <a href="/blog/posts/5-tips-for-using-ai-in-research/">🤖 5 Tips for Using AI in research</a></li>
+<li class="text-sm"><span class="text-gray-500">Nov 2024</span> — <a href="/blog/posts/parameters-1/">🧮 On the road of clean parameter estimation</a></li>
+<li class="text-sm"><span class="text-gray-500">Apr 2024</span> — <a href="/blog/posts/anythingllama/">🦙 How to chat with LLama3</a></li>
+<li class="text-sm"><span class="text-gray-500">Jun 2022</span> — <a href="/blog/posts/grammarly_vscode/">📑 Spellchecking in LaTeX with Grammarly</a></li>
+<li class="text-sm"><span class="text-gray-500">Jun 2022</span> — <a href="/blog/posts/mypaintedslides/">🎨 MyPaintEdSlides</a></li>
+<li class="text-sm"><span class="text-gray-500">Jun 2022</span> — <a href="/blog/posts/p5js/">🍎 Interactive modelling with p5.js</a></li>
+</ul>
+</div>
+<div>
+<h2 id="contact-and-links" tabindex="-1">Contact and links</h2>
+<div class="space-y-2">
+  <p class="m-0"><i class="fa-solid fa-envelope"></i> <a href="mailto:plunder.steffen.2a@kyoto-u.ac.jp">plunder.steffen.2a@kyoto-u.ac.jp</a></p>
+  <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+    <a href="https://github.com/SteffenPL" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+    <a href="https://scholar.google.com/citations?user=-QyslKMAAAAJ&amp;hl=en" target="_blank"><i class="ai ai-google-scholar"></i> Google Scholar</a>
+    <a href="https://orcid.org/0000-0002-3371-3790" target="_blank"><i class="ai ai-orcid"></i> ORCID</a>
+    <a href="https://researchmap.jp/steffen-plunder" target="_blank"><i class="fa-solid fa-map"></i> researchmap.jp</a>
+    <a href="https://www.researchgate.net/profile/Steffen-Plunder" target="_blank"><i class="ai ai-researchgate"></i> ResearchGate</a>
+    <a href="https://at.linkedin.com/in/steffen-plunder" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+  </div>
+</div>
+</div>
+</div>
+<h2 id="preprints" tabindex="-1">Preprints</h2>
+<ol start="13" reversed="reversed">
+<li>
+<p><a href="https://ashbi.kyoto-u.ac.jp/member/rio-tsutsumi/" target="_blank">R. Tsutsumi</a>, <a href="https://antoinediez.gitlab.io/" target="_blank">A. Diez</a>, S. Plunder, R. Kimura, S. Oki, K. Takizawa, H. Akiyama, <a href="https://sites.google.com/view/yusukemii/home" target="_blank">Y. Mii</a>, R. Takada, <a href="https://www.nibb.ac.jp/cib2/english.html" target="_blank">S. Takada</a>, <a href="https://www2.infront.kyoto-u.ac.jp/bs01/" target="_blank">Mototsugu Eiraku</a>, <em>Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids.</em> <strong>(2025)</strong> <a href="https://doi.org/10.1101/2025.08.31.673315" target="_blank">bioRxiv</a></p>
+</li>
+<li>
+<p>S. Plunder, <a href="https://sites.google.com/view/saramerinoaceituno" target="_blank">S. Merino-Aceituno</a>, <em>Convergence proof for first-order position-based dynamics: An efficient scheme for inequality constrained ODEs.</em> <strong>(2023)</strong> <a href="https://arxiv.org/abs/2310.01215" target="_blank">arxiv</a></p>
+</li>
+</ol>
+<h2 id="publications-(peer-reviewed)" tabindex="-1">Publications (peer-reviewed)</h2>
+<ol start="11" reversed="reversed">
+<li>
+<p><a href="https://sites.google.com/view/pamelaguruciaga/home" target="_blank">P. C. Guruciaga</a>, <a href="https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/" target="_blank">T. Ichikawa</a>, S. Plunder, <a href="https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/" target="_blank">T. Hiiragi</a>, <a href="https://www.embl.org/people/person/anna-erzberger/" target="_blank">A. Erzberger</a>, <em>Boundary geometry controls a topological defect transition that determines lumen nucleation in embryonic development</em> <strong>Nature Materials [accepted]</strong> <strong>(2026)</strong>  <a href="https://arxiv.org/abs/2403.08710" target="_blank">arxiv</a></p>
+</li>
+<li>
+<p><a href="https://ashbi.kyoto-u.ac.jp/member/takafumi-ichikawa/" target="_blank">T. Ichikawa</a>, <a href="https://sites.google.com/view/pamelaguruciaga/home" target="_blank">P. C. Guruciaga</a>, S. Hu, S. Plunder, M. Makino, M. Hamaji, A. Stokkermans, S. Yoshida, <a href="https://www.embl.org/people/person/anna-erzberger/" target="_blank">A. Erzberger</a>, <a href="https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/" target="_blank">T. Hiiragi</a>, <em>Boundary-guided cell alignment drives mouse epiblast maturation.</em> <strong>Nature Physics [accepted]</strong> <strong>(2026)</strong>  <a href="https://doi.org/10.1101/2025.04.28.650859" target="_blank">bioRxiv</a></p>
+</li>
+<li>
+<p><a href="https://sbcf.fr/en/member/marta-mira-osuna/" target="_blank">M. Mira Osuna</a>, S. Plunder, <a href="https://cbi-toulouse.fr/eng/equipe-theveneau" target="_blank">E. Theveneau</a>, <a href="https://igdr.univ-rennes.fr/en/roland-le-borgne" target="_blank">Roland Le Borgne</a>, <em>The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model.</em> <strong>iScience</strong> <strong>(2025)</strong>  <a href="https://doi.org/10.1016/j.isci.2025.113663" target="_blank">DOI: 10.1016/j.isci.2025.113663</a></p>
+</li>
+<li>
+<p><a href="https://sites.google.com/view/saramerinoaceituno" target="_blank">S. Merino-Aceituno</a>, S. Plunder, C. Wytrzens, <a href="https://sites.google.com/view/havvayoldas/home" target="_blank">H. Yoldaş</a>, <em>Macroscopic effects of an anisotropic Gaussian-type repulsive potential: nematic alignment and spatial effects.</em> <strong>Mathematical Models and Methods in Applied Sciences</strong> <strong>(2025)</strong>  <a href="https://doi.org/10.1142/S0218202525500356" target="_blank">DOI:10.1142/S0218202525500356</a>,  <a href="http://arxiv.org/abs/2410.06740" target="_blank">arxiv</a></p>
+</li>
+<li>
+<p>H. Jäger, <a href="https://grosjean1.github.io/" target="_blank">É. Grosjean</a>, S. Plunder, C. Redenbach, A. Keilmann, <a href="https://www.mathematik.uni-kl.de/en/das/people/head/simeon" target="_blank">B. Simeon</a>, C. Surulescu, <em>Cell seeding dynamics in a porous scaffold material designed for meniscus tissue regeneration.</em> <strong>Proceedings in Applied Mathematics &amp; Mechanics</strong> <strong>(2024)</strong>  <a href="http://doi.org/10.1002/pamm.202400133" target="_blank">DOI: 10.1002/pamm.202400133</a></p>
+</li>
+<li>
+<p>E. Despin-Guitard, V. S. Rosa, S. Plunder, N. Mathiah, K. Van Schoor, E. Nehme, S. Merino-Aceituno, J. Egea, M. N. Shahbazi, <a href="https://cbi-toulouse.fr/eng/equipe-theveneau" target="_blank">E. Theveneau</a>, <a href="https://iribhm.org/isabelle-migeotte/" target="_blank">I. Migeotte</a>, <em>Non-apical mitoses contribute to cell delamination during mouse gastrulation.</em> <strong>Nature Communications</strong> <strong>(2024)</strong>  <a href="https://doi.org/10.1038/s41467-024-51638-6" target="_blank">DOI:10.1038/s41467-024-51638-6</a></p>
+</li>
+<li>
+<p>S. Plunder, C. Danesin, B. Glise, <a href="https://marinaaferreira.com/" target="_blank">M. A. Ferreira</a>, <a href="https://sites.google.com/view/saramerinoaceituno" target="_blank">S. Merino-Aceituno</a>, <a href="https://cbi-toulouse.fr/eng/equipe-theveneau" target="_blank">E. Theveneau</a>, <em>Modelling variability and heterogeneity of EMT scenarios highlights nuclear positioning and protrusions as main drivers of extrusion.</em> <strong>Nature Communications</strong> <strong>(2024)</strong>  <a href="https://doi.org/10.1038/s41467-024-51372-z" target="_blank">DOI:10.1038/s41467-024-51372-z</a></p>
+</li>
+<li>
+<p>S. Plunder, M. Burkard, T. Helling, U. M. Lauer, L. E. Hoelzle, <a href="https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en" target="_blank">L. Marongiu</a>, <em>Determination of optimal phage load and administration time for antibacterial treatment.</em> <strong>Current Protocols</strong> <strong>(2024)</strong>  <a href="https://doi.org/10.1002/cpz1.954" target="_blank">DOI:10.1002/cpz1.954</a></p>
+</li>
+<li>
+<p>S. Plunder, <a href="https://www.mathematik.uni-kl.de/en/das/people/head/simeon" target="_blank">B. Simeon</a>, <em>The mean-field limit for particle systems with uniform full-rank constraints.</em> <strong>Kinetic and Related Models</strong> <strong>(2023)</strong>  <a href="https://www.aimsciences.org/article/doi/10.3934/krm.2023012" target="_blank">DOI:10.3934/krm.2023012</a>,  <a href="https://arxiv.org/abs/2203.07249" target="_blank">arxiv</a></p>
+</li>
+<li>
+<p>S. Plunder, M. Burkard, U. Lauer, S. Venturelli, <a href="https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en" target="_blank">L. Marongiu</a>, <em>Determination of phage load and administration time in simulated occurrences of antibacterial treatments.</em> <strong>Frontiers of Medicine</strong> <strong>(2022)</strong>  <a href="https://doi.org/10.3389/fmed.2022.1040457" target="_blank">DOI: 10.3389/fmed.2022.1040457</a></p>
+</li>
+<li>
+<p>S. Plunder, <a href="https://www.mathematik.uni-kl.de/en/das/people/head/simeon" target="_blank">B. Simeon</a>, <em>Coupled Systems of Linear Differential-Algebraic and Kinetic Equations with Application to the Mathematical Modelling of Muscle Tissue.</em> In: Reis, T., Grundel, S., Schöps, S. (eds) <strong>Progress in Differential-Algebraic Equations II. Differential-Algebraic Equations Forum. Springer</strong> <strong>(2020)</strong>  <a href="https://doi.org/10.1007/978-3-030-53905-4_12" target="_blank">DOI: 10.1007/978-3-030-53905-4_12</a>,  <a href="https://arxiv.org/abs/1911.05468" target="_blank">arxiv</a></p>
+</li>
+</ol>
+<h2 id="software-packages" tabindex="-1">Software packages</h2>
+<p><em>I am currently making various tools for <strong>agent-based modelling</strong> available as Julia packages.</em></p>
+<ul>
+<li><a href="https://github.com/SteffenPL/SpatialHashTables.jl" target="_blank">SpatialHashTables.jl</a>: A Julia package for spatial hashing of particles (in 2D and 3D). This allows fast collision detection even is unbounded domains.</li>
+<li><a href="https://github.com/SteffenPL/BoundedDegreeGraphs.jl" target="_blank">BoundedDegreeGraphs.jl</a>: A Julia package for graphs with bounded degree, with focus on allocation free operations commonly
+used in agent-based modelling.</li>
+</ul>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

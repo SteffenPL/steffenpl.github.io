@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="/assets/main.bundle.js" defer=""></script>
+  <script src="/assets/p5.min.js"></script>
+  <script src="/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Steffen Plunder | 🧮 On the road of clean parameter estimation</title>
+  <meta name="description" content="Steffen Plunder, personal webpage and blog about applied math, programming and more.🧮 On the road of clean parameter estimation">
+  <meta name="author" content="Steffen Plunder">
+  <meta name="keywords" content="mathematics, academic webpage, biomathematics, Julia programming">
+</head>
+<body class=" container max-w-4xl mx-auto min-h-screen bg-cover" style="background-image:url(/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex max-w-4xl justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/">
+          About me
+        </a>
+      
+        <a class="" href="/research/">
+          Research
+        </a>
+      
+        <a class="" href="/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/">
+        About me
+      </a>
+    
+      <a class="" href="/research/">
+        Research
+      </a>
+    
+      <a class="" href="/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4 ">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="%F0%9F%A7%AE-on-the-road-of-clean-parameter-estimation" tabindex="-1">🧮 On the road of clean parameter estimation</h1>
+<p>I recently gave a lecture on parameter estimation. While we covered some material and in the end people learned how to use Julia, it left me unsatisfied. In this and the following blog posts I want to document my journey in studying parameter estimation more deeply.</p>
+<h2 id="the-usual-approach" tabindex="-1">The usual approach</h2>
+<p>Modelling in biology often leads to models with some known parameters and many unknown factors. It has been like this for ages, and somehow people are able to still find good parameters.</p>
+<p>The automated techniques are quite established at this point:</p>
+<ol>
+<li>Implement your model to allow fast simulations and <strong>automatic differentiation</strong>.</li>
+<li>Pick either
+<ol>
+<li><strong>Optimisation-based parameter estimation</strong>,</li>
+<li><strong>Bayesian inference</strong>.</li>
+</ol>
+</li>
+<li>Define a <strong>cost function</strong>.</li>
+<li>Define <strong>bounds</strong> or <strong>prior distribtuions</strong> to your unknown parameters.</li>
+<li>Click optimize or infer and pray.</li>
+</ol>
+<p>There seem to be subtlties such as how to compute the derivatives (forward-sensitivities for small models or lazy people or adjoint-sensitivities for large problems), but the overall outline is faily simple.</p>
+<h2 id="the-usual-shortcoming%3A-easy-in-simple-cases%2C-hard-in-real-life%3F" tabindex="-1">The usual shortcoming: Easy in simple cases, hard in real life?</h2>
+<p>However, the practice of it seems much less satisfying. Many online tutorials take the Lotka-Volterra predetor-prey model as an example, where a simple cost function gives satisfying results:</p>
+<div class="drop-shadow-lg mx-auto">
+<p><img src="./1a2f3a4d3b777cb28b0e8b8b575ef0c800713364.gif" class="mx-auto" integrity="sha1-1a2f3a4d3b777cb28b0e8b8b575ef0c800713364"></p>
+</div>
+<div class="text-center text-sm">
+<p><em>Figure:</em> Example parameter fitting using an <eq><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>L</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">L^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord mathnormal">L</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></eq> error and a quasi-Newton (LBFGS) solver.</p>
+</div>
+<p>But this is just an ODE model with 4 parameters and 2 unknowns. It hardly represents any real setting.</p>
+<p>For example, in my current project with Seirin-Lee and Jinghao Chen, we face a model with 7 equations, over 20 unknowns and as little data as 4 time points with 6 values each.</p>
+<div class="drop-shadow-lg mx-auto">
+<p><img src="./6fc2b0ddd36b254d2533d37268b88ec0c6e6d386.png" class="mx-auto" integrity="sha1-6fc2b0ddd36b254d2533d37268b88ec0c6e6d386"></p>
+</div>
+<div class="text-center text-sm">
+<p><em>Figure:</em> Example of our simulations and some preliminary fitting.</p>
+</div>
+<p>Finding all parameters automatically was not possible so far, which makes me question if I really know the tools well?</p>
+<h2 id="next-steps%3A-never-stop-learning!" tabindex="-1">Next steps: Never stop learning!</h2>
+<p>To tackle this issue, I decided that I need to study more existing examples. Here is my reading list for the next weeks:</p>
+<ol>
+<li><a href="https://petab.readthedocs.io/en/latest/">PEtab – a data format for specifying parameter estimation problems in systems biology</a>
+<ul>
+<li>It seems great that this initiative exists to exchange tools and techniques. See also <a href="https://github.com/sebapersson/PEtab.jl">PEtab.jl</a>.</li>
+</ul>
+</li>
+<li><a href="https://github.com/Benchmarking-Initiative/Benchmark-Models-PEtab">Benchmarking-Initiative/Benchmark-Models-PEtab</a>
+<ul>
+<li>This is the first resource I found with extensive and non-trivial fitting benchmarks! I should train with these models.</li>
+</ul>
+</li>
+<li><a href="https://github.com/SciML/SBMLToolkit.jl">SMBLToolkit.jl</a>
+<ul>
+<li>Always good to know how to load other people's models.</li>
+</ul>
+</li>
+</ol>
+<p>I hope that this study will help me to improve my lecture material: <a href="/lectures/param-est-2024">Parameter Estimation for Differential Equations with Julia</a>! 🚧</p>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

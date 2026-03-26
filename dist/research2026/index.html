@@ -1,0 +1,147 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="/assets/main.bundle.js" defer=""></script>
+  <script src="/assets/p5.min.js"></script>
+  <script src="/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Steffen Plunder | Retreat 2026 - Limb Development Simulations</title>
+  <meta name="description" content="Steffen Plunder, personal webpage and blog about applied math, programming and more.Retreat 2026 - Limb Development Simulations">
+  <meta name="author" content="Steffen Plunder">
+  <meta name="keywords" content="mathematics, academic webpage, biomathematics, Julia programming">
+</head>
+<body class=" container max-w-4xl mx-auto min-h-screen bg-cover" style="background-image:url(/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex max-w-4xl justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/">
+          About me
+        </a>
+      
+        <a class="" href="/research/">
+          Research
+        </a>
+      
+        <a class="" href="/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/">
+        About me
+      </a>
+    
+      <a class="" href="/research/">
+        Research
+      </a>
+    
+      <a class="" href="/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4 ">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="simulations-of-digit-organoids" tabindex="-1">Simulations of Digit Organoids</h1>
+<h2 id="overview" tabindex="-1">Overview</h2>
+<p>Below are three cases showing the different requirements for digit growth:</p>
+<ol>
+<li>Clustering: distal cell-cell adhesion is strongest, leading to engulfment</li>
+<li>FGF-driven chemotaxis: by combining preferential cell-cell adhesion with FGF-driven migration, we get clusters on the boundary</li>
+<li>WNT-driven convergent-extension: proximal-distal interface creates a WNT-gradient, which facilitates convergent extension</li>
+</ol>
+<hr>
+<div class="space-y-12 my-8">
+<div>
+<h2 id="step-1%3A-differential-adhesion" tabindex="-1">Step 1: Differential adhesion</h2>
+<p>Unsurprisingly, the distal cells with strongest adhesion cluster in the center.</p>
+<div class="my-4">
+  <video autoplay="" loop="" muted="" playsinline="" class="w-full rounded">
+    <source src="/assets/limb/movie_case1_alpha1_eta1_fgf.mp4" type="video/mp4">
+  </video>
+</div>
+</div>
+<div>
+<h2 id="step-2%3A-differential-adhesion-%2B-fgf-driven-chemotaxis" tabindex="-1">Step 2: Differential adhesion + FGF-driven chemotaxis</h2>
+<p>Chemotaxis explains the location of digits, but differential adhesion alone is not sufficient to drive elongation.</p>
+<div class="my-4">
+  <video autoplay="" loop="" muted="" playsinline="" class="w-full rounded">
+    <source src="/assets/limb/movie_case2_alpha1_eta3_fgf.mp4" type="video/mp4">
+  </video>
+</div>
+</div>
+<div>
+<h2 id="step-3%3A-wnt-driven-convergent-extension" tabindex="-1">Step 3: WNT-driven convergent-extension</h2>
+<p>Distal cells secrete WNT, which creates a gradient that facilitates elongation.</p>
+<div class="my-4">
+  <video autoplay="" loop="" muted="" playsinline="" class="w-full rounded">
+    <source src="/assets/limb/movie_case3_alpha1_eta3_fgf+wnt.mp4" type="video/mp4">
+  </video>
+</div>
+</div>
+</div>
+<h2 id="variations" tabindex="-1">Variations</h2>
+<p>Variations of number of cells and cell type ratio match with organoid experiments, showing that the model captures several cases of the organoid.</p>
+<div class="space-y-4 my-4">
+  <img src="./3ec0fb8deca9a3d1dfed602454665a5b82f86def.png" alt="Variations in cell numbers" class="w-full rounded" integrity="sha1-3ec0fb8deca9a3d1dfed602454665a5b82f86def">
+  <img src="./829fbd0e3789e1fefa20480d7834c5fe9728f557.png" alt="Variations in cell type ratio" class="w-full rounded" integrity="sha1-829fbd0e3789e1fefa20480d7834c5fe9728f557">
+</div>
+<hr>
+<h2 id="conclusions" tabindex="-1">Conclusions</h2>
+<p>The combination of these three mechanisms explains the digit organoid behavior, showing a pathway of digit formation which is not chemical dominated, but instead based on a hybrid mechano-chemical model.</p>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="/assets/main.bundle.js" defer=""></script>
+  <script src="/assets/p5.min.js"></script>
+  <script src="/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Steffen Plunder | 🦙 How to chat with LLama3</title>
+  <meta name="description" content="Steffen Plunder, personal webpage and blog about applied math, programming and more.🦙 How to chat with LLama3">
+  <meta name="author" content="Steffen Plunder">
+  <meta name="keywords" content="mathematics, academic webpage, biomathematics, Julia programming">
+</head>
+<body class=" container max-w-4xl mx-auto min-h-screen bg-cover" style="background-image:url(/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex max-w-4xl justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/">
+          About me
+        </a>
+      
+        <a class="" href="/research/">
+          Research
+        </a>
+      
+        <a class="" href="/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/">
+        About me
+      </a>
+    
+      <a class="" href="/research/">
+        Research
+      </a>
+    
+      <a class="" href="/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4 ">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="%F0%9F%A6%99-how-to-chat-with-llama3" tabindex="-1">🦙 How to chat with LLama3</h1>
+<p>We all know about the potential of AI/LLMs right now.</p>
+<p>Thanks to LLama3, there is now a quite powerful option for <strong>local</strong> use.</p>
+<p>It is mind-blowing how much knowledge fits into just 5 GB.</p>
+<p>That's why I wrote this short post of how to install it, so that you can try it out yourself. (Provided your computer has a sufficiently large GPU.)</p>
+<h2 id="installation" tabindex="-1">Installation</h2>
+<ol>
+<li>
+<p>Download and install <code>Ollama</code> from <a href="https://ollama.com/download">ollama.com/download</a>.</p>
+</li>
+<li>
+<p>Open a terminal and type:</p>
+<pre><code>ollama run llama3
+</code></pre>
+</li>
+<li>
+<p>Now you can chat in the terminal. 🎉</p>
+</li>
+</ol>
+<p><img src="./14c221d6c7c38337fc8320c3a1e30bb75560f319.png" alt="" integrity="sha1-14c221d6c7c38337fc8320c3a1e30bb75560f319"></p>
+<h2 id="adding-a-user-interface" tabindex="-1">Adding a user interface</h2>
+<ol start="4">
+<li>Try AnythingLLM, which can be downloaded here: <a href="https://useanything.com/">useanything.com</a></li>
+<li>Run the command<pre><code>OLLAMA_HOST=127.0.0.1:11434 ollama serve
+</code></pre>
+<em>(if the port <code>11434</code> is not free, change it to another number).</em></li>
+<li>At startup, select:
+<ol>
+<li>LLM Provider: <code>Ollama</code></li>
+<li>Ollama Base URL: <code>http://127.0.0.1:11434</code> (use same number as before)</li>
+<li>Chat Model Selection: <code>llama3:latest</code></li>
+<li>Token context windows: <code>4096</code> (or smaller)</li>
+<li>Select <code>AnythingLLM Built-In</code> for Transcription Provider and Embedder Preferences.</li>
+</ol>
+</li>
+<li>Chat. 💁</li>
+</ol>
+<p><img src="./b70b4a8a7347cc27836ae689467677005447d9f6.png" alt="" integrity="sha1-b70b4a8a7347cc27836ae689467677005447d9f6"></p>
+<h2 id="integration-with-obsidian" tabindex="-1">Integration with Obsidian</h2>
+<ol start="8">
+<li>Install the community plugin <code>Smart Second Brain</code>
+<ol>
+<li>Select <code>llama3</code> as Chat Model in the plugin configuration:
+<img src="./8f9ced18dc733e9c16b206d2ce827faa34713789.png" alt="" integrity="sha1-8f9ced18dc733e9c16b206d2ce827faa34713789"></li>
+<li>Run<pre><code>OLLAMA_HOST=127.0.0.1:11434 OLLAMA_ORIGINS="app://obsidian.md*" ollama serve
+</code></pre>
+to start the ollama server.
+<em>(The port <code>11434</code> might be used, try another port in that case and change the plugin settings accordingly!)</em></li>
+<li>In Obsidian, run the command <code>Smart Second Brain: Open Chat</code>.</li>
+<li>At first install, it will ask you questions. Pick: <code>llama3</code>, the right port (as above) and <code>nomic-embed-text</code>.</li>
+</ol>
+</li>
+<li>Chat with your notes. 📚</li>
+</ol>
+<p><img src="./17f09e3e14dafc589e09bd1462514b5adef6a5b4.png" alt="" integrity="sha1-17f09e3e14dafc589e09bd1462514b5adef6a5b4">
+<em>Example of using Smart Second Brain on my notes. It is a bit hit &amp; miss to be honest. One can play with the creativity/similarity sliders to get better results. But the output is often just wrong. 🙅‍♀️</em></p>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

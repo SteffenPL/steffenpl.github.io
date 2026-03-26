@@ -27,6 +27,18 @@ theses:
         url: "/theses/plunder_bachelor_thesis.pdf"
 
 preprints:
+  - slug: balde_2026_arxiv
+    title: "A new comparison principle for discrete Volterra equations with an application to convex sweeping processes with infinite delays."
+    year: "(2026)"
+    authors:
+      - name: "T. M. Baldé"
+      - name: "V. Milisic"
+        url: "https://www.math.univ-paris13.fr/~milisic/"
+      - name: "S. Plunder"
+    links:
+      - name: "arxiv"
+        url: "https://arxiv.org/abs/2603.20089"
+
   - slug: tsutsumi_2025_biorxiv
     title: "Self-organized fingering instabilities drive the emergence of tissue morphogenesis in digit organoids."
     year: "(2025)"

@@ -1,0 +1,313 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+
+  <script src="/assets/main.bundle.js" defer=""></script>
+  <script src="/assets/p5.min.js"></script>
+  <script src="/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Steffen Plunder | Scientific activities</title>
+  <meta name="description" content="Steffen Plunder, personal webpage and blog about applied math, programming and more.Scientific activities">
+  <meta name="author" content="Steffen Plunder">
+  <meta name="keywords" content="mathematics, academic webpage, biomathematics, Julia programming">
+</head>
+<body class=" container max-w-4xl mx-auto min-h-screen bg-cover" style="background-image:url(/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex max-w-4xl justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/">
+          About me
+        </a>
+      
+        <a class="" href="/research/">
+          Research
+        </a>
+      
+        <a class="" href="/publications/">
+          Publications
+        </a>
+      
+        <a class="font-black" href="/activities/">
+          Talks &amp; Activities
+        </a>
+      
+        <a class="" href="/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/">
+        About me
+      </a>
+    
+      <a class="" href="/research/">
+        Research
+      </a>
+    
+      <a class="" href="/publications/">
+        Publications
+      </a>
+    
+      <a class="font-black" href="/activities/">
+        Talks &amp; Activities
+      </a>
+    
+      <a class="" href="/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4 ">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="scientific-activities" tabindex="-1">Scientific activities</h1>
+<h2 id="talks-and-slides" tabindex="-1">Talks and slides</h2>
+<!-- | 01/2023 | [PhD Defence]() | Vienna | -->
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>09/2025</td>
+<td>Modeling the Directionality of Cell Migration in Epithelial-to-Mesenchymal Transitions with Non-Smooth Dynamical Systems</td>
+<td><a href="https://ncts.ntu.edu.tw/events_1_detail.php?nid=2964" target="_blank">NCTS Webinar on Nonlinear Evolutionary Dynamics</a></td>
+</tr>
+<tr>
+<td>07/2025</td>
+<td><a href="/slides/2025/07-08-ACMBJSMB/index.html#/0/0/0" target="_blank">Position-based Dynamics for Multicellular Systems with Adhesion Memory</a></td>
+<td>ACMB-JSMB 2025 (Kyoto)</td>
+</tr>
+<tr>
+<td>01/2025</td>
+<td><a href="https://ashbi.kyoto-u.ac.jp/ja/event/event-retreat/2226/" target="_blank">Emergence of digit-like structures through mechanical instabilities: A hybrid computational and experimental study</a></td>
+<td>ASHBi Retreat 2025 (Shiga)</td>
+</tr>
+<tr>
+<td>09/2024</td>
+<td><a href="/slides/2024/09-19-Lab-Summer-Conference/gauss_seidel_principle.html#/0/0/0" target="_blank">200 years old and still relevant: The Gauss-Seidel principle</a></td>
+<td>Lab Summer Conference 2024 (Kyoto)</td>
+</tr>
+<tr>
+<td>09/2024</td>
+<td><a href="/slides/2024/10-03-ASHBi-KAIST/ashbi_kaist.html#/0/0/0" target="_blank">Modelling heterogeneity of EMT to identify main drivers of basal extrusion</a></td>
+<td>The 1st ASHBi-KAIST Joint Workshop (Kyoto)</td>
+</tr>
+<tr>
+<td>07/2024</td>
+<td><a href="/slides/2024/07-24-ESMTB/esmtb_2024.html#/0/0/0" target="_blank">Agent-based modelling of heterogeneous EMT scenarios</a></td>
+<td>Annual Meeting ESMTB (Toledo)</td>
+</tr>
+<tr>
+<td>07/2024</td>
+<td>A live coding music performance with Julia (<a href="https://youtu.be/k-WUQFxWNj0?feature=shared" target="_blank">Video</a>)</td>
+<td>JuliaCon 2024 (Eindhoven)</td>
+</tr>
+<tr>
+<td>07/2024</td>
+<td><a href="/slides/2024/07-12-JuliaCon/juliacon_abm.html#/0/0/0" target="_blank">Tools for agent-based modelling in developmental biology</a> (<a href="https://youtu.be/V3bc3_d9TIM?feature=shared" target="_blank">Video</a>)</td>
+<td>JuliaCon 2024 (Eindhoven)</td>
+</tr>
+<tr>
+<td>07/2024</td>
+<td>Position-based dynamics as a numerical tool for agent-based cell migration models of dense populations</td>
+<td>KSMB-SMB 2024 (SEOUL)</td>
+</tr>
+<tr>
+<td>03/2024</td>
+<td><a href="/slides/2024/03-22-Vienna/slides_vienna.html#/0/0/0" target="_blank">Position-based dynamics: Convergence theory andapplications to agent-based models</a></td>
+<td>PDE seminar (Vienna)</td>
+</tr>
+<tr>
+<td>03/2024</td>
+<td><a href="/slides/2024/03-08-Kinetic-theory-mucles/kinetic_theory.pdf" target="_blank">Towards kinetic theory for multi-scale muscle models</a></td>
+<td>Inria (Paris)</td>
+</tr>
+<tr>
+<td>08/2023</td>
+<td><a href="/slides/2023/08-22-ICIAM/iciam.html#/0/0/0" target="_blank">Convergence of position based dynamics for first-order particle systems with volume exclusion</a></td>
+<td>ICIAM 2023 (Tokyo)</td>
+</tr>
+<tr>
+<td>12/2022</td>
+<td><a href="/slides/Testing_in_scientific_programming.pdf" target="_blank">Testing in scientific computing</a></td>
+<td>Vienna</td>
+</tr>
+<tr>
+<td>12/2022</td>
+<td><a href="/slides/A_short_introduction_to_git.pdf" target="_blank">A short introduction to git</a></td>
+<td>Vienna</td>
+</tr>
+<tr>
+<td>11/2021</td>
+<td><a href="/slides/pde_afternoon_2021_pbd.pdf" target="_blank">Position-based dynamics for ODEs with inequality constraints</a></td>
+<td>PDE afternoon (Vienna)</td>
+</tr>
+<tr>
+<td>05/2020</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2020/partially_kinetic_systems/index.html" target="_blank">Partially kinetic systems (aka 'particles on rails')</a></td>
+<td>Kinetic Theory Coffee Break (online)</td>
+</tr>
+<tr>
+<td>06/2019</td>
+<td><a href="/slides/feec_short.pdf" target="_blank">Short introduction to finite element exterior calculus</a></td>
+<td>PhD seminar (Kaiserslautern)</td>
+</tr>
+<tr>
+<td>03/2019</td>
+<td><a href="/slides/descriptor_talk_march.pdf" target="_blank">Partially mesoscopic and Lagrangian systems</a></td>
+<td>DESCRIPTOR (Paderborn)</td>
+</tr>
+<tr>
+<td>02/2019</td>
+<td><a href="/slides/muscles_outlook.pdf" target="_blank">Lagrangian perspective on skeletal muscle models</a></td>
+<td>GAMM, 90th Annual Meeting (Vienna)</td>
+</tr>
+<tr>
+<td>10/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis_short/index.html" target="_blank">Fiber based muscle simulation (master's thesis)</a></td>
+<td>Hausdorff Center of Mathematics (Bonn)</td>
+</tr>
+<tr>
+<td>07/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/student_talk/index.html" target="_blank">Tangent spaces</a></td>
+<td>Student-Talk (Kaiserslautern)</td>
+</tr>
+<tr>
+<td>06/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/master_thesis/index.html#/" target="_blank">Simulation of skeletal muscle tissue with fiber-based dynamics</a></td>
+<td>Applied Math Seminar (Kaiserslautern)</td>
+</tr>
+<tr>
+<td>05/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/param_id_in_ode/index.html" target="_blank">Parameter identification in ODE models</a></td>
+<td>The University of Auckland</td>
+</tr>
+<tr>
+<td>04/2018</td>
+<td><a href="https://steffenpl.github.io/MyPaintEdSlidesExamples/talks/2018/symplectic_methods/index.html#/" target="_blank">Symplectic numerical integration</a></td>
+<td>PhD seminar (Auckland)</td>
+</tr>
+<tr>
+<td>09/2017</td>
+<td><a href="/slides/molecular_dynamics.pdf" target="_blank">Symplectic molecular dynamics</a></td>
+<td>19th ÖMG Meeting and Annual DMV Meeting (Salzburg)</td>
+</tr>
+<tr>
+<td>01/2017</td>
+<td>Optimization of B-Spline Parametrizations using G+SMo and IPOPT</td>
+<td>G+SMo Developer Days (TU Delft)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="organisation" tabindex="-1">Organisation</h2>
+<p><em>I organised (together with others) various events during my time as speaker of the <a href="https://vsmath.at">Vienna School of Mathematics (VSM)</a> and earlier as member of the <a href="https://www.mathematik.uni-kl.de/fachschaft-mathematik">student council at TU Kaiserslautern</a>.</em></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2023</td>
+<td><a href="https://sites.google.com/kyoto-u.ac.jp/dev-across-scales-2023/home">Workshop: Development across Scale 2023</a> (two days)</td>
+<td></td>
+</tr>
+<tr>
+<td>2022</td>
+<td><a href="https://hackmd.io/@vsm/string-theory">VSM Mini-Course on String Theory by Pavel Safronov</a> (one week)</td>
+<td></td>
+</tr>
+<tr>
+<td>2021</td>
+<td><a href="https://ps-mathematik.univie.ac.at/e/index.php?event=VSM-WS2021">VSM workshop: A PhD in mathematics – career possibilities &amp; gender aspects</a> (one day)</td>
+<td></td>
+</tr>
+<tr>
+<td>2017 – 2019</td>
+<td>Student Talks (initiator of series of extracurricular talks at TU Kaiserslautern)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="software-packages" tabindex="-1">Software packages</h2>
+<p><em>I am currently making various tools for <strong>agent-based modelling</strong> available as Julia packages.</em></p>
+<ul>
+<li><a href="https://github.com/SteffenPL/SpatialHashTables.jl" target="_blank">SpatialHashTables.jl</a>: A Julia package for spatial hashing of particles (in 2D and 3D). This allows fast collision detection even is unbounded domains.</li>
+<li><a href="https://github.com/SteffenPL/BoundedDegreeGraphs.jl" target="_blank">BoundedDegreeGraphs.jl</a>: A Julia package for graphs with bounded degree, with focus on allocation free operations commonly
+used in agent-based modelling.</li>
+</ul>
+<h2 id="outreach" tabindex="-1">Outreach</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>22/5/2022</td>
+<td>Lange Nacht der Wissenschaft (long night of science)</td>
+<td>Vienna</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<div class="drop-shadow-xl  mb-8">
+<img src="./4ee560011d92f31b4858db062c0bf75a9801e805.jpg" class="mb-0 rounded-t" integrity="sha1-4ee560011d92f31b4858db062c0bf75a9801e805">
+<div class="text-center bg-slate-300 pt-2 pb-2 rounded-b">
+Me during my talk about “studying mathematics at TU Kaiserslautern” on the graduation ceremony 2019.
+</div></div>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>

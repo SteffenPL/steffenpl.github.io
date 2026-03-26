@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/assets/main.bundle.css">
+  <link rel="stylesheet" href="/assets/prism.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <script src="/assets/main.bundle.js" defer=""></script>
+  <script src="/assets/p5.min.js"></script>
+  <script src="/assets/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+  
+
+  <title>Steffen Plunder | 🔌 My favourite Claude Code skills &amp; MCPs</title>
+  <meta name="description" content="Steffen Plunder, personal webpage and blog about applied math, programming and more.🔌 My favourite Claude Code skills &amp; MCPs">
+  <meta name="author" content="Steffen Plunder">
+  <meta name="keywords" content="mathematics, academic webpage, biomathematics, Julia programming">
+</head>
+<body class=" container max-w-4xl mx-auto min-h-screen bg-cover" style="background-image:url(/assets/trees.jpg)">
+      <div class="max-w-4xl bg-white mx-auto min-h-screen">
+      <nav class="py-4 px-4 md:px-8 xl:px-12" x-data="">
+  <div class="container mx-auto flex max-w-4xl justify-between border-b-2 p-2 border-lime-600">
+    <a class="font-bold" href="/">
+      Steffen Plunder
+    </a>
+    
+    <div class="hidden md:flex items-center gap-8">
+      
+        <a class="" href="/">
+          About me
+        </a>
+      
+        <a class="" href="/research/">
+          Research
+        </a>
+      
+        <a class="" href="/publications/">
+          Publications
+        </a>
+      
+        <a class="" href="/cv/">
+          CV
+        </a>
+      
+        <a class="" href="/blog/">
+          Blog
+        </a>
+      
+    </div>
+    <button class="md:hidden" @click="$store.nav.toggle()">
+      <svg x-show="!$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+      </svg>
+      <svg x-show="$store.nav.isOpen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <nav class="container mt-8 flex flex-col gap-3 md:hidden" x-cloak="" x-show="$store.nav.isOpen">
+    
+      <a class="" href="/">
+        About me
+      </a>
+    
+      <a class="" href="/research/">
+        Research
+      </a>
+    
+      <a class="" href="/publications/">
+        Publications
+      </a>
+    
+      <a class="" href="/cv/">
+        CV
+      </a>
+    
+      <a class="" href="/blog/">
+        Blog
+      </a>
+    
+  </nav>
+</nav>
+
+
+      <div class="max-w-4xl container py-4 pb-8 px-4 ">
+      
+  <div class="container prose mx-auto md:max-w-2xl prose-li:m-0">
+    <h1 id="%F0%9F%94%8C-my-favourite-claude-code-skills-%26-mcps" tabindex="-1">🔌 My favourite Claude Code skills &amp; MCPs</h1>
+<p>I use Claude Code a lot for coding and research tasks.
+One of its strengths is that you can extend it with <strong>Skills</strong> and <strong>MCPs</strong> (Model Context Protocol servers).</p>
+<p>Skills are modular instructions that Claude loads on-demand when relevant. MCPs are small servers/programs that give Claude access to external tools and data. Both are installed via the CLI.</p>
+<p>I recommend scrolling through the curated list at <a href="https://claude.com/plugins#plugins">claude.com/plugins</a> to find what is useful for you.</p>
+<p><img src="./fa5df84122407b45f3a604f4140e013391f224ab.png" alt="The Claude Code plugins directory" integrity="sha1-fa5df84122407b45f3a604f4140e013391f224ab"></p>
+<p>Below are my personal recommendations.</p>
+<h2 id="superpowers" tabindex="-1">Superpowers</h2>
+<p>This is a skill pack that adds structured workflows for brainstorming, debugging, TDD, and code review. It sounds fancy but the practical effect is simple: Claude follows more disciplined processes instead of jumping straight into coding.</p>
+<p>I find it especially useful for <strong>brainstorming</strong> before implementing a feature, and for the <strong>debugging</strong> workflow which forces Claude to actually investigate before proposing fixes.</p>
+<pre class="language-bash"><code class="language-bash">claude install-skill https://claude.com/plugins/superpowers
+</code></pre>
+<p>Some of the <code>/commands</code> it adds:</p>
+<ul>
+<li><code>/brainstorm</code> -- explore requirements and design before writing code</li>
+<li><code>/debug</code> -- systematic root cause analysis instead of guessing</li>
+<li><code>/tdd</code> -- test-driven development workflow</li>
+<li><code>/review</code> -- code review with confidence-based filtering</li>
+<li><code>/simplify</code> -- review changed code for reuse and quality</li>
+</ul>
+<p>Here is an example of the brainstorming workflow:</p>
+<p><img src="./cf642a4931f652fce8fb9c46fe0e4cbeaab07ea9.png" alt="Example of the Superpowers brainstorming workflow" integrity="sha1-cf642a4931f652fce8fb9c46fe0e4cbeaab07ea9"></p>
+<h2 id="context7" tabindex="-1">Context7</h2>
+<p>An MCP that pulls up-to-date library documentation directly into context. Instead of Claude hallucinating APIs from its training data, it fetches the current docs.</p>
+<p>Very useful when working with libraries that update frequently.</p>
+<pre class="language-bash"><code class="language-bash">claude mcp <span class="token function">add</span> context7 -- npx <span class="token parameter variable">-y</span> @upstash/context7-mcp@latest
+</code></pre>
+<h2 id="explanatory-output-style" tabindex="-1">Explanatory Output Style</h2>
+<p>A lightweight skill that makes Claude add brief educational insights about your codebase as it works. It highlights implementation patterns and design choices specific to your project.</p>
+<p>Good for learning a new codebase or when onboarding collaborators.</p>
+<pre class="language-bash"><code class="language-bash">claude install-skill https://claude.com/plugins/explanatory-output-style
+</code></pre>
+<p>Here is an example of the output style in a rather technical project of mine:</p>
+<p><img src="./4a804bc16a22f6b4a18fc289df01cdc2a424d930.png" alt="Example of the Explanatory Output Style in action" integrity="sha1-4a804bc16a22f6b4a18fc289df01cdc2a424d930"></p>
+<h2 id="where-to-find-more" tabindex="-1">Where to find more</h2>
+<p>Browse the curated directory at <a href="https://claude.com/plugins#plugins">claude.com/plugins</a> for more skills and MCPs. A few other popular ones worth checking out: <strong>Frontend Design</strong>, <strong>Feature Dev</strong>, and the <strong>GitHub</strong> MCP.</p>
+<p>For background on how skills work (the three-level loading mechanism is quite elegant), see the <a href="https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview">official docs</a>.</p>
+
+  </div>
+
+      </div>
+      </div>
+
+
+
+</body></html>
