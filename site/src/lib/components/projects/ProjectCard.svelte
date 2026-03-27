@@ -218,7 +218,6 @@
     background: var(--bg-card);
     border: 1px solid var(--bg-card-border);
     border-radius: 12px;
-    backdrop-filter: blur(16px);
     box-shadow: var(--shadow-card);
     display: flex;
     gap: 0.85rem;
