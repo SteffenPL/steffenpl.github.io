@@ -7,6 +7,7 @@ research:
     status: published
     year: "2023"
     end: "2026"
+    github_stars: 0
     publications: [guruciaga_2026_natmat, ichikawa_2026_natphys]
     repos:
       - label: EpiblastOrientationMaps
@@ -35,6 +36,7 @@ research:
     status: published
     year: "2019"
     end: "2024"
+    github_stars: 0
     publications: [plunder_2024_natcomms, despin_2024_natcomms, mira_2025_iscience]
     repos:
       - label: sEMTor.jl
@@ -56,31 +58,31 @@ research:
     links: []
     blogs: []
 
-  - slug: germinal-centers
-    title: "Germinal center morphology"
-    desc: "Modelling growth and shape of germinal centers in the immune system."
-    image: /images/projects/gc.png
-    tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
-    status: ideas
-    year: "2023"
-    publications: []
-    repos: []
-    links: []
-    blogs: []
+  # - slug: germinal-centers
+  #   title: "Germinal center morphology"
+  #   desc: "Modelling growth and shape of germinal centers in the immune system."
+  #   image: /images/projects/gc.png
+  #   tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
+  #   status: ideas
+  #   year: "2023"
+  #   publications: []
+  #   repos: []
+  #   links: []
+  #   blogs: []
 
-  - slug: tlt-model
-    title: "Tertiary lymphoid tissue modelling"
-    desc: "Agent-based simulation of tertiary lymphoid structure formation."
-    image: /images/projects/tlt-model.svg
-    tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
-    status: ideas
-    year: "2024"
-    publications: []
-    repos:
-      - label: TLT-model
-        url: https://github.com/SteffenPL/TLT-model
-    links: []
-    blogs: []
+  # - slug: tlt-model
+  #   title: "Tertiary lymphoid tissue modelling"
+  #   desc: "Agent-based simulation of tertiary lymphoid structure formation."
+  #   image: /images/projects/tlt-model.svg
+  #   tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
+  #   status: ideas
+  #   year: "2024"
+  #   publications: []
+  #   repos:
+  #     - label: TLT-model
+  #       url: https://github.com/SteffenPL/TLT-model
+  #   links: []
+  #   blogs: []
 
   - slug: eht-model
     title: "Endothelial-to-hematopoietic transition"
@@ -89,6 +91,7 @@ research:
     tags: [Julia, Agent-based models, Developmental Biology]
     status: current
     year: "2024"
+    github_stars: 0
     publications: []
     repos:
       - label: EHT
@@ -103,6 +106,7 @@ research:
     tags: [Julia, Particle simulations, Numerical analysis, Constrained dynamics]
     status: current
     year: "2020"
+    github_stars: 2
     publications: [plunder_2023_arxiv_pbd]
     # repos:
     #   - label: PBD_publication
@@ -125,8 +129,9 @@ research:
     status: published
     year: "2023"
     end: "2025"
+    github_stars: 0
     publications: [merino_2025_m3as]
-    repos: 
+    repos:
       - label: AnisotropicParticles
         url: https://github.com/cwytrzens/anisotropic_particles
     links: []
@@ -153,6 +158,7 @@ coding:
     tags: [Julia, GPU Programming, Performance, Particle simulations]
     status: active
     year: "2022"
+    github_stars: 14
     publications: []
     repos:
       - label: GitHub
@@ -167,6 +173,7 @@ coding:
     tags: [Julia, GPU Programming, Performance, Graphs]
     status: active
     year: "2023"
+    github_stars: 8
     publications: []
     repos:
       - label: GitHub
@@ -181,6 +188,7 @@ coding:
     tags: [Julia, C++, Music, Scientific Communication]
     status: active
     year: "2024"
+    github_stars: 8
     publications: []
     repos:
       - label: GitHub
@@ -195,6 +203,7 @@ coding:
     tags: [JavaScript/TypeScript, Cancer biology, Cell migration]
     status: completed
     year: "2022"
+    github_stars: 0
     publications: [plunder_2024_natcomms]
     repos:
       - label: GitHub
@@ -211,6 +220,7 @@ coding:
     tags: [Python, Scientific Communication]
     status: completed
     year: "2021"
+    github_stars: 5
     publications: []
     repos:
       - label: GitHub
@@ -225,6 +235,7 @@ coding:
     tags: [Julia, ODE, Constrained dynamics]
     status: completed
     year: "2021"
+    github_stars: 2
     publications: []
     repos:
       - label: GitHub
@@ -245,7 +256,7 @@ coding:
     #     url: https://github.com/SteffenPL/delayed-sweeping
     #   - label: DelayedPBD
     #     url: https://github.com/SteffenPL/DelayedPBD
-    links: 
+    links:
       - label: Live demo
         url: https://steffenpl.github.io/delayed-sweeping/
     blogs: []

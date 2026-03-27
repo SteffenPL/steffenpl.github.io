@@ -46,6 +46,7 @@
   );
 
   const hasCodeLinks = $derived((project.repos?.length || 0) > 0 || (project.blogs?.length || 0) > 0 || (project.links?.length || 0) > 0);
+  const showStars = $derived((project.github_stars ?? 0) > 3);
 </script>
 
 {#if compact}
@@ -60,7 +61,12 @@
       {/if}
     </div>
     <div class="compact-body">
-      <h3 class="compact-title">{project.title}</h3>
+      <div class="compact-title-row">
+        <h3 class="compact-title">{project.title}</h3>
+        {#if showStars}
+          <span class="stars-badge">★ {project.github_stars}</span>
+        {/if}
+      </div>
       <p class="compact-desc">{project.desc}</p>
       <div class="compact-tags">
         {#each project.tags.slice(0, 3) as tag}
@@ -106,6 +112,9 @@
     <div class="full-body">
       <div class="full-header">
         <h3 class="full-title">{project.title}</h3>
+        {#if showStars}
+          <span class="stars-badge">★ {project.github_stars}</span>
+        {/if}
         <span class="full-year">{project.year}{project.end ? `–${project.end}` : ''}</span>
       </div>
       <p class="full-desc">{project.desc}</p>
@@ -379,6 +388,31 @@
     display: flex;
     flex-wrap: wrap;
     gap: 0.3rem;
+  }
+
+  /* ─── Stars Badge ─── */
+  .compact-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .stars-badge {
+    font-size: 0.62rem;
+    font-weight: 600;
+    font-family: var(--font-display);
+    color: var(--accent-secondary);
+    background: rgba(163, 230, 53, 0.08);
+    border: 1px solid rgba(163, 230, 53, 0.2);
+    border-radius: 999px;
+    padding: 0.1rem 0.45rem;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+  :global([data-theme='light']) .stars-badge {
+    background: rgba(90, 154, 13, 0.08);
+    border-color: rgba(90, 154, 13, 0.2);
   }
 
   /* ─── Responsive ─── */

@@ -11,7 +11,11 @@
     .map((slug: string) => projects.research.find((p: any) => p.slug === slug))
     .filter(Boolean)
     .map((p: any) => ({ ...p, type: 'research' }));
-  const featuredCoding = projects.coding.slice(0, 3).map((p: any) => ({ ...p, type: 'coding' }));
+  const featuredCodingSlugs = ['spatial-hash-tables', 'bounded-degree-graphs', 'portmidi', 'ink-reveal'];
+  const featuredCoding = featuredCodingSlugs
+    .map((slug: string) => projects.coding.find((p: any) => p.slug === slug))
+    .filter(Boolean)
+    .map((p: any) => ({ ...p, type: 'coding' }));
 </script>
 
 <svelte:head>

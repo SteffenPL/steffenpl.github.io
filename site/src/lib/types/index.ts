@@ -12,6 +12,7 @@ export interface Project {
 	year: string;
 	end?: string;
 	publications: string[];
+	github_stars?: number;
 	repos: { label: string; url: string }[];
 	links: { label: string; url: string }[];
 	blogs: string[];

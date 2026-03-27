@@ -1,44 +1,110 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f97316" stop-opacity="0.15"/>
-      <stop offset="100%" stop-color="#a3e635" stop-opacity="0.15"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="400"
+   height="400"
+   viewBox="0 0 400 400"
+   version="1.1"
+   id="svg16"
+   sodipodi:docname="ink-reveal.svg"
+   inkscape:version="1.4 (e7c3feb1, 2024-10-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview16"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.60472188"
+     inkscape:cx="48.782756"
+     inkscape:cy="442.35211"
+     inkscape:window-width="1512"
+     inkscape:window-height="872"
+     inkscape:window-x="0"
+     inkscape:window-y="33"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg16" />
+  <defs
+     id="defs2">
+    <linearGradient
+       id="g"
+       x1="0%"
+       y1="0%"
+       x2="100%"
+       y2="100%">
+      <stop
+         offset="0%"
+         stop-color="#f97316"
+         stop-opacity="0.15"
+         id="stop1" />
+      <stop
+         offset="100%"
+         stop-color="#a3e635"
+         stop-opacity="0.15"
+         id="stop2" />
     </linearGradient>
   </defs>
-  <rect width="400" height="400" fill="url(#g)"/>
+  <path
+     id="rect16-5"
+     style="fill:#fcaf3e;stroke-width:2.90822;stroke-linecap:round;stroke-linejoin:round"
+     d="M 198.6239,52.486331 22.005545,98.298957 c -3.771925,0.978391 -6.932849,4.178183 -6.932849,9.368123 v 185.00938 c 0,5.18995 3.159165,8.40215 6.932849,9.36812 L 198.6239,347.25441 c 3.77369,0.96596 6.93286,-4.17818 6.93286,-9.36812 V 61.854451 c 0,-5.18994 -3.16093,-10.346513 -6.93286,-9.36812 z"
+     sodipodi:nodetypes="sssssssss" />
+  <path
+     id="rect16-3"
+     style="fill:none;stroke:#fce94f;stroke-width:12.1212;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     d="M 71.362444,28.352033 355.40243,81.753265 c 6.06607,1.140457 11.1495,4.870273 11.1495,10.919897 V 308.32833 c 0,6.04962 -5.08062,9.79392 -11.1495,10.91989 L 71.362444,371.94681 c -6.06888,1.12597 -11.14949,-4.87027 -11.14949,-10.9199 V 39.271931 c 0,-6.049624 5.08342,-12.060356 11.14949,-10.919898 z"
+     sodipodi:nodetypes="sssssssss" />
   <!-- Inkscape canvas (left) -->
-  <rect x="30" y="100" width="140" height="105" rx="4" fill="none" stroke="#f97316" stroke-width="1.5" opacity="0.4"/>
   <!-- Vector shapes on canvas -->
-  <circle cx="70" cy="135" r="15" fill="none" stroke="#f97316" stroke-width="1.2" opacity="0.5"/>
-  <rect x="100" y="125" width="40" height="25" rx="2" fill="none" stroke="#f97316" stroke-width="1.2" opacity="0.5"/>
-  <line x1="50" y1="175" x2="150" y2="175" stroke="#f97316" stroke-width="1" opacity="0.3"/>
-  <rect x="50" y="180" width="80" height="6" rx="2" fill="#f97316" opacity="0.15"/>
   <!-- Arrow -->
-  <g stroke="#a3e635" stroke-width="2" opacity="0.5">
-    <line x1="185" y1="150" x2="225" y2="150"/>
-    <polyline points="220,145 225,150 220,155" fill="none"/>
-  </g>
   <!-- Slide stack (right) - reveal.js slides -->
-  <g opacity="0.3">
-    <rect x="244" y="108" width="130" height="90" rx="3" fill="none" stroke="#a3e635" stroke-width="1"/>
-  </g>
-  <g opacity="0.4">
-    <rect x="240" y="104" width="130" height="90" rx="3" fill="none" stroke="#a3e635" stroke-width="1"/>
-  </g>
-  <rect x="236" y="100" width="130" height="90" rx="3" fill="none" stroke="#a3e635" stroke-width="1.5" opacity="0.5"/>
   <!-- Content on front slide -->
-  <rect x="252" y="115" width="50" height="5" rx="1" fill="#a3e635" opacity="0.3"/>
-  <rect x="252" y="128" width="90" height="3" rx="1" fill="#a3e635" opacity="0.15"/>
-  <rect x="252" y="136" width="80" height="3" rx="1" fill="#a3e635" opacity="0.15"/>
-  <rect x="252" y="144" width="85" height="3" rx="1" fill="#a3e635" opacity="0.15"/>
-  <circle cx="285" cy="170" r="10" fill="none" stroke="#a3e635" stroke-width="1" opacity="0.3"/>
   <!-- Navigation dots -->
-  <g fill="#a3e635" opacity="0.4">
-    <circle cx="285" cy="200" r="3"/>
-    <circle cx="298" cy="200" r="3" opacity="0.2"/>
-    <circle cx="311" cy="200" r="3" opacity="0.2"/>
-  </g>
   <!-- Labels -->
-  <text x="70" y="85" font-family="monospace" font-size="10" fill="#f97316" opacity="0.5" text-anchor="middle">Inkscape</text>
-  <text x="301" y="85" font-family="monospace" font-size="10" fill="#a3e635" opacity="0.5" text-anchor="middle">reveal.js</text>
+  <path
+     id="rect16"
+     style="opacity:1;fill:#fcaf3e;stroke-width:3.39114;stroke-linecap:round;stroke-linejoin:round"
+     d="M 296.9716,26.709943 91.025468,80.129832 c -4.39826,1.140855 -8.08406,4.871975 -8.08406,10.923712 V 306.78405 c 0,6.05174 3.68375,9.79734 8.08406,10.92371 l 205.946132,52.717 c 4.40031,1.12636 8.08406,-4.87197 8.08406,-10.92371 V 37.633655 c 0,-6.051737 -3.68579,-12.064568 -8.08406,-10.923712 z"
+     sodipodi:nodetypes="sssssssss" />
+  <text
+     xml:space="preserve"
+     style="font-size:97.3686px;line-height:1;font-family:'UbuntuSans Nerd Font';-inkscape-font-specification:'UbuntuSans Nerd Font';text-align:start;text-decoration-color:#000000;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#ffffff;stroke:none;stroke-width:13.6925;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     x="118.30756"
+     y="138.27757"
+     id="text16"><tspan
+       sodipodi:role="line"
+       id="tspan16"
+       x="118.30756"
+       y="138.27757"
+       style="stroke-width:13.6925">svg</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-size:85.3333px;line-height:1;font-family:'UbuntuSans Nerd Font';-inkscape-font-specification:'UbuntuSans Nerd Font';text-align:start;text-decoration-color:#000000;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#ffffff;stroke:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     x="163.07124"
+     y="210.16508"
+     id="text17"><tspan
+       sodipodi:role="line"
+       id="tspan17"
+       x="163.07124"
+       y="210.16508" /></text>
+  <text
+     xml:space="preserve"
+     style="font-size:85.3333px;line-height:1;font-family:'UbuntuSans Nerd Font';-inkscape-font-specification:'UbuntuSans Nerd Font';text-align:start;text-decoration-color:#000000;writing-mode:lr-tb;direction:ltr;text-anchor:start;opacity:1;fill:#ffffff;stroke:none;stroke-width:12;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none"
+     x="111.05714"
+     y="299.43253"
+     id="text18"><tspan
+       sodipodi:role="line"
+       id="tspan18"
+       x="111.05714"
+       y="299.43253">html</tspan></text>
+  <path
+     style="opacity:1;fill:none;stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 136.81981,175.47894 55.28964,37.75878 55.96391,-37.75878"
+     id="path19"
+     sodipodi:nodetypes="ccc" />
 </svg>
