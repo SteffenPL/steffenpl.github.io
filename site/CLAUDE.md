@@ -40,7 +40,7 @@ All pages are prerendered (static). Routes:
 All structured data lives in `src/lib/data/` as YAML files (imported via `@rollup/plugin-yaml`). Content is linked by **slug strings** — human-readable keys that make cross-references self-documenting.
 
 - `publications.yaml` — Sections: `theses`, `preprints`, `peer_reviewed`. Each entry has a unique `slug` (e.g. `plunder_2024_natcomms`, `guruciaga_2026_natmat`).
-- `projects.yaml` — Sections: `research`, `coding`. Each entry has a `slug` and references publications by their slugs in the `publications` array. Also has `repos`, `links`, `blogs` arrays.
+- `projects.yaml` — Sections: `research`, `coding`. Each entry has a `slug` and references publications by their slugs in the `publications` array. Also has `repos`, `links`, `blogs` arrays. Optional `github_stars` field (integer) is updated by the update script and shown as a badge when > 3.
 - `talks.yaml` — Talks with date, title, venue, optional URL/video.
 - `cv.yaml` — Education, grants, teaching, software, organisation.
 
@@ -61,6 +61,18 @@ CSS variables for theming (defined in `src/app.css`). Two themes:
 - **Light**: Lime (`#65a30d`) primary, orange (`#f97316`) secondary
 
 Use `var(--accent)`, `var(--text)`, `var(--bg)`, etc. — not hardcoded colors.
+
+## Scripts
+
+Python scripts live in `scripts/` at the repo root. Always run them with **`uv`** (never `pip3 install` + `python3`). Scripts declare their own dependencies via inline PEP 723 metadata (`# /// script` block), so `uv` installs them automatically.
+
+```bash
+uv run scripts/update-github-stars.py   # fetch GitHub star counts and update projects.yaml
+```
+
+**`scripts/update-github-stars.py`** — Requires `gh` (GitHub CLI) to be installed and authenticated. For each project in `projects.yaml` that has a GitHub repo, it fetches the current star count via `gh api repos/{owner}/{repo}` and patches the `github_stars` field in-place, preserving all comments and formatting. Safe to re-run; idempotent.
+
+The `github_stars` field in `projects.yaml` is optional per project. `ProjectCard` shows a `★ N` badge in the card header when the value is greater than 3.
 
 ## Adding Content
 
