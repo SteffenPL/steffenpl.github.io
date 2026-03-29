@@ -9,15 +9,26 @@
     </h1>
     <div class="mt-2 mb-8 h-[3px] w-[48px] rounded-full" style="background: var(--gradient-accent);"></div>
 
-    <a
-      href="/cv.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-block text-sm font-display font-medium mb-12 px-4 py-2 rounded-lg border hover:opacity-80 transition-opacity"
-      style="color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent);"
-    >
-      Download CV (PDF)
-    </a>
+    <div class="flex gap-3 mb-12 flex-wrap">
+      <a
+        href="/cv.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block text-sm font-display font-medium px-4 py-2 rounded-lg border hover:opacity-80 transition-opacity"
+        style="color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent);"
+      >
+        Detailed CV (PDF)
+      </a>
+      <a
+        href="/cv-one-page.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block text-sm font-display font-medium px-4 py-2 rounded-lg border hover:opacity-80 transition-opacity"
+        style="color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent);"
+      >
+        One-Page CV (PDF)
+      </a>
+    </div>
 
     <!-- Current Affiliation -->
     <h2 class="font-display font-semibold text-lg mt-10 mb-4" style="color: var(--text);">
