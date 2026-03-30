@@ -260,3 +260,17 @@ coding:
       - label: Live demo
         url: https://steffenpl.github.io/delayed-sweeping/
     blogs: []
+
+  - slug: mypaintedslides
+    title: "MyPaintEdSlides"
+    desc: "Python script to create hand-drawn reveal.js presentations from MyPaint or Krita layer files."
+    image: /images/projects/mypaintedslides.svg
+    tags: [Python, Scientific Communication]
+    status: none
+    year: "2018"
+    publications: []
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/MyPaintEdSlides
+    links: []
+    blogs: [mypaintedslides]
