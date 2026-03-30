@@ -1,3 +1,17 @@
+- slug: plunder_2026_kyoto_ai
+  date: 2026-03
+  title: "From Prompts to Pipelines: Accelerating Research Beyond Chatbots"
+  venue: "Kyoto University (ASHBi Colloquium)"
+  projects: []
+  tags: [Graphs, GenAI]
+
+- slug: plunder_2026_chiba_ai
+  date: 2026-03
+  title: "Claude code for scientific database collection"
+  venue: "Online Seminar (Henkaku Center)"
+  projects: []
+  tags: [Graphs, GenAI]
+
 - slug: plunder_2025_brest_pbd
   date: 2025-12
   title: "Numerical Convergence of Position-based Dynamics for First-Order Differential Inclusions"

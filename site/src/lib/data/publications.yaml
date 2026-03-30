@@ -4,6 +4,10 @@ theses:
     year: "2023"
     journal: "PhD Thesis · University of Vienna"
     authors: []
+    tags:
+      - Cell migration
+      - Agent-based models
+      - Mathematical Biology
     links:
       - name: "PDF"
         url: "/theses/plunder_phd_thesis.pdf"
@@ -13,6 +17,9 @@ theses:
     year: "2018"
     journal: "Master's Thesis · TU Kaiserslautern"
     authors: []
+    tags:
+      - Mechanics
+      - Finite element method
     links:
       - name: "PDF"
         url: "/theses/plunder_masters_thesis.pdf"
@@ -22,6 +29,8 @@ theses:
     year: "2016"
     journal: "Bachelor's Thesis · TU Kaiserslautern"
     authors: []
+    tags:
+      - Particle simulations
     links:
       - name: "PDF"
         url: "/theses/plunder_bachelor_thesis.pdf"
@@ -35,6 +44,9 @@ preprints:
       - name: "V. Milisic"
         url: "https://www.math.univ-paris13.fr/~milisic/"
       - name: "S. Plunder"
+    tags:
+      - Numerical analysis
+      - Constrained dynamics
     links:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2603.20089"
@@ -59,6 +71,12 @@ preprints:
         url: "https://www.nibb.ac.jp/cib2/english.html"
       - name: "Mototsugu Eiraku"
         url: "https://www2.infront.kyoto-u.ac.jp/bs01/"
+    tags:
+      - Morphogenesis
+      - Developmental Biology
+      - Agent-based models
+      - GPU Programming
+      - Python
     links:
       - name: "bioRxiv"
         url: "https://doi.org/10.1101/2025.08.31.673315"
@@ -70,6 +88,10 @@ preprints:
       - name: "S. Plunder"
       - name: "S. Merino-Aceituno"
         url: "https://sites.google.com/view/saramerinoaceituno"
+    tags:
+      - Constrained dynamics
+      - Numerical analysis
+      - GPU Programming
     links:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2310.01215"
@@ -89,6 +111,11 @@ peer_reviewed:
       - name: "A. Erzberger"
         url: "https://www.embl.org/people/person/anna-erzberger/"
     journal: "Nature Materials [accepted]"
+    tags:
+      - Topological defects
+      - Developmental Biology
+      - Python
+      - Image Analysis
     links:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2403.08710"
@@ -112,6 +139,11 @@ peer_reviewed:
       - name: "T. Hiiragi"
         url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
     journal: "Nature Physics [accepted]"
+    tags:
+      - Developmental Biology
+      - Topological defects
+      - Python
+      - Image Analysis
     links:
       - name: "bioRxiv"
         url: "https://doi.org/10.1101/2025.04.28.650859"
@@ -128,6 +160,11 @@ peer_reviewed:
         url: "https://cbi-toulouse.fr/eng/equipe-theveneau"
       - name: "Roland Le Borgne"
         url: "https://igdr.univ-rennes.fr/en/roland-le-borgne"
+    tags:
+      - Cancer biology
+      - Cell migration
+      - Developmental Biology
+      - Agent-based models
     links:
       - name: "DOI: 10.1016/j.isci.2025.113663"
         url: "https://doi.org/10.1016/j.isci.2025.113663"
@@ -143,6 +180,11 @@ peer_reviewed:
       - name: "C. Wytrzens"
       - name: "H. Yoldaş"
         url: "https://sites.google.com/view/havvayoldas/home"
+    tags:
+      - Kinetic theory
+      - PDE
+      - Mathematical Biology
+      - Julia
     links:
       - name: "DOI:10.1142/S0218202525500356"
         url: "https://doi.org/10.1142/S0218202525500356"
@@ -163,6 +205,10 @@ peer_reviewed:
       - name: "B. Simeon"
         url: "https://www.mathematik.uni-kl.de/en/das/people/head/simeon"
       - name: "C. Surulescu"
+    tags:
+      - ODE
+      - Parameter estimation
+      - Mathematical Biology
     links:
       - name: "DOI: 10.1002/pamm.202400133"
         url: "http://doi.org/10.1002/pamm.202400133"
@@ -185,6 +231,9 @@ peer_reviewed:
         url: "https://cbi-toulouse.fr/eng/equipe-theveneau"
       - name: "I. Migeotte"
         url: "https://iribhm.org/isabelle-migeotte/"
+    tags:
+      - Developmental Biology
+      - Cell migration
     links:
       - name: "DOI:10.1038/s41467-024-51638-6"
         url: "https://doi.org/10.1038/s41467-024-51638-6"
@@ -203,6 +252,11 @@ peer_reviewed:
         url: "https://sites.google.com/view/saramerinoaceituno"
       - name: "E. Theveneau"
         url: "https://cbi-toulouse.fr/eng/equipe-theveneau"
+    tags:
+      - Cell migration
+      - Agent-based models
+      - Developmental Biology
+      - Cancer biology
     links:
       - name: "DOI:10.1038/s41467-024-51372-z"
         url: "https://doi.org/10.1038/s41467-024-51372-z"
@@ -219,6 +273,11 @@ peer_reviewed:
       - name: "L. E. Hoelzle"
       - name: "L. Marongiu"
         url: "https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en"
+    tags:
+      - Micro Biology
+      - ODE
+      - Parameter estimation
+      - Machine Learning
     links:
       - name: "DOI:10.1002/cpz1.954"
         url: "https://doi.org/10.1002/cpz1.954"
@@ -231,6 +290,10 @@ peer_reviewed:
       - name: "S. Plunder"
       - name: "B. Simeon"
         url: "https://www.mathematik.uni-kl.de/en/das/people/head/simeon"
+    tags:
+      - Kinetic theory
+      - Constrained dynamics
+      - Particle simulations
     links:
       - name: "DOI:10.3934/krm.2023012"
         url: "https://www.aimsciences.org/article/doi/10.3934/krm.2023012"
@@ -248,6 +311,11 @@ peer_reviewed:
       - name: "S. Venturelli"
       - name: "L. Marongiu"
         url: "https://nutritionalbiochemistry.uni-hohenheim.de/en/luigi-marongiu-en"
+    tags:
+      - Micro Biology
+      - ODE
+      - Parameter estimation
+      - Machine Learning
     links:
       - name: "DOI: 10.3389/fmed.2022.1040457"
         url: "https://doi.org/10.3389/fmed.2022.1040457"
@@ -260,6 +328,10 @@ peer_reviewed:
       - name: "S. Plunder"
       - name: "B. Simeon"
         url: "https://www.mathematik.uni-kl.de/en/das/people/head/simeon"
+    tags:
+      - Kinetic theory
+      - Mechanics
+      - PDE
     links:
       - name: "DOI: 10.1007/978-3-030-53905-4_12"
         url: "https://doi.org/10.1007/978-3-030-53905-4_12"

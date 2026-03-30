@@ -70,19 +70,19 @@ research:
   #   links: []
   #   blogs: []
 
-  # - slug: tlt-model
-  #   title: "Tertiary lymphoid tissue modelling"
-  #   desc: "Agent-based simulation of tertiary lymphoid structure formation."
-  #   image: /images/projects/tlt-model.svg
-  #   tags: [Julia, Immunology, Agent-based models, Mathematical Biology]
-  #   status: ideas
-  #   year: "2024"
-  #   publications: []
-  #   repos:
-  #     - label: TLT-model
-  #       url: https://github.com/SteffenPL/TLT-model
-  #   links: []
-  #   blogs: []
+  - slug: tlt-model
+    title: "Tertiary lymphoid tissue modelling"
+    desc: "Agent-based simulation of tertiary lymphoid structure formation."
+    image: /images/projects/tlt-model.svg
+    tags: [Python, Immunology, Mathematical Biology]
+    status: ideas
+    year: "2024"
+    publications: []
+    repos:
+      - label: TLT-model
+        url: https://github.com/SteffenPL/TLT-model
+    links: []
+    blogs: []
 
   - slug: eht-model
     title: "Endothelial-to-hematopoietic transition"
@@ -103,7 +103,7 @@ research:
     title: "First-order position-based dynamics"
     desc: "Convergence analysis and efficient numerical scheme for inequality constrained ODEs from computer graphics."
     image: /images/projects/pbd.png
-    tags: [Julia, Particle simulations, Numerical analysis, Constrained dynamics]
+    tags: [Julia, Particle simulations, Numerical analysis, Constrained dynamics, GPU Programming]
     status: current
     year: "2020"
     github_stars: 2

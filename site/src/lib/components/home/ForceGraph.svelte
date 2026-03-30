@@ -86,6 +86,11 @@
       if (allowedTagSet.has(tag)) addLink(`blog:${post.slug}`, `tag:${tag}`, true);
     }
   }
+  for (const pub of allPubs) {
+    for (const tag of (pub as any).tags || []) {
+      if (allowedTagSet.has(tag)) addLink(`pub:${pub.slug}`, `tag:${tag}`, true);
+    }
+  }
 
   // ── Tag sizes (logistic growth) ──
   const tagEdgeCounts = new Map<string, number>();
