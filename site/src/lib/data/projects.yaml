@@ -156,7 +156,7 @@ coding:
     desc: "Julia package for spatial hashing, enabling fast neighbor queries in particle simulations."
     image: /images/projects/spatial-hash-tables.svg
     tags: [Julia, GPU Programming, Performance, Particle simulations]
-    status: active
+    status: none
     year: "2022"
     github_stars: 14
     publications: []
@@ -171,7 +171,7 @@ coding:
     desc: "Memory-efficient graph data structure with bounded vertex degree for agent-based simulations."
     image: /images/projects/bounded-degree-graphs.svg
     tags: [Julia, GPU Programming, Performance, Graphs]
-    status: active
+    status: none
     year: "2023"
     github_stars: 8
     publications: []
@@ -186,7 +186,7 @@ coding:
     desc: "Julia wrapper for the PortMidi library, enabling MIDI input/output for live coding music performances."
     image: /images/projects/portmidi.svg
     tags: [Julia, C++, Music, Scientific Communication]
-    status: active
+    status: none
     year: "2024"
     github_stars: 8
     publications: []
@@ -201,7 +201,7 @@ coding:
     desc: "Interactive browser-based simulator for epithelial-to-mesenchymal transitions, built with p5.js."
     image: /images/projects/semtor-web.svg
     tags: [JavaScript/TypeScript, Cancer biology, Cell migration]
-    status: completed
+    status: none
     year: "2022"
     github_stars: 0
     publications: [plunder_2024_natcomms]
@@ -218,7 +218,7 @@ coding:
     desc: "Inkscape extension to generate reveal.js presentation slides from vector graphics."
     image: /images/projects/ink-reveal.svg
     tags: [Python, Scientific Communication]
-    status: completed
+    status: none
     year: "2021"
     github_stars: 5
     publications: []
@@ -233,7 +233,7 @@ coding:
     desc: "Julia prototype for solving differential inclusions, extending standard ODE solver interfaces."
     image: /images/projects/differential-inclusions.svg
     tags: [Julia, ODE, Constrained dynamics]
-    status: completed
+    status: none
     year: "2021"
     github_stars: 2
     publications: []
@@ -248,7 +248,7 @@ coding:
     desc: "Interactive web simulator for delayed sweeping processes and position-based dynamics."
     image: /images/projects/delayed-sweeping.svg
     tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis]
-    status: completed
+    status: none
     year: "2023"
     publications: []
     # repos:

@@ -2,9 +2,13 @@
   import projects from '$lib/data/projects.yaml';
   import ProjectCard from '$lib/components/projects/ProjectCard.svelte';
 
-  const coding = (projects.coding || []).map((p: any) => ({ ...p, type: 'coding' }));
-  const active = coding.filter((p: any) => p.status === 'active');
-  const completed = coding.filter((p: any) => p.status === 'completed');
+  const coding = (projects.coding || [])
+    .filter((p: any) => p.status !== 'hidden')
+    .map((p: any) => ({ ...p, type: 'coding' }));
+  const none = coding.filter((p: any) => p.status === 'none');
+  const current = coding.filter((p: any) => p.status === 'current');
+  const published = coding.filter((p: any) => p.status === 'published');
+  const ideas = coding.filter((p: any) => p.status === 'ideas');
 </script>
 
 <section class="py-20 px-6">
@@ -14,23 +18,42 @@
     </h1>
     <div class="mt-2 mb-12 h-[3px] w-[48px] rounded-full" style="background: var(--gradient-accent);"></div>
 
-    {#if active.length > 0}
-      <h2 class="font-display font-semibold text-lg mt-8 mb-6" style="color: var(--text);">
-        Active ({active.length})
-      </h2>
+    {#if none.length > 0}
       <div class="grid gap-4">
-        {#each active as project, i}
+        {#each none as project, i}
           <ProjectCard {project} />
         {/each}
       </div>
     {/if}
 
-    {#if completed.length > 0}
+    {#if current.length > 0}
       <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
-        Completed ({completed.length})
+        Current ({current.length})
       </h2>
       <div class="grid gap-4">
-        {#each completed as project, i}
+        {#each current as project, i}
+          <ProjectCard {project} />
+        {/each}
+      </div>
+    {/if}
+
+    {#if published.length > 0}
+      <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
+        Published ({published.length})
+      </h2>
+      <div class="grid gap-4">
+        {#each published as project, i}
+          <ProjectCard {project} />
+        {/each}
+      </div>
+    {/if}
+
+    {#if ideas.length > 0}
+      <h2 class="font-display font-semibold text-lg mt-12 mb-6" style="color: var(--text);">
+        Ideas ({ideas.length})
+      </h2>
+      <div class="grid gap-4">
+        {#each ideas as project, i}
           <ProjectCard {project} />
         {/each}
       </div>
