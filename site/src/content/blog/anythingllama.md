@@ -2,6 +2,9 @@
 title: "How to chat with LLama3"
 date: "2024-04-24"
 slug: "anythingllama"
+tags:
+  - GenAI
+  - Machine Learning
 ---
 
 We all know about the potential of AI/LLMs right now.

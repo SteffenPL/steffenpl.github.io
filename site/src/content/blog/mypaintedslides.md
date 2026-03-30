@@ -2,6 +2,8 @@
 title: "MyPaintEdSlides"
 date: "2022-06-14"
 slug: "mypaintedslides"
+tags:
+  - Scientific Communication
 ---
 
 _Till today I couldn't find any satisfying tool to create

@@ -2,6 +2,11 @@
 title: "Mechanical modelling of epithelial-to-mesenchymal transitions"
 date: "2019-10-01"
 slug: "epithelial-to-mesenchymal"
+tags:
+  - Agent-based models
+  - Cell migration
+  - Developmental Biology
+  - Mechanics
 ---
 
 # Mechanical modelling of epithelial-to-mesenchymal transitions

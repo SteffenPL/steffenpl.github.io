@@ -2,6 +2,9 @@
 title: "Interactive modelling with p5.js"
 date: "2022-06-13"
 slug: "p5js"
+tags:
+  - JavaScript/TypeScript
+  - Particle simulations
 ---
 
 <script>

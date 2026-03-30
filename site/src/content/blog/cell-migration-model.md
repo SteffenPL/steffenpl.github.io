@@ -2,6 +2,10 @@
 title: "Cell migration model for plithotaxis"
 date: "2021-06-01"
 slug: "cell-migration-model"
+tags:
+  - Agent-based models
+  - Cell migration
+  - Particle simulations
 ---
 
 <script>

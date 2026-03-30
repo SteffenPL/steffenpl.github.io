@@ -2,6 +2,10 @@
 title: "First-order position-based dynamics"
 date: "2020-10-01"
 slug: "position-based-dynamics"
+tags:
+  - Constrained dynamics
+  - Particle simulations
+  - Numerical analysis
 ---
 
 # First-order position-based dynamics

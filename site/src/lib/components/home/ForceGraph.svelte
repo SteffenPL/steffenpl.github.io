@@ -10,11 +10,11 @@
 
   // ── Gather blog post metadata ──
   const blogModules = import.meta.glob('/src/content/blog/*.md', { eager: true });
-  const blogPosts: { slug: string; title: string; date: string }[] = [];
+  const blogPosts: { slug: string; title: string; date: string; tags: string[] }[] = [];
   for (const [path, mod] of Object.entries(blogModules)) {
     const slug = path.split('/').pop()?.replace('.md', '') || '';
     const meta = (mod as any).metadata || {};
-    blogPosts.push({ slug, title: meta.title || slug, date: meta.date || '' });
+    blogPosts.push({ slug, title: meta.title || slug, date: meta.date || '', tags: meta.tags || [] });
   }
 
   // ── Node types ──
@@ -79,6 +79,11 @@
     for (const projSlug of talk.projects) addLink(`talk:${talk.slug}`, `proj:${projSlug}`);
     for (const tag of talk.tags || []) {
       if (allowedTagSet.has(tag)) addLink(`talk:${talk.slug}`, `tag:${tag}`, true);
+    }
+  }
+  for (const post of blogPosts) {
+    for (const tag of post.tags) {
+      if (allowedTagSet.has(tag)) addLink(`blog:${post.slug}`, `tag:${tag}`, true);
     }
   }
 
@@ -448,6 +453,29 @@
     }
     if (sel && !sel.hidden) drawNode(sel);
 
+    // ── Label on selected node ──
+    if (sel && !sel.hidden) {
+      const x = sel.x || 0, y = sel.y || 0;
+      const r = sel.radius + 3;
+      const maxLen = 30;
+      const label = sel.label.length > maxLen ? sel.label.slice(0, maxLen - 1) + '\u2026' : sel.label;
+      const fontSize = Math.max(9, 11 / zoom);
+      ctx.font = `600 ${fontSize}px ${getComputedStyle(canvas).getPropertyValue('--font-display').trim() || 'sans-serif'}`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      const labelY = y + r + 6;
+      const textWidth = ctx.measureText(label).width;
+      const pad = 3;
+      ctx.fillStyle = getColors().bg + 'cc';
+      ctx.beginPath();
+      const rx = x - textWidth / 2 - pad, ry = labelY - pad / 2;
+      const rw = textWidth + pad * 2, rh = fontSize + pad;
+      ctx.roundRect(rx, ry, rw, rh, 3);
+      ctx.fill();
+      ctx.fillStyle = nodeColor(sel.type);
+      ctx.fillText(label, x, labelY);
+    }
+
     ctx.restore();
 
     // ── Compute tag labels for selected node ──
@@ -517,7 +545,6 @@
           fitToView(); hasFittedOnce = true;
           autoFocusNode = pickRandomNode();
         }
-        draw();
       });
 
     fitToView();

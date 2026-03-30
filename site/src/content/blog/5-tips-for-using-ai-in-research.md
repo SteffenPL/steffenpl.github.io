@@ -2,6 +2,9 @@
 title: "5 Tips for Using AI in research"
 date: "2026-02-02"
 slug: "5-tips-for-using-ai-in-research"
+tags:
+  - GenAI
+  - Scientific Communication
 ---
 
 Coding assistants have recently taken the world by storm. Simply put, there are now extremely capable code writers which can work on large complex problems & code bases. The frontier of tools and techniques moves extremely fast. And in this blog we will explore the frontier!

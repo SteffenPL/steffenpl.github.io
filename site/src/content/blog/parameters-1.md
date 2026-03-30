@@ -2,6 +2,8 @@
 title: "On the road of clean parameter estimation"
 date: "2024-11-27"
 slug: "parameters-1"
+tags:
+  - Parameter estimation
 ---
 
 I recently gave a lecture on parameter estimation. While we covered some material and in the end people learned how to use Julia, it left me unsatisfied. In this and the following blog posts I want to document my journey in studying parameter estimation more deeply.

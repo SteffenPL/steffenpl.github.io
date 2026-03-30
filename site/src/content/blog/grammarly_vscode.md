@@ -2,6 +2,8 @@
 title: "Spellchecking in LaTeX with Grammarly"
 date: "2022-06-14"
 slug: "grammarly_vscode"
+tags:
+  - Scientific Communication
 ---
 
 As a non-native English speaker, automatic spelling and grammar checks are helpful and allow me to focus more on what I write instead of how. For $\LaTeX$ documents, the choices of good grammar checkers are pretty limited. One problem is that our $\LaTeX$ documents have special commands and equations within sentences. This renders most grammar checkers useless since they would mark everything red. However, the currently developed [Grammarly for VS Code](https://marketplace.visualstudio.com/items?itemName=znck.grammarly) extension is an elegant and modern solution. While [Grammarly for VS Code](https://marketplace.visualstudio.com/items?itemName=znck.grammarly) is not perfect, it can handle HTML, Markdown, and $\LaTeX$ documents quite well.
