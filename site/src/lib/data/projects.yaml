@@ -91,7 +91,7 @@ research:
     image: /images/projects/eht-model.svg
     tags: [Julia, Agent-based models, Developmental Biology, AI coding]
     status: current
-    year: "2024"
+    year: "2026"
     github_stars: 0
     publications: []
     repos:
@@ -106,7 +106,7 @@ research:
     image: /images/projects/pbd.png
     tags: [Julia, Particle simulations, Numerical analysis, Constrained dynamics, GPU Programming]
     status: current
-    year: "2020"
+    year: "2023"
     github_stars: 2
     publications: [plunder_2023_arxiv_pbd]
     # repos:
@@ -150,13 +150,30 @@ research:
     blogs: []
 
 coding:
+  - slug: pbd-web
+    title: "Position-based dynamics — web demo"
+    desc: "Interactive browser-based visualization of first-order position-based dynamics for constrained particle systems."
+    media: /videos/pbd-web.mp4
+    tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis, Particle simulations, AI coding]
+    status: none
+    year: "2026"
+    github_stars: 0
+    publications: [plunder_2023_arxiv_pbd]
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/pbd
+    links:
+      - label: Live demo
+        url: https://steffenpl.github.io/pbd/
+    blogs: [position-based-dynamics]
+
   - slug: spatial-hash-tables
     title: "SpatialHashTables.jl"
     desc: "Julia package for spatial hashing, enabling fast neighbor queries in particle simulations."
     image: /images/projects/spatial-hash-tables.svg
     tags: [Julia, GPU Programming, Performance, Particle simulations]
     status: none
-    year: "2022"
+    year: "2024"
     github_stars: 14
     publications: []
     repos:
@@ -171,7 +188,7 @@ coding:
     image: /images/projects/bounded-degree-graphs.svg
     tags: [Julia, GPU Programming, Performance, Graphs]
     status: none
-    year: "2023"
+    year: "2024"
     github_stars: 8
     publications: []
     repos:
@@ -201,7 +218,7 @@ coding:
     image: /images/projects/semtor-web.svg
     tags: [JavaScript/TypeScript, Cancer biology, Cell migration]
     status: none
-    year: "2022"
+    year: "2024"
     github_stars: 0
     publications: [plunder_2024_natcomms]
     repos:
@@ -218,7 +235,7 @@ coding:
     image: /images/projects/ink-reveal.svg
     tags: [Python, Scientific Communication]
     status: none
-    year: "2021"
+    year: "2023"
     github_stars: 5
     publications: []
     repos:
@@ -233,7 +250,7 @@ coding:
     image: /images/projects/differential-inclusions.svg
     tags: [Julia, ODE, Constrained dynamics]
     status: none
-    year: "2021"
+    year: "2023"
     github_stars: 2
     publications: []
     repos:
@@ -248,7 +265,7 @@ coding:
     image: /images/projects/delayed-sweeping.svg
     tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis, AI coding]
     status: none
-    year: "2023"
+    year: "2026"
     publications: []
     # repos:
     #   - label: delayed-sweeping
@@ -275,19 +292,3 @@ coding:
     links: []
     blogs: [mypaintedslides]
 
-  - slug: pbd-web
-    title: "Position-based dynamics — web demo"
-    desc: "Interactive browser-based visualization of first-order position-based dynamics for constrained particle systems."
-    media: /videos/pbd-web.mp4
-    tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis, Particle simulations, AI coding]
-    status: none
-    year: "2025"
-    github_stars: 0
-    publications: [plunder_2023_arxiv_pbd]
-    repos:
-      - label: GitHub
-        url: https://github.com/SteffenPL/pbd
-    links:
-      - label: Live demo
-        url: https://steffenpl.github.io/pbd/
-    blogs: [position-based-dynamics]
