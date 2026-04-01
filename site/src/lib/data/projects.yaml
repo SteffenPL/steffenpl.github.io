@@ -77,6 +77,7 @@ research:
     tags: [Python, Immunology, Mathematical Biology]
     status: ideas
     year: "2024"
+    github_stars: 0
     publications: []
     repos:
       - label: TLT-model
@@ -88,7 +89,7 @@ research:
     title: "Endothelial-to-hematopoietic transition"
     desc: "Modelling the endothelial-to-hematopoietic transition during embryonic blood cell formation."
     image: /images/projects/eht-model.svg
-    tags: [Julia, Agent-based models, Developmental Biology]
+    tags: [Julia, Agent-based models, Developmental Biology, AI coding]
     status: current
     year: "2024"
     github_stars: 0
@@ -116,9 +117,7 @@ research:
     repos:
       - label: DifferentialInclusions.jl
         url: https://github.com/SteffenPL/DifferentialInclusions.jl
-    links:
-      - label: Web teaser
-        url: https://steffenpl.github.io/pbd/
+    links: []
     blogs: [position-based-dynamics]
 
   - slug: anisotropic-particles
@@ -247,7 +246,7 @@ coding:
     title: "Sweeping processes with memory effects"
     desc: "Interactive web simulator for delayed sweeping processes and position-based dynamics."
     image: /images/projects/delayed-sweeping.svg
-    tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis]
+    tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis, AI coding]
     status: none
     year: "2023"
     publications: []
@@ -268,9 +267,26 @@ coding:
     tags: [Python, Scientific Communication]
     status: none
     year: "2018"
+    github_stars: 4
     publications: []
     repos:
       - label: GitHub
         url: https://github.com/SteffenPL/MyPaintEdSlides
     links: []
     blogs: [mypaintedslides]
+
+  - slug: pbd-web
+    title: "Position-based dynamics — web demo"
+    desc: "Interactive browser-based visualization of first-order position-based dynamics for constrained particle systems."
+    tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis, Particle simulations, AI coding]
+    status: none
+    year: "2025"
+    github_stars: 0
+    publications: [plunder_2023_arxiv_pbd]
+    repos:
+      - label: GitHub
+        url: https://github.com/SteffenPL/pbd
+    links:
+      - label: Live demo
+        url: https://steffenpl.github.io/pbd/
+    blogs: [position-based-dynamics]

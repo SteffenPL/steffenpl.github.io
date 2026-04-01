@@ -4,6 +4,7 @@ date: "2026-02-02"
 slug: "5-tips-for-using-ai-in-research"
 tags:
   - GenAI
+  - AI coding
   - Scientific Communication
 ---
 

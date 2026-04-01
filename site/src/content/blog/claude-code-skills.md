@@ -4,6 +4,7 @@ date: "2026-03-09"
 slug: "claude-code-skills"
 tags:
   - GenAI
+  - AI coding
 ---
 
 I use Claude Code a lot for coding and research tasks.

@@ -47,6 +47,7 @@ preprints:
     tags:
       - Numerical analysis
       - Constrained dynamics
+      - AI coding
     links:
       - name: "arxiv"
         url: "https://arxiv.org/abs/2603.20089"
@@ -138,15 +139,15 @@ peer_reviewed:
         url: "https://www.embl.org/people/person/anna-erzberger/"
       - name: "T. Hiiragi"
         url: "https://ashbi.kyoto-u.ac.jp/research-group/hiiragi-group/"
-    journal: "Nature Physics [accepted]"
+    journal: "Nature Physics"
     tags:
       - Developmental Biology
       - Topological defects
       - Python
       - Image Analysis
     links:
-      - name: "bioRxiv"
-        url: "https://doi.org/10.1101/2025.04.28.650859"
+      - name: "DOI:10.1038/s41567-026-03176-9"
+        url: "https://doi.org/10.1038/s41567-026-03176-9"
 
   - slug: mira_2025_iscience
     title: "The directionality of collective cell delamination is governed by tissue architecture and cell adhesion in a Drosophila carcinoma model."
