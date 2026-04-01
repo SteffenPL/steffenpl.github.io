@@ -278,6 +278,7 @@ coding:
   - slug: pbd-web
     title: "Position-based dynamics — web demo"
     desc: "Interactive browser-based visualization of first-order position-based dynamics for constrained particle systems."
+    media: /videos/pbd-web.mp4
     tags: [JavaScript/TypeScript, Constrained dynamics, Numerical analysis, Particle simulations, AI coding]
     status: none
     year: "2025"
