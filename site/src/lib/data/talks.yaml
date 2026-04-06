@@ -1,3 +1,17 @@
+- slug: plunder_2026_kyoto_cc_research
+  date: 2026-02
+  title: "Claude Code for Research"
+  venue: "Kyoto University (Group Seminar, visiting)"
+  projects: []
+  tags: [GenAI, Scientific Communication]
+
+- slug: plunder_2026_vienna_cc_simulations
+  date: 2026-01
+  title: "Writing Scientific Simulations with Claude Code"
+  venue: "University of Vienna (Group Seminar, visiting)"
+  projects: []
+  tags: [GenAI, Scientific Communication]
+
 - slug: plunder_2026_kyoto_ai
   date: 2026-03
   title: "From Prompts to Pipelines: Accelerating Research Beyond Chatbots"
