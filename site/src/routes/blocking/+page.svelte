@@ -114,7 +114,7 @@
 		if (!ctx) return;
 		ctx.clearRect(0, 0, width, height);
 		ctx.save();
-		ctx.translate(width / 2, 38);
+		ctx.translate(width / 2, height / 2);
 		ctx.scale(scale, scale);
 		// Light, unobtrusive vertical guide marks.
 		ctx.strokeStyle = '#e8e4dc'; ctx.lineWidth = 1 / scale;
@@ -160,7 +160,7 @@
 
 	function point(e: PointerEvent) {
 		const rect = canvas.getBoundingClientRect();
-		return { x: (e.clientX - rect.left - width / 2) / scale, y: (e.clientY - rect.top - 38) / scale };
+		return { x: (e.clientX - rect.left - width / 2) / scale, y: (e.clientY - rect.top - height / 2) / scale };
 	}
 	function pointerDown(e: PointerEvent) {
 		const q = point(e);
