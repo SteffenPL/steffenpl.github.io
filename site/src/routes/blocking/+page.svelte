@@ -37,6 +37,9 @@
 			const y = -row * spacing * .86 - 60 + (Math.random() - .5) * 1.4;
 			disks.push({ x, y, px: x, py: y, r: radius, color: Math.floor(Math.random() * colors.length) });
 		}
+		// Relax the initial packing with forces off, then start with zero velocity.
+		for (let i = 0; i < 30; i++) project();
+		for (const p of disks) { p.px = p.x; p.py = p.y; }
 		time = 0;
 		accumulator = 0;
 	}
