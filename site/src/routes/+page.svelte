@@ -22,7 +22,7 @@
   <title>Steffen Plunder</title>
   <meta
     name="description"
-    content="Steffen Plunder — Mathematician, Computational Biologist, Developer. Program-specific researcher at ASHBi, Kyoto University."
+    content="Steffen Plunder — Mathematician, Computational Biologist, Developer. Researcher at the Henkaku Center, Chiba Institute of Technology, and Science & Technology Architect at Dabtong House."
   />
 </svelte:head>
 
@@ -58,14 +58,14 @@
       class="mx-auto mb-10 max-w-[580px] font-light leading-[1.7]"
       style="font-size: clamp(0.95rem, 1.5vw, 1.1rem); color: var(--text-muted);"
     >
-      Post-doctoral researcher at <strong style="color: var(--text);">ASHBi, Kyoto University</strong>.
+      Researcher at <a href="https://www.henkaku.center/en/people/steffen-plunder/" target="_blank" rel="noopener noreferrer" style="color: var(--text);"><strong>Henkaku Center, Chiba Institute of Technology</strong></a> and Science &amp; Technology Architect at <a href="https://dabtonghouse.org/people" target="_blank" rel="noopener noreferrer" style="color: var(--text);"><strong>Dabtong House</strong></a>.
       I develop mathematical models and high-performance simulations that <strong style="color: var(--text);">bridge theory and experiment</strong>, in developmental biology, particle dynamics, and beyond.
       <br>Math + coding + applications = ❤️
     </p>
 
     <div class="flex flex-wrap items-center justify-center gap-4">
       <a
-        href="mailto:plunder.steffen.2a@kyoto-u.ac.jp"
+        href="mailto:steffen.plunder@web.de"
         class="cta-btn cta-btn--primary"
       >
         <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -74,6 +74,10 @@
         </svg>
         Email
       </a>
+
+      <p class="w-full text-xs" style="color: var(--text-muted);">
+        The former address, plunder.steffen.2a@kyoto-u.ac.jp, is no longer accessible to me.
+      </p>
 
       <a
         href="https://github.com/SteffenPL"

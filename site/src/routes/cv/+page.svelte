@@ -38,19 +38,16 @@
       class="rounded-xl border backdrop-blur-sm p-5 mb-8"
       style="background: var(--bg-card); border-color: var(--bg-card-border); box-shadow: var(--shadow-card);"
     >
-      <p class="text-sm" style="color: var(--text);">
-        {cv.affiliation.role}
-      </p>
-      <p class="text-sm mt-1" style="color: var(--text-muted);">
-        <a href={cv.affiliation.url} target="_blank" rel="noopener noreferrer" class="hover:opacity-80" style="color: var(--accent-secondary);">
-          {cv.affiliation.institution}
-        </a>
-        &mdash;
-        <a href={cv.affiliation.lab_url} target="_blank" rel="noopener noreferrer" class="hover:opacity-80" style="color: var(--accent-secondary);">
-          {cv.affiliation.lab}
-        </a>
-        (since {cv.affiliation.start})
-      </p>
+      {#each cv.affiliations as affiliation}
+        <p class="text-sm" style="color: var(--text);">
+          {affiliation.role}
+        </p>
+        <p class="text-sm mt-1 mb-3" style="color: var(--text-muted);">
+          <a href={affiliation.url} target="_blank" rel="noopener noreferrer" class="hover:opacity-80" style="color: var(--accent-secondary);">
+            {affiliation.institution}
+          </a>
+        </p>
+      {/each}
     </div>
 
     <!-- Education -->

@@ -1,10 +1,10 @@
-affiliation:
-  role: "Program-specific researcher (Post doc)"
-  institution: "ASHBi, KUIAS, Kyoto University"
-  url: https://ashbi.kyoto-u.ac.jp/
-  # lab: "Seirin-Lee's lab"
-  lab_url: https://sites.google.com/site/seirin711lee/home
-  start: 2023
+affiliations:
+  - role: "Researcher"
+    institution: "Henkaku Center, Chiba Institute of Technology"
+    url: https://www.henkaku.center/en/people/steffen-plunder/
+  - role: "Science & Technology Architect"
+    institution: "Dabtong House"
+    url: https://dabtonghouse.org/people
 
 education:
   - period: "2019 – 2023"
