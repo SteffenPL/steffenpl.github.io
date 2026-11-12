@@ -42,6 +42,9 @@
         <p class="text-sm" style="color: var(--text);">
           {affiliation.role}
         </p>
+        {#if affiliation.period}
+          <p class="text-xs mt-1" style="color: var(--text-muted);">{affiliation.period}</p>
+        {/if}
         <p class="text-sm mt-1 mb-3" style="color: var(--text-muted);">
           <a href={affiliation.url} target="_blank" rel="noopener noreferrer" class="hover:opacity-80" style="color: var(--accent-secondary);">
             {affiliation.institution}

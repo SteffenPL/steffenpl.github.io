@@ -1,10 +1,16 @@
 affiliations:
   - role: "Researcher"
     institution: "Henkaku Center, Chiba Institute of Technology"
+    period: "September 2026 – present"
     url: https://www.henkaku.center/en/people/steffen-plunder/
   - role: "Science & Technology Architect"
     institution: "Dabtong House"
-    url: https://dabtonghouse.org/people
+    period: "September 2026 – present"
+    url: https://dabtonghouse.org/people/steffen-plunder
+  - role: "Research Scientist"
+    institution: "ASHBi, Kyoto University"
+    period: "February 2023 – August 2026"
+    url: https://ashbi.kyoto-u.ac.jp/
 
 education:
   - period: "2019 – 2023"
