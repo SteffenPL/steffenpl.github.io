@@ -40,6 +40,11 @@
   ></div>
 
   <div class="relative z-10 mx-auto max-w-3xl px-6 text-center">
+    <img
+      src="/steffen-plunder.jpg"
+      alt="Steffen Plunder"
+      class="mx-auto mb-6 h-32 w-32 rounded-full object-cover shadow-lg ring-2 ring-white/70"
+    />
     <h1
       class="mb-2 font-display font-bold tracking-tight"
       style="font-size: clamp(2rem, 5vw, 3.5rem); color: var(--text); text-shadow: 0 0 40px var(--accent-glow);"
