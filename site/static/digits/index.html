@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cell dynamics</title>
+<style>
+:root{color-scheme:light;--bg:#fff;--panel:#fff;--ink:#171a1f;--muted:#505866;--line:#dce0e6;--accent:#192f58;--active:#edf1f7;--distal:#a33b70;--proximal:#247965;--grid:#e8ebef;--strong-link:#b44813}
+:root[data-theme=dark]{color-scheme:dark;--bg:#222;--panel:#222;--ink:#fff;--muted:#c8c8c8;--line:#484848;--accent:#ffc292;--active:#42342b;--distal:#f298c5;--proximal:#76cdb0;--grid:#363636;--strong-link:#ffac69}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
+main{max-width:1120px;margin:auto;padding:36px 26px 28px}
+header,.toolbar,.legend{display:flex;align-items:center;justify-content:space-between;gap:14px}
+h1,h2,h3,p{margin:0}
+h1,h2{font-weight:650;line-height:1.12;letter-spacing:-.03em}
+h1{font-size:clamp(34px,6vw,52px)}
+h2{font-size:clamp(24px,4vw,34px)}
+h3,button,label{font-size:14px;font-weight:650}
+header p,.intro p,footer{color:var(--muted)}
+header p,.intro p{margin-top:9px}
+button{cursor:pointer;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);padding:8px 13px;font-family:inherit;white-space:nowrap}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+nav{display:flex;flex-wrap:wrap;gap:6px;margin:25px 0 18px}
+nav button{background:transparent;border-color:transparent}
+nav button[aria-selected=true]{background:var(--active);color:var(--accent);border-color:var(--line)}
+article{border:1px solid var(--line);border-radius:8px;background:var(--panel);overflow:hidden}
+.intro{padding:23px 24px 17px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) 232px;border-top:1px solid var(--line)}
+.stage{min-width:0;padding:14px}
+.plots{display:grid;gap:12px}
+.plots.pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+figure{margin:0;overflow:hidden;border:1px solid var(--line);border-radius:5px;background:var(--bg)}
+figcaption{padding:9px 12px;border-bottom:1px solid var(--line)}
+figcaption small{display:block;color:var(--muted)}
+canvas{display:block;width:100%;height:auto;touch-action:none;cursor:grab}
+canvas.dragging{cursor:grabbing}
+aside{padding:16px;border-left:1px solid var(--line)}
+.toolbar{justify-content:flex-start;flex-wrap:wrap;margin-bottom:21px;gap:7px}
+.control{margin:0 0 17px}
+.control label{display:flex;justify-content:space-between;gap:8px}
+output{color:var(--accent);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;margin:8px 0 0;accent-color:var(--accent)}
+.legend{justify-content:flex-start;flex-wrap:wrap;padding:10px 3px 1px;color:var(--muted);font-size:13px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;background:var(--dot)}
+footer{margin-top:16px;font-size:13px}
+footer p+p{margin-top:7px}
+footer .reference{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+a{color:var(--accent)}
+@media(max-width:690px){main{padding:23px 13px}.grid{grid-template-columns:1fr}aside{border-left:0;border-top:1px solid var(--line)}.intro{padding:17px}.stage{padding:9px}nav button{padding:7px 9px}}
+@media(max-width:430px){.plots.pair{grid-template-columns:1fr}header{align-items:flex-start}}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div><h1>Cell dynamics</h1><p>From cell forces to tissue shape</p></div>
+    <button id="theme" type="button"></button>
+  </header>
+  <nav role="tablist" aria-label="Model layers"></nav>
+  <article id="demo" role="tabpanel" tabindex="0">
+    <div class="intro"><h2 id="title"></h2><p id="description"></p></div>
+    <div class="grid">
+      <div class="stage"><div class="plots"></div><div class="legend"></div></div>
+      <aside aria-label="Simulation controls">
+        <div class="toolbar"><button id="play">Run</button><button id="reset">Reset</button></div>
+        <div id="controls"></div>
+      </aside>
+    </div>
+  </article>
+  <footer>
+    <p>Drag cells to move them · Scroll over a simulation to zoom</p>
+    <p class="reference"><a href="https://doi.org/10.1101/2025.08.31.673315">Self-organized mechanochemical instabilities drive the emergence of digit tissue morphogenesis</a>. bioRxiv preprint.</p>
+    <p>Rio Tsutsumi, Antoine Diez, Steffen Plunder, Ryuichi Kimura, Shinya Oki, Kaori Takizawa, Rei Nakano, Haruhiko Akiyama, Ritsuko Takada, Shinji Takada, Marco Musy, James Sharpe, and Mototsugu Eiraku.</p>
+  </footer>
+</main>
+<script>
+'use strict';
+const $ = selector => document.querySelector(selector);
+const repulsion = ['rep', 'Repulsion', 0, 12, .1];
+const adhesion = ['dd', 'Attraction', 0, .65, .01];
+const polarity = ['eta', 'Distal polarity', 0, 1, .05];
+const attractionScale = ['attractionScale', 'Attraction strength', 0, 2, .05];
+const pairControls = [
+  ['dd', 'Distal–distal', 0, .65, .01],
+  ['dp', 'Distal–proximal', 0, .65, .01],
+  ['pp', 'Proximal–proximal', 0, .65, .01]
+];
+const modes = [
+  {id:'forces', tab:'Cell forces', title:'Repulsion and attraction',
+    description:'Overlapping cells push apart. Nearby cells pull together.',
+    params:{rep:8, dd:.38}, controls:[repulsion, adhesion]},
+  {id:'adhesion', tab:'Differential attraction', title:'Differential attraction',
+    description:'Change how strongly the three pairs attract. Watch the two cell types sort.',
+    params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1}, controls:[...pairControls,attractionScale,repulsion]},
+  {id:'migration', tab:'Distal migration', title:'Distal migration',
+    description:'Distal cells respond to the cue. Proximal cells move through contact and attraction.',
+    params:{rep:1.2, dd:.3, dp:.2, pp:.1, eta:.9}, controls:[polarity, pairControls[1]]},
+  {id:'extension', tab:'Convergence & extension', title:'Convergence and extension',
+    description:'Planar cell polarity biases attraction. The distal cluster narrows across the cue and extends along it.',
+    params:{rep:1.2, dd:.3, eta:.9}, controls:[polarity, ['dd','Distal–distal',0,.65,.01]]},
+  {id:'mixed', tab:'Mixed tissue', title:'Separation in a band',
+    description:'A narrow band crowds both cell types together. Follow how they separate as the band relaxes.',
+    params:{rep:1.1, dd:.3, dp:.2, pp:.1, eta:.9, band:10},
+    controls:[polarity, pairControls[1], ['band','Initial band width (%)',6,24,1,true]]},
+  {id:'instability', tab:'Instability', title:'Fingering instability',
+    description:'Follow a rippled distal edge as polarity and attraction reshape it.',
+    params:{rep:1.1, dd:.34, dp:.16, pp:.1, eta:.95, ripple:10},
+    controls:[polarity, pairControls[1], ['ripple','Initial ripple',0,35,1,true]]}
+];
+
+function randomSequence(seed) {
+  return () => {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
+}
+
+function createScene(kind, canvas, params, seed) {
+  const pair = kind === 'repel' || kind === 'attract';
+  const advanced = !pair && kind !== 'adhesion';
+  const width = pair ? 520 : kind === 'mixed' ? 2400 : 1200;
+  const height = pair ? 316 : width * .53;
+  const radius = 50;
+  const repeatBand = kind==='migration' || kind==='mixed' || kind==='instability';
+  const zoom = repeatBand ? .8 : 1;
+  const random = randomSequence(seed);
+  const cells = [];
+  const add = (x,y,type=0) => cells.push({x,y,type,fx:0,fy:0});
+  const disk = (count,type) => {
+    for (let i=0;i<count;i++) {
+      const angle = random()*Math.PI*2;
+      const distance = 150*Math.sqrt(random());
+      add(width/2+distance*Math.cos(angle),height/2+distance*Math.sin(angle),type(i));
+    }
+  };
+  const band = (count,type,spread,offset) => {
+    for (let i=0;i<count;i++) add(width/2+offset+(random()-.5)*spread, random()*height,type);
+  };
+  switch (kind) {
+    case 'repel': add(226,167); add(294,149); break;
+    case 'attract': add(176,173); add(344,143); break;
+    case 'adhesion': disk(70,i=>i%2); break;
+    case 'migration': band(100,1,width*.50,0); band(10,0,width*.50,-100); break;
+    case 'extension': disk(50,()=>0); break;
+    case 'mixed': band(100,1,width*params.band/100,0); band(200,0,width*params.band/100,0); break;
+    case 'instability':
+      for (let row=0;row<8;row++) {
+        for (let col=0;col<15;col++) {
+          const y = (row+.5)*height/8;
+          const ripple = params.ripple*Math.cos(6*Math.PI*y/height);
+          add(280+col*49+ripple+(random()-.5)*4,y,col<7?0:1);
+        }
+      }
+      break;
+  }
+  const scene = {kind,canvas,ctx:canvas.getContext('2d'),cells,width,height,radius,advanced,pair,camera:0,drag:null,repeatBand,zoom,offsetX:width*(1-zoom)/2,offsetY:height*(1-zoom)/2,links:kind==='migration'?[]:null};
+  enableInteraction(scene,params);
+  return scene;
+}
+
+function forces(scene,p) {
+  const {cells,height,radius,advanced,kind,links} = scene;
+  const attractionScale = p.attractionScale ?? 1;
+  if (links) links.length = 0;
+  const reach = advanced ? 160 : 240;
+  const attraction = kind !== 'repel';
+  for (const cell of cells) { cell.fx = 0; cell.fy = 0; }
+  for (let i=0;i<cells.length;i++) {
+    const a = cells[i];
+    for (let j=i+1;j<cells.length;j++) {
+      const b = cells[j];
+      const dx = a.x-b.x;
+      if (Math.abs(dx)>=reach) continue;
+      let dy = a.y-b.y;
+      if (advanced) dy -= height*Math.round(dy/height);
+      const d2 = dx*dx+dy*dy;
+      if (d2>=reach*reach || d2<1e-8) continue;
+      const d = Math.sqrt(d2);
+      const ux = dx/d;
+      const uy = dy/d;
+      const rep = p.rep*Math.max(0,2*radius-d);
+      const adhesion = attraction ? (a.type!==b.type ? p.dp : a.type===0 ? p.dd : p.pp)*(reach-d) : 0;
+      const ea = advanced && a.type===0 ? p.eta*ux : 0;
+      const eb = advanced && b.type===0 ? p.eta*ux : 0;
+      // Each cell weights attraction by the direction to its neighbor.
+      const pull = attractionScale*adhesion*(1-ea)*(1+eb);
+      if (links && pull>0) links.push({a,b,pull});
+      const force = rep-pull;
+      a.fx+=force*ux; a.fy+=force*uy;
+      b.fx-=force*ux; b.fy-=force*uy;
+    }
+  }
+}
+
+function step(scene,p,dt) {
+  forces(scene,p);
+  for (const cell of scene.cells) {
+    if (cell === scene.drag?.cell) continue;
+    cell.x += cell.fx*dt;
+    const y = cell.y+cell.fy*dt;
+    cell.y = scene.advanced ? (y%scene.height+scene.height)%scene.height : y;
+  }
+}
+
+function enableInteraction(scene,params) {
+  const {canvas,width,height,radius,advanced,cells} = scene;
+  const viewportPoint = event => {
+    const bounds = canvas.getBoundingClientRect();
+    return {
+      x: (event.clientX-bounds.left)*width/bounds.width,
+      y: (event.clientY-bounds.top)*height/bounds.height
+    };
+  };
+  const point = event => {
+    const {x,y} = viewportPoint(event);
+    return {x:(x-scene.offsetX)/scene.zoom,y:(y-scene.offsetY)/scene.zoom};
+  };
+  canvas.onwheel = event => {
+    event.preventDefault();
+    if (scene.drag) return;
+    const {x,y} = viewportPoint(event);
+    const delta = event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?height:1);
+    const zoom = Math.max(.5,Math.min(4,scene.zoom*Math.exp(-delta*.002)));
+    const ratio = zoom/scene.zoom;
+    scene.offsetX = x-(x-scene.offsetX)*ratio;
+    scene.offsetY = y-(y-scene.offsetY)*ratio;
+    scene.zoom = zoom;
+    render();
+  };
+  canvas.onpointerdown = event => {
+    if (event.button !== 0 || scene.drag) return;
+    const {x,y} = point(event);
+    let nearest = radius;
+    for (const cell of cells) {
+      let dy = cell.y-y;
+      if (advanced) dy -= height*Math.round(dy/height);
+      const dx = cell.x-scene.camera-x;
+      const distance = Math.hypot(dx,dy);
+      if (distance >= nearest) continue;
+      nearest = distance;
+      scene.drag = {cell,id:event.pointerId,dx,dy};
+    }
+    if (!scene.drag) return;
+    canvas.setPointerCapture(event.pointerId);
+    canvas.classList.add('dragging');
+  };
+  canvas.onpointermove = event => {
+    const drag = scene.drag;
+    if (drag?.id !== event.pointerId) return;
+    const {x,y} = point(event);
+    drag.cell.x = scene.camera+x+drag.dx;
+    const targetY = y+drag.dy;
+    drag.cell.y = advanced ? (targetY%height+height)%height : targetY;
+    forces(scene,params);
+    render();
+  };
+  const drop = event => {
+    if (scene.drag?.id !== event.pointerId) return;
+    scene.drag = null;
+    canvas.classList.remove('dragging');
+    if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
+  };
+  canvas.onpointerup = drop;
+  canvas.onpointercancel = drop;
+  canvas.onlostpointercapture = drop;
+}
+
+function arrow(ctx,x,y,dx,dy) {
+  const length = Math.hypot(dx,dy);
+  if (length<2) return;
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.rotate(Math.atan2(dy,dx));
+  ctx.beginPath();
+  ctx.moveTo(0,0); ctx.lineTo(length,0);
+  ctx.lineTo(length-7,-4); ctx.moveTo(length,0); ctx.lineTo(length-7,4);
+  ctx.stroke();
+  ctx.restore();
+}
+
+function draw(scene,palette) {
+  const {canvas,ctx,width,height,cells,radius,pair,advanced,kind} = scene;
+  const w = canvas.width;
+  const h = canvas.height;
+  const scale = w/width;
+  const meanX = cells.reduce((sum,c)=>sum+c.x,0)/cells.length;
+  if (!scene.drag && (kind==='migration' || kind==='instability')) {
+    scene.camera = Math.max(0,meanX-width*.55);
+  }
+  const camera = scene.camera;
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle=palette.grid;
+  for(let x=12;x<w;x+=20) for(let y=12;y<h;y+=20) ctx.fillRect(x,y,1.5,1.5);
+  if (advanced) {
+    ctx.font='600 13px system-ui';
+    ctx.fillStyle=palette.muted;
+    ctx.textAlign='right';
+    ctx.fillText('Cue',w-54,26);
+    ctx.strokeStyle=palette.muted;
+    ctx.lineWidth=1.4;
+    arrow(ctx,w-47,22,30,0);
+  }
+  const period = height*scale;
+  const originY = scene.offsetY*scale;
+  const visibleTop = -originY/scene.zoom;
+  const visibleBottom = (h-originY)/scene.zoom;
+  const repeats = [0];
+  if (scene.repeatBand) {
+    repeats.length = 0;
+    const first = Math.floor(visibleTop/period)-1;
+    const last = Math.ceil(visibleBottom/period);
+    for (let tile=first;tile<=last;tile++) repeats.push(tile*period);
+
+    ctx.save();
+    ctx.strokeStyle=palette.muted;
+    ctx.globalAlpha=.55;
+    ctx.lineWidth=1;
+    ctx.setLineDash([4,5]);
+    ctx.beginPath();
+    for (const offset of repeats) {
+      const seam = originY+offset*scene.zoom;
+      if (seam<=0 || seam>=h) continue;
+      ctx.moveTo(0,seam);
+      ctx.lineTo(w,seam);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+  ctx.save();
+  ctx.translate(scene.offsetX*scale,originY);
+  ctx.scale(scene.zoom,scene.zoom);
+  if (scene.links) {
+    for (const {a,b,pull} of scene.links) {
+      const ax=(a.x-camera)*scale;
+      const bx=(b.x-camera)*scale;
+      const ay=a.y*scale;
+      const rawY=(b.y-a.y)*scale;
+      const by=ay+rawY-period*Math.round(rawY/period);
+      const strength=pull/(pull+14);
+      ctx.globalAlpha=.035+.88*strength*strength;
+      ctx.strokeStyle=strength>.55?palette.strongLink:palette.accent;
+      ctx.lineWidth=.35+6*strength*strength;
+      ctx.beginPath();
+      for (const offset of repeats) {
+        if (Math.max(ay,by)+offset<visibleTop || Math.min(ay,by)+offset>visibleBottom) continue;
+        ctx.moveTo(ax,ay+offset);
+        ctx.lineTo(bx,by+offset);
+      }
+      ctx.stroke();
+    }
+    ctx.globalAlpha=1;
+  }
+  for (const cell of cells) {
+    const x=(cell.x-camera)*scale;
+    const r=radius*scale;
+    const y=cell.y*scale;
+    const color=cell.type===0 ? palette.distal : palette.proximal;
+    const drawCell = cy => {
+      ctx.beginPath();
+      ctx.arc(x,cy,r*.96,0,2*Math.PI);
+      ctx.fillStyle=color;
+      ctx.globalAlpha=.26;
+      ctx.fill();
+      ctx.globalAlpha=.92;
+      ctx.strokeStyle=color;
+      ctx.lineWidth=pair?2:1;
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(x,cy,Math.max(1.8,r*.15),0,2*Math.PI);
+      ctx.fill();
+      ctx.globalAlpha=1;
+    };
+    for (const offset of repeats) {
+      const cy = y+offset;
+      if (!scene.repeatBand || (cy+r>=visibleTop && cy-r<=visibleBottom)) drawCell(cy);
+    }
+    if (advanced && !scene.repeatBand) {
+      if (y<r) drawCell(y+period);
+      if (y>period-r) drawCell(y-period);
+    }
+    if (pair) {
+      const magnitude=Math.hypot(cell.fx,cell.fy);
+      const gain=Math.min(.38,85/Math.max(1,magnitude));
+      ctx.strokeStyle=palette.ink;
+      ctx.lineWidth=2;
+      arrow(ctx,x,y,cell.fx*gain,cell.fy*gain);
+    }
+  }
+  ctx.restore();
+}
+
+const tabs=$('nav');
+const controls=$('#controls');
+const plotArea=$('.plots');
+const play=$('#play');
+let current=0, scenes=[], running=false, elapsed=0, previous=0, palette;
+let seed = Math.floor(Math.random()*2**32);
+let theme;
+try { theme=localStorage.getItem('cell-dynamics-theme'); } catch {}
+function setTheme(value) {
+  document.documentElement.dataset.theme=value;
+  $('#theme').textContent=value==='dark'?'Light mode':'Dark mode';
+  const styles=getComputedStyle(document.documentElement);
+  palette=Object.fromEntries(['grid','ink','muted','distal','proximal','accent'].map(key=>[key,styles.getPropertyValue('--'+key).trim()]));
+  palette.strongLink=styles.getPropertyValue('--strong-link').trim();
+  render();
+}
+$('#theme').onclick=()=>{
+  const value=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  setTheme(value);
+  try { localStorage.setItem('cell-dynamics-theme',value); } catch {}
+};
+
+function render() { for (const scene of scenes) draw(scene,palette); }
+function setRunning(value) {
+  running=value;
+  play.textContent=value?'Pause':elapsed?'Resume':'Run';
+}
+function reset() {
+  for (const scene of scenes) {
+    if (scene.drag && scene.canvas.hasPointerCapture(scene.drag.id)) {
+      scene.canvas.releasePointerCapture(scene.drag.id);
+    }
+    scene.canvas.classList.remove('dragging');
+  }
+  const mode=modes[current];
+  elapsed=0;
+  seed=(seed+1)>>>0;
+  scenes=Array.from(plotArea.querySelectorAll('canvas'),canvas=>createScene(canvas.dataset.kind,canvas,mode.params,seed));
+  for (const scene of scenes) forces(scene,mode.params);
+  setRunning(false);
+  render();
+}
+function select(index,focus=false) {
+  current=index;
+  const mode=modes[index];
+  for (const [i,tab] of Array.from(tabs.children).entries()) {
+    tab.setAttribute('aria-selected',i===index);
+    tab.tabIndex=i===index?0:-1;
+  }
+  if(focus) tabs.children[index].focus();
+  $('#demo').setAttribute('aria-labelledby',tabs.children[index].id);
+  $('#title').textContent=mode.title;
+  $('#description').textContent=mode.description;
+  const pair=mode.id==='forces';
+  plotArea.classList.toggle('pair',pair);
+  const canvas=(kind,label,width,height)=>'<canvas role="img" aria-label="'+label+'" data-kind="'+kind+'" width="'+width+'" height="'+height+'"></canvas>';
+  plotArea.innerHTML=pair
+    ? '<figure><figcaption><h3>Repulsion</h3><small>Short range</small></figcaption>'+canvas('repel','Two overlapping cells with outward force arrows',520,316)+'</figure>'
+      +'<figure><figcaption><h3>Attraction</h3><small>Longer range</small></figcaption>'+canvas('attract','Two nearby cells with inward force arrows',520,316)+'</figure>'
+    : '<figure>'+canvas(mode.id,mode.title+' simulation',840,445)+'</figure>';
+  $('.legend').innerHTML=pair?'→ Force direction'
+    : '<span><i class="dot" style="--dot:var(--distal)"></i>Distal</span>'
+      +(mode.id==='extension'?'':'<span><i class="dot" style="--dot:var(--proximal)"></i>Proximal</span>')
+      +(mode.id==='migration'?'<span>Thicker links show stronger attraction</span>':'');
+  controls.innerHTML='';
+  for (const [key,label,min,max,stepSize,initial] of mode.controls) {
+    const row=document.createElement('div');
+    row.className='control';
+    row.innerHTML='<label for="param-'+key+'"><span>'+label+'</span><output for="param-'+key+'"></output></label>'
+      +'<input id="param-'+key+'" type="range" min="'+min+'" max="'+max+'" step="'+stepSize+'">';
+    const input=row.querySelector('input');
+    const output=row.querySelector('output');
+    input.value=mode.params[key];
+    const digits=stepSize>=1?0:stepSize>=.1?1:2;
+    const unit=key==='attractionScale'?'×':'';
+    output.value=Number(input.value).toFixed(digits)+unit;
+    input.oninput=()=>{
+      mode.params[key]=Number(input.value);
+      output.value=mode.params[key].toFixed(digits)+unit;
+      if (initial) { reset(); return; }
+      for (const scene of scenes) forces(scene,mode.params);
+      render();
+    };
+    controls.append(row);
+  }
+  reset();
+}
+modes.forEach((mode,index)=>{
+  const tab=document.createElement('button');
+  tab.id='tab-'+mode.id;
+  tab.type='button';
+  tab.textContent=mode.tab;
+  tab.setAttribute('role','tab');
+  tab.setAttribute('aria-controls','demo');
+  tab.onclick=()=>select(index);
+  tabs.append(tab);
+});
+tabs.onkeydown=event=>{
+  const destinations={ArrowLeft:(current+modes.length-1)%modes.length,ArrowRight:(current+1)%modes.length,Home:0,End:modes.length-1};
+  if (!(event.key in destinations)) return;
+  event.preventDefault();
+  select(destinations[event.key],true);
+};
+play.onclick=()=>setRunning(!running);
+$('#reset').onclick=()=>{
+  const wasRunning=running;
+  reset();
+  setRunning(wasRunning);
+};
+setTheme(theme || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+select(0);
+function animate(now) {
+  const delta=Math.min(.04,(now-previous)/1000);
+  previous=now;
+  if (running) {
+    const speed=modes[current].id==='adhesion'?1.1:3;
+    const dt=delta*speed/4;
+    for(let i=0;i<4;i++) for(const scene of scenes) step(scene,modes[current].params,dt);
+    elapsed+=delta;
+    render();
+  }
+  requestAnimationFrame(animate);
+}
+requestAnimationFrame(animate);
+</script>
+</body>
+</html>
