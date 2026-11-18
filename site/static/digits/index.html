@@ -86,14 +86,14 @@ const pairControls = [
   ['dp', 'Distal–proximal', 0, .65, .01],
   ['pp', 'Proximal–proximal', 0, .65, .01]
 ];
-const modes = [
+const experiments = [
   {id:'forces', tab:'Cell forces', title:'Repulsion and attraction',
     description:'Overlapping cells push apart. Nearby cells pull together.',
     params:{rep:8, dd:.38}, controls:[repulsion, adhesion]},
   {id:'adhesion', tab:'Differential attraction', title:'Differential attraction',
     description:'Change how strongly the three pairs attract. Watch the two cell types sort.',
     params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1}, controls:[...pairControls,attractionScale,repulsion]},
-  {id:'chemotaxis', tab:'Chemotaxis', title:'Chemotaxis',
+  {id:'chemotaxis', hidden:true, tab:'Chemotaxis', title:'Chemotaxis',
     description:'The cue biases attraction for blue distal cells. Green proximal and pink distal cells have no polarity bias.',
     params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1.35, eta:.95},
     controls:[['eta','Cue bias',0,1,.01],...pairControls,['attractionScale','Attraction strength',0,3,.05],repulsion]},
@@ -112,6 +112,8 @@ const modes = [
     params:{rep:1.1, dd:.34, dp:.16, pp:.1, eta:.95, ripple:10},
     controls:[polarity, pairControls[1], ['ripple','Initial ripple',0,35,1,true]]}
 ];
+
+const modes = experiments.filter(mode=>!mode.hidden);
 
 function randomSequence(seed) {
   return () => {
