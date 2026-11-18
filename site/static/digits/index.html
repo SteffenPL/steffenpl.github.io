@@ -94,9 +94,9 @@ const modes = [
     description:'Change how strongly the three pairs attract. Watch the two cell types sort.',
     params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1}, controls:[...pairControls,attractionScale,repulsion]},
   {id:'chemotaxis', tab:'Chemotaxis', title:'Chemotaxis',
-    description:'Only blue distal cells move directly toward the cue. All three populations interact by attraction and repulsion.',
-    params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1, cue:100},
-    controls:[['cue','Cue strength',0,300,1],...pairControls,attractionScale,repulsion]},
+    description:'The cue biases attraction for blue distal cells. Green proximal and pink distal cells have no polarity bias.',
+    params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1.35, eta:.95},
+    controls:[['eta','Cue bias',0,1,.01],...pairControls,['attractionScale','Attraction strength',0,3,.05],repulsion]},
   {id:'migration', tab:'Distal migration', title:'Distal migration',
     description:'Distal cells respond to the cue. Proximal cells move through contact and attraction.',
     params:{rep:1.2, dd:.3, dp:.2, pp:.1, eta:.9}, controls:[polarity, pairControls[1]]},
@@ -169,9 +169,10 @@ function forces(scene,p) {
   const attractionScale = p.attractionScale ?? 1;
   if (links) links.length = 0;
   const reach = advanced ? 160 : 240;
+  const polarizedType = kind==='chemotaxis' ? 2 : advanced ? 0 : -1;
   const attraction = kind !== 'repel';
   for (const cell of cells) {
-    cell.fx = cell.type===2 ? p.cue : 0;
+    cell.fx = 0;
     cell.fy = 0;
   }
   for (let i=0;i<cells.length;i++) {
@@ -193,8 +194,8 @@ function forces(scene,p) {
       const bProximal = b.type===1;
       const pairAttraction = aProximal!==bProximal ? p.dp : aProximal ? p.pp : p.dd;
       const adhesion = attraction ? pairAttraction*(reach-d) : 0;
-      const ea = advanced && a.type===0 ? p.eta*ux : 0;
-      const eb = advanced && b.type===0 ? p.eta*ux : 0;
+      const ea = a.type===polarizedType ? p.eta*ux : 0;
+      const eb = b.type===polarizedType ? p.eta*ux : 0;
       // Each cell weights attraction by the direction to its neighbor.
       const pull = attractionScale*adhesion*(1-ea)*(1+eb);
       if (links && pull>0) links.push({a,b,pull});
@@ -519,7 +520,7 @@ function animate(now) {
   previous=now;
   if (running) {
     const kind=modes[current].id;
-    const speed=kind==='adhesion' || kind==='chemotaxis' ? 1.1 : 3;
+    const speed=kind==='adhesion' ? 1.1 : 3;
     const dt=delta*speed/4;
     for(let i=0;i<4;i++) for(const scene of scenes) step(scene,modes[current].params,dt);
     elapsed+=delta;
