@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cell dynamics</title>
 <style>
-:root{color-scheme:light;--bg:#fff;--panel:#fff;--ink:#171a1f;--muted:#505866;--line:#dce0e6;--accent:#192f58;--active:#edf1f7;--distal:#a33b70;--proximal:#247965;--grid:#e8ebef;--strong-link:#b44813;--responsive:#235cb8}
-:root[data-theme=dark]{color-scheme:dark;--bg:#222;--panel:#222;--ink:#fff;--muted:#c8c8c8;--line:#484848;--accent:#ffc292;--active:#42342b;--distal:#f298c5;--proximal:#76cdb0;--grid:#363636;--strong-link:#ffac69;--responsive:#82afff}
+:root{color-scheme:light;--bg:#fff;--panel:#fff;--ink:#171a1f;--muted:#505866;--line:#dce0e6;--accent:#192f58;--active:#edf1f7;--distal:#247965;--proximal:#a33b70;--grid:#e8ebef;--strong-link:#b44813;--responsive:#235cb8}
+:root[data-theme=dark]{color-scheme:dark;--bg:#222;--panel:#222;--ink:#fff;--muted:#c8c8c8;--line:#484848;--accent:#ffc292;--active:#42342b;--distal:#76cdb0;--proximal:#f298c5;--grid:#363636;--strong-link:#ffac69;--responsive:#82afff}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,sans-serif}
 main{max-width:1120px;margin:auto;padding:36px 26px 28px}
@@ -94,7 +94,7 @@ const experiments = [
     description:'Change how strongly the three pairs attract. Watch the two cell types sort.',
     params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1}, controls:[...pairControls,attractionScale,repulsion]},
   {id:'chemotaxis', hidden:true, tab:'Chemotaxis', title:'Chemotaxis',
-    description:'The cue biases attraction for blue distal cells. Green proximal and pink distal cells have no polarity bias.',
+    description:'The cue biases attraction for blue distal cells. Pink proximal and green distal cells have no polarity bias.',
     params:{rep:8, dd:.4, dp:.2, pp:.1, attractionScale:1.35, eta:.95},
     controls:[['eta','Cue bias',0,1,.01],...pairControls,['attractionScale','Attraction strength',0,3,.05],repulsion]},
   {id:'migration', tab:'Distal migration', title:'Distal migration',
